@@ -1,0 +1,53 @@
+name: Drift check
+
+# Tells you when this published bundle is stale: weekly, compares the committed manifest.json
+# apiVersion against the LIVE bundle at https://opendpp-node.eu/okf/manifest.json. On divergence it
+# opens (or updates) a tracking issue. The source repo (opendpp-node) normally pushes updates
+# automatically on every API version change; this is the backstop if that sync ever fails.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  okf-drift:
+    name: manifest vs live
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare committed vs live apiVersion
+        id: cmp
+        run: |
+          curl -sSL https://opendpp-node.eu/okf/manifest.json -o live-manifest.json
+          node -e '
+            const fs = require("fs");
+            const committed = JSON.parse(fs.readFileSync("manifest.json", "utf8"));
+            const live = JSON.parse(fs.readFileSync("live-manifest.json", "utf8"));
+            const drift = committed.apiVersion !== live.apiVersion || committed.conceptCount !== live.conceptCount;
+            const out = process.env.GITHUB_OUTPUT;
+            fs.appendFileSync(out, `drift=${drift}\n`);
+            fs.appendFileSync(out, `committed=${committed.apiVersion}\n`);
+            fs.appendFileSync(out, `live=${live.apiVersion}\n`);
+            console.log(drift ? `DRIFT: committed ${committed.apiVersion} vs live ${live.apiVersion}` : "in sync");
+          '
+      - name: Open or update a drift issue
+        if: steps.cmp.outputs.drift == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = "OKF bundle is out of sync with the live API";
+            const body = `The committed bundle (apiVersion \`${{ steps.cmp.outputs.committed }}\`) differs from the live `
+              + `bundle at https://opendpp-node.eu/okf/manifest.json (apiVersion \`${{ steps.cmp.outputs.live }}\`).\n\n`
+              + `The automatic sync from \`OpenDPP/opendpp-node\` may have failed — re-run its **Publish OKF bundle** workflow.`;
+            const existing = await github.rest.issues.listForRepo({ owner: context.repo.owner, repo: context.repo.repo, state: "open", labels: "drift" });
+            const found = existing.data.find((i) => i.title === title);
+            if (found) {
+              await github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: found.number, body });
+            } else {
+              await github.rest.issues.create({ owner: context.repo.owner, repo: context.repo.repo, title, body, labels: ["drift"] });
+            }

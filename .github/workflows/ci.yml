@@ -1,0 +1,24 @@
+name: CI
+
+# Validates that the published bundle is OKF-conformant (frontmatter + no broken internal links),
+# using the zero-dependency validate.mjs — so the public repo is independently checkable.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: OKF conformance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node validate.mjs

@@ -1,0 +1,1380 @@
+{
+  "okfVersion": "0.1",
+  "apiVersion": "1.4.0",
+  "generated": "2026-06-17T00:00:00Z",
+  "conceptCount": 196,
+  "concepts": [
+    {
+      "path": "overview.md",
+      "type": "Reference",
+      "title": "OpenDPP Integration API — overview",
+      "description": "What the OpenDPP Integration API does, how it is organised, and where to start.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "guides/authentication.md",
+      "type": "Playbook",
+      "title": "Authentication & tenancy",
+      "description": "Authenticate with a tenant API key as a Bearer token; tenant identity is token-bound.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "guides/errors.md",
+      "type": "Reference",
+      "title": "Error model",
+      "description": "Error envelopes returned by the API, including the richer ESPR validation-failure shape.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "guides/rate-limits.md",
+      "type": "Reference",
+      "title": "Rate limits",
+      "description": "Per-IP request limits and the response headers that advertise them.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "guides/public-access-tiers.md",
+      "type": "Reference",
+      "title": "Public access tiers",
+      "description": "How one resolution URL serves tiered views via capability tokens (Battery Reg. Art. 77(9)).",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "guides/sealing-and-verification.md",
+      "type": "Playbook",
+      "title": "Sealing & verification",
+      "description": "Apply an eIDAS advanced electronic seal and verify it offline from the redacted document.",
+      "resource": "https://opendpp-node.eu/security"
+    },
+    {
+      "path": "guides/interop-aas-untp.md",
+      "type": "Reference",
+      "title": "Interop: AAS & UNTP credentials",
+      "description": "The standards-conformant projections OpenDPP serves alongside JSON-LD, and where to validate them.",
+      "resource": "https://github.com/OpenDPP/opendpp-interop"
+    },
+    {
+      "path": "guides/conformance.md",
+      "type": "Reference",
+      "title": "Conformance honesty",
+      "description": "What OpenDPP's output conforms to today, what is partial, and what is on the roadmap.",
+      "resource": "https://github.com/OpenDPP/opendpp-interop"
+    },
+    {
+      "path": "tags/passports.md",
+      "type": "Reference",
+      "title": "Passports",
+      "description": "Create, validate, read, update, seal and manage the lifecycle of Digital Product Passports.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/economic-operators.md",
+      "type": "Reference",
+      "title": "Economic Operators",
+      "description": "Register and manage the economic operators (manufacturers/brands, identified by EORI or national registry id) that passports are issued on behalf of.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/battery-units.md",
+      "type": "Reference",
+      "title": "Battery Units",
+      "description": "Per-unit battery serialization (real serials, GS1 AI 21) under a SKU-level passport, plus append-only telemetry events (state of health, charge cycles, status changes) per the EU Battery Regulation.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/facilities.md",
+      "type": "Reference",
+      "title": "Facilities",
+      "description": "Manufacturing facility master data, identified by GS1 GLN-13 (the Unique Facility Identifier).",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/access-grants.md",
+      "type": "Reference",
+      "title": "Access Grants",
+      "description": "Capability tokens implementing tiered access (Battery Regulation Art.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/webhooks.md",
+      "type": "Reference",
+      "title": "Webhooks",
+      "description": "Subscribe HTTPS endpoints to passport lifecycle events.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/traceability-audit.md",
+      "type": "Reference",
+      "title": "Traceability & Audit",
+      "description": "UNTP/EPCIS supply-chain traceability events, lineage queries, and the public seal verifier.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/public-resolution.md",
+      "type": "Reference",
+      "title": "Public Resolution",
+      "description": "Unauthenticated, content-negotiated passport resolution: GS1 Digital Link paths, passport and unit pages.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/schemas-vocabulary.md",
+      "type": "Reference",
+      "title": "Schemas & Vocabulary",
+      "description": "Machine-readable contracts: per-category ESPR JSON Schemas, the W3C JSON-LD context, and the curated materials vocabulary.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/qr-codes.md",
+      "type": "Reference",
+      "title": "QR Codes",
+      "description": "Export GS1-Digital-Link QR codes (PNG/SVG, 128–2048 px, GS1 quiet zone) for passports and battery units.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/eidas-keys.md",
+      "type": "Reference",
+      "title": "eIDAS Keys",
+      "description": "Tenant signing-key management.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/account.md",
+      "type": "Reference",
+      "title": "Account",
+      "description": "Identity of the authenticated API key / session: workspace, role, permissions, operator scope, and passport usage against the tier quota — the integration-facing counterpart to the console's profile endpoints.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/service.md",
+      "type": "Reference",
+      "title": "Service",
+      "description": "Service metadata and liveness.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "operations/whoami.md",
+      "type": "API Endpoint",
+      "title": "Identity of the authenticated key / session",
+      "description": "Identity of the authenticated key / session",
+      "resource": "https://opendpp-node.eu/api/v1/whoami"
+    },
+    {
+      "path": "operations/listBatteryUnits.md",
+      "type": "API Endpoint",
+      "title": "List serialised battery units under a passport",
+      "description": "List serialised battery units under a passport",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{passportId}/units"
+    },
+    {
+      "path": "operations/serializeBatteryUnits.md",
+      "type": "API Endpoint",
+      "title": "Serialise individual battery units under a passport (bulk, up to 200)",
+      "description": "Serialise individual battery units under a passport (bulk, up to 200)",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{passportId}/units"
+    },
+    {
+      "path": "operations/getBatteryUnit.md",
+      "type": "API Endpoint",
+      "title": "Get one battery unit as JSON-LD with its dynamic-data history",
+      "description": "Get one battery unit as JSON-LD with its dynamic-data history",
+      "resource": "https://opendpp-node.eu/api/v1/units/{id}"
+    },
+    {
+      "path": "operations/deleteBatteryUnit.md",
+      "type": "API Endpoint",
+      "title": "Permanently delete a battery unit and its telemetry",
+      "description": "Permanently delete a battery unit and its telemetry",
+      "resource": "https://opendpp-node.eu/api/v1/units/{id}"
+    },
+    {
+      "path": "operations/listBatteryUnitEvents.md",
+      "type": "API Endpoint",
+      "title": "List a battery unit's telemetry history (newest first, max 500)",
+      "description": "List a battery unit's telemetry history (newest first, max 500)",
+      "resource": "https://opendpp-node.eu/api/v1/units/{id}/events"
+    },
+    {
+      "path": "operations/recordBatteryUnitEvent.md",
+      "type": "API Endpoint",
+      "title": "Append an immutable telemetry event to a battery unit",
+      "description": "Append an immutable telemetry event to a battery unit",
+      "resource": "https://opendpp-node.eu/api/v1/units/{id}/events"
+    },
+    {
+      "path": "operations/listFacilities.md",
+      "type": "API Endpoint",
+      "title": "List facilities in the tenant workspace",
+      "description": "List facilities in the tenant workspace",
+      "resource": "https://opendpp-node.eu/api/v1/facilities"
+    },
+    {
+      "path": "operations/createFacility.md",
+      "type": "API Endpoint",
+      "title": "Register a facility (GS1 GLN)",
+      "description": "Register a facility (GS1 GLN)",
+      "resource": "https://opendpp-node.eu/api/v1/facilities"
+    },
+    {
+      "path": "operations/getFacility.md",
+      "type": "API Endpoint",
+      "title": "Get a single facility",
+      "description": "Get a single facility",
+      "resource": "https://opendpp-node.eu/api/v1/facilities/{id}"
+    },
+    {
+      "path": "operations/updateFacility.md",
+      "type": "API Endpoint",
+      "title": "Update facility master data (GLN is immutable)",
+      "description": "Update facility master data (GLN is immutable)",
+      "resource": "https://opendpp-node.eu/api/v1/facilities/{id}"
+    },
+    {
+      "path": "operations/deleteFacility.md",
+      "type": "API Endpoint",
+      "title": "Delete a facility (passports are unlinked, never deleted)",
+      "description": "Delete a facility (passports are unlinked, never deleted)",
+      "resource": "https://opendpp-node.eu/api/v1/facilities/{id}"
+    },
+    {
+      "path": "operations/listGrants.md",
+      "type": "API Endpoint",
+      "title": "List access grants and pending access requests",
+      "description": "List access grants and pending access requests",
+      "resource": "https://opendpp-node.eu/api/v1/grants"
+    },
+    {
+      "path": "operations/createGrant.md",
+      "type": "API Endpoint",
+      "title": "Issue a legitimate-interest access grant directly",
+      "description": "Issue a legitimate-interest access grant directly",
+      "resource": "https://opendpp-node.eu/api/v1/grants"
+    },
+    {
+      "path": "operations/approveGrantRequest.md",
+      "type": "API Endpoint",
+      "title": "Approve a pending access request and mint its token",
+      "description": "Approve a pending access request and mint its token",
+      "resource": "https://opendpp-node.eu/api/v1/grants/{id}/approve"
+    },
+    {
+      "path": "operations/denyGrantRequest.md",
+      "type": "API Endpoint",
+      "title": "Deny a pending access request",
+      "description": "Deny a pending access request",
+      "resource": "https://opendpp-node.eu/api/v1/grants/{id}/deny"
+    },
+    {
+      "path": "operations/revokeGrant.md",
+      "type": "API Endpoint",
+      "title": "Revoke an access grant (soft revocation)",
+      "description": "Revoke an access grant (soft revocation)",
+      "resource": "https://opendpp-node.eu/api/v1/grants/{id}"
+    },
+    {
+      "path": "operations/listOperators.md",
+      "type": "API Endpoint",
+      "title": "List economic operators bound to your workspace",
+      "description": "List economic operators bound to your workspace",
+      "resource": "https://opendpp-node.eu/api/v1/operators"
+    },
+    {
+      "path": "operations/registerOperator.md",
+      "type": "API Endpoint",
+      "title": "Register an economic operator and bind it to your workspace",
+      "description": "Register an economic operator and bind it to your workspace",
+      "resource": "https://opendpp-node.eu/api/v1/operators"
+    },
+    {
+      "path": "operations/getOperator.md",
+      "type": "API Endpoint",
+      "title": "Fetch a single bound economic operator",
+      "description": "Fetch a single bound economic operator",
+      "resource": "https://opendpp-node.eu/api/v1/operators/{id}"
+    },
+    {
+      "path": "operations/updateOperator.md",
+      "type": "API Endpoint",
+      "title": "Update an operator's name or role (regId is immutable)",
+      "description": "Update an operator's name or role (regId is immutable)",
+      "resource": "https://opendpp-node.eu/api/v1/operators/{id}"
+    },
+    {
+      "path": "operations/deleteOperator.md",
+      "type": "API Endpoint",
+      "title": "Remove an operator (archives if it has passports, else hard-deletes)",
+      "description": "Remove an operator (archives if it has passports, else hard-deletes)",
+      "resource": "https://opendpp-node.eu/api/v1/operators/{id}"
+    },
+    {
+      "path": "operations/restoreOperator.md",
+      "type": "API Endpoint",
+      "title": "Restore an archived operator and its archived passports",
+      "description": "Restore an archived operator and its archived passports",
+      "resource": "https://opendpp-node.eu/api/v1/operators/{id}/restore"
+    },
+    {
+      "path": "operations/rotateTenantKeys.md",
+      "type": "API Endpoint",
+      "title": "Rotate the tenant's eIDAS ECDSA signing key pair",
+      "description": "Rotate the tenant's eIDAS ECDSA signing key pair",
+      "resource": "https://opendpp-node.eu/api/v1/tenants/rotate-keys"
+    },
+    {
+      "path": "operations/listPassports.md",
+      "type": "API Endpoint",
+      "title": "List passports in your workspace (paginated JSON-LD)",
+      "description": "List passports in your workspace (paginated JSON-LD)",
+      "resource": "https://opendpp-node.eu/api/v1/passports"
+    },
+    {
+      "path": "operations/createPassport.md",
+      "type": "API Endpoint",
+      "title": "Create (ingest) a Digital Product Passport",
+      "description": "Create (ingest) a Digital Product Passport",
+      "resource": "https://opendpp-node.eu/api/v1/passports"
+    },
+    {
+      "path": "operations/validatePassport.md",
+      "type": "API Endpoint",
+      "title": "Dry-run ESPR validation of passport metadata (nothing is stored)",
+      "description": "Dry-run ESPR validation of passport metadata (nothing is stored)",
+      "resource": "https://opendpp-node.eu/api/v1/passports/validate-only"
+    },
+    {
+      "path": "operations/validatePassportPublic.md",
+      "type": "API Endpoint",
+      "title": "Public dry-run ESPR metadata validation (strictly rate-limited)",
+      "description": "Public dry-run ESPR metadata validation (strictly rate-limited)",
+      "resource": "https://opendpp-node.eu/api/v1/passports/validate-only-public"
+    },
+    {
+      "path": "operations/bulkIngestPassports.md",
+      "type": "API Endpoint",
+      "title": "Bulk-ingest up to 200 passports with per-row error reporting",
+      "description": "Bulk-ingest up to 200 passports with per-row error reporting",
+      "resource": "https://opendpp-node.eu/api/v1/passports/bulk"
+    },
+    {
+      "path": "operations/ingestPassportFromAas.md",
+      "type": "API Endpoint",
+      "title": "Ingest a passport from an AAS JSON Environment (seal-verified)",
+      "description": "Ingest a passport from an AAS JSON Environment (seal-verified)",
+      "resource": "https://opendpp-node.eu/api/v1/passports/aas/ingest"
+    },
+    {
+      "path": "operations/getPassport.md",
+      "type": "API Endpoint",
+      "title": "Fetch a single passport (content-negotiated JSON-LD / AAS / HTML)",
+      "description": "Fetch a single passport (content-negotiated JSON-LD / AAS / HTML)",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{id}"
+    },
+    {
+      "path": "operations/updatePassport.md",
+      "type": "API Endpoint",
+      "title": "Update passport metadata (versioned to history)",
+      "description": "Update passport metadata (versioned to history)",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{id}"
+    },
+    {
+      "path": "operations/deleteDraftPassport.md",
+      "type": "API Endpoint",
+      "title": "Permanently delete a DRAFT passport",
+      "description": "Permanently delete a DRAFT passport",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{id}"
+    },
+    {
+      "path": "operations/sealPassport.md",
+      "type": "API Endpoint",
+      "title": "Apply the tenant's eIDAS advanced electronic seal",
+      "description": "Apply the tenant's eIDAS advanced electronic seal",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{id}/seal"
+    },
+    {
+      "path": "operations/updatePassportStatus.md",
+      "type": "API Endpoint",
+      "title": "Transition passport lifecycle status (recall / decommission / reactivate)",
+      "description": "Transition passport lifecycle status (recall / decommission / reactivate)",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{id}/status"
+    },
+    {
+      "path": "operations/resolvePublicPassport.md",
+      "type": "API Endpoint",
+      "title": "Resolve a passport by UUID (JSON-LD / AAS / HTML)",
+      "description": "Resolve a passport by UUID (JSON-LD / AAS / HTML)",
+      "resource": "https://opendpp-node.eu/passport/{id}"
+    },
+    {
+      "path": "operations/resolveGs1Gtin.md",
+      "type": "API Endpoint",
+      "title": "GS1 Digital Link resolution by GTIN-14 (AI 01)",
+      "description": "GS1 Digital Link resolution by GTIN-14 (AI 01)",
+      "resource": "https://opendpp-node.eu/01/{gtin14}"
+    },
+    {
+      "path": "operations/resolveGs1GtinSerial.md",
+      "type": "API Endpoint",
+      "title": "GS1 Digital Link serialised-item redirect (AI 01 + AI 21)",
+      "description": "GS1 Digital Link serialised-item redirect (AI 01 + AI 21)",
+      "resource": "https://opendpp-node.eu/01/{gtin14}/21/{serial}"
+    },
+    {
+      "path": "operations/resolveGs1Grai.md",
+      "type": "API Endpoint",
+      "title": "GS1 Digital Link resolution by GRAI (AI 8003)",
+      "description": "GS1 Digital Link resolution by GRAI (AI 8003)",
+      "resource": "https://opendpp-node.eu/8003/{grai}"
+    },
+    {
+      "path": "operations/resolvePublicBatteryUnit.md",
+      "type": "API Endpoint",
+      "title": "Resolve an individual serialised battery unit",
+      "description": "Resolve an individual serialised battery unit",
+      "resource": "https://opendpp-node.eu/unit/{id}"
+    },
+    {
+      "path": "operations/getSealCaCertificate.md",
+      "type": "API Endpoint",
+      "title": "Download the platform seal-CA certificate (PEM)",
+      "description": "Download the platform seal-CA certificate (PEM)",
+      "resource": "https://opendpp-node.eu/.well-known/opendpp-seal-ca.pem"
+    },
+    {
+      "path": "operations/getSectorSchema.md",
+      "type": "API Endpoint",
+      "title": "Get the ESPR metadata schema for a product category",
+      "description": "Get the ESPR metadata schema for a product category",
+      "resource": "https://opendpp-node.eu/api/v1/schemas/{category}"
+    },
+    {
+      "path": "operations/getJsonLdContext.md",
+      "type": "API Endpoint",
+      "title": "W3C JSON-LD context document for passport terms",
+      "description": "W3C JSON-LD context document for passport terms",
+      "resource": "https://opendpp-node.eu/context/v1"
+    },
+    {
+      "path": "operations/getHealth.md",
+      "type": "API Endpoint",
+      "title": "Service health check",
+      "description": "Service health check",
+      "resource": "https://opendpp-node.eu/health"
+    },
+    {
+      "path": "operations/getApiVersion.md",
+      "type": "API Endpoint",
+      "title": "Running API contract version & build identity",
+      "description": "Running API contract version & build identity",
+      "resource": "https://opendpp-node.eu/api/v1/version"
+    },
+    {
+      "path": "operations/getPassportQrCode.md",
+      "type": "API Endpoint",
+      "title": "Export a print-grade GS1 Digital Link QR code for a passport",
+      "description": "Export a print-grade GS1 Digital Link QR code for a passport",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{id}/qr"
+    },
+    {
+      "path": "operations/getBatteryUnitQrCode.md",
+      "type": "API Endpoint",
+      "title": "Export a print-grade QR code for an individual battery unit",
+      "description": "Export a print-grade QR code for an individual battery unit",
+      "resource": "https://opendpp-node.eu/api/v1/units/{id}/qr"
+    },
+    {
+      "path": "operations/listMaterials.md",
+      "type": "API Endpoint",
+      "title": "List the platform-curated material vocabulary",
+      "description": "List the platform-curated material vocabulary",
+      "resource": "https://opendpp-node.eu/api/v1/materials"
+    },
+    {
+      "path": "operations/registerTraceabilityEvent.md",
+      "type": "API Endpoint",
+      "title": "Register a UNTP/EPCIS 2.0 traceability event (VC-shaped)",
+      "description": "Register a UNTP/EPCIS 2.0 traceability event (VC-shaped)",
+      "resource": "https://opendpp-node.eu/api/v1/events"
+    },
+    {
+      "path": "operations/getEventLineage.md",
+      "type": "API Endpoint",
+      "title": "Retrieve the upstream pedigree of an event as a recursive lineage DAG",
+      "description": "Retrieve the upstream pedigree of an event as a recursive lineage DAG",
+      "resource": "https://opendpp-node.eu/api/v1/events/{id}/lineage"
+    },
+    {
+      "path": "operations/auditEventLineage.md",
+      "type": "API Endpoint",
+      "title": "Run heuristic UFLPA/EUDR compliance screening over an event's lineage",
+      "description": "Run heuristic UFLPA/EUDR compliance screening over an event's lineage",
+      "resource": "https://opendpp-node.eu/api/v1/events/{id}/audit"
+    },
+    {
+      "path": "operations/verifyPassportSeal.md",
+      "type": "API Endpoint",
+      "title": "Publicly verify a passport's eIDAS seal, certificate chain and timestamp",
+      "description": "Publicly verify a passport's eIDAS seal, certificate chain and timestamp",
+      "resource": "https://opendpp-node.eu/api/v1/audit/verify"
+    },
+    {
+      "path": "operations/listWebhookSubscriptions.md",
+      "type": "API Endpoint",
+      "title": "List webhook subscriptions (signing secrets stripped)",
+      "description": "List webhook subscriptions (signing secrets stripped)",
+      "resource": "https://opendpp-node.eu/api/v1/webhooks/subscriptions"
+    },
+    {
+      "path": "operations/createWebhookSubscription.md",
+      "type": "API Endpoint",
+      "title": "Register a webhook subscription (signing secret returned once)",
+      "description": "Register a webhook subscription (signing secret returned once)",
+      "resource": "https://opendpp-node.eu/api/v1/webhooks/subscriptions"
+    },
+    {
+      "path": "operations/updateWebhookSubscription.md",
+      "type": "API Endpoint",
+      "title": "Update a webhook subscription (url / events / active)",
+      "description": "Update a webhook subscription (url / events / active)",
+      "resource": "https://opendpp-node.eu/api/v1/webhooks/subscriptions/{id}"
+    },
+    {
+      "path": "operations/deleteWebhookSubscription.md",
+      "type": "API Endpoint",
+      "title": "Delete a webhook subscription",
+      "description": "Delete a webhook subscription",
+      "resource": "https://opendpp-node.eu/api/v1/webhooks/subscriptions/{id}"
+    },
+    {
+      "path": "operations/rotateWebhookSecret.md",
+      "type": "API Endpoint",
+      "title": "Rotate a webhook subscription's signing secret",
+      "description": "Rotate a webhook subscription's signing secret",
+      "resource": "https://opendpp-node.eu/api/v1/webhooks/subscriptions/{id}/rotate-secret"
+    },
+    {
+      "path": "operations/listWebhookDeliveries.md",
+      "type": "API Endpoint",
+      "title": "List recent webhook delivery attempts (the outbox)",
+      "description": "List recent webhook delivery attempts (the outbox)",
+      "resource": "https://opendpp-node.eu/api/v1/webhooks/deliveries"
+    },
+    {
+      "path": "operations/testWebhookSubscription.md",
+      "type": "API Endpoint",
+      "title": "Send a signed test event to a subscription",
+      "description": "Send a signed test event to a subscription",
+      "resource": "https://opendpp-node.eu/api/v1/webhooks/subscriptions/{id}/test"
+    },
+    {
+      "path": "schemas/AasEnvironment.md",
+      "type": "Schema",
+      "title": "AasEnvironment",
+      "description": "An Asset Administration Shell (AAS) v3.0 environment export of the passport, served as application/aas+json.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/AasEnvironment"
+    },
+    {
+      "path": "schemas/AasEnvironmentInput.md",
+      "type": "Schema",
+      "title": "AasEnvironmentInput",
+      "description": "An Asset Administration Shell (AAS) JSON Environment — the format produced by OpenDPP's AAS export of a passport.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/AasEnvironmentInput"
+    },
+    {
+      "path": "schemas/AasIngestCreated.md",
+      "type": "Schema",
+      "title": "AasIngestCreated",
+      "description": "201 envelope of POST /api/v1/passports/aas/ingest.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/AasIngestCreated"
+    },
+    {
+      "path": "schemas/ApproveGrantRequest.md",
+      "type": "Schema",
+      "title": "ApproveGrantRequest",
+      "description": "Approval body — only the final expiry is supplied; everything else comes from the original request.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/ApproveGrantRequest"
+    },
+    {
+      "path": "schemas/BatteryUnitCreateItem.md",
+      "type": "Schema",
+      "title": "BatteryUnitCreateItem",
+      "description": "One unit to serialise.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitCreateItem"
+    },
+    {
+      "path": "schemas/BatteryUnitCurrentState.md",
+      "type": "Schema",
+      "title": "BatteryUnitCurrentState",
+      "description": "Latest recorded measurement of the unit (owner/grant tiers only).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitCurrentState"
+    },
+    {
+      "path": "schemas/BatteryUnitDeleteResponse.md",
+      "type": "Schema",
+      "title": "BatteryUnitDeleteResponse",
+      "description": "BatteryUnitDeleteResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitDeleteResponse"
+    },
+    {
+      "path": "schemas/BatteryUnitDynamicDataEvent.md",
+      "type": "Schema",
+      "title": "BatteryUnitDynamicDataEvent",
+      "description": "One telemetry event in the JSON-LD dynamicData history (privileged view only).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitDynamicDataEvent"
+    },
+    {
+      "path": "schemas/BatteryUnitEventListResponse.md",
+      "type": "Schema",
+      "title": "BatteryUnitEventListResponse",
+      "description": "BatteryUnitEventListResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventListResponse"
+    },
+    {
+      "path": "schemas/BatteryUnitEventNode.md",
+      "type": "Schema",
+      "title": "BatteryUnitEventNode",
+      "description": "One append-only telemetry event (owner/grant tiers only).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventNode"
+    },
+    {
+      "path": "schemas/BatteryUnitEventRow.md",
+      "type": "Schema",
+      "title": "BatteryUnitEventRow",
+      "description": "One immutable per-unit telemetry record (raw persisted row).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventRow"
+    },
+    {
+      "path": "schemas/BatteryUnitEventType.md",
+      "type": "Schema",
+      "title": "BatteryUnitEventType",
+      "description": "Per-unit dynamic-data event category (Annex XIII / Art.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventType"
+    },
+    {
+      "path": "schemas/BatteryUnitJsonLd.md",
+      "type": "Schema",
+      "title": "BatteryUnitJsonLd",
+      "description": "JSON-LD document for one serialised battery unit, privileged tenant view (isPrivileged=true): includes currentState + dynamicData telemetry (restricted to legitimate-interest holders/authorities on the public view, where a restrictedData m…",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitJsonLd"
+    },
+    {
+      "path": "schemas/BatteryUnitLineageRef.md",
+      "type": "Schema",
+      "title": "BatteryUnitLineageRef",
+      "description": "Public lineage pointer between battery units (Art.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitLineageRef"
+    },
+    {
+      "path": "schemas/BatteryUnitListResponse.md",
+      "type": "Schema",
+      "title": "BatteryUnitListResponse",
+      "description": "BatteryUnitListResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitListResponse"
+    },
+    {
+      "path": "schemas/BatteryUnitRestrictedDataNotice.md",
+      "type": "Schema",
+      "title": "BatteryUnitRestrictedDataNotice",
+      "description": "Marker replacing per-unit telemetry in anonymous (public-tier) responses, with a pointer for requesting legitimate-interest access (Reg.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitRestrictedDataNotice"
+    },
+    {
+      "path": "schemas/BatteryUnitRow.md",
+      "type": "Schema",
+      "title": "BatteryUnitRow",
+      "description": "One physical serialised battery (raw persisted row — these routes declare no Fastify response schema, so all model fields are returned as-is).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitRow"
+    },
+    {
+      "path": "schemas/BatteryUnitSerialisationFailedError.md",
+      "type": "Schema",
+      "title": "BatteryUnitSerialisationFailedError",
+      "description": "400 body when every item in the serialisation batch failed.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitSerialisationFailedError"
+    },
+    {
+      "path": "schemas/BatteryUnitStatus.md",
+      "type": "Schema",
+      "title": "BatteryUnitStatus",
+      "description": "Annex XIII battery-status vocabulary (Battery Reg.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitStatus"
+    },
+    {
+      "path": "schemas/BatteryUnitTombstoneJsonLd.md",
+      "type": "Schema",
+      "title": "BatteryUnitTombstoneJsonLd",
+      "description": "Art.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitTombstoneJsonLd"
+    },
+    {
+      "path": "schemas/CreateGrantRequest.md",
+      "type": "Schema",
+      "title": "CreateGrantRequest",
+      "description": "Direct-issuance body.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/CreateGrantRequest"
+    },
+    {
+      "path": "schemas/DeleteOperatorResponse.md",
+      "type": "Schema",
+      "title": "DeleteOperatorResponse",
+      "description": "DeleteOperatorResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/DeleteOperatorResponse"
+    },
+    {
+      "path": "schemas/DppJsonLdContextDocument.md",
+      "type": "Schema",
+      "title": "DppJsonLdContextDocument",
+      "description": "The fixed W3C JSON-LD context document served by GET /context/v1: maps DigitalProductPassport, economicOperator, metadata, digitalSeal, signingPublicKey and proof to https://opendpp-node.eu/ns/dpp#… IRIs, and createdAt/updatedAt to schema.…",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/DppJsonLdContextDocument"
+    },
+    {
+      "path": "schemas/EconomicOperatorNode.md",
+      "type": "Schema",
+      "title": "EconomicOperatorNode",
+      "description": "Embedded economic-operator JSON-LD node (public in all tiers).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/EconomicOperatorNode"
+    },
+    {
+      "path": "schemas/Error.md",
+      "type": "Schema",
+      "title": "Error",
+      "description": "Standard error body.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/Error"
+    },
+    {
+      "path": "schemas/FacilityCreateRequest.md",
+      "type": "Schema",
+      "title": "FacilityCreateRequest",
+      "description": "FacilityCreateRequest",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FacilityCreateRequest"
+    },
+    {
+      "path": "schemas/FacilityCreatedEnvelope.md",
+      "type": "Schema",
+      "title": "FacilityCreatedEnvelope",
+      "description": "FacilityCreatedEnvelope",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FacilityCreatedEnvelope"
+    },
+    {
+      "path": "schemas/FacilityDeletedEnvelope.md",
+      "type": "Schema",
+      "title": "FacilityDeletedEnvelope",
+      "description": "FacilityDeletedEnvelope",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FacilityDeletedEnvelope"
+    },
+    {
+      "path": "schemas/FacilityEnvelope.md",
+      "type": "Schema",
+      "title": "FacilityEnvelope",
+      "description": "FacilityEnvelope",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FacilityEnvelope"
+    },
+    {
+      "path": "schemas/FacilityListEnvelope.md",
+      "type": "Schema",
+      "title": "FacilityListEnvelope",
+      "description": "FacilityListEnvelope",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FacilityListEnvelope"
+    },
+    {
+      "path": "schemas/FacilityRow.md",
+      "type": "Schema",
+      "title": "FacilityRow",
+      "description": "A facility (GS1 GLN) master-data row, exactly as stored.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FacilityRow"
+    },
+    {
+      "path": "schemas/FacilityUpdateRequest.md",
+      "type": "Schema",
+      "title": "FacilityUpdateRequest",
+      "description": "Partial update.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FacilityUpdateRequest"
+    },
+    {
+      "path": "schemas/FastifyDefaultBadRequest.md",
+      "type": "Schema",
+      "title": "FastifyDefaultBadRequest",
+      "description": "Fastify's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework before the handler runs (so none of the handler-built {success:false, ...} shapes apply).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FastifyDefaultBadRequest"
+    },
+    {
+      "path": "schemas/GrantDecisionResponse.md",
+      "type": "Schema",
+      "title": "GrantDecisionResponse",
+      "description": "Returned by deny and revoke: the updated grant, no token.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/GrantDecisionResponse"
+    },
+    {
+      "path": "schemas/GrantIssuedResponse.md",
+      "type": "Schema",
+      "title": "GrantIssuedResponse",
+      "description": "Returned by direct issuance (201) and request approval (200).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/GrantIssuedResponse"
+    },
+    {
+      "path": "schemas/GrantListResponse.md",
+      "type": "Schema",
+      "title": "GrantListResponse",
+      "description": "List envelope for GET /api/v1/grants (paginated).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/GrantListResponse"
+    },
+    {
+      "path": "schemas/GrantRouteError.md",
+      "type": "Schema",
+      "title": "GrantRouteError",
+      "description": "Error body used by the grants endpoints' route-level errors (400/403/404/409).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/GrantRouteError"
+    },
+    {
+      "path": "schemas/GrantRow.md",
+      "type": "Schema",
+      "title": "GrantRow",
+      "description": "Tenant-facing projection of an access grant.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/GrantRow"
+    },
+    {
+      "path": "schemas/HealthStatus.md",
+      "type": "Schema",
+      "title": "HealthStatus",
+      "description": "Health-check body of GET /health.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/HealthStatus"
+    },
+    {
+      "path": "schemas/MaterialVocabularyListResponse.md",
+      "type": "Schema",
+      "title": "MaterialVocabularyListResponse",
+      "description": "Envelope of GET /api/v1/materials.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/MaterialVocabularyListResponse"
+    },
+    {
+      "path": "schemas/MaterialVocabularyRow.md",
+      "type": "Schema",
+      "title": "MaterialVocabularyRow",
+      "description": "One entry of the platform-curated material vocabulary.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/MaterialVocabularyRow"
+    },
+    {
+      "path": "schemas/MerkleTreeAttestationProof.md",
+      "type": "Schema",
+      "title": "MerkleTreeAttestationProof",
+      "description": "OpenDPP's own proof type — an eIDAS ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted metadata (one leaf per top-level metadata key).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/MerkleTreeAttestationProof"
+    },
+    {
+      "path": "schemas/OperatorGetResponse.md",
+      "type": "Schema",
+      "title": "OperatorGetResponse",
+      "description": "OperatorGetResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/OperatorGetResponse"
+    },
+    {
+      "path": "schemas/OperatorListResponse.md",
+      "type": "Schema",
+      "title": "OperatorListResponse",
+      "description": "OperatorListResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/OperatorListResponse"
+    },
+    {
+      "path": "schemas/OperatorMinimalError.md",
+      "type": "Schema",
+      "title": "OperatorMinimalError",
+      "description": "Minimal error envelope used by the operator/key self-service handlers — note the standard error key is ABSENT (unlike the shared Error schema).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/OperatorMinimalError"
+    },
+    {
+      "path": "schemas/OperatorRow.md",
+      "type": "Schema",
+      "title": "OperatorRow",
+      "description": "An economic-operator record (EconomicOperator).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/OperatorRow"
+    },
+    {
+      "path": "schemas/PassportAasEnvironment.md",
+      "type": "Schema",
+      "title": "PassportAasEnvironment",
+      "description": "IDTA Asset Administration Shell environment (returned when Accept contains application/aas+json), role-filtered for the caller's access tier.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportAasEnvironment"
+    },
+    {
+      "path": "schemas/PassportBulkFailure.md",
+      "type": "Schema",
+      "title": "PassportBulkFailure",
+      "description": "400 body of POST /api/v1/passports/bulk when EVERY row failed.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportBulkFailure"
+    },
+    {
+      "path": "schemas/PassportBulkRequest.md",
+      "type": "Schema",
+      "title": "PassportBulkRequest",
+      "description": "PassportBulkRequest",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportBulkRequest"
+    },
+    {
+      "path": "schemas/PassportBulkResult.md",
+      "type": "Schema",
+      "title": "PassportBulkResult",
+      "description": "201 partial-success envelope of POST /api/v1/passports/bulk.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportBulkResult"
+    },
+    {
+      "path": "schemas/PassportBulkRow.md",
+      "type": "Schema",
+      "title": "PassportBulkRow",
+      "description": "One bulk-ingestion row.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportBulkRow"
+    },
+    {
+      "path": "schemas/PassportCreateRequest.md",
+      "type": "Schema",
+      "title": "PassportCreateRequest",
+      "description": "PassportCreateRequest",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportCreateRequest"
+    },
+    {
+      "path": "schemas/PassportEnrichmentInput.md",
+      "type": "Schema",
+      "title": "PassportEnrichmentInput",
+      "description": "Optional presentational (non-regulatory) marketing enrichment, stored OUTSIDE the ESPR-validated metadata and the Merkle seal; it never appears in the JSON-LD passport document.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportEnrichmentInput"
+    },
+    {
+      "path": "schemas/PassportIngestCreated.md",
+      "type": "Schema",
+      "title": "PassportIngestCreated",
+      "description": "201 envelope of POST /api/v1/passports.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportIngestCreated"
+    },
+    {
+      "path": "schemas/PassportListItem.md",
+      "type": "Schema",
+      "title": "PassportListItem",
+      "description": "One JSON-LD passport document as it appears in GET /api/v1/passports list responses.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportListItem"
+    },
+    {
+      "path": "schemas/PassportListResponse.md",
+      "type": "Schema",
+      "title": "PassportListResponse",
+      "description": "Envelope of GET /api/v1/passports.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportListResponse"
+    },
+    {
+      "path": "schemas/PassportMetadataInput.md",
+      "type": "Schema",
+      "title": "PassportMetadataInput",
+      "description": "The ESPR product metadata payload.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportMetadataInput"
+    },
+    {
+      "path": "schemas/PassportSealResponse.md",
+      "type": "Schema",
+      "title": "PassportSealResponse",
+      "description": "200 envelope of POST /api/v1/passports/{id}/seal.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportSealResponse"
+    },
+    {
+      "path": "schemas/PassportStatusUpdateRequest.md",
+      "type": "Schema",
+      "title": "PassportStatusUpdateRequest",
+      "description": "Body of PUT /api/v1/passports/{id}/status.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportStatusUpdateRequest"
+    },
+    {
+      "path": "schemas/PassportStatusUpdateResponse.md",
+      "type": "Schema",
+      "title": "PassportStatusUpdateResponse",
+      "description": "200 envelope of PUT /api/v1/passports/{id}/status.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportStatusUpdateResponse"
+    },
+    {
+      "path": "schemas/PassportUpdateRequest.md",
+      "type": "Schema",
+      "title": "PassportUpdateRequest",
+      "description": "Body of PUT /api/v1/passports/{id}.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportUpdateRequest"
+    },
+    {
+      "path": "schemas/PassportUpdateResponse.md",
+      "type": "Schema",
+      "title": "PassportUpdateResponse",
+      "description": "200 envelope of PUT /api/v1/passports/{id}.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportUpdateResponse"
+    },
+    {
+      "path": "schemas/PassportUpdateValidationError.md",
+      "type": "Schema",
+      "title": "PassportUpdateValidationError",
+      "description": "400 ESPR validation failure body of PUT /api/v1/passports/{id}.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportUpdateValidationError"
+    },
+    {
+      "path": "schemas/PassportValidateOnlyError.md",
+      "type": "Schema",
+      "title": "PassportValidateOnlyError",
+      "description": "400 envelope of the validate-only endpoints.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportValidateOnlyError"
+    },
+    {
+      "path": "schemas/PassportValidateOnlyRequest.md",
+      "type": "Schema",
+      "title": "PassportValidateOnlyRequest",
+      "description": "PassportValidateOnlyRequest",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportValidateOnlyRequest"
+    },
+    {
+      "path": "schemas/PassportValidateOnlyResult.md",
+      "type": "Schema",
+      "title": "PassportValidateOnlyResult",
+      "description": "200 envelope of the validate-only endpoints (only the declared keys are emitted).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportValidateOnlyResult"
+    },
+    {
+      "path": "schemas/PublicBatteryUnitJsonLd.md",
+      "type": "Schema",
+      "title": "PublicBatteryUnitJsonLd",
+      "description": "Public JSON-LD document for one individual serialised battery unit (Reg.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PublicBatteryUnitJsonLd"
+    },
+    {
+      "path": "schemas/PublicFacilityNode.md",
+      "type": "Schema",
+      "title": "PublicFacilityNode",
+      "description": "Embedded manufacturing-facility JSON-LD node — the GS1 GLN-backed Unique Facility Identifier (UFI, EN 18219).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PublicFacilityNode"
+    },
+    {
+      "path": "schemas/PublicPassportJsonLd.md",
+      "type": "Schema",
+      "title": "PublicPassportJsonLd",
+      "description": "The public, redacted JSON-LD Digital Product Passport document (application/ld+json).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PublicPassportJsonLd"
+    },
+    {
+      "path": "schemas/RecordBatteryUnitEventRequest.md",
+      "type": "Schema",
+      "title": "RecordBatteryUnitEventRequest",
+      "description": "One telemetry record.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/RecordBatteryUnitEventRequest"
+    },
+    {
+      "path": "schemas/RecordBatteryUnitEventResponse.md",
+      "type": "Schema",
+      "title": "RecordBatteryUnitEventResponse",
+      "description": "RecordBatteryUnitEventResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/RecordBatteryUnitEventResponse"
+    },
+    {
+      "path": "schemas/RegisterOperatorRequest.md",
+      "type": "Schema",
+      "title": "RegisterOperatorRequest",
+      "description": "RegisterOperatorRequest",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/RegisterOperatorRequest"
+    },
+    {
+      "path": "schemas/RegisterOperatorResponse.md",
+      "type": "Schema",
+      "title": "RegisterOperatorResponse",
+      "description": "RegisterOperatorResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/RegisterOperatorResponse"
+    },
+    {
+      "path": "schemas/RestoreOperatorResponse.md",
+      "type": "Schema",
+      "title": "RestoreOperatorResponse",
+      "description": "RestoreOperatorResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/RestoreOperatorResponse"
+    },
+    {
+      "path": "schemas/RotateTenantKeysResponse.md",
+      "type": "Schema",
+      "title": "RotateTenantKeysResponse",
+      "description": "RotateTenantKeysResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/RotateTenantKeysResponse"
+    },
+    {
+      "path": "schemas/SealCertificateReport.md",
+      "type": "Schema",
+      "title": "SealCertificateReport",
+      "description": "Present only for x5c-carrying proofs AND only when verification proceeds past the key-registration and operator-binding gates (the two policy verified: false responses omit it): the certified legal identity of the seal creator (eIDAS Art.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/SealCertificateReport"
+    },
+    {
+      "path": "schemas/SealTimestampReport.md",
+      "type": "Schema",
+      "title": "SealTimestampReport",
+      "description": "Present only when payload.proof.rfc3161.token was supplied AND verification proceeds past the key-registration and operator-binding gates (the two policy verified: false responses omit it).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/SealTimestampReport"
+    },
+    {
+      "path": "schemas/SealVerifyRequest.md",
+      "type": "Schema",
+      "title": "SealVerifyRequest",
+      "description": "Verification request.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/SealVerifyRequest"
+    },
+    {
+      "path": "schemas/SealVerifyResponse.md",
+      "type": "Schema",
+      "title": "SealVerifyResponse",
+      "description": "Always HTTP 200 once the request is well-formed.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/SealVerifyResponse"
+    },
+    {
+      "path": "schemas/SectorJsonSchemaDocument.md",
+      "type": "Schema",
+      "title": "SectorJsonSchemaDocument",
+      "description": "A JSON Schema draft-07 document describing the ESPR metadata payload for one product category, served as application/schema+json.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/SectorJsonSchemaDocument"
+    },
+    {
+      "path": "schemas/SectorVocabularyContext.md",
+      "type": "Schema",
+      "title": "SectorVocabularyContext",
+      "description": "Per-category JSON-LD vocabulary context, returned by GET /api/v1/schemas/{category} when Accept contains application/ld+json.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/SectorVocabularyContext"
+    },
+    {
+      "path": "schemas/SerializeBatteryUnitsRequest.md",
+      "type": "Schema",
+      "title": "SerializeBatteryUnitsRequest",
+      "description": "Either a single unit object, or a batch wrapper {units: [...]}.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/SerializeBatteryUnitsRequest"
+    },
+    {
+      "path": "schemas/SerializeBatteryUnitsResponse.md",
+      "type": "Schema",
+      "title": "SerializeBatteryUnitsResponse",
+      "description": "Returned (201) when at least one unit was created.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/SerializeBatteryUnitsResponse"
+    },
+    {
+      "path": "schemas/ServiceVersion.md",
+      "type": "Schema",
+      "title": "ServiceVersion",
+      "description": "Running API contract version and source build identity, returned by GET /api/v1/version.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/ServiceVersion"
+    },
+    {
+      "path": "schemas/TraceComplianceAuditResponse.md",
+      "type": "Schema",
+      "title": "TraceComplianceAuditResponse",
+      "description": "TraceComplianceAuditResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/TraceComplianceAuditResponse"
+    },
+    {
+      "path": "schemas/TraceComplianceCertificate.md",
+      "type": "Schema",
+      "title": "TraceComplianceCertificate",
+      "description": "TraceComplianceCertificate",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/TraceComplianceCertificate"
+    },
+    {
+      "path": "schemas/TraceEventRegistered.md",
+      "type": "Schema",
+      "title": "TraceEventRegistered",
+      "description": "201 envelope of POST /api/v1/events.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/TraceEventRegistered"
+    },
+    {
+      "path": "schemas/TraceLineageNode.md",
+      "type": "Schema",
+      "title": "TraceLineageNode",
+      "description": "One node of the recursive upstream lineage DAG.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/TraceLineageNode"
+    },
+    {
+      "path": "schemas/TraceLineageResponse.md",
+      "type": "Schema",
+      "title": "TraceLineageResponse",
+      "description": "TraceLineageResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/TraceLineageResponse"
+    },
+    {
+      "path": "schemas/UntpEventCredential.md",
+      "type": "Schema",
+      "title": "UntpEventCredential",
+      "description": "A UNTP/EPCIS 2.0 traceability event wrapped as a VC-shaped credential (a vendor proof, not a conformant W3C VC).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/UntpEventCredential"
+    },
+    {
+      "path": "schemas/UntpEventCredentialSubject.md",
+      "type": "Schema",
+      "title": "UntpEventCredentialSubject",
+      "description": "The EPCIS event payload.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/UntpEventCredentialSubject"
+    },
+    {
+      "path": "schemas/UntpEventProof.md",
+      "type": "Schema",
+      "title": "UntpEventProof",
+      "description": "Credential proof.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/UntpEventProof"
+    },
+    {
+      "path": "schemas/UntpVerificationMethod.md",
+      "type": "Schema",
+      "title": "UntpVerificationMethod",
+      "description": "Embedded verification-method object.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/UntpVerificationMethod"
+    },
+    {
+      "path": "schemas/UpdateOperatorRequest.md",
+      "type": "Schema",
+      "title": "UpdateOperatorRequest",
+      "description": "Both fields are optional.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/UpdateOperatorRequest"
+    },
+    {
+      "path": "schemas/UpdateOperatorResponse.md",
+      "type": "Schema",
+      "title": "UpdateOperatorResponse",
+      "description": "UpdateOperatorResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/UpdateOperatorResponse"
+    },
+    {
+      "path": "schemas/ValidationErrorItem.md",
+      "type": "Schema",
+      "title": "ValidationErrorItem",
+      "description": "One field-level finding from ESPR category validation.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/ValidationErrorItem"
+    },
+    {
+      "path": "schemas/WebhookDeliveriesResponse.md",
+      "type": "Schema",
+      "title": "WebhookDeliveriesResponse",
+      "description": "WebhookDeliveriesResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookDeliveriesResponse"
+    },
+    {
+      "path": "schemas/WebhookDeliveryRow.md",
+      "type": "Schema",
+      "title": "WebhookDeliveryRow",
+      "description": "One outbox delivery record (event-level).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookDeliveryRow"
+    },
+    {
+      "path": "schemas/WebhookEnvelope.md",
+      "type": "Schema",
+      "title": "WebhookEnvelope",
+      "description": "The signed body of every webhook delivery.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookEnvelope"
+    },
+    {
+      "path": "schemas/WebhookEventFilter.md",
+      "type": "Schema",
+      "title": "WebhookEventFilter",
+      "description": "Subscribable event filter values.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookEventFilter"
+    },
+    {
+      "path": "schemas/WebhookSecretRotateResponse.md",
+      "type": "Schema",
+      "title": "WebhookSecretRotateResponse",
+      "description": "WebhookSecretRotateResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSecretRotateResponse"
+    },
+    {
+      "path": "schemas/WebhookSubscriptionCreateRequest.md",
+      "type": "Schema",
+      "title": "WebhookSubscriptionCreateRequest",
+      "description": "WebhookSubscriptionCreateRequest",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionCreateRequest"
+    },
+    {
+      "path": "schemas/WebhookSubscriptionCreateResponse.md",
+      "type": "Schema",
+      "title": "WebhookSubscriptionCreateResponse",
+      "description": "WebhookSubscriptionCreateResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionCreateResponse"
+    },
+    {
+      "path": "schemas/WebhookSubscriptionDeleteResponse.md",
+      "type": "Schema",
+      "title": "WebhookSubscriptionDeleteResponse",
+      "description": "WebhookSubscriptionDeleteResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionDeleteResponse"
+    },
+    {
+      "path": "schemas/WebhookSubscriptionListResponse.md",
+      "type": "Schema",
+      "title": "WebhookSubscriptionListResponse",
+      "description": "WebhookSubscriptionListResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionListResponse"
+    },
+    {
+      "path": "schemas/WebhookSubscriptionRow.md",
+      "type": "Schema",
+      "title": "WebhookSubscriptionRow",
+      "description": "A webhook subscription row with the HMAC signing secret stripped (it is shown exactly once, in the 201 create response).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionRow"
+    },
+    {
+      "path": "schemas/WebhookSubscriptionUpdateRequest.md",
+      "type": "Schema",
+      "title": "WebhookSubscriptionUpdateRequest",
+      "description": "All fields optional; include only what you want to change.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionUpdateRequest"
+    },
+    {
+      "path": "schemas/WebhookSubscriptionUpdateResponse.md",
+      "type": "Schema",
+      "title": "WebhookSubscriptionUpdateResponse",
+      "description": "WebhookSubscriptionUpdateResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionUpdateResponse"
+    },
+    {
+      "path": "schemas/WebhookSubscriptionWithSecret.md",
+      "type": "Schema",
+      "title": "WebhookSubscriptionWithSecret",
+      "description": "The full subscription row as returned ONLY by the 201 create response — includes the HMAC-SHA256 signing secret.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionWithSecret"
+    },
+    {
+      "path": "schemas/WebhookTestResult.md",
+      "type": "Schema",
+      "title": "WebhookTestResult",
+      "description": "WebhookTestResult",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WebhookTestResult"
+    },
+    {
+      "path": "schemas/WhoamiResponse.md",
+      "type": "Schema",
+      "title": "WhoamiResponse",
+      "description": "WhoamiResponse",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/WhoamiResponse"
+    },
+    {
+      "path": "webhooks/passport.ingested.md",
+      "type": "Webhook Event",
+      "title": "passport.ingested",
+      "description": "Passport created or first published",
+      "resource": "https://opendpp-node.eu/openapi.json#/webhooks/passport.ingested"
+    },
+    {
+      "path": "webhooks/passport.recalled.md",
+      "type": "Webhook Event",
+      "title": "passport.recalled",
+      "description": "Passport recalled",
+      "resource": "https://opendpp-node.eu/openapi.json#/webhooks/passport.recalled"
+    },
+    {
+      "path": "webhooks/passport.sealed.md",
+      "type": "Webhook Event",
+      "title": "passport.sealed",
+      "description": "Passport sealed with an eIDAS advanced seal",
+      "resource": "https://opendpp-node.eu/openapi.json#/webhooks/passport.sealed"
+    },
+    {
+      "path": "webhooks/passport.status_updated.md",
+      "type": "Webhook Event",
+      "title": "passport.status_updated",
+      "description": "Passport status changed (decommission or reactivation)",
+      "resource": "https://opendpp-node.eu/openapi.json#/webhooks/passport.status_updated"
+    },
+    {
+      "path": "webhooks/passport.updated.md",
+      "type": "Webhook Event",
+      "title": "passport.updated",
+      "description": "Passport edited in place",
+      "resource": "https://opendpp-node.eu/openapi.json#/webhooks/passport.updated"
+    }
+  ]
+}
