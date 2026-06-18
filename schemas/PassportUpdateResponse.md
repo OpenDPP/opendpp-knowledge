@@ -5,7 +5,7 @@ description: 200 envelope of PUT /api/v1/passports/{id}.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportUpdateResponse
 tags:
   - schema
-timestamp: 2026-06-17T00:00:00Z
+timestamp: 2026-06-18T00:00:00Z
 ---
 
 200 envelope of PUT /api/v1/passports/{id}. The passport document is serialized at the PUBLIC redaction tier (owner-only/restricted metadata keys masked) even for the owner.

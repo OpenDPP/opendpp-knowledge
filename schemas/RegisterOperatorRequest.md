@@ -5,7 +5,7 @@ description: RegisterOperatorRequest
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/RegisterOperatorRequest
 tags:
   - schema
-timestamp: 2026-06-17T00:00:00Z
+timestamp: 2026-06-18T00:00:00Z
 ---
 
 ## Schema

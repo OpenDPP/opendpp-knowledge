@@ -5,10 +5,10 @@ description: IDTA Asset Administration Shell environment (returned when Accept c
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportAasEnvironment
 tags:
   - schema
-timestamp: 2026-06-17T00:00:00Z
+timestamp: 2026-06-18T00:00:00Z
 ---
 
-IDTA Asset Administration Shell environment (returned when `Accept` contains `application/aas+json`), role-filtered for the caller's access tier. Identifiers use `urn:opendpp:*` forms: the shell id is `urn:opendpp:aas:<passportUuid>` with idShort `AAS_<productId>` and `globalAssetId` `urn:opendpp:asset:<operatorId>:<productId>` (plus `specificAssetIds` carrying the productId and, when a facility is assigned, its GLN). The environment always contains two submodels — `GeneralProductInformation` (`urn:opendpp:submodel:general:<passportUuid>`) and `ComplianceMetadata` (`urn:opendpp:submodel:compliance`) — and an `eidasVerificationSeal` submodel is appended when the tenant has signing keys configured. Loose schema — the full AAS document structure is documented with the public resolution endpoints.
+IDTA Asset Administration Shell environment (returned when `Accept` contains `application/aas+json`), role-filtered for the caller's access tier. Identifiers use `urn:opendpp:*` forms: the shell id is `urn:opendpp:aas:<passportUuid>` with idShort `AAS_<productId>` and `globalAssetId` `urn:opendpp:asset:<operatorId>:<productId>` (plus `specificAssetIds` carrying the productId and, when a facility is assigned, its GLN). The environment contains, at minimum, a `GeneralProductInformation` submodel (`urn:opendpp:submodel:general:<passportUuid>`) and a `ComplianceMetadata` submodel (`urn:opendpp:submodel:compliance`); for a manufacturer/product-identified passport it also carries an IDTA Digital Nameplate submodel (idShort `Nameplate`) and one or more additive per-category submodel views (ESPR-category views such as CarbonFootprint / TechnicalData, id prefix `urn:opendpp:submodel:category:`). An `eidasVerificationSeal` submodel is appended when the tenant has signing keys configured. Loose schema — the full AAS document structure is documented with the public resolution endpoints.
 
 ## Schema
 
@@ -23,7 +23,7 @@ IDTA Asset Administration Shell environment (returned when `Accept` contains `ap
 ```json
 {
   "type": "object",
-  "description": "IDTA Asset Administration Shell environment (returned when `Accept` contains `application/aas+json`), role-filtered for the caller's access tier. Identifiers use `urn:opendpp:*` forms: the shell id is `urn:opendpp:aas:<passportUuid>` with idShort `AAS_<productId>` and `globalAssetId` `urn:opendpp:asset:<operatorId>:<productId>` (plus `specificAssetIds` carrying the productId and, when a facility is assigned, its GLN). The environment always contains two submodels — `GeneralProductInformation` (`urn:opendpp:submodel:general:<passportUuid>`) and `ComplianceMetadata` (`urn:opendpp:submodel:compliance`) — and an `eidasVerificationSeal` submodel is appended when the tenant has signing keys configured. Loose schema — the full AAS document structure is documented with the public resolution endpoints.",
+  "description": "IDTA Asset Administration Shell environment (returned when `Accept` contains `application/aas+json`), role-filtered for the caller's access tier. Identifiers use `urn:opendpp:*` forms: the shell id is `urn:opendpp:aas:<passportUuid>` with idShort `AAS_<productId>` and `globalAssetId` `urn:opendpp:asset:<operatorId>:<productId>` (plus `specificAssetIds` carrying the productId and, when a facility is assigned, its GLN). The environment contains, at minimum, a `GeneralProductInformation` submodel (`urn:opendpp:submodel:general:<passportUuid>`) and a `ComplianceMetadata` submodel (`urn:opendpp:submodel:compliance`); for a manufacturer/product-identified passport it also carries an IDTA Digital Nameplate submodel (idShort `Nameplate`) and one or more additive per-category submodel views (ESPR-category views such as CarbonFootprint / TechnicalData, id prefix `urn:opendpp:submodel:category:`). An `eidasVerificationSeal` submodel is appended when the tenant has signing keys configured. Loose schema — the full AAS document structure is documented with the public resolution endpoints.",
   "required": [
     "assetAdministrationShells",
     "submodels",

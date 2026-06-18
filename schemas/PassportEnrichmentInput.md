@@ -5,7 +5,7 @@ description: Optional presentational (non-regulatory) marketing enrichment, stor
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportEnrichmentInput
 tags:
   - schema
-timestamp: 2026-06-17T00:00:00Z
+timestamp: 2026-06-18T00:00:00Z
 ---
 
 Optional presentational (non-regulatory) marketing enrichment, stored OUTSIDE the ESPR-validated metadata and the Merkle seal; it never appears in the JSON-LD passport document. Server-side it is whitelist-sanitized rather than rejected: unknown keys are dropped; `tagline` is trimmed and capped at 200 chars, `description` at 4000, image `caption` at 200, link `label` at 120; at most 24 `images` and 24 `links` are kept; URLs must be http, https, or mailto (any other scheme, e.g. `javascript:` or `data:`, is silently dropped). An enrichment that sanitizes down to nothing is stored as null.

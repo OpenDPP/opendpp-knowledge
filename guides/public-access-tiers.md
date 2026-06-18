@@ -8,7 +8,7 @@ tags:
   - tiers
   - capability tokens
   - legitimate interest
-timestamp: 2026-06-17T00:00:00Z
+timestamp: 2026-06-18T00:00:00Z
 ---
 
 Public resolution endpoints serve **tiered** views of the same URL:

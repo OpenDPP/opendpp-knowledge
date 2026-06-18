@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/health
 tags:
   - GET
   - service
-timestamp: 2026-06-17T00:00:00Z
+timestamp: 2026-06-18T00:00:00Z
 ---
 
 `GET /health`

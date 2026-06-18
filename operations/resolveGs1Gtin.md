@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/01/{gtin14}
 tags:
   - GET
   - public-resolution
-timestamp: 2026-06-17T00:00:00Z
+timestamp: 2026-06-18T00:00:00Z
 ---
 
 `GET /01/{gtin14}`
