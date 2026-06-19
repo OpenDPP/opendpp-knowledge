@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/8003/{grai}
 tags:
   - GET
   - public-resolution
-timestamp: 2026-06-18T00:00:00Z
+timestamp: 2026-06-19T00:00:00Z
 ---
 
 `GET /8003/{grai}`
@@ -14,7 +14,7 @@ timestamp: 2026-06-18T00:00:00Z
 **Domain:** [Public Resolution](/tags/public-resolution.md)  
 **Authentication:** **Tiered** — resolves anonymously (public view) or with a Bearer API key / capability token for a fuller view.
 
-Unified GS1 Digital Link gateway, GRAI branch (Global Returnable Asset Identifier). The GRAI is matched against `metadata.gtin`, `metadata.grai`, or the passport's `productId`. Everything else — content negotiation (JSON-LD default / `application/aas+json` / `application/vc+jwt` / `application/vc+ld+json` / `text/html`, `Vary: Accept`), access tiers (public / grant `dpp_li_…`·`dpp_auth_…` via Bearer or `?grant=` / owner = tenant API key as Bearer or legacy `opendpp_session` cookie value, never a Console JWT session), DRAFT hiding, tenant-subdomain scoping, the no-tenant-scope ambiguity 400, access-audit logging, grant response headers, and the 30 req/min/IP in-memory rate limit (two-field 429 body without `success`; the limiter adds no headers of its own — `x-ratelimit-*` headers come from the global 100 req/min/IP limit, which applies on top) — is identical to `GET /01/{gtin14}`; see that operation and `GET /passport/{id}` for full semantics.
+Unified GS1 Digital Link gateway, GRAI branch (Global Returnable Asset Identifier). The GRAI is matched against `metadata.gtin`, `metadata.grai`, or the passport's `productId`. Everything else — content negotiation (JSON-LD default / `application/aas+json` / `application/vc+jwt` / `application/vc+ld+json` / `application/dc+sd-jwt` / `text/html`, `Vary: Accept`), access tiers (public / grant `dpp_li_…`·`dpp_auth_…` via Bearer or `?grant=` / owner = tenant API key as Bearer or legacy `opendpp_session` cookie value, never a Console JWT session), DRAFT hiding, tenant-subdomain scoping, the no-tenant-scope ambiguity 400, access-audit logging, grant response headers, and the 30 req/min/IP in-memory rate limit (two-field 429 body without `success`; the limiter adds no headers of its own — `x-ratelimit-*` headers come from the global 100 req/min/IP limit, which applies on top) — is identical to `GET /01/{gtin14}`; see that operation and `GET /passport/{id}` for full semantics.
 
 An additional `/21/{serial}` AI pair after the GRAI behaves exactly like `GET /01/{gtin14}/21/{serial}` (302 redirect to `/unit/{id}` or `/passport/{id}`). No permission string (public endpoint).
 

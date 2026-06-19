@@ -5,7 +5,7 @@ description: BatteryUnitDeleteResponse
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitDeleteResponse
 tags:
   - schema
-timestamp: 2026-06-18T00:00:00Z
+timestamp: 2026-06-19T00:00:00Z
 ---
 
 ## Schema

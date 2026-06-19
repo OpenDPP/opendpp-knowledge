@@ -5,7 +5,7 @@ description: Verification request.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/SealVerifyRequest
 tags:
   - schema
-timestamp: 2026-06-18T00:00:00Z
+timestamp: 2026-06-19T00:00:00Z
 ---
 
 Verification request. Only `payload` is strictly required: `signature` and `publicKey` are extracted from `payload.proof` (proofValue/signatureValue, publicKeyPem, or the x5c leaf SPKI) when omitted, and the request fails 400 only if either is still missing after extraction.

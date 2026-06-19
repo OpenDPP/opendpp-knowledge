@@ -5,7 +5,7 @@ description: WebhookTestResult
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/WebhookTestResult
 tags:
   - schema
-timestamp: 2026-06-18T00:00:00Z
+timestamp: 2026-06-19T00:00:00Z
 ---
 
 ## Schema

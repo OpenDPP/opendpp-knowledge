@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/webhooks/subscriptions
 tags:
   - POST
   - webhooks
-timestamp: 2026-06-18T00:00:00Z
+timestamp: 2026-06-19T00:00:00Z
 ---
 
 `POST /api/v1/webhooks/subscriptions`

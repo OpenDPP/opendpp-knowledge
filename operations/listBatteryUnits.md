@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports/{passportId}/units
 tags:
   - GET
   - battery-units
-timestamp: 2026-06-18T00:00:00Z
+timestamp: 2026-06-19T00:00:00Z
 ---
 
 `GET /api/v1/passports/{passportId}/units`
