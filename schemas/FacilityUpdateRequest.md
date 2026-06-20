@@ -5,7 +5,7 @@ description: Partial update.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/FacilityUpdateRequest
 tags:
   - schema
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 Partial update. `gln` and `operatorId` are immutable — if present they are silently ignored, as is any unknown key. For `activity`/`streetAddress`/`city`/`postalCode` the *presence* of the key matters: the value is stringified and trimmed, and anything that trims to empty (null, "", or a whitespace-only string) clears the field to null — the same normalization as POST.

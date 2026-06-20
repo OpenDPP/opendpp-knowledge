@@ -5,7 +5,7 @@ description: Standard error body.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/Error
 tags:
   - schema
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 Standard error body. Authenticated-API errors include `success: false`; some endpoints (and all public resolution errors) omit `success` and return only `error` + `message`.
@@ -83,6 +83,8 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 - [registerTraceabilityEvent](/operations/registerTraceabilityEvent.md) (`POST /api/v1/events`)
 - [getEventLineage](/operations/getEventLineage.md) (`GET /api/v1/events/{id}/lineage`)
 - [auditEventLineage](/operations/auditEventLineage.md) (`POST /api/v1/events/{id}/audit`)
+- [getTenantDidDocument](/operations/getTenantDidDocument.md) (`GET /tenants/{tenantId}/did.json`)
+- [getTenantRevocationStatusList](/operations/getTenantRevocationStatusList.md) (`GET /tenants/{tenantId}/status/revocation`)
 - [listWebhookSubscriptions](/operations/listWebhookSubscriptions.md) (`GET /api/v1/webhooks/subscriptions`)
 - [createWebhookSubscription](/operations/createWebhookSubscription.md) (`POST /api/v1/webhooks/subscriptions`)
 - [updateWebhookSubscription](/operations/updateWebhookSubscription.md) (`PATCH /api/v1/webhooks/subscriptions/{id}`)

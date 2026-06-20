@@ -5,7 +5,7 @@ description: Running API contract version and source build identity, returned by
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/ServiceVersion
 tags:
   - schema
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 Running API contract version and source build identity, returned by `GET /api/v1/version`. The `apiVersion` MAJOR is the safe thing to pin an integration or generated SDK to.

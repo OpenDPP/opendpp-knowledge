@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/events/{id}/lineage
 tags:
   - GET
   - traceability-audit
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 `GET /api/v1/events/{id}/lineage`

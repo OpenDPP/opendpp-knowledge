@@ -71,10 +71,16 @@
 * [GET /8003/{grai}](resolveGs1Grai.md) - GS1 Digital Link resolution by GRAI (AI 8003)
 * [GET /unit/{id}](resolvePublicBatteryUnit.md) - Resolve an individual serialised battery unit
 
+# Verifiable Credentials
+
+* [GET /tenants/{tenantId}/did.json](getTenantDidDocument.md) - Resolve a tenant's did:web DID document
+* [GET /tenants/{tenantId}/status/revocation](getTenantRevocationStatusList.md) - Tenant revocation status list (W3C Bitstring Status List)
+
 # Schemas & Vocabulary
 
 * [GET /api/v1/schemas/{category}](getSectorSchema.md) - Get the ESPR metadata schema for a product category
-* [GET /context/v1](getJsonLdContext.md) - W3C JSON-LD context document for passport terms
+* [GET /contexts/dpp/v1](getDppJsonLdContext.md) - Canonical resolvable JSON-LD context for passport & unit documents
+* [GET /context/v1](getJsonLdContext.md) - W3C JSON-LD context document for passport terms (secondary, fixed term list)
 * [GET /api/v1/materials](listMaterials.md) - List the platform-curated material vocabulary
 
 # QR Codes

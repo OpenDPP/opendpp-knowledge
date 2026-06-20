@@ -5,7 +5,7 @@ description: "OpenDPP's own proof type — an eIDAS ADVANCED electronic seal: an
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/MerkleTreeAttestationProof
 tags:
   - schema
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 OpenDPP's own proof type — an eIDAS ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted metadata (one leaf per top-level metadata key). Deliberately NOT a W3C DataIntegrityProof / `ecdsa-jcs-2019` Verifiable Credential (no RFC 8785 JCS canonicalization). Verifiable offline: rebuild the Merkle root from `metadata` — substituting each `redactedLeaves` hash for its placeholder-masked key, and EXCLUDING any placeholder-masked key that has no `redactedLeaves` entry (such a key was never present in the sealed metadata; the serializer injects the owner-only placeholder unconditionally) — then verify `signatureValue` with `publicKeyPem`; the `x5c` chain validates against the platform seal CA (`GET /.well-known/opendpp-seal-ca.pem`) and the `rfc3161` token via `openssl ts -verify`.

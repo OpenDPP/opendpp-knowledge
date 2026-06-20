@@ -8,7 +8,7 @@ tags:
   - api keys
   - tenancy
   - security
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 Authenticate with a tenant **API key** sent as a Bearer token:

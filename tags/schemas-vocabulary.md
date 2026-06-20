@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - schemas-vocabulary
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 Machine-readable contracts: per-category ESPR JSON Schemas, the W3C JSON-LD context, and the curated materials vocabulary.
@@ -14,5 +14,6 @@ Machine-readable contracts: per-category ESPR JSON Schemas, the W3C JSON-LD cont
 ## Operations
 
 - [getSectorSchema](/operations/getSectorSchema.md) — `GET /api/v1/schemas/{category}` — Get the ESPR metadata schema for a product category
-- [getJsonLdContext](/operations/getJsonLdContext.md) — `GET /context/v1` — W3C JSON-LD context document for passport terms
+- [getDppJsonLdContext](/operations/getDppJsonLdContext.md) — `GET /contexts/dpp/v1` — Canonical resolvable JSON-LD context for passport & unit documents
+- [getJsonLdContext](/operations/getJsonLdContext.md) — `GET /context/v1` — W3C JSON-LD context document for passport terms (secondary, fixed term list)
 - [listMaterials](/operations/listMaterials.md) — `GET /api/v1/materials` — List the platform-curated material vocabulary

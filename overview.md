@@ -8,7 +8,7 @@ tags:
   - getting started
   - ESPR
   - EU Battery Regulation
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 OpenDPP is a B2B platform for **EU Digital Product Passports (DPPs)**, aligned with the data

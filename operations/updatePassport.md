@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports/{id}
 tags:
   - PUT
   - passports
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 `PUT /api/v1/passports/{id}`
@@ -22,7 +22,7 @@ Replaces the passport's `metadata` (the Merkle root and leaf hashes are recomput
 
 **Draft semantics (`draft` flag):**
 - `draft: true` **skips ESPR validation entirely** and forces `status: "DRAFT"` — note this also demotes an already-published (ACTIVE/RECALLED/DECOMMISSIONED) passport back to DRAFT.
-- `draft` absent/false: `metadata` is validated against the ESPR category rules (400 on failure — see below). If the passport was a DRAFT it is **published**: status becomes `ACTIVE`, a `passport.ingested` webhook is enqueued transactionally (public-redacted JSON-LD payload) and an in-app notification is created best-effort afterwards. Live statuses are left untouched.
+- `draft` absent/false: `metadata` is validated against the ESPR category rules (400 on failure — see below). If the passport was a DRAFT it is **published**: status becomes `ACTIVE`, a `passport.ingested` webhook is enqueued transactionally (public-redacted JSON-LD payload) and an in-app notification is created best-effort afterwards. Editing an already-published (live) passport leaves its status untouched and enqueues a `passport.updated` webhook instead (same public-redacted JSON-LD payload).
 
 **Validation divergence:** the 400 validation body here contains `errors` but — unlike `POST /api/v1/passports` — **never a `warnings` array**. `friendlyMessage` is localized via the `lang` query parameter or `Accept-Language` (28 languages, default `en`; unsupported values silently fall back).
 

@@ -5,7 +5,7 @@ description: "Present only for x5c-carrying proofs AND only when verification pr
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/SealCertificateReport
 tags:
   - schema
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 Present only for x5c-carrying proofs AND only when verification proceeds past the key-registration and operator-binding gates (the two policy `verified: false` responses omit it): the certified legal identity of the seal creator (eIDAS Art. 36(1)(b)). On an unparseable chain only `chainValid: false` and `error` are present.

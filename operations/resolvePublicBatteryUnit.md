@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/unit/{id}
 tags:
   - GET
   - public-resolution
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 `GET /unit/{id}`
@@ -35,6 +35,7 @@ Every resolution is access-audit-logged with an anonymized IP. **Rate limit:** 3
 
 - **200** — The unit document in the negotiated representation. → [PublicBatteryUnitJsonLd](/schemas/PublicBatteryUnitJsonLd.md)
 - **404** — No unit with that id (a malformed UUID also resolves to this 404). → [Error](/schemas/Error.md)
+- **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
 - **410** — Gone — the unit was RECYCLED (or ceasedAt is set): the battery passport has ceased to exist (Art. → [BatteryUnitTombstoneJsonLd](/schemas/BatteryUnitTombstoneJsonLd.md)
 - **429** — Public-resolution rate limit exceeded (30 requests/min per IP; no rate-limit headers). → [Error](/schemas/Error.md)
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)

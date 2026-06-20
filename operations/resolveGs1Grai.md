@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/8003/{grai}
 tags:
   - GET
   - public-resolution
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 `GET /8003/{grai}`
@@ -30,6 +30,7 @@ An additional `/21/{serial}` AI pair after the GRAI behaves exactly like `GET /0
 - **200** — The matched passport in the negotiated representation (same envelope as GET /passport/{id}). → [AasEnvironment](/schemas/AasEnvironment.md), [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md)
 - **400** — Invalid GRAI (format / check digit) or — without tenant scope and AI-21 serial — an ambiguous lookup. → [Error](/schemas/Error.md)
 - **404** — No passport matches (content-negotiated HTML/JSON, Vary: Accept), DRAFT hidden from non-owner, or unknown tenant subdomain (JSON only). → [Error](/schemas/Error.md)
+- **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
 - **429** — Public-resolution rate limit exceeded (30 requests/min per IP; no rate-limit headers). → [Error](/schemas/Error.md)
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 

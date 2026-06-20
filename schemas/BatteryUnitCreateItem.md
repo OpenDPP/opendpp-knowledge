@@ -5,7 +5,7 @@ description: One unit to serialise.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitCreateItem
 tags:
   - schema
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 One unit to serialise. Validation is per-item: an invalid item is skipped (its error string collected) without failing the rest of the batch.
