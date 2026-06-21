@@ -5,7 +5,7 @@ description: Error body used by the grants endpoints' route-level errors (400/40
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/GrantRouteError
 tags:
   - schema
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 Error body used by the grants endpoints' route-level errors (400/403/404/409). Unlike the standard error envelope, it has NO `success` field.

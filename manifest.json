@@ -1,8 +1,8 @@
 {
   "okfVersion": "0.1",
-  "apiVersion": "1.5.0",
-  "generated": "2026-06-19T00:00:00Z",
-  "conceptCount": 196,
+  "apiVersion": "1.6.0",
+  "generated": "2026-06-20T00:00:00Z",
+  "conceptCount": 202,
   "concepts": [
     {
       "path": "overview.md",
@@ -114,6 +114,13 @@
       "type": "Reference",
       "title": "Public Resolution",
       "description": "Unauthenticated, content-negotiated passport resolution: GS1 Digital Link paths, passport and unit pages.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/verifiable-credentials.md",
+      "type": "Reference",
+      "title": "Verifiable Credentials",
+      "description": "Issuer trust endpoints that back the UNTP Verifiable Credential representations: the workspace's did:web DID document (public keys only) and its W3C Bitstring Status List for revocation.",
       "resource": "https://opendpp-node.eu/api-reference"
     },
     {
@@ -446,10 +453,17 @@
       "resource": "https://opendpp-node.eu/api/v1/schemas/{category}"
     },
     {
+      "path": "operations/getDppJsonLdContext.md",
+      "type": "API Endpoint",
+      "title": "Canonical resolvable JSON-LD context for passport & unit documents",
+      "description": "Canonical resolvable JSON-LD context for passport & unit documents",
+      "resource": "https://opendpp-node.eu/contexts/dpp/v1"
+    },
+    {
       "path": "operations/getJsonLdContext.md",
       "type": "API Endpoint",
-      "title": "W3C JSON-LD context document for passport terms",
-      "description": "W3C JSON-LD context document for passport terms",
+      "title": "W3C JSON-LD context document for passport terms (secondary, fixed term list)",
+      "description": "W3C JSON-LD context document for passport terms (secondary, fixed term list)",
       "resource": "https://opendpp-node.eu/context/v1"
     },
     {
@@ -514,6 +528,20 @@
       "title": "Publicly verify a passport's eIDAS seal, certificate chain and timestamp",
       "description": "Publicly verify a passport's eIDAS seal, certificate chain and timestamp",
       "resource": "https://opendpp-node.eu/api/v1/audit/verify"
+    },
+    {
+      "path": "operations/getTenantDidDocument.md",
+      "type": "API Endpoint",
+      "title": "Resolve a tenant's did:web DID document",
+      "description": "Resolve a tenant's did:web DID document",
+      "resource": "https://opendpp-node.eu/tenants/{tenantId}/did.json"
+    },
+    {
+      "path": "operations/getTenantRevocationStatusList.md",
+      "type": "API Endpoint",
+      "title": "Tenant revocation status list (W3C Bitstring Status List)",
+      "description": "Tenant revocation status list (W3C Bitstring Status List)",
+      "resource": "https://opendpp-node.eu/tenants/{tenantId}/status/revocation"
     },
     {
       "path": "operations/listWebhookSubscriptions.md",
@@ -719,11 +747,25 @@
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/DeleteOperatorResponse"
     },
     {
+      "path": "schemas/DidWebDocument.md",
+      "type": "Schema",
+      "title": "DidWebDocument",
+      "description": "A tenant's did:web DID document (public-key material only).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/DidWebDocument"
+    },
+    {
       "path": "schemas/DppJsonLdContextDocument.md",
       "type": "Schema",
       "title": "DppJsonLdContextDocument",
       "description": "The fixed W3C JSON-LD context document served by GET /context/v1: maps DigitalProductPassport, economicOperator, metadata, digitalSeal, signingPublicKey and proof to https://opendpp-node.eu/ns/dpp#… IRIs, and createdAt/updatedAt to schema.…",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/DppJsonLdContextDocument"
+    },
+    {
+      "path": "schemas/DppVocabContextDocument.md",
+      "type": "Schema",
+      "title": "DppVocabContextDocument",
+      "description": "The canonical resolvable JSON-LD context served by GET /contexts/dpp/v1 — the context every public passport and battery-unit document references in its @context.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/DppVocabContextDocument"
     },
     {
       "path": "schemas/EconomicOperatorNode.md",

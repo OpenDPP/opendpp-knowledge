@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/passport/{id}
 tags:
   - GET
   - public-resolution
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 `GET /passport/{id}`
@@ -39,6 +39,7 @@ DRAFT passports are hidden from everyone but the owner (404 with a body identica
 - **200** — The passport in the negotiated representation. → [AasEnvironment](/schemas/AasEnvironment.md), [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md)
 - **400** — Passport identifier missing. → [Error](/schemas/Error.md)
 - **404** — No passport with that UUID — or the passport is a DRAFT and the caller is not owner-tier (identical body, deliberate). → [Error](/schemas/Error.md)
+- **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
 - **429** — Public-resolution rate limit exceeded (30 requests/min per IP; no rate-limit headers). → [Error](/schemas/Error.md)
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 

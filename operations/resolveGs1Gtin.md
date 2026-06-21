@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/01/{gtin14}
 tags:
   - GET
   - public-resolution
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 `GET /01/{gtin14}`
@@ -34,6 +34,7 @@ The gateway also accepts additional GS1 AI key/value path pairs after the GTIN; 
 - **200** — The matched passport in the negotiated representation (same envelope as GET /passport/{id}). → [AasEnvironment](/schemas/AasEnvironment.md), [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md)
 - **400** — Invalid GTIN-14 (must be 14 digits with a valid modulo-10 check digit) or — when no tenant scope is in play and no AI-21 serial was given — an ambiguous lookup… → [Error](/schemas/Error.md)
 - **404** — No passport matches the identifier (content-negotiated: HTML page for Accept: text/html, JSON otherwise; Vary: Accept set), a DRAFT match was hidden from a non… → [Error](/schemas/Error.md)
+- **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
 - **429** — Public-resolution rate limit exceeded (30 requests/min per IP; no rate-limit headers). → [Error](/schemas/Error.md)
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 

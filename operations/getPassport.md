@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports/{id}
 tags:
   - GET
   - passports
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 `GET /api/v1/passports/{id}`
@@ -18,7 +18,7 @@ Owner-side alias of the public resolver. Accepts either the passport **UUID** or
 
 **Permission:** `passport:read` (read-only — no subscription/402 gate).
 
-**Content negotiation** (substring match on `Accept`): `application/aas+json` → role-filtered AAS environment; `text/html` → SSR passport page; anything else (including `application/json`, `*/*`, or no header) → JSON-LD with `Content-Type: application/ld+json` (the default).
+**Content negotiation** (substring match on `Accept`): `application/aas+json` → role-filtered AAS environment; `application/vc+jwt` → enveloping UNTP Verifiable Credential; `application/vc+ld+json` → the same credential with an embedded `ecdsa-jcs-2019` W3C Data Integrity proof; `application/dc+sd-jwt` (legacy `vc+sd-jwt` accepted) → SD-JWT-VC selective disclosure (these three return `406 Not Acceptable` when the passport has no manufacturing facility with a country of production); `text/html` → SSR passport page; anything else (including `application/json`, `*/*`, or no header) → JSON-LD with `Content-Type: application/ld+json` (the default). The VC and SD-JWT representations are forwarded verbatim from `GET /passport/{id}` — see that operation for the full credential semantics.
 
 **Access-tier caveat (privilege is resolved from the *forwarded* headers, not the already-authenticated context):** only **database API keys** (`Authorization: Bearer op_dpp_token_…`) of the owning or operator-bound tenant are recognized as owner by the inner resolver. Those callers get the **owner-tier** document: `facilityDetails` and battery restricted keys unmasked, `manufacturingFacility` includes `streetAddress`/`city`/`postalCode`, and DRAFT passports are visible. Callers authenticated with a **JWT session** (login cookie or bearer JWT) receive the **public-redacted** tier instead, and DRAFT passports answer 404 with the forwarded public body (no `success` field).
 
@@ -38,6 +38,7 @@ Every successful resolution records an anonymized-IP access audit entry.
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — Two distinct bodies. → [Error](/schemas/Error.md)
+- **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
 - **429** — Two possible sources.
 - **500** — Unexpected failure. → [Error](/schemas/Error.md)
 

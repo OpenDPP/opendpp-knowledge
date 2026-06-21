@@ -5,7 +5,7 @@ description: Per-unit dynamic-data event category (Annex XIII / Art.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventType
 tags:
   - schema
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 Per-unit dynamic-data event category (Annex XIII / Art. 77 telemetry).

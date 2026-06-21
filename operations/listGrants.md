@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/grants
 tags:
   - GET
   - access-grants
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 `GET /api/v1/grants`
@@ -31,7 +31,7 @@ Paginated with `?page` (default 1) and `?limit` (default 100, max 200), grouped 
 
 ## Responses
 
-- **200** — The workspace's grants and requests (most recent 500). → [GrantListResponse](/schemas/GrantListResponse.md)
+- **200** — The workspace's grants and requests, paginated newest-first — a { success, count, page, limit, total, totalPages, grants } envelope. → [GrantListResponse](/schemas/GrantListResponse.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **429** — Global rate limit exceeded (100 requests/min per IP).

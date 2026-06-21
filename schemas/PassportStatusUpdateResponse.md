@@ -5,7 +5,7 @@ description: 200 envelope of PUT /api/v1/passports/{id}/status.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportStatusUpdateResponse
 tags:
   - schema
-timestamp: 2026-06-19T00:00:00Z
+timestamp: 2026-06-20T00:00:00Z
 ---
 
 200 envelope of PUT /api/v1/passports/{id}/status. The passport document is serialized at the PUBLIC redaction tier.

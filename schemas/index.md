@@ -22,7 +22,9 @@
 * [BatteryUnitTombstoneJsonLd](BatteryUnitTombstoneJsonLd.md) - Art.
 * [CreateGrantRequest](CreateGrantRequest.md) - Direct-issuance body.
 * [DeleteOperatorResponse](DeleteOperatorResponse.md)
+* [DidWebDocument](DidWebDocument.md) - A tenant's did:web DID document (public-key material only).
 * [DppJsonLdContextDocument](DppJsonLdContextDocument.md) - The fixed W3C JSON-LD context document served by GET /context/v1: maps DigitalProductPassport, economicOperator, metadata, digitalSeal, sig…
+* [DppVocabContextDocument](DppVocabContextDocument.md) - The canonical resolvable JSON-LD context served by GET /contexts/dpp/v1 — the context every public passport and battery-unit document refer…
 * [EconomicOperatorNode](EconomicOperatorNode.md) - Embedded economic-operator JSON-LD node (public in all tiers).
 * [Error](Error.md) - Standard error body.
 * [FacilityCreateRequest](FacilityCreateRequest.md)
