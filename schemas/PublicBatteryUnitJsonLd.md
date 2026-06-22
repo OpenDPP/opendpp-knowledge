@@ -87,7 +87,7 @@ Public JSON-LD document for one individual serialised battery unit (Reg. (EU) 20
     },
     "serialNumber": {
       "type": "string",
-      "pattern": "^[A-Za-z0-9._-]{1,64}$",
+      "pattern": "^[A-Za-z0-9._-]{1,20}$",
       "description": "The physical battery serial (the real GS1 AI-21 value; unique within its SKU/type passport)."
     },
     "digitalLinkUri": {

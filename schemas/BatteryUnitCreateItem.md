@@ -29,8 +29,8 @@ One unit to serialise. Validation is per-item: an invalid item is skipped (its e
   "properties": {
     "serialNumber": {
       "type": "string",
-      "pattern": "^[A-Za-z0-9._-]{1,64}$",
-      "description": "Required. The battery's real physical serial (GS1 AI-21). Trimmed, then must match `^[A-Za-z0-9._-]{1,64}$`. Must be unique within the passport (duplicates are skipped with an item error)."
+      "pattern": "^[A-Za-z0-9._-]{1,20}$",
+      "description": "Required. The battery's real physical serial (GS1 AI-21). Trimmed, then must match `^[A-Za-z0-9._-]{1,20}$` (GS1 AI-21's 20-character maximum) — a longer serial is rejected at ingest with a per-item error. Must be unique within the passport (duplicates are skipped with an item error)."
     },
     "manufacturedAt": {
       "type": [

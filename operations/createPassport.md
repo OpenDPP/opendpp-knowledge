@@ -24,7 +24,7 @@ Creates a SKU/type-level Digital Product Passport.
 
 **Drafts.** `draft: true` skips ALL validation, stores the passport with `status: "DRAFT"` (not publicly resolvable), returns `message: "Draft passport saved"` with `warnings: []`, and does **not** emit a webhook.
 
-**Identifier handling.** `productId` may be a GTIN-14 (14 digits, GS1 mod-10 check digit), a GRAI (14-digit numeric asset id + up to 16 alphanumeric serial chars), or a free-form SKU. A valid GTIN-14 is auto-copied into `metadata.gtin` (a GRAI into `metadata.grai`) before storage. The server mints a UUID passport id and a GS1 Digital Link URI `https://opendpp-node.eu/{01|8003}/{productId}/21/{passportId}`.
+**Identifier handling.** `productId` may be a GTIN-14 (14 digits, GS1 mod-10 check digit), a GRAI (14-digit numeric asset id + up to 16 alphanumeric serial chars), or a free-form SKU. A valid GTIN-14 is auto-copied into `metadata.gtin` (a GRAI into `metadata.grai`) before storage. The server mints a UUID passport id and a GS1 Digital Link URI `https://opendpp-node.eu/{01|8003}/{productId}`.
 
 **Operator binding.** With `operatorId` omitted, the passport is attributed to the first economic operator bound to your workspace; if no operator is bound at all the request fails **400** (the API never fabricates an operator identity — register one via `POST /api/v1/operators`). An `operatorId` not bound to your workspace → **403**. Operator-scoped API keys force their own operator and **403** on mismatch. The `(productId, operatorId)` pair is unique → **409** on duplicates. An optional `facilityId` must reference a Facility in your workspace (**400** otherwise).
 

@@ -34,6 +34,7 @@ Renders the battery unit's GS1 Digital Link URI as a print-grade QR code — the
 | `format` | query | no | string | Output image format. |
 | `size` | query | no | integer | Rendered width in pixels (PNG) / SVG width attribute. |
 | `ecl` | query | no | string | QR error-correction level: M (~15% recovery), Q (~25%, GS1 product-label guidance, default) or H (~30%). |
+| `hri` | query | no | boolean | When 1/true, renders the GS1 Human-Readable Interpretation (the bracketed AI string, e.g. |
 
 ## Responses
 

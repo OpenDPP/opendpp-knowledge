@@ -19,7 +19,7 @@ The public, redacted JSON-LD Digital Product Passport document (`application/ld+
 | `@id` | string | yes | The passport's canonical GS1 Digital Link URI (same value as digitalLinkUri). |
 | `id` | string | yes | Server-assigned passport UUID. |
 | `productId` | string | yes | Caller-supplied product identifier: a GTIN-14 (^[0-9]{14}$ with valid GS1 modulo-10 check digit), a GRAI (^[0-9]{14}[A-Za-z0-9]{0,16}$), or a free-form SKU. |
-| `digitalLinkUri` | string | yes | SKU/type-level GS1 Digital Link URI: {BASE_URL}/{01|8003}/{productId}/21/{passportId} (AI-21 carries the passport UUID at SKU level; individual units carry the… |
+| `digitalLinkUri` | string | yes | SKU/type-level GS1 Digital Link URI: {BASE_URL}/{01|8003}/{productId} (AI-21 carries the passport UUID at SKU level; individual units carry their physical seri… |
 | `digitalSeal` | string,null | yes | eIDAS ADVANCED electronic seal: base64 ECDSA prime256v1 (P-256) signature over the Merkle root of the key-sorted metadata. |
 | `signingPublicKey` | string,null | yes | PEM public key that verifies digitalSeal. |
 | `status` | string | yes | Passport lifecycle status (serialized as ACTIVE when unset). |
@@ -98,7 +98,7 @@ The public, redacted JSON-LD Digital Product Passport document (`application/ld+
     "digitalLinkUri": {
       "type": "string",
       "format": "uri",
-      "description": "SKU/type-level GS1 Digital Link URI: `{BASE_URL}/{01|8003}/{productId}/21/{passportId}` (AI-21 carries the passport UUID at SKU level; individual units carry their physical serial instead)."
+      "description": "SKU/type-level GS1 Digital Link URI: `{BASE_URL}/{01|8003}/{productId}` (AI-21 carries the passport UUID at SKU level; individual units carry their physical serial instead)."
     },
     "digitalSeal": {
       "type": [

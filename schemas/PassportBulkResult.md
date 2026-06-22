@@ -61,7 +61,7 @@ timestamp: 2026-06-22T00:00:00Z
           "digitalLinkUri": {
             "type": "string",
             "format": "uri",
-            "description": "Generated GS1 Digital Link URI `https://opendpp-node.eu/{01|8003}/{productId}/21/{passportId}`."
+            "description": "Generated GS1 Digital Link URI `https://opendpp-node.eu/{01|8003}/{productId}`."
           }
         }
       }

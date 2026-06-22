@@ -70,6 +70,7 @@
 * [GET /01/{gtin14}/21/{serial}](resolveGs1GtinSerial.md) - GS1 Digital Link serialised-item redirect (AI 01 + AI 21)
 * [GET /8003/{grai}](resolveGs1Grai.md) - GS1 Digital Link resolution by GRAI (AI 8003)
 * [GET /unit/{id}](resolvePublicBatteryUnit.md) - Resolve an individual serialised battery unit
+* [POST /api/v1/gs1/decode](decodeGs1.md) - Decode GS1 scan data / element string / Digital Link into structured AIs + HRI
 
 # Verifiable Credentials
 

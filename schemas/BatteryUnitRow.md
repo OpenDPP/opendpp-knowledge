@@ -38,8 +38,8 @@ One physical serialised battery (raw persisted row — these routes declare no F
     },
     "serialNumber": {
       "type": "string",
-      "pattern": "^[A-Za-z0-9._-]{1,64}$",
-      "description": "The battery's real physical serial number (GS1 AI-21 value). 1–64 URL-safe characters; GS1 recommends ≤ 20."
+      "pattern": "^[A-Za-z0-9._-]{1,20}$",
+      "description": "The battery's real physical serial number (GS1 AI-21 value). 1–20 URL-safe characters; GS1 recommends ≤ 20."
     },
     "digitalLinkUri": {
       "type": "string",

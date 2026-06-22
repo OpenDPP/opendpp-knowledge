@@ -1,8 +1,8 @@
 {
   "okfVersion": "0.1",
-  "apiVersion": "1.0.0",
+  "apiVersion": "1.2.0",
   "generated": "2026-06-22T00:00:00Z",
-  "conceptCount": 202,
+  "conceptCount": 203,
   "concepts": [
     {
       "path": "overview.md",
@@ -479,6 +479,13 @@
       "title": "Running API contract version & build identity",
       "description": "Running API contract version & build identity",
       "resource": "https://opendpp-node.eu/api/v1/version"
+    },
+    {
+      "path": "operations/decodeGs1.md",
+      "type": "API Endpoint",
+      "title": "Decode GS1 scan data / element string / Digital Link into structured AIs + HRI",
+      "description": "Decode GS1 scan data / element string / Digital Link into structured AIs + HRI",
+      "resource": "https://opendpp-node.eu/api/v1/gs1/decode"
     },
     {
       "path": "operations/getPassportQrCode.md",

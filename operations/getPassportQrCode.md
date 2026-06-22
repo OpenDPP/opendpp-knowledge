@@ -14,7 +14,7 @@ timestamp: 2026-06-22T00:00:00Z
 **Domain:** [QR Codes](/tags/qr-codes.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Renders the passport's GS1 Digital Link URI (its `digitalLinkUri`, e.g. `https://opendpp-node.eu/01/09501101530003/21/{passportUuid}`) as a print-grade QR code and returns it as a binary file download. The printed carrier resolves through the public GS1 gateway.
+Renders the passport's GS1 Digital Link URI (its `digitalLinkUri`, e.g. `https://opendpp-node.eu/01/09501101530003`) as a print-grade QR code and returns it as a binary file download. The printed carrier resolves through the public GS1 gateway.
 
 **Permission:** `passport:read` (read-only — subscription status is **not** checked on `:read` permissions, so this endpoint never returns 402). Works with a Bearer API key, a Bearer JWT, or the `opendpp_session` cookie — plain same-origin `<a href>` downloads are supported for browser sessions.
 
@@ -34,6 +34,7 @@ Renders the passport's GS1 Digital Link URI (its `digitalLinkUri`, e.g. `https:/
 | `format` | query | no | string | Output image format. |
 | `size` | query | no | integer | Rendered width in pixels (PNG) / SVG width attribute. |
 | `ecl` | query | no | string | QR error-correction level: M (~15% recovery), Q (~25%, GS1 product-label guidance, default) or H (~30%). |
+| `hri` | query | no | boolean | When 1/true, renders the GS1 Human-Readable Interpretation (the bracketed AI string, e.g. |
 
 ## Responses
 

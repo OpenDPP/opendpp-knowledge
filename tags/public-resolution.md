@@ -18,3 +18,4 @@ Unauthenticated, content-negotiated passport resolution: GS1 Digital Link paths,
 - [resolveGs1GtinSerial](/operations/resolveGs1GtinSerial.md) — `GET /01/{gtin14}/21/{serial}` — GS1 Digital Link serialised-item redirect (AI 01 + AI 21)
 - [resolveGs1Grai](/operations/resolveGs1Grai.md) — `GET /8003/{grai}` — GS1 Digital Link resolution by GRAI (AI 8003)
 - [resolvePublicBatteryUnit](/operations/resolvePublicBatteryUnit.md) — `GET /unit/{id}` — Resolve an individual serialised battery unit
+- [decodeGs1](/operations/decodeGs1.md) — `POST /api/v1/gs1/decode` — Decode GS1 scan data / element string / Digital Link into structured AIs + HRI

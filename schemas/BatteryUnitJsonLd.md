@@ -61,7 +61,7 @@ JSON-LD document for one serialised battery unit, **privileged tenant view** (`i
     },
     "serialNumber": {
       "type": "string",
-      "pattern": "^[A-Za-z0-9._-]{1,64}$"
+      "pattern": "^[A-Za-z0-9._-]{1,20}$"
     },
     "digitalLinkUri": {
       "type": "string",

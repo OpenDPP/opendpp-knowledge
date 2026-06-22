@@ -78,6 +78,7 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 - [resolveGs1Grai](/operations/resolveGs1Grai.md) (`GET /8003/{grai}`)
 - [resolvePublicBatteryUnit](/operations/resolvePublicBatteryUnit.md) (`GET /unit/{id}`)
 - [getSealCaCertificate](/operations/getSealCaCertificate.md) (`GET /.well-known/opendpp-seal-ca.pem`)
+- [decodeGs1](/operations/decodeGs1.md) (`POST /api/v1/gs1/decode`)
 - [getPassportQrCode](/operations/getPassportQrCode.md) (`GET /api/v1/passports/{id}/qr`)
 - [getBatteryUnitQrCode](/operations/getBatteryUnitQrCode.md) (`GET /api/v1/units/{id}/qr`)
 - [registerTraceabilityEvent](/operations/registerTraceabilityEvent.md) (`POST /api/v1/events`)
