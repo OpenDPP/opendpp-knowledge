@@ -5,7 +5,7 @@ description: Tenant-facing projection of an access grant.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/GrantRow
 tags:
   - schema
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 Tenant-facing projection of an access grant. The token hash, issuer user id, revoking actor and request IP are never exposed; raw capability tokens appear only in the one-time issuance/approval responses. All fields are always present (nullable ones serialize as `null`).

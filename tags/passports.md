@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - passports
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 Create, validate, read, update, seal and manage the lifecycle of Digital Product Passports. Passport metadata is category-specific: machine-readable JSON Schemas are served live at `GET /api/v1/schemas/{category}` for textiles, batteries, electronics, chemicals and construction; the remaining categories (cosmetics, toys, iron-steel, aluminium) are validated by built-in rules — use the dry-run validators to check payloads for any category.

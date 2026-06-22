@@ -5,7 +5,7 @@ description: One telemetry event in the JSON-LD dynamicData history (privileged 
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitDynamicDataEvent
 tags:
   - schema
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 One telemetry event in the JSON-LD `dynamicData` history (privileged view only).

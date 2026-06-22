@@ -5,7 +5,7 @@ description: Public JSON-LD document for one individual serialised battery unit 
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PublicBatteryUnitJsonLd
 tags:
   - schema
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 Public JSON-LD document for one individual serialised battery unit (Reg. (EU) 2023/1542 Art. 77(2)). The listed required keys are always present. EXACTLY ONE of two tier-dependent groups is added: anonymous (public) responses carry `restrictedData` (Annex XIII(2)-(4) notice) and OMIT `currentState`/`dynamicData` entirely; owner/grant (privileged) responses carry `currentState` (latest measurement or `null`) and `dynamicData` (up to 500 events, newest first) and omit `restrictedData`. The embedded `ofModel` passport is masked by the caller's tier like `GET /passport/{id}`.

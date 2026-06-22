@@ -5,7 +5,7 @@ description: A JSON Schema draft-07 document describing the ESPR metadata payloa
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/SectorJsonSchemaDocument
 tags:
   - schema
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 A JSON Schema **draft-07** document describing the ESPR `metadata` payload for one product category, served as `application/schema+json`. Each known field is annotated server-side with a plain-English `description` from the platform's field-help registry (annotations are AJV-ignored; validation behavior is identical to the raw schema). The same schema (without annotations) validates `metadata` on `POST /api/v1/passports` and the validate-only endpoints.

@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/context/v1
 tags:
   - GET
   - schemas-vocabulary
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 `GET /context/v1`

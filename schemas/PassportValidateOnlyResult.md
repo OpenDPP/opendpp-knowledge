@@ -5,7 +5,7 @@ description: 200 envelope of the validate-only endpoints (only the declared keys
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportValidateOnlyResult
 tags:
   - schema
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 200 envelope of the validate-only endpoints (only the declared keys are emitted).
@@ -39,7 +39,7 @@ timestamp: 2026-06-20T00:00:00Z
     },
     "message": {
       "type": "string",
-      "const": "Passport metadata payload is 100% valid and ESPR category compliant"
+      "example": "Passport metadata payload is valid against the ESPR category data schema"
     },
     "category": {
       "type": "string",

@@ -5,7 +5,7 @@ description: 400 ESPR validation failure body of PUT /api/v1/passports/{id}.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportUpdateValidationError
 tags:
   - schema
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 400 ESPR validation failure body of PUT /api/v1/passports/{id}. DIVERGENCE from POST /api/v1/passports: there is never a `warnings` array on this route.
@@ -42,7 +42,7 @@ timestamp: 2026-06-20T00:00:00Z
     },
     "message": {
       "type": "string",
-      "const": "Dynamic metadata payload failed ESPR category compliance validation"
+      "example": "Dynamic metadata payload failed ESPR category schema validation"
     },
     "errors": {
       "type": "array",

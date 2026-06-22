@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports/validate-only
 tags:
   - POST
   - passports
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 `POST /api/v1/passports/validate-only`
@@ -14,7 +14,7 @@ timestamp: 2026-06-20T00:00:00Z
 **Domain:** [Passports](/tags/passports.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Runs the full ESPR category compliance validation on a metadata payload **without persisting anything** — intended for pre-flight checks in integration pipelines.
+Runs the full ESPR category schema validation on a metadata payload **without persisting anything** — intended for pre-flight checks in integration pipelines.
 
 **Permission:** `passport:create` (Bearer API key or session JWT + CSRF for cookie sessions). Despite being read-only in effect, it is gated as a write permission, so subscription gating (**402**) applies.
 

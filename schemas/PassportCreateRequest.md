@@ -5,7 +5,7 @@ description: PassportCreateRequest
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportCreateRequest
 tags:
   - schema
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 ## Schema

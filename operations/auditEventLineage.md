@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/events/{id}/audit
 tags:
   - POST
   - traceability-audit
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 `POST /api/v1/events/{id}/audit`
@@ -25,7 +25,7 @@ These are geographic screening heuristics evaluated against the data registered 
 
 **Rate limit:** global limiter, 100 requests/min per IP (standard `x-ratelimit-*` headers).
 
-When zero violations are found, the response embeds a `TraceabilityComplianceCertificate` object (status `VERIFIED_COMPLIANT`, standards `EUDR-2026` / `UFLPA-2026`); otherwise `certificate` is `null` and `errors` lists each violation as a human-readable string. ANY failure — unknown event id, other-tenant id, or even a circular lineage graph — is reported as the same generic 404 body.
+When zero violations are found, the response embeds a `TraceabilityComplianceCertificate` object (status `SCREENED_NO_MATCHES`, screens `OpenDPP-EUDR-heuristic` / `OpenDPP-UFLPA-screen`); otherwise `certificate` is `null` and `errors` lists each violation as a human-readable string. ANY failure — unknown event id, other-tenant id, or even a circular lineage graph — is reported as the same generic 404 body.
 
 ## Parameters
 
