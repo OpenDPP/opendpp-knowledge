@@ -5,7 +5,7 @@ description: TraceComplianceCertificate
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/TraceComplianceCertificate
 tags:
   - schema
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 ## Schema
@@ -14,8 +14,8 @@ timestamp: 2026-06-20T00:00:00Z
 |----------|------|----------|-------------|
 | `type` | string | yes | — |
 | `rootEventId` | string | yes | — |
-| `status` | string | yes | — |
-| `regulatoryStandards` | array<string> | yes | Always ["EUDR-2026", "UFLPA-2026"]. |
+| `status` | string | yes | Screening outcome — informational (e.g. |
+| `regulatoryStandards` | array<string> | yes | Vendor screening-heuristic identifiers applied (e.g. |
 
 ## JSON Schema
 
@@ -38,18 +38,16 @@ timestamp: 2026-06-20T00:00:00Z
     },
     "status": {
       "type": "string",
-      "const": "VERIFIED_COMPLIANT"
+      "example": "SCREENED_NO_MATCHES",
+      "description": "Screening outcome — informational (e.g. `SCREENED_NO_MATCHES` when no geographic screen matched); NOT a legal compliance verdict."
     },
     "regulatoryStandards": {
       "type": "array",
       "items": {
         "type": "string",
-        "enum": [
-          "EUDR-2026",
-          "UFLPA-2026"
-        ]
+        "example": "OpenDPP-EUDR-heuristic"
       },
-      "description": "Always `[\"EUDR-2026\", \"UFLPA-2026\"]`."
+      "description": "Vendor screening-heuristic identifiers applied (e.g. `OpenDPP-EUDR-heuristic`, `OpenDPP-UFLPA-screen`) — informational, NOT EU regulatory standards."
     }
   }
 }

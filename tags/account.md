@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - account
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 Identity of the authenticated API key / session: workspace, role, permissions, operator scope, and passport usage against the tier quota — the integration-facing counterpart to the console's profile endpoints.

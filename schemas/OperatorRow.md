@@ -5,7 +5,7 @@ description: An economic-operator record (EconomicOperator).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/OperatorRow
 tags:
   - schema
-timestamp: 2026-06-20T00:00:00Z
+timestamp: 2026-06-22T00:00:00Z
 ---
 
 An economic-operator record (`EconomicOperator`). Operators are scoped to your workspace (each workspace keeps its own row for a given `regId`). Returned verbatim from the database (no field stripping); nullable fields are serialized as `null`.
