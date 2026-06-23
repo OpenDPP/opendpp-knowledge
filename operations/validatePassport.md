@@ -25,7 +25,7 @@ Runs the full ESPR category schema validation on a metadata payload **without pe
 - `operatorId` is accepted by the body schema but **ignored** by the handler.
 - The 200 body always carries `errors: []`; `warnings` is **omitted entirely** when there are none (it is not an empty array). The same omission applies to `warnings` on the 400 Validation Failed body.
 - `friendlyMessage` localization via `?lang=` / `Accept-Language` (28 languages, default `en`); category-validity errors (`metadata.category` missing or unknown) carry no `friendlyMessage`.
-- Structural rejections of the request body (e.g. missing `productId`, non-object `metadata`) and malformed JSON return just `{"error": "Bad Request", "message": …}`; the only structurally bad input that reaches the handler is a whitespace-only `productId`, answered with the fuller `Bad Request` body shown below.
+- Structural rejections of the request body (e.g. missing `productId`, non-object `metadata`) and malformed JSON return just `{"error": "Bad Request", "message": …}`; the structurally bad inputs that reach the handler are a whitespace-only `productId` and a malformed GTIN-14 `productId` (14 digits failing the GS1 mod-10 check), each answered with the fuller `Bad Request` body shown below.
 
 ## Parameters
 

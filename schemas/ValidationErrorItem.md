@@ -52,4 +52,5 @@ One field-level finding from ESPR category validation. `path` uses dot/bracket n
 - schema [PassportIngestCreated](/schemas/PassportIngestCreated.md)
 - schema [PassportValidateOnlyResult](/schemas/PassportValidateOnlyResult.md)
 - schema [PassportValidateOnlyError](/schemas/PassportValidateOnlyError.md)
+- schema [AasIngestCreated](/schemas/AasIngestCreated.md)
 - schema [PassportUpdateValidationError](/schemas/PassportUpdateValidationError.md)
