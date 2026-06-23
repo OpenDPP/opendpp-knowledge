@@ -5,7 +5,7 @@ description: 201 envelope of POST /api/v1/passports.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportIngestCreated
 tags:
   - schema
-timestamp: 2026-06-22T00:00:00Z
+timestamp: 2026-06-23T00:00:00Z
 ---
 
 201 envelope of `POST /api/v1/passports`. Only these four top-level keys are ever emitted.

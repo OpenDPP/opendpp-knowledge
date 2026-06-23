@@ -5,7 +5,7 @@ description: 201 envelope of POST /api/v1/passports/aas/ingest.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/AasIngestCreated
 tags:
   - schema
-timestamp: 2026-06-22T00:00:00Z
+timestamp: 2026-06-23T00:00:00Z
 ---
 
 201 envelope of `POST /api/v1/passports/aas/ingest`. Returned for both newly created passports and in-place updates of existing UNSEALED passports. No webhook event is emitted by this endpoint.

@@ -4,7 +4,7 @@ okf_version: "0.1"
 
 # OpenDPP Integration API — Knowledge Bundle
 
-> An OKF (Open Knowledge Format) projection of the public [OpenDPP Integration API](https://opendpp-node.eu/api-reference), for ingestion by AI agents and humans alike. Generated from [`/openapi.json`](https://opendpp-node.eu/openapi.json) (API v1.2.0).
+> An OKF (Open Knowledge Format) projection of the public [OpenDPP Integration API](https://opendpp-node.eu/api-reference), for ingestion by AI agents and humans alike. Generated from [`/openapi.json`](https://opendpp-node.eu/openapi.json) (API v1.3.0).
 
 # Concepts
 

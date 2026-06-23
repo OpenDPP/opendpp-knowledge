@@ -5,7 +5,7 @@ description: 200 envelope of POST /api/v1/passports/{id}/seal.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportSealResponse
 tags:
   - schema
-timestamp: 2026-06-22T00:00:00Z
+timestamp: 2026-06-23T00:00:00Z
 ---
 
 200 envelope of POST /api/v1/passports/{id}/seal. `digitalSeal` is duplicated inside `passport.digitalSeal` and `passport.proof.signatureValue`. The passport document is serialized at the PUBLIC redaction tier; masked keys keep their true leaf hashes in `proof.redactedLeaves`. Note: despite the message wording, this endpoint does not change the passport's `status`.

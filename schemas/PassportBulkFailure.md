@@ -5,7 +5,7 @@ description: 400 body of POST /api/v1/passports/bulk when EVERY row failed.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportBulkFailure
 tags:
   - schema
-timestamp: 2026-06-22T00:00:00Z
+timestamp: 2026-06-23T00:00:00Z
 ---
 
 400 body of `POST /api/v1/passports/bulk` when EVERY row failed. Note: `errors` is an array of STRINGS (not objects) and there is NO `message` field.

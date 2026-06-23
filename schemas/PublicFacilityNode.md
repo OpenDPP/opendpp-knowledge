@@ -5,7 +5,7 @@ description: Embedded manufacturing-facility JSON-LD node — the GS1 GLN-backed
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PublicFacilityNode
 tags:
   - schema
-timestamp: 2026-06-22T00:00:00Z
+timestamp: 2026-06-23T00:00:00Z
 ---
 
 Embedded manufacturing-facility JSON-LD node — the GS1 GLN-backed Unique Facility Identifier (UFI, EN 18219). The five listed fields are public; `streetAddress`/`city`/`postalCode` appear ONLY in owner-tier responses (never via legitimate-interest grants).

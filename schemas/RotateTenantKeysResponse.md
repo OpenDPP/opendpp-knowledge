@@ -5,7 +5,7 @@ description: RotateTenantKeysResponse
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/RotateTenantKeysResponse
 tags:
   - schema
-timestamp: 2026-06-22T00:00:00Z
+timestamp: 2026-06-23T00:00:00Z
 ---
 
 ## Schema

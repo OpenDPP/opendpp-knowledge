@@ -5,7 +5,7 @@ description: Returned by direct issuance (201) and request approval (200).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/GrantIssuedResponse
 tags:
   - schema
-timestamp: 2026-06-22T00:00:00Z
+timestamp: 2026-06-23T00:00:00Z
 ---
 
 Returned by direct issuance (201) and request approval (200). `token` is the raw capability token — shown ONCE here (and, on approval, in the grantee's inspection-link e-mail); only its SHA-256 hash is persisted.

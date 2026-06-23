@@ -5,7 +5,7 @@ description: Health-check body of GET /health.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/HealthStatus
 tags:
   - schema
-timestamp: 2026-06-22T00:00:00Z
+timestamp: 2026-06-23T00:00:00Z
 ---
 
 Health-check body of `GET /health`. Carries the running build identity (`apiVersion`/`commit`/`builtAt`) in addition to the liveness fields.

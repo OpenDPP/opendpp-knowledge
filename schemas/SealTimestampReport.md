@@ -5,7 +5,7 @@ description: "Present only when payload.proof.rfc3161.token was supplied AND ver
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/SealTimestampReport
 tags:
   - schema
-timestamp: 2026-06-22T00:00:00Z
+timestamp: 2026-06-23T00:00:00Z
 ---
 
 Present only when `payload.proof.rfc3161.token` was supplied AND verification proceeds past the key-registration and operator-binding gates (the two policy `verified: false` responses omit it). Reports presence and the TSA-asserted genTime from the token's TSTInfo — full cryptographic TSR validation is the verifier's own step.
