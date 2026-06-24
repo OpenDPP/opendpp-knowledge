@@ -63,4 +63,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md), [OperatorMinimalError](/schemas/OperatorMinimalError.md), [UpdateOperatorRequest](/schemas/UpdateOperatorRequest.md), [UpdateOperatorResponse](/schemas/UpdateOperatorResponse.md).
+Schemas: [Error](/schemas/Error.md), [UpdateOperatorRequest](/schemas/UpdateOperatorRequest.md), [UpdateOperatorResponse](/schemas/UpdateOperatorResponse.md).

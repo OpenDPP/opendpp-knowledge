@@ -42,7 +42,6 @@ Minimal error envelope used by the operator/key self-service handlers — note t
 ## Used by
 
 - [registerOperator](/operations/registerOperator.md) (`POST /api/v1/operators`)
-- [updateOperator](/operations/updateOperator.md) (`PATCH /api/v1/operators/{id}`)
 - [deleteOperator](/operations/deleteOperator.md) (`DELETE /api/v1/operators/{id}`)
-- [restoreOperator](/operations/restoreOperator.md) (`POST /api/v1/operators/{id}/restore`)
 - [rotateTenantKeys](/operations/rotateTenantKeys.md) (`POST /api/v1/tenants/rotate-keys`)
+- the shared error responses

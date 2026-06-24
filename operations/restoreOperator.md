@@ -50,4 +50,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md), [OperatorMinimalError](/schemas/OperatorMinimalError.md), [RestoreOperatorResponse](/schemas/RestoreOperatorResponse.md).
+Schemas: [Error](/schemas/Error.md), [RestoreOperatorResponse](/schemas/RestoreOperatorResponse.md).
