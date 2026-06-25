@@ -1,0 +1,21 @@
+# Dependabot — keep the GitHub Actions SHA pins fresh.
+# Docs: https://docs.github.com/code-security/dependabot/dependabot-version-updates
+#
+# Only the github-actions ecosystem applies: this repo's CI runs the zero-dependency `validate.mjs`
+# (no package.json / lockfile), so there is no npm ecosystem to track. The workflows pin actions to
+# full commit SHAs; the github-actions updater bumps those SHAs (and keeps the `# vX.Y.Z` comment in
+# sync), matching OpenDPP/opendpp-node and OpenDPP/opendpp-interop.
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+    groups:
+      github-actions:
+        patterns:
+          - "*"

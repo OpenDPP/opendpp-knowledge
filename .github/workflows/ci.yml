@@ -2,6 +2,10 @@ name: CI
 
 # Validates that the published bundle is OKF-conformant (frontmatter + no broken internal links),
 # using the zero-dependency validate.mjs — so the public repo is independently checkable.
+#
+# Actions are pinned to full commit SHAs (OpenSSF guidance); the github-actions Dependabot ecosystem
+# (.github/dependabot.yml) keeps the pins fresh. Matches the OpenDPP/opendpp-node and
+# OpenDPP/opendpp-interop posture.
 
 on:
   push:
@@ -16,9 +20,38 @@ jobs:
   validate:
     name: OKF conformance
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: 24
       - run: node validate.mjs
+
+  secret-scan:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+      - name: Run gitleaks
+        env:
+          # Pinned manual download — NOT gitleaks-action, which requires a GITLEAKS_LICENSE key for
+          # organization-owned repos (this repo is under the OpenDPP org). Mirrors the secret-scan job in
+          # OpenDPP/opendpp-interop. Pinned so the scan never depends on an unauthenticated, rate-limited
+          # `releases/latest` lookup at runtime. Bump deliberately.
+          GITLEAKS_VERSION: "8.30.1"
+        run: |
+          set -euo pipefail
+          url="https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          for attempt in 1 2 3; do
+            if curl -fsSL --retry 3 --retry-all-errors "$url" | tar -xz gitleaks; then
+              break
+            fi
+            echo "gitleaks download failed (attempt $attempt) — retrying" >&2
+            sleep $((attempt * 5))
+          done
+          test -x ./gitleaks
+          ./gitleaks detect --source . --redact --no-banner
