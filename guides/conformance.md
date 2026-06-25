@@ -15,7 +15,7 @@ OpenDPP is deliberately precise about what it claims. In short:
 - **ESPR / EU Battery Regulation** — the platform is built for **readiness** against the ESPR data
   requirements and the EU Battery Regulation. Whether a given product is *compliant* is the
   operator's determination, not OpenDPP's.
-- **AAS (IDTA)** — the AAS v3.0 Environment is CI-validated against the official IDTA-01001-3-1 schema.
+- **AAS (IDTA)** — the AAS v3.0/3.1 Environment is CI-validated against the official IDTA AAS metamodel 3.1 schema (IDTA-01001-3-1).
   Concepts OpenDPP coins itself are honestly namespaced `urn:opendpp:*`, never presented as eCl@ss.
 - **UNTP / W3C Data Integrity** — the per-passport credential is a conformant UNTP DigitalProductPassport
   credential, emitted both as an enveloping `vc+jwt` and as an embedded `ecdsa-jcs-2019` Data Integrity
