@@ -1,8 +1,8 @@
 {
   "okfVersion": "0.1",
-  "apiVersion": "1.5.0",
-  "generated": "2026-06-23T00:00:00Z",
-  "conceptCount": 203,
+  "apiVersion": "1.6.0",
+  "generated": "2026-06-26T00:00:00Z",
+  "conceptCount": 206,
   "concepts": [
     {
       "path": "overview.md",
@@ -164,6 +164,13 @@
       "title": "Identity of the authenticated key / session",
       "description": "Identity of the authenticated key / session",
       "resource": "https://opendpp-node.eu/api/v1/whoami"
+    },
+    {
+      "path": "operations/validateBatteryUnits.md",
+      "type": "API Endpoint",
+      "title": "Pre-flight: validate battery-unit identifiers without persisting (#263)",
+      "description": "Pre-flight: validate battery-unit identifiers without persisting (#263)",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{passportId}/units/validate"
     },
     {
       "path": "operations/listBatteryUnits.md",
@@ -486,6 +493,13 @@
       "title": "Decode GS1 scan data / element string / Digital Link into structured AIs + HRI",
       "description": "Decode GS1 scan data / element string / Digital Link into structured AIs + HRI",
       "resource": "https://opendpp-node.eu/api/v1/gs1/decode"
+    },
+    {
+      "path": "operations/decodeGs1Batch.md",
+      "type": "API Endpoint",
+      "title": "Batch-decode many GS1 scans / element strings / Digital Links in one request",
+      "description": "Batch-decode many GS1 scans / element strings / Digital Links in one request",
+      "resource": "https://opendpp-node.eu/api/v1/gs1/decode/batch"
     },
     {
       "path": "operations/getPassportQrCode.md",
@@ -1011,6 +1025,13 @@
       "title": "PassportMetadataInput",
       "description": "The ESPR product metadata payload.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportMetadataInput"
+    },
+    {
+      "path": "schemas/PassportQuotaError.md",
+      "type": "Schema",
+      "title": "PassportQuotaError",
+      "description": "402 body for a write blocked by billing.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportQuotaError"
     },
     {
       "path": "schemas/PassportSealResponse.md",

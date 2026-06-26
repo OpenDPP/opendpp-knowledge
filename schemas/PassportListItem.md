@@ -5,7 +5,7 @@ description: One JSON-LD passport document as it appears in GET /api/v1/passport
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportListItem
 tags:
   - schema
-timestamp: 2026-06-23T00:00:00Z
+timestamp: 2026-06-26T00:00:00Z
 ---
 
 One JSON-LD passport document as it appears in `GET /api/v1/passports` list responses. Same shape as `PublicPassportJsonLd` with list-specific divergences imposed by the route's declared response serialization: `economicOperator` never carries `role`; `manufacturingFacility` is always `null`; the `@context` term map (second array element) is emptied to `{}`; and `proof` is emptied to `{}` on sealed items (`null` on unsealed) — fetch the single passport for the verifiable proof block.

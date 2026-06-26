@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/grants/{id}
 tags:
   - DELETE
   - access-grants
-timestamp: 2026-06-23T00:00:00Z
+timestamp: 2026-06-26T00:00:00Z
 ---
 
 `DELETE /api/v1/grants/{id}`
@@ -33,7 +33,7 @@ Behavioral caveats (no status precondition — only the kind is checked):
 
 - **200** — Grant revoked (idempotent: re-revoking keeps the original revokedAt). → [GrantDecisionResponse](/schemas/GrantDecisionResponse.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The workspace subscription is lapsed or its grace period has expired — write operations are blocked until billing is restored. → [Error](/schemas/Error.md)
+- **402** — The write is blocked by billing — EITHER the workspace subscription is lapsed / its grace period expired (read operations are unaffected), OR (on passport-crea… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Two distinct bodies share this status: (1) route-level — the grant is an AUTHORITY grant and cannot be revoked by the workspace; body is {error, message} witho… → [Error](/schemas/Error.md), [GrantRouteError](/schemas/GrantRouteError.md)
 - **404** — No grant with this id exists in this workspace. → [GrantRouteError](/schemas/GrantRouteError.md)
 - **429** — Global rate limit exceeded (100 requests/min per IP).

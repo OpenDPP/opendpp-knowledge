@@ -5,7 +5,7 @@ description: Standard error body.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/Error
 tags:
   - schema
-timestamp: 2026-06-23T00:00:00Z
+timestamp: 2026-06-26T00:00:00Z
 ---
 
 Standard error body. Authenticated-API errors include `success: false`; some endpoints (and all public resolution errors) omit `success` and return only `error` + `message`.
@@ -53,6 +53,7 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 ## Used by
 
 - [whoami](/operations/whoami.md) (`GET /api/v1/whoami`)
+- [validateBatteryUnits](/operations/validateBatteryUnits.md) (`POST /api/v1/passports/{passportId}/units/validate`)
 - [serializeBatteryUnits](/operations/serializeBatteryUnits.md) (`POST /api/v1/passports/{passportId}/units`)
 - [recordBatteryUnitEvent](/operations/recordBatteryUnitEvent.md) (`POST /api/v1/units/{id}/events`)
 - [createFacility](/operations/createFacility.md) (`POST /api/v1/facilities`)
@@ -79,6 +80,7 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 - [resolvePublicBatteryUnit](/operations/resolvePublicBatteryUnit.md) (`GET /unit/{id}`)
 - [getSealCaCertificate](/operations/getSealCaCertificate.md) (`GET /.well-known/opendpp-seal-ca.pem`)
 - [decodeGs1](/operations/decodeGs1.md) (`POST /api/v1/gs1/decode`)
+- [decodeGs1Batch](/operations/decodeGs1Batch.md) (`POST /api/v1/gs1/decode/batch`)
 - [getPassportQrCode](/operations/getPassportQrCode.md) (`GET /api/v1/passports/{id}/qr`)
 - [getBatteryUnitQrCode](/operations/getBatteryUnitQrCode.md) (`GET /api/v1/units/{id}/qr`)
 - [registerTraceabilityEvent](/operations/registerTraceabilityEvent.md) (`POST /api/v1/events`)

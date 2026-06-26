@@ -5,7 +5,7 @@ description: One immutable per-unit telemetry record (raw persisted row).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventRow
 tags:
   - schema
-timestamp: 2026-06-23T00:00:00Z
+timestamp: 2026-06-26T00:00:00Z
 ---
 
 One immutable per-unit telemetry record (raw persisted row). Append-only: no update or delete path exists.

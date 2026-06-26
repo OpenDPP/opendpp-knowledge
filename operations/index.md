@@ -23,6 +23,7 @@
 
 # Battery Units
 
+* [POST /api/v1/passports/{passportId}/units/validate](validateBatteryUnits.md) - Pre-flight: validate battery-unit identifiers without persisting (#263)
 * [GET /api/v1/passports/{passportId}/units](listBatteryUnits.md) - List serialised battery units under a passport
 * [POST /api/v1/passports/{passportId}/units](serializeBatteryUnits.md) - Serialise individual battery units under a passport (bulk, up to 200)
 * [GET /api/v1/units/{id}](getBatteryUnit.md) - Get one battery unit as JSON-LD with its dynamic-data history
@@ -71,6 +72,7 @@
 * [GET /8003/{grai}](resolveGs1Grai.md) - GS1 Digital Link resolution by GRAI (AI 8003)
 * [GET /unit/{id}](resolvePublicBatteryUnit.md) - Resolve an individual serialised battery unit
 * [POST /api/v1/gs1/decode](decodeGs1.md) - Decode GS1 scan data / element string / Digital Link into structured AIs + HRI
+* [POST /api/v1/gs1/decode/batch](decodeGs1Batch.md) - Batch-decode many GS1 scans / element strings / Digital Links in one request
 
 # Verifiable Credentials
 

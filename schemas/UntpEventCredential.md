@@ -5,7 +5,7 @@ description: A UNTP/EPCIS 2.0 traceability event wrapped as a VC-shaped credenti
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/UntpEventCredential
 tags:
   - schema
-timestamp: 2026-06-23T00:00:00Z
+timestamp: 2026-06-26T00:00:00Z
 ---
 
 A UNTP/EPCIS 2.0 traceability event wrapped as a VC-shaped credential (a vendor proof, not a conformant W3C VC). The only hard structural requirement is `credentialSubject`; a missing or unverifiable `proof` is rejected with the 400 `Cryptographic Verification Failed` body. Extra properties are permitted — the entire credential (with `proof.proofValue` blanked) is what the signature covers.

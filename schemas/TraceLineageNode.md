@@ -5,7 +5,7 @@ description: One node of the recursive upstream lineage DAG.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/TraceLineageNode
 tags:
   - schema
-timestamp: 2026-06-23T00:00:00Z
+timestamp: 2026-06-26T00:00:00Z
 ---
 
 One node of the recursive upstream lineage DAG. All keys are always present; `location`, `readPoint` and `issuerDid` are null when unset. `location` mirrors the stored `bizLocation`. A shared ancestor reached through multiple downstream paths appears once under each path (the DAG is expanded into a tree).

@@ -5,7 +5,7 @@ description: 201 envelope of POST /api/v1/passports.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportIngestCreated
 tags:
   - schema
-timestamp: 2026-06-23T00:00:00Z
+timestamp: 2026-06-26T00:00:00Z
 ---
 
 201 envelope of `POST /api/v1/passports`. `passport` is the public redacted JSON-LD; `warnings` is always present (empty for drafts); `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness.

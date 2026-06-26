@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/facilities
 tags:
   - POST
   - facilities
-timestamp: 2026-06-23T00:00:00Z
+timestamp: 2026-06-26T00:00:00Z
 ---
 
 `POST /api/v1/facilities`
@@ -54,7 +54,7 @@ Schema (required): [FacilityCreateRequest](/schemas/FacilityCreateRequest.md).
 - **201** — Facility registered. → [FacilityCreatedEnvelope](/schemas/FacilityCreatedEnvelope.md)
 - **400** — Invalid request body. → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The workspace subscription is lapsed or its grace period has expired — write operations are blocked until billing is restored. → [Error](/schemas/Error.md)
+- **402** — The write is blocked by billing — EITHER the workspace subscription is lapsed / its grace period expired (read operations are unaffected), OR (on passport-crea… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Forbidden. → [Error](/schemas/Error.md)
 - **409** — A facility with this GLN is already registered. → [Error](/schemas/Error.md)
 - **429** — Global rate limit exceeded (100 requests/min per IP).

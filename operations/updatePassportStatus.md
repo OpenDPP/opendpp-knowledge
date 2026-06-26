@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports/{id}/status
 tags:
   - PUT
   - passports
-timestamp: 2026-06-23T00:00:00Z
+timestamp: 2026-06-26T00:00:00Z
 ---
 
 `PUT /api/v1/passports/{id}/status`
@@ -53,7 +53,7 @@ Schema (required): [PassportStatusUpdateRequest](/schemas/PassportStatusUpdateRe
 - **200** — Status updated. → [PassportStatusUpdateResponse](/schemas/PassportStatusUpdateResponse.md)
 - **400** — status missing or not one of the allowed values. → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The workspace subscription is lapsed or its grace period has expired — write operations are blocked until billing is restored. → [Error](/schemas/Error.md)
+- **402** — The write is blocked by billing — EITHER the workspace subscription is lapsed / its grace period expired (read operations are unaffected), OR (on passport-crea… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
 - **409** — The passport is a DRAFT — drafts cannot transition to a live status here. → [Error](/schemas/Error.md)

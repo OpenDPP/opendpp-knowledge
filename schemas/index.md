@@ -59,6 +59,7 @@
 * [PassportListItem](PassportListItem.md) - One JSON-LD passport document as it appears in GET /api/v1/passports list responses.
 * [PassportListResponse](PassportListResponse.md) - Envelope of GET /api/v1/passports.
 * [PassportMetadataInput](PassportMetadataInput.md) - The ESPR product metadata payload.
+* [PassportQuotaError](PassportQuotaError.md) - 402 body for a write blocked by billing.
 * [PassportSealResponse](PassportSealResponse.md) - 200 envelope of POST /api/v1/passports/{id}/seal.
 * [PassportStatusUpdateRequest](PassportStatusUpdateRequest.md) - Body of PUT /api/v1/passports/{id}/status.
 * [PassportStatusUpdateResponse](PassportStatusUpdateResponse.md) - 200 envelope of PUT /api/v1/passports/{id}/status.

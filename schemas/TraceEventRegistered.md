@@ -5,7 +5,7 @@ description: 201 envelope of POST /api/v1/events.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/TraceEventRegistered
 tags:
   - schema
-timestamp: 2026-06-23T00:00:00Z
+timestamp: 2026-06-26T00:00:00Z
 ---
 
 201 envelope of POST /api/v1/events. Note: `status: "success"` (string), not the usual `success: true` boolean.
