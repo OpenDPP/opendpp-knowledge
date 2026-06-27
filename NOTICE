@@ -13,5 +13,5 @@ build integrations and generate clients against the OpenDPP service." This bundl
 that integration surface easy for AI agents and developers to consume; it does not grant rights to the
 OpenDPP service implementation, which remains proprietary.
 
-"OpenDPP" and the OpenDPP logo are trademarks of Opendpp UAB (EU trademark application
-019384181, registration pending). See TRADEMARK.md for the trademark & conformance policy.
+"OpenDPP" and the OpenDPP logo are trademarks of Opendpp UAB. See TRADEMARK.md for the
+trademark & conformance policy.
