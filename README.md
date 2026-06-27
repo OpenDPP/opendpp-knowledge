@@ -38,6 +38,10 @@ drifts from the running service. Do not hand-edit concepts here; they are overwr
 - **Interop boundary kit** (official AAS + UNTP schemas, samples, an offline conformance validator):
   <https://github.com/OpenDPP/opendpp-interop>
 
-## License
+## License & trademark
 
 [Apache-2.0](LICENSE). See [`NOTICE`](NOTICE) for how the underlying API specification may be used.
+
+"OpenDPP" is a trademark of Opendpp UAB (EUTM application 019384181, registration pending). The
+Apache-2.0 license covers the content, not the name: forks may rebuild but must rename, and
+"OpenDPP-conformant" is reserved for output validated against the hosted node — see [`TRADEMARK.md`](TRADEMARK.md).

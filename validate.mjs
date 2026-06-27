@@ -11,7 +11,7 @@ const ROOT = process.cwd();
 const SEGMENT_RE = /^[A-Za-z0-9_][A-Za-z0-9_.\-]*$/;
 const REQUIRED = ["type", "title", "description", "timestamp"];
 // Repo-meta Markdown that is NOT an OKF concept (no frontmatter; GitHub-relative links). Skip it.
-const REPO_META = new Set(["README.md", "CONTRIBUTING.md", "CHANGELOG.md", "CODE_OF_CONDUCT.md"]);
+const REPO_META = new Set(["README.md", "CONTRIBUTING.md", "CHANGELOG.md", "CODE_OF_CONDUCT.md", "TRADEMARK.md"]);
 const errors = [];
 
 function walk(dir) {
