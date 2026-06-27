@@ -1,7 +1,7 @@
 OpenDPP Knowledge Bundle
-Copyright © OpenDPP UAB
+Copyright © Opendpp UAB
 
-This product includes software developed by OpenDPP UAB (https://opendpp-node.eu).
+This product includes software developed by Opendpp UAB (https://opendpp-node.eu).
 
 The files in this repository are documentation: a machine-readable Open Knowledge Format (OKF)
 projection of the OpenDPP Integration API. They are licensed under the Apache License, Version 2.0
@@ -13,4 +13,5 @@ build integrations and generate clients against the OpenDPP service." This bundl
 that integration surface easy for AI agents and developers to consume; it does not grant rights to the
 OpenDPP service implementation, which remains proprietary.
 
-"OpenDPP" and the OpenDPP logo are trademarks of OpenDPP UAB.
+"OpenDPP" and the OpenDPP logo are trademarks of Opendpp UAB (EU trademark application
+019384181, registration pending). See TRADEMARK.md for the trademark & conformance policy.
