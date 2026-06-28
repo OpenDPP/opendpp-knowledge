@@ -37,6 +37,8 @@ drifts from the running service. Do not hand-edit concepts here; they are overwr
 - **Live bundle + discovery:** <https://opendpp-node.eu/okf> · <https://opendpp-node.eu/llms.txt>
 - **Interop boundary kit** (official AAS + UNTP schemas, samples, an offline conformance validator):
   <https://github.com/OpenDPP/opendpp-interop>
+- **Client SDKs** (`@opendpp/sdk` (TypeScript) + Python, generated from the OpenAPI contract):
+  <https://github.com/OpenDPP/opendpp-sdk>
 
 ## License & trademark
 
