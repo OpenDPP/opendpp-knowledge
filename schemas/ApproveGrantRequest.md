@@ -5,7 +5,7 @@ description: Approval body — only the final expiry is supplied; everything els
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/ApproveGrantRequest
 tags:
   - schema
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 Approval body — only the final expiry is supplied; everything else comes from the original request.

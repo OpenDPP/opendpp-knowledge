@@ -5,7 +5,7 @@ description: FacilityListEnvelope
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/FacilityListEnvelope
 tags:
   - schema
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 ## Schema

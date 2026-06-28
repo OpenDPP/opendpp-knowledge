@@ -5,7 +5,7 @@ description: A facility (GS1 GLN) master-data row, exactly as stored.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/FacilityRow
 tags:
   - schema
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 A facility (GS1 GLN) master-data row, exactly as stored. Returned in full to the owning tenant. Public exposure in passport documents differs by format: the *JSON-LD* document exposes `id`, `gln`, `name`, `activity` and `country` of a linked facility; the *AAS* export emits only the GLN, name and country (`manufacturingFacilityGln`/`Name`/`Country`). `streetAddress`, `city` and `postalCode` are emitted only to the owning/bound tenant in both formats.

@@ -5,7 +5,7 @@ description: The full subscription row as returned ONLY by the 201 create respon
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionWithSecret
 tags:
   - schema
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 The full subscription row as returned ONLY by the 201 create response — includes the HMAC-SHA256 signing secret.

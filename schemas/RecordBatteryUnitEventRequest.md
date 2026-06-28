@@ -5,7 +5,7 @@ description: One telemetry record.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/RecordBatteryUnitEventRequest
 tags:
   - schema
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 One telemetry record. All measurements are optional and independently nullable; numeric ranges are enforced with 400 on violation.

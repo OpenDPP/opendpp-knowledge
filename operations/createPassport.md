@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports
 tags:
   - POST
   - passports
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 `POST /api/v1/passports`
@@ -99,7 +99,7 @@ Schema (required): [PassportCreateRequest](/schemas/PassportCreateRequest.md).
 - **201** — Passport created (or draft saved). → [PassportIngestCreated](/schemas/PassportIngestCreated.md)
 - **400** — Three variants share this status: (1) Validation Failed — the metadata failed ESPR category / cross-field / traceability validation; carries per-field errors[]… → [Error](/schemas/Error.md), [ValidationErrorItem](/schemas/ValidationErrorItem.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — EITHER the workspace subscription is lapsed / its grace period expired (read operations are unaffected), OR (on passport-crea… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **409** — A passport already exists for this (productId, operatorId) pair. → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 1 MiB (1,048,576-byte) body limit.

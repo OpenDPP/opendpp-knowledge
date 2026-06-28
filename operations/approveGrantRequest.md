@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/grants/{id}/approve
 tags:
   - POST
   - access-grants
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 `POST /api/v1/grants/{id}/approve`
@@ -41,7 +41,7 @@ Schema (required): [ApproveGrantRequest](/schemas/ApproveGrantRequest.md).
 - **200** — Request approved; the capability token is shown only here (and in the grantee e-mail). → [GrantIssuedResponse](/schemas/GrantIssuedResponse.md)
 - **400** — Invalid expiresAt. → [GrantRouteError](/schemas/GrantRouteError.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — EITHER the workspace subscription is lapsed / its grace period expired (read operations are unaffected), OR (on passport-crea… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — No grant with this id exists in this workspace. → [GrantRouteError](/schemas/GrantRouteError.md)
 - **409** — The grant is not PENDING (already decided, active, or revoked). → [GrantRouteError](/schemas/GrantRouteError.md)

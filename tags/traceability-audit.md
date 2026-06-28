@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - traceability-audit
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 UNTP/EPCIS supply-chain traceability events, lineage queries, and the public seal verifier. The verifier checks the cryptographic seal AND that the signing workspace is bound to the economic operator declared in the payload.

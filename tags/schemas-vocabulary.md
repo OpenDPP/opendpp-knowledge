@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - schemas-vocabulary
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 Machine-readable contracts: per-category ESPR JSON Schemas, the W3C JSON-LD context, and the curated materials vocabulary.

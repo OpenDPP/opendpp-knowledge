@@ -7,7 +7,7 @@ tags:
   - conformance
   - standards
   - honesty
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 OpenDPP is deliberately precise about what it claims. In short:

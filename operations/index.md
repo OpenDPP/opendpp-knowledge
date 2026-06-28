@@ -89,6 +89,7 @@
 # QR Codes
 
 * [GET /api/v1/passports/{id}/qr](getPassportQrCode.md) - Export a print-grade GS1 Digital Link QR code for a passport
+* [POST /api/v1/passports/labels](bulkExportPassportLabels.md) - Bulk-export print-grade QR labels for many passports as a ZIP
 * [GET /api/v1/units/{id}/qr](getBatteryUnitQrCode.md) - Export a print-grade QR code for an individual battery unit
 
 # eIDAS Keys

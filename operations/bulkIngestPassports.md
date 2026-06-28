@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports/bulk
 tags:
   - POST
   - passports
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 `POST /api/v1/passports/bulk`
@@ -123,7 +123,7 @@ Schema (required): [PassportBulkRequest](/schemas/PassportBulkRequest.md).
 - **201** — Bulk run finished with at least one inserted row. → [PassportBulkResult](/schemas/PassportBulkResult.md)
 - **400** — Either every row failed (Bulk Ingestion Failed, with string errors[] and no message field), or the request never reached row processing: envelope violations of… → [PassportBulkFailure](/schemas/PassportBulkFailure.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — EITHER the workspace subscription is lapsed / its grace period expired (read operations are unaffected), OR (on passport-crea… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 1 MiB (1,048,576-byte) body limit.
 - **429** — Global rate limit exceeded (100 requests/min per IP).

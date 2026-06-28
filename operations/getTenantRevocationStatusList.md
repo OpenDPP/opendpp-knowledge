@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/tenants/{tenantId}/status/revocation
 tags:
   - GET
   - verifiable-credentials
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 `GET /tenants/{tenantId}/status/revocation`

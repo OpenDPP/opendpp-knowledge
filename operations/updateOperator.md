@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/operators/{id}
 tags:
   - PATCH
   - economic-operators
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 `PATCH /api/v1/operators/{id}`
@@ -45,7 +45,7 @@ Schema: [UpdateOperatorRequest](/schemas/UpdateOperatorRequest.md).
 
 - **200** — The (possibly unchanged) operator row. → [UpdateOperatorResponse](/schemas/UpdateOperatorResponse.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — EITHER the workspace subscription is lapsed / its grace period expired (read operations are unaffected), OR (on passport-crea… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The operator does not exist or is not bound to your workspace. → [OperatorMinimalError](/schemas/OperatorMinimalError.md)
 - **429** — Global rate limit exceeded (100 requests/min per IP).

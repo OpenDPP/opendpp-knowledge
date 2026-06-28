@@ -1,8 +1,8 @@
 {
   "okfVersion": "0.1",
-  "apiVersion": "1.6.0",
-  "generated": "2026-06-26T00:00:00Z",
-  "conceptCount": 206,
+  "apiVersion": "1.7.0",
+  "generated": "2026-06-28T00:00:00Z",
+  "conceptCount": 207,
   "concepts": [
     {
       "path": "overview.md",
@@ -507,6 +507,13 @@
       "title": "Export a print-grade GS1 Digital Link QR code for a passport",
       "description": "Export a print-grade GS1 Digital Link QR code for a passport",
       "resource": "https://opendpp-node.eu/api/v1/passports/{id}/qr"
+    },
+    {
+      "path": "operations/bulkExportPassportLabels.md",
+      "type": "API Endpoint",
+      "title": "Bulk-export print-grade QR labels for many passports as a ZIP",
+      "description": "Bulk-export print-grade QR labels for many passports as a ZIP",
+      "resource": "https://opendpp-node.eu/api/v1/passports/labels"
     },
     {
       "path": "operations/getBatteryUnitQrCode.md",

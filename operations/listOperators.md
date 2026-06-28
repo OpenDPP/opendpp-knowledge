@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/operators
 tags:
   - GET
   - economic-operators
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 `GET /api/v1/operators`

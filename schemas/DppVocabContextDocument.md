@@ -5,7 +5,7 @@ description: The canonical resolvable JSON-LD context served by GET /contexts/dp
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/DppVocabContextDocument
 tags:
   - schema
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 The canonical resolvable JSON-LD context served by `GET /contexts/dpp/v1` — the context every public passport and battery-unit document references in its `@context`. Declares `@vocab` (so unknown terms expand under the OpenDPP namespace) plus core term mappings; `@version` is the numeric JSON-LD 1.1 marker, so `@context` values are a mix of strings and that number.

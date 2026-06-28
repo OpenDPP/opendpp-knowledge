@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/openapi.json#/webhooks/passport.status_updated
 tags:
   - webhook
   - event
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 Sent when `PUT /api/v1/passports/{id}/status` performs a non-recall transition: decommissioning (`DECOMMISSIONED`, which also sets `retentionUntil` and starts the retention clock) or reactivation back to `ACTIVE`. Subscribe to it directly with the `passport.status_updated` filter (or `*`).

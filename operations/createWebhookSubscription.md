@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/webhooks/subscriptions
 tags:
   - POST
   - webhooks
-timestamp: 2026-06-26T00:00:00Z
+timestamp: 2026-06-28T00:00:00Z
 ---
 
 `POST /api/v1/webhooks/subscriptions`
@@ -45,7 +45,7 @@ Schema (required): [WebhookSubscriptionCreateRequest](/schemas/WebhookSubscripti
 - **201** — Subscription registered. → [WebhookSubscriptionCreateResponse](/schemas/WebhookSubscriptionCreateResponse.md)
 - **400** — Validation failure. → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — EITHER the workspace subscription is lapsed / its grace period expired (read operations are unaffected), OR (on passport-crea… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **409** — The workspace already has 25 webhook subscriptions (the per-tenant cap). → [Error](/schemas/Error.md)
 - **429** — Global rate limit exceeded (100 requests/min per IP).
