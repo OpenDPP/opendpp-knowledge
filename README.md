@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/OpenDPP/opendpp-knowledge/main/assets/opendpp-mark.png" alt="OpenDPP" width="96" height="96">
+</p>
+
 # OpenDPP Knowledge Bundle
 
 > A machine-readable **[Open Knowledge Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)** (OKF)
