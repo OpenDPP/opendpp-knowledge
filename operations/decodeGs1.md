@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/gs1/decode
 tags:
   - POST
   - public-resolution
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 `POST /api/v1/gs1/decode`

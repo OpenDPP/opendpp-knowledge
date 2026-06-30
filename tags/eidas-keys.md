@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - eidas-keys
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 Tenant signing-key management. Keys are generated and held server-side in an encrypted vault; private key material is never returned by any endpoint.

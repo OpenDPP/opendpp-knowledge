@@ -5,7 +5,7 @@ description: Public lineage pointer between battery units (Art.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitLineageRef
 tags:
   - schema
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 Public lineage pointer between battery units (Art. 77(7)).

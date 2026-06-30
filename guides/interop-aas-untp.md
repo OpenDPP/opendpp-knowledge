@@ -9,7 +9,7 @@ tags:
   - IDTA
   - UNTP
   - data integrity
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 Public resolution is **content-negotiated**: one URL serves several representations, so a passport

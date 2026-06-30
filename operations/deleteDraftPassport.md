@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports/{id}
 tags:
   - DELETE
   - passports
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 `DELETE /api/v1/passports/{id}`

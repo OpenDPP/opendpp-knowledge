@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/tenants/{tenantId}/did.json
 tags:
   - GET
   - verifiable-credentials
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 `GET /tenants/{tenantId}/did.json`

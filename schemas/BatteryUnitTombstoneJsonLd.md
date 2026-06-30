@@ -5,7 +5,7 @@ description: Art.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitTombstoneJsonLd
 tags:
   - schema
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 Art. 77(8) tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist. This minimal record confirms the unit existed, that it was recycled and when, plus the (still living) model-passport link. Grants and owner credentials do not override the tombstone on the public URL; the underlying data is retained internally for the statutory retention window.

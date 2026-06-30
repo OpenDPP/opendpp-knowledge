@@ -5,7 +5,7 @@ description: One outbox delivery record (event-level).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/WebhookDeliveryRow
 tags:
   - schema
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 One outbox delivery record (event-level). The payload is not included.

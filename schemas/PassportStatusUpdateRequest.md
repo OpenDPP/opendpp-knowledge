@@ -5,7 +5,7 @@ description: Body of PUT /api/v1/passports/{id}/status.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportStatusUpdateRequest
 tags:
   - schema
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 Body of PUT /api/v1/passports/{id}/status. Only `status` is read; any other keys are ignored (there is no `reason` field).

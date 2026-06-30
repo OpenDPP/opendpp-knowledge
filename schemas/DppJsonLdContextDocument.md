@@ -5,7 +5,7 @@ description: "The fixed W3C JSON-LD context document served by GET /context/v1: 
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/DppJsonLdContextDocument
 tags:
   - schema
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 The fixed W3C JSON-LD context document served by `GET /context/v1`: maps `DigitalProductPassport`, `economicOperator`, `metadata`, `digitalSeal`, `signingPublicKey` and `proof` to `https://opendpp-node.eu/ns/dpp#…` IRIs, and `createdAt`/`updatedAt` to schema.org `dateCreated`/`dateModified`.

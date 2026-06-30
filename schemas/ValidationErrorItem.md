@@ -5,7 +5,7 @@ description: One field-level finding from ESPR category validation.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/ValidationErrorItem
 tags:
   - schema
-timestamp: 2026-06-28T00:00:00Z
+timestamp: 2026-06-29T00:00:00Z
 ---
 
 One field-level finding from ESPR category validation. `path` uses dot/bracket notation into the metadata object (e.g. `materialComposition[0].percentage`).
