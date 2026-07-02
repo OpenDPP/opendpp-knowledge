@@ -5,7 +5,7 @@ description: Credential proof.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/UntpEventProof
 tags:
   - schema
-timestamp: 2026-06-29T00:00:00Z
+timestamp: 2026-07-02T00:00:00Z
 ---
 
 Credential proof. Verified with ECDSA P-256 / SHA-256 over OpenDPP's deterministic key-sorted JSON canonicalization of the credential with `proofValue` blanked (NOT RFC 8785 JCS — not a conformant W3C Data Integrity suite).

@@ -60,6 +60,7 @@
 # Traceability & Audit
 
 * [POST /api/v1/events](registerTraceabilityEvent.md) - Register a UNTP/EPCIS 2.0 traceability event (VC-shaped)
+* [POST /api/v1/events/epcis](captureEpcisDocument.md) - Capture a native GS1 EPCIS 2.0 document (JSON/JSON-LD)
 * [GET /api/v1/events/{id}/lineage](getEventLineage.md) - Retrieve the upstream pedigree of an event as a recursive lineage DAG
 * [POST /api/v1/events/{id}/audit](auditEventLineage.md) - Run heuristic UFLPA/EUDR compliance screening over an event's lineage
 * [POST /api/v1/audit/verify](verifyPassportSeal.md) - Publicly verify a passport's eIDAS seal, certificate chain and timestamp

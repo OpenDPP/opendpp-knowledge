@@ -5,7 +5,7 @@ description: List envelope for GET /api/v1/grants (paginated).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/GrantListResponse
 tags:
   - schema
-timestamp: 2026-06-29T00:00:00Z
+timestamp: 2026-07-02T00:00:00Z
 ---
 
 List envelope for `GET /api/v1/grants` (paginated).

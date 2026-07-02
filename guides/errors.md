@@ -7,7 +7,7 @@ tags:
   - errors
   - validation
   - troubleshooting
-timestamp: 2026-06-29T00:00:00Z
+timestamp: 2026-07-02T00:00:00Z
 ---
 
 Authenticated endpoints return `{ success: false, error, message }` (some endpoints, and all

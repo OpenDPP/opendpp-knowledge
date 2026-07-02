@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - public-resolution
-timestamp: 2026-06-29T00:00:00Z
+timestamp: 2026-07-02T00:00:00Z
 ---
 
 Unauthenticated, content-negotiated passport resolution: GS1 Digital Link paths, passport and unit pages. One URL serves JSON-LD (default), an AAS environment (`Accept: application/aas+json`), a signed UNTP Verifiable Credential (`Accept: application/vc+jwt` enveloping, `application/vc+ld+json` embedded `ecdsa-jcs-2019` Data Integrity, or `application/dc+sd-jwt` SD-JWT-VC selective disclosure; the first two also item-level on `/unit/:id`), or HTML (`Accept: text/html`). Tiered by optional credentials or grant tokens. Rate limit: 30 requests/min per IP.

@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/events/{id}/lineage
 tags:
   - GET
   - traceability-audit
-timestamp: 2026-06-29T00:00:00Z
+timestamp: 2026-07-02T00:00:00Z
 ---
 
 `GET /api/v1/events/{id}/lineage`
@@ -22,6 +22,8 @@ Returns the full upstream pedigree of a traceability event as a recursive Direct
 
 **Caveats:** if the lineage graph contains a circular reference the walk aborts with 400. Any other failure (unknown id, other-tenant id, missing parent) is reported as the same deliberately generic 404 body. `eventTime` is serialized as ISO 8601 UTC; `epcs` is parsed from the stored EPC list (a non-array value degrades to `[]`); `location` mirrors the stored `bizLocation`.
 
+**Content negotiation (EPCIS projection):** `Accept: application/ld+json` returns the SAME tenant-scoped lineage as a native **GS1 EPCIS 2.0 document** (`EPCISDocument` with the walk's events under `epcisBody.eventList`, ordered by `eventTime`, bounded to 500 events) instead of the recursive JSON tree — another projection of the same canonical rows, mirroring the AAS/VC Accept-header pattern on the passport resolution routes. Emitted documents use the official CBV short names (stored `urn:epcglobal:cbv:*` values are mapped back), expose row ids as `eventID` URNs (`urn:uuid:*`, or `urn:opendpp:event:*` for non-UUID ids), and wrap non-URI stored locations as `urn:opendpp:location:*`.
+
 ## Parameters
 
 | Name | In | Required | Type | Description |
@@ -30,7 +32,7 @@ Returns the full upstream pedigree of a traceability event as a recursive Direct
 
 ## Responses
 
-- **200** — The lineage DAG rooted at the requested event. → [TraceLineageResponse](/schemas/TraceLineageResponse.md)
+- **200** — The lineage DAG rooted at the requested event. → [EpcisDocument](/schemas/EpcisDocument.md), [TraceLineageResponse](/schemas/TraceLineageResponse.md)
 - **400** — Circular reference detected while walking the lineage graph. → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
@@ -48,4 +50,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md), [TraceLineageResponse](/schemas/TraceLineageResponse.md).
+Schemas: [EpcisDocument](/schemas/EpcisDocument.md), [Error](/schemas/Error.md), [TraceLineageResponse](/schemas/TraceLineageResponse.md).

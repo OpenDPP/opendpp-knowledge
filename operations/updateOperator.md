@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/operators/{id}
 tags:
   - PATCH
   - economic-operators
-timestamp: 2026-06-29T00:00:00Z
+timestamp: 2026-07-02T00:00:00Z
 ---
 
 `PATCH /api/v1/operators/{id}`

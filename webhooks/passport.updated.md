@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/openapi.json#/webhooks/passport.updated
 tags:
   - webhook
   - event
-timestamp: 2026-06-29T00:00:00Z
+timestamp: 2026-07-02T00:00:00Z
 ---
 
 Sent when an already-published (non-draft) passport's content is edited in place via `PUT /api/v1/passports/{id}`, transactionally with the update write. This is **distinct from first publish** (that emits `passport.ingested`, not this event) and is **never** emitted for sealed passports — in-place edits of a sealed passport are rejected with `403`. The payload is the updated public JSON-LD passport with `status: "ACTIVE"`. Delivered to every active subscription whose filter contains `passport.updated` or `*`.

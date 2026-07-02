@@ -26,6 +26,8 @@
 * [DppJsonLdContextDocument](DppJsonLdContextDocument.md) - The fixed W3C JSON-LD context document served by GET /context/v1: maps DigitalProductPassport, economicOperator, metadata, digitalSeal, sig…
 * [DppVocabContextDocument](DppVocabContextDocument.md) - The canonical resolvable JSON-LD context served by GET /contexts/dpp/v1 — the context every public passport and battery-unit document refer…
 * [EconomicOperatorNode](EconomicOperatorNode.md) - Embedded economic-operator JSON-LD node (public in all tiers).
+* [EpcisCaptureResponse](EpcisCaptureResponse.md)
+* [EpcisDocument](EpcisDocument.md) - A GS1 EPCIS 2.0 document (JSON/JSON-LD).
 * [Error](Error.md) - Standard error body.
 * [FacilityCreateRequest](FacilityCreateRequest.md)
 * [FacilityCreatedEnvelope](FacilityCreatedEnvelope.md)
