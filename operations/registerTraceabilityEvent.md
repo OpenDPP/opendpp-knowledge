@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/events
 tags:
   - POST
   - traceability-audit
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 `POST /api/v1/events`
@@ -23,7 +23,7 @@ Registers a supply-chain traceability event carried as a VC-shaped UNTP credenti
 **Validation pipeline (in order):**
 1. *Structural* — the body must be an object containing `credentialSubject`, otherwise 400 `Bad Request`.
 2. *EPCIS rule* — `action` is strictly forbidden on `TransformationEvent` (any non-null value → 400 `Schema Validation Error`).
-3. *Cryptographic* — the ECDSA (P-256 / SHA-256) signature in `proof.proofValue` (base64) is verified over the deterministically canonicalized credential (key-sorted JSON with `proof.proofValue` blanked — OpenDPP's own canonicalization scheme, NOT RFC 8785 JCS, so this is not a conformant W3C Data Integrity suite). The verification key is resolved in trust order: (a) an embedded `proof.verificationMethod.x5c` chain, accepted ONLY when the node has eIDAS trust anchors configured, the chain validates against them, every certificate is currently valid, and the leaf attests the issuer; (b) the registered eIDAS public key of the tenant whose subdomain or company name EXACTLY equals the trailing `:`-segment of the issuer DID. If no key resolves or the signature does not verify → 400 `Cryptographic Verification Failed`.
+3. *Cryptographic* — the credential's `proof` MUST be a conformant W3C `DataIntegrityProof` with `cryptosuite: "ecdsa-jcs-2019"` and a multibase base58btc (`z…`) `proofValue`; any other proof shape (e.g. the legacy key-sorted `MerkleTreeAttestationProof`) is rejected. The ECDSA P-256 signature is verified per that cryptosuite over `sha256(JCS(proof options)) ‖ sha256(JCS(credential without proof))` — RFC 8785 JCS canonicalization, IEEE-P1363 raw r‖s — a conformant, interoperable Data Integrity suite, which is what makes the persisted `isUntpCompliant: true` honest. The verification key is resolved in trust order: (a) an embedded `proof.verificationMethod.x5c` chain, accepted ONLY when the node has eIDAS trust anchors configured, the chain validates against them, every certificate is currently valid, and the leaf attests the issuer; (b) ALL of the authoritative vault keys (current + retired, so a pre-rotation credential still verifies) of the tenant whose UNIQUE subdomain EXACTLY equals the trailing `:`-segment of the issuer DID. If no key resolves or the signature does not verify → 400 `Cryptographic Verification Failed`.
 4. *Operator scoping* — if your API key is scoped to an Economic Operator, the credential's declared operator DID — the `issuer` DID, or `credentialSubject.responsibleOperatorDid` only when `issuer` is absent — must contain the bound operator's registration id (e.g. `EU-DEFAULT-001`), otherwise 403 with `message: "Your access is restricted to Economic Operator: <operatorId> (<regId>)"`.
 
 **Persistence:** the stored event id is ALWAYS server-generated (UUID) — the credential's own `id` is never used as the primary key (prevents cross-tenant id squatting); the issuer DID is retained as `issuerDid`. Defaults applied on write: `bizStep` → `urn:epcglobal:cbv:bizstep:receiving`; `disposition` → `urn:epcglobal:cbv:disp:in_progress`; `readPoint` → `geo:<latitude>,<longitude>` derived from `credentialSubject.originLocation` when present; `bizLocation` → `responsibleOperatorDid`; `eventTime` → `issuanceDate`, else the server clock; `epcList` → `[credentialSubject.id]` when not supplied as an array (or `[]`). The row is stored with `isUntpCompliant: true` and the `proof.proofValue` retained.
@@ -63,10 +63,11 @@ Schema (required): [UntpEventCredential](/schemas/UntpEventCredential.md).
   },
   "proof": {
     "type": "DataIntegrityProof",
+    "cryptosuite": "ecdsa-jcs-2019",
     "created": "2026-06-12T09:41:00.000Z",
     "proofPurpose": "assertionMethod",
     "verificationMethod": "did:web:opendpp-node.eu:EU-DEFAULT-001:demo#key-1",
-    "proofValue": "MEUCIQDkx0VqFholm0Oa7lzwL9C5cqcRBYRJWcExampleEcdsaDerAiBJ4dY0YxV5n7pUq2tHj8sExampleSecondIntegerValue9w=="
+    "proofValue": "z4oey5q2M3XKaxup3tmzN4DRFTLVqpLMweBrSxMY2xEQLExampleEcdsaJcs2019MultibaseBase58btcProofValue"
   }
 }
 ```

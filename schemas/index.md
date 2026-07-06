@@ -3,6 +3,7 @@
 * [AasEnvironment](AasEnvironment.md) - An Asset Administration Shell (AAS) v3.0 environment export of the passport, served as application/aas+json.
 * [AasEnvironmentInput](AasEnvironmentInput.md) - An Asset Administration Shell (AAS) JSON Environment — the format produced by OpenDPP's AAS export of a passport.
 * [AasIngestCreated](AasIngestCreated.md) - 201 envelope of POST /api/v1/passports/aas/ingest.
+* [AdvisoryItem](AdvisoryItem.md) - One non-blocking advisory on a response's warnings[] (a heads-up — the request still succeeded) or notices[] (informational — something hel…
 * [ApproveGrantRequest](ApproveGrantRequest.md) - Approval body — only the final expiry is supplied; everything else comes from the original request.
 * [BatteryUnitCreateItem](BatteryUnitCreateItem.md) - One unit to serialise.
 * [BatteryUnitCurrentState](BatteryUnitCurrentState.md) - Latest recorded measurement of the unit (owner/grant tiers only).
@@ -80,7 +81,7 @@
 * [RegisterOperatorResponse](RegisterOperatorResponse.md)
 * [RestoreOperatorResponse](RestoreOperatorResponse.md)
 * [RotateTenantKeysResponse](RotateTenantKeysResponse.md)
-* [SealCertificateReport](SealCertificateReport.md) - Present only for x5c-carrying proofs AND only when verification proceeds past the key-registration and operator-binding gates (the two poli…
+* [SealCertificateReport](SealCertificateReport.md) - Present only for x5c-carrying proofs on a verified: true outcome whose chain is TRUSTED — chainValid AND keyMatchesProof both true (the two…
 * [SealTimestampReport](SealTimestampReport.md) - Present only when payload.proof.rfc3161.token was supplied AND verification proceeds past the key-registration and operator-binding gates (…
 * [SealVerifyRequest](SealVerifyRequest.md) - Verification request.
 * [SealVerifyResponse](SealVerifyResponse.md) - Always HTTP 200 once the request is well-formed.
@@ -94,7 +95,7 @@
 * [TraceEventRegistered](TraceEventRegistered.md) - 201 envelope of POST /api/v1/events.
 * [TraceLineageNode](TraceLineageNode.md) - One node of the recursive upstream lineage DAG.
 * [TraceLineageResponse](TraceLineageResponse.md)
-* [UntpEventCredential](UntpEventCredential.md) - A UNTP/EPCIS 2.0 traceability event wrapped as a VC-shaped credential (a vendor proof, not a conformant W3C VC).
+* [UntpEventCredential](UntpEventCredential.md) - A UNTP/EPCIS 2.0 traceability event wrapped as a VC-shaped credential.
 * [UntpEventCredentialSubject](UntpEventCredentialSubject.md) - The EPCIS event payload.
 * [UntpEventProof](UntpEventProof.md) - Credential proof.
 * [UntpVerificationMethod](UntpVerificationMethod.md) - Embedded verification-method object.

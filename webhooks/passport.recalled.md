@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/openapi.json#/webhooks/passport.recalled
 tags:
   - webhook
   - event
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 Sent when `PUT /api/v1/passports/{id}/status` transitions a passport to `RECALLED`, transactionally with the status write. The payload is the public JSON-LD passport with `status: "RECALLED"` (seal/proof fields reflect whatever state the passport was in when recalled). Delivered to every active subscription whose filter contains `passport.recalled` or `*`.

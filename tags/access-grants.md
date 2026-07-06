@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - access-grants
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 Capability tokens implementing tiered access (Battery Regulation Art. 77(9) legitimate-interest access): issue, approve, deny and revoke `dpp_li_…` / `dpp_auth_…` tokens. Third parties request access via the hosted request page; granted tokens unlock restricted fields on the public resolution endpoints (Bearer or `?grant=`).

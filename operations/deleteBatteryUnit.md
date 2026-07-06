@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/units/{id}
 tags:
   - DELETE
   - battery-units
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 `DELETE /api/v1/units/{id}`

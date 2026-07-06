@@ -5,7 +5,7 @@ description: 400 body when every item in the serialisation batch failed.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitSerialisationFailedError
 tags:
   - schema
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 400 body when **every** item in the serialisation batch failed. Note: `errors` is an array of plain strings and there is **no `message` field** (unlike the standard error triple).

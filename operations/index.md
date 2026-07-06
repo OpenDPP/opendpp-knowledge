@@ -6,6 +6,7 @@
 * [POST /api/v1/passports/validate-only-public](validatePassportPublic.md) - Public dry-run ESPR metadata validation (strictly rate-limited)
 * [POST /api/v1/passports/bulk](bulkIngestPassports.md) - Bulk-ingest up to 200 passports with per-row error reporting
 * [POST /api/v1/passports/aas/ingest](ingestPassportFromAas.md) - Ingest a passport from an AAS JSON Environment (seal-verified)
+* [GET /api/v1/passports/vc-readiness](passportVcReadinessReport.md) - Catalog-wide UNTP Verifiable-Credential readiness report
 * [GET /api/v1/passports/{id}](getPassport.md) - Fetch a single passport (content-negotiated JSON-LD / AAS / HTML)
 * [PUT /api/v1/passports/{id}](updatePassport.md) - Update passport metadata (versioned to history)
 * [DELETE /api/v1/passports/{id}](deleteDraftPassport.md) - Permanently delete a DRAFT passport
@@ -72,6 +73,7 @@
 * [GET /01/{gtin14}/21/{serial}](resolveGs1GtinSerial.md) - GS1 Digital Link serialised-item redirect (AI 01 + AI 21)
 * [GET /8003/{grai}](resolveGs1Grai.md) - GS1 Digital Link resolution by GRAI (AI 8003)
 * [GET /unit/{id}](resolvePublicBatteryUnit.md) - Resolve an individual serialised battery unit
+* [POST /api/v1/gs1/gtin](mintGtinCheckDigit.md) - Compute a GTIN check digit from a company prefix + item reference
 * [POST /api/v1/gs1/decode](decodeGs1.md) - Decode GS1 scan data / element string / Digital Link into structured AIs + HRI
 * [POST /api/v1/gs1/decode/batch](decodeGs1Batch.md) - Batch-decode many GS1 scans / element strings / Digital Links in one request
 

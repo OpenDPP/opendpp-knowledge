@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/passport/{id}
 tags:
   - GET
   - public-resolution
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 `GET /passport/{id}`
@@ -16,7 +16,7 @@ timestamp: 2026-07-02T00:00:00Z
 
 Public, content-negotiated resolution of a Digital Product Passport by its server-assigned UUID. Lookup is by primary key only — GTIN/GRAI/serial lookups go through the GS1 Digital Link gateway (`GET /01/{gtin14}`, `GET /8003/{grai}`).
 
-**Content negotiation** (substring match on `Accept`, checked in order): `application/aas+json` (or bare `aas+json`) → role-filtered Asset Administration Shell environment; `application/vc+jwt` (or bare `vc+jwt`) → a signed UNTP DigitalProductPassport credential (public tier; `406 Not Acceptable` when the passport has no manufacturing facility with a country of production); `application/vc+ld+json` (or bare `vc+ld+json`) → the same credential with an embedded W3C Data Integrity proof (`ecdsa-jcs-2019`), same `406` condition; `application/dc+sd-jwt` (or the legacy `vc+sd-jwt`) → the same credential as an SD-JWT-VC for cryptographic selective disclosure (a holder presents a subset of `credentialSubject` claims), same `406` condition; `text/html` → server-rendered passport page; anything else (including `application/json`, `*/*`, or no header) → JSON-LD (`application/ld+json`, the default). `Vary: Accept` is always set on the 200.
+**Content negotiation** — the representation is chosen by RFC 7231 §5.3.2 `Accept` q-value negotiation (highest q wins; ties broken by media-range specificity, then the client's stated order): `application/aas+json` (or bare `aas+json`) → role-filtered Asset Administration Shell environment; `application/vc+jwt` (or bare `vc+jwt`) → a signed UNTP DigitalProductPassport credential (public tier; `406 Not Acceptable` when the passport has no manufacturing facility with a country of production); `application/vc+ld+json` (or bare `vc+ld+json`) → the same credential with an embedded W3C Data Integrity proof (`ecdsa-jcs-2019`), same `406` condition; `application/dc+sd-jwt` (or the legacy `vc+sd-jwt`) → the same credential as an SD-JWT-VC for cryptographic selective disclosure (a holder presents a subset of `credentialSubject` claims), same `406` condition; `text/html` → server-rendered passport page. An absent `Accept`, or one matching only `*/*`, yields the canonical default JSON-LD (`application/ld+json`); an unsupported type is ignored. Because q-values and client order are honoured, `Accept: text/html, application/vc+jwt` selects HTML (the client's first preference), NOT `vc+jwt`. `Vary: Accept` is always set on the 200.
 
 **Access tiers** — no permission string (public endpoint). Credentials are *optional* and never produce 401/402/403 here; an invalid or foreign credential silently degrades to the public tier:
 - **Public** (anonymous): restricted metadata keys (for category `batteries`: `detailedPerformance`, `lifecycleAndInUse`, `circularityAndDisassembly` — masked only when present) and the owner-only key `facilityDetails` (present-as-placeholder in every non-owner response, even when the underlying metadata never contained it) carry the literal placeholder `[REDACTED - Privileged Access Required]`. Each masked key that exists in the sealed metadata keeps its true Merkle leaf hash in `proof.redactedLeaves`, so the eIDAS seal stays offline-verifiable after redaction; a placeholder-valued key with no `redactedLeaves` entry was never in the sealed metadata and must be excluded when rebuilding the root.

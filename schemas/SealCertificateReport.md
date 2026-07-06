@@ -1,14 +1,14 @@
 ---
 type: Schema
 title: SealCertificateReport
-description: "Present only for x5c-carrying proofs AND only when verification proceeds past the key-registration and operator-binding gates (the two policy verified: false responses omit it): the certified legal identity of the seal creator (eIDAS Art."
+description: "Present only for x5c-carrying proofs on a verified: true outcome whose chain is TRUSTED — chainValid AND keyMatchesProof both true (the two policy verified: false responses AND any untrusted-chain outcome omit it): the certified legal iden…"
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/SealCertificateReport
 tags:
   - schema
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
-Present only for x5c-carrying proofs AND only when verification proceeds past the key-registration and operator-binding gates (the two policy `verified: false` responses omit it): the certified legal identity of the seal creator (eIDAS Art. 36(1)(b)). On an unparseable chain only `chainValid: false` and `error` are present.
+Present only for x5c-carrying proofs on a `verified: true` outcome whose chain is TRUSTED — `chainValid` AND `keyMatchesProof` both true (the two policy `verified: false` responses AND any untrusted-chain outcome omit it): the certified legal identity of the seal creator (eIDAS Art. 36(1)(b)). An untrusted chain is never surfaced, so an emitted report always has `chainValid: true`.
 
 ## Schema
 
@@ -27,7 +27,7 @@ Present only for x5c-carrying proofs AND only when verification proceeds past th
 ```json
 {
   "type": "object",
-  "description": "Present only for x5c-carrying proofs AND only when verification proceeds past the key-registration and operator-binding gates (the two policy `verified: false` responses omit it): the certified legal identity of the seal creator (eIDAS Art. 36(1)(b)). On an unparseable chain only `chainValid: false` and `error` are present.",
+  "description": "Present only for x5c-carrying proofs on a `verified: true` outcome whose chain is TRUSTED — `chainValid` AND `keyMatchesProof` both true (the two policy `verified: false` responses AND any untrusted-chain outcome omit it): the certified legal identity of the seal creator (eIDAS Art. 36(1)(b)). An untrusted chain is never surfaced, so an emitted report always has `chainValid: true`.",
   "required": [
     "chainValid"
   ],

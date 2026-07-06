@@ -5,7 +5,7 @@ description: The EPCIS event payload.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/UntpEventCredentialSubject
 tags:
   - schema
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 The EPCIS event payload. `eventType` is effectively required: it is persisted into a server-side enum, and a missing or unknown value is rejected at the persistence layer (surfacing as the 500 `Database Persistence Failed` body, not a 400).

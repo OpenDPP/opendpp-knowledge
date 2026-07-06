@@ -1,8 +1,8 @@
 {
   "okfVersion": "0.1",
-  "apiVersion": "1.9.0",
-  "generated": "2026-07-02T00:00:00Z",
-  "conceptCount": 210,
+  "apiVersion": "1.10.0",
+  "generated": "2026-07-04T00:00:00Z",
+  "conceptCount": 213,
   "concepts": [
     {
       "path": "overview.md",
@@ -376,6 +376,13 @@
       "resource": "https://opendpp-node.eu/api/v1/passports/aas/ingest"
     },
     {
+      "path": "operations/passportVcReadinessReport.md",
+      "type": "API Endpoint",
+      "title": "Catalog-wide UNTP Verifiable-Credential readiness report",
+      "description": "Catalog-wide UNTP Verifiable-Credential readiness report",
+      "resource": "https://opendpp-node.eu/api/v1/passports/vc-readiness"
+    },
+    {
       "path": "operations/getPassport.md",
       "type": "API Endpoint",
       "title": "Fetch a single passport (content-negotiated JSON-LD / AAS / HTML)",
@@ -486,6 +493,13 @@
       "title": "Running API contract version & build identity",
       "description": "Running API contract version & build identity",
       "resource": "https://opendpp-node.eu/api/v1/version"
+    },
+    {
+      "path": "operations/mintGtinCheckDigit.md",
+      "type": "API Endpoint",
+      "title": "Compute a GTIN check digit from a company prefix + item reference",
+      "description": "Compute a GTIN check digit from a company prefix + item reference",
+      "resource": "https://opendpp-node.eu/api/v1/gs1/gtin"
     },
     {
       "path": "operations/decodeGs1.md",
@@ -647,6 +661,13 @@
       "title": "AasIngestCreated",
       "description": "201 envelope of POST /api/v1/passports/aas/ingest.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/AasIngestCreated"
+    },
+    {
+      "path": "schemas/AdvisoryItem.md",
+      "type": "Schema",
+      "title": "AdvisoryItem",
+      "description": "One non-blocking advisory on a response's warnings[] (a heads-up — the request still succeeded) or notices[] (informational — something helpful the API did).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/AdvisoryItem"
     },
     {
       "path": "schemas/ApproveGrantRequest.md",
@@ -1191,7 +1212,7 @@
       "path": "schemas/SealCertificateReport.md",
       "type": "Schema",
       "title": "SealCertificateReport",
-      "description": "Present only for x5c-carrying proofs AND only when verification proceeds past the key-registration and operator-binding gates (the two policy verified: false responses omit it): the certified legal identity of the seal creator (eIDAS Art.",
+      "description": "Present only for x5c-carrying proofs on a verified: true outcome whose chain is TRUSTED — chainValid AND keyMatchesProof both true (the two policy verified: false responses AND any untrusted-chain outcome omit it): the certified legal iden…",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/SealCertificateReport"
     },
     {
@@ -1289,7 +1310,7 @@
       "path": "schemas/UntpEventCredential.md",
       "type": "Schema",
       "title": "UntpEventCredential",
-      "description": "A UNTP/EPCIS 2.0 traceability event wrapped as a VC-shaped credential (a vendor proof, not a conformant W3C VC).",
+      "description": "A UNTP/EPCIS 2.0 traceability event wrapped as a VC-shaped credential.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/UntpEventCredential"
     },
     {

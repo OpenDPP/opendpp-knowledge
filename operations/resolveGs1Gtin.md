@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/01/{gtin14}
 tags:
   - GET
   - public-resolution
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 `GET /01/{gtin14}`
@@ -16,9 +16,9 @@ timestamp: 2026-07-02T00:00:00Z
 
 Unified GS1 Digital Link gateway, GTIN branch. The GTIN-14 is matched against `metadata.gtin`, `metadata.grai`, or the passport's `productId`. On tenant workspaces (`https://{tenant}.opendpp-node.eu`) the lookup is scoped to that tenant — an unknown subdomain returns 404. Without a tenant scope, a GTIN matching more than one passport is rejected with 400 (ambiguous); disambiguate via a brand subdomain (the `?subdomain=` query override is honoured in non-production environments only).
 
-Content negotiation (JSON-LD default / `application/aas+json` / `application/vc+jwt` / `application/vc+ld+json` / `application/dc+sd-jwt` / `text/html`, `Vary: Accept` always set), access tiers (public / `dpp_li_…`·`dpp_auth_…` grant via Bearer or `?grant=` / owner = a tenant **API key** sent as Bearer or, legacy, as the literal `opendpp_session` cookie value — Console JWT login sessions do **not** unlock owner tier), DRAFT hiding, access-audit logging (anonymized IP), and grant response headers (`Cache-Control: private, no-store`, `Referrer-Policy: no-referrer`) are identical to `GET /passport/{id}` — see that operation for the full tier semantics. No permission string (public endpoint); invalid credentials silently degrade to the public tier, never 401/403.
+Content negotiation (RFC 7231 §5.3.2 `Accept` q-value negotiation; JSON-LD default / `application/aas+json` / `application/vc+jwt` / `application/vc+ld+json` / `application/dc+sd-jwt` / `text/html`, `Vary: Accept` always set), access tiers (public / `dpp_li_…`·`dpp_auth_…` grant via Bearer or `?grant=` / owner = a tenant **API key** sent as Bearer or, legacy, as the literal `opendpp_session` cookie value — Console JWT login sessions do **not** unlock owner tier), DRAFT hiding, access-audit logging (anonymized IP), and grant response headers (`Cache-Control: private, no-store`, `Referrer-Policy: no-referrer`) are identical to `GET /passport/{id}` — see that operation for the full tier semantics. No permission string (public endpoint); invalid credentials silently degrade to the public tier, never 401/403.
 
-The gateway also accepts additional GS1 AI key/value path pairs after the GTIN; the only one acted on is AI 21 (serial) — documented separately as `GET /01/{gtin14}/21/{serial}`. (The underlying route is `GET /{ai}/*`; AI prefixes other than `01` and `8003` get a 400.)
+The gateway also accepts additional GS1 AI key/value path pairs after the GTIN; the only one acted on is AI 21 (serial) — documented separately as `GET /01/{gtin14}/21/{serial}`. (The underlying route is `GET /{ai}/*`; AI prefixes other than `01` and `8003` get a 400.) This resolver handles only the **UNCOMPRESSED** GS1 Digital Link grammar; a **compressed** Digital Link (its AI data encoded as a base64url blob) is detected and rejected with a clear 400 that points to the uncompressed form (#261).
 
 **Rate limit:** 30 requests/min/IP, per-process in-memory limiter; two-field 429 body without `success`. The limiter adds no headers of its own — `x-ratelimit-*` headers on responses come from the global platform limit (100 req/min/IP), which applies on top.
 

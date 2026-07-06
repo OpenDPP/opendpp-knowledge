@@ -7,7 +7,7 @@ tags:
   - rate limits
   - throttling
   - headers
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 | Surface | Limit | Headers |

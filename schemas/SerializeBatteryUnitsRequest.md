@@ -5,7 +5,7 @@ description: "Either a single unit object, or a batch wrapper {units: [...]}."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/SerializeBatteryUnitsRequest
 tags:
   - schema
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 Either a single unit object, or a batch wrapper `{units: [...]}`. Precedence: when `units` is present **and is an array** it is used; otherwise the whole body is treated as one unit. (`anyOf`, not `oneOf`: a body carrying both a top-level `serialNumber` and a `units` array matches both shapes and is accepted by the server — `units` wins.)

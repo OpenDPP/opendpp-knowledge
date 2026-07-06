@@ -5,7 +5,7 @@ description: Both fields are optional.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/UpdateOperatorRequest
 tags:
   - schema
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 Both fields are optional. Values must be non-empty strings after trimming; anything else (missing, non-string, whitespace-only) is silently ignored. `regId` and `regIdScheme` cannot be changed. An omitted body or an empty object `{}` is accepted and returns the unchanged row.

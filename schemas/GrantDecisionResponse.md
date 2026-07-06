@@ -5,7 +5,7 @@ description: "Returned by deny and revoke: the updated grant, no token."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/GrantDecisionResponse
 tags:
   - schema
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 Returned by deny and revoke: the updated grant, no token.

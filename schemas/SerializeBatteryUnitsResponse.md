@@ -5,7 +5,7 @@ description: Returned (201) when at least one unit was created.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/SerializeBatteryUnitsResponse
 tags:
   - schema
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 Returned (201) when at least one unit was created. Partial success is possible: skipped items are reported in `errors` while `units` holds the created rows.
@@ -19,6 +19,7 @@ Returned (201) when at least one unit was created. Partial success is possible: 
 | `count` | integer | yes | Number of units actually created (equals units.length). |
 | `units` | array<[BatteryUnitRow](/schemas/BatteryUnitRow.md)> | yes | — |
 | `errors` | array<string> | no | Present only when some items were skipped — one plain-English string per skipped item, generally prefixed [<serialNumber>]. |
+| `warnings` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Non-blocking advisories. |
 
 ## JSON Schema
 
@@ -52,13 +53,21 @@ Returned (201) when at least one unit was created. Partial success is possible: 
         "type": "string"
       },
       "description": "Present only when some items were skipped — one plain-English string per skipped item, generally prefixed `[<serialNumber>]`."
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Non-blocking advisories. Carries a single note when the passport's `productId` is NOT a GS1 GTIN — the created units then have no scannable GS1 unit Digital Link (`/01/{gtin}/21/{serial}`) and resolve only via `/unit/{id}`. Empty `[]` for a GTIN-keyed passport.",
+      "items": {
+        "$ref": "#/components/schemas/AdvisoryItem"
+      }
     }
   },
   "required": [
     "success",
     "message",
     "count",
-    "units"
+    "units",
+    "warnings"
   ]
 }
 ```

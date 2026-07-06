@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports/{passportId}/units/validate
 tags:
   - POST
   - battery-units
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 `POST /api/v1/passports/{passportId}/units/validate`
@@ -16,7 +16,7 @@ timestamp: 2026-07-02T00:00:00Z
 
 NON-MUTATING pre-flight for bulk unit import. Runs the SAME engine-backed AI-21 / GS1 Digital Link conformance + field checks as `POST /api/v1/passports/{passportId}/units` and returns a per-item verdict — **persisting nothing**. Send a single unit or `{"units": [...]}` (≤200). Lets a bulk importer ask "would these serials be GS1-conformant?" before committing a batch.
 
-**Permission:** `battery:write` (gated as the write permission, like other validate-only checks; subscription gating → 402). **Validation:** `serialNumber` charset/length (`^[A-Za-z0-9._-]{1,20}$`); for a GTIN-keyed passport the unit Digital Link must parse cleanly through GS1's authoritative engine; `status` must be a valid unit status; `manufacturedAt` must be Date-parseable. Predecessor linkage is NOT checked here (a persistence-time concern). The verdict order matches the input order.
+**Permission:** `battery:write` (gated as the write permission, like other validate-only checks; subscription gating → 402). **Validation:** `serialNumber` charset/length (`^[A-Za-z0-9._-]{1,20}$`, a URL-safe subset of GS1 AI-21 CSET 82) PLUS authoritative GS1-engine conformance for EVERY unit — a GTIN-keyed passport's unit Digital Link must parse cleanly through the engine, and a non-GTIN passport's AI-21 serial VALUE is validated through the same engine (CSET-82 charset + length); `status` must be a valid unit status; `manufacturedAt` must be Date-parseable. Predecessor linkage is NOT checked here (a persistence-time concern). The verdict order matches the input order.
 
 **Rate limits:** global limiter only — 100 req/min per IP.
 

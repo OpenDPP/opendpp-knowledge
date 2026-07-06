@@ -5,34 +5,43 @@ description: Credential proof.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/UntpEventProof
 tags:
   - schema
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
-Credential proof. Verified with ECDSA P-256 / SHA-256 over OpenDPP's deterministic key-sorted JSON canonicalization of the credential with `proofValue` blanked (NOT RFC 8785 JCS — not a conformant W3C Data Integrity suite).
+Credential proof. MUST be a conformant W3C `DataIntegrityProof` with `cryptosuite: "ecdsa-jcs-2019"` and a multibase base58btc (`z…`) `proofValue`. Verified (ECDSA P-256, IEEE-P1363 raw r‖s) over `sha256(JCS(proof options)) ‖ sha256(JCS(credential without proof))` — RFC 8785 JCS canonicalization, a conformant W3C Data Integrity suite.
 
 ## Schema
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `type` | string | no | e.g. |
+| `type` | string | yes | MUST be DataIntegrityProof. |
+| `cryptosuite` | string | yes | MUST be ecdsa-jcs-2019 (RFC 8785 JCS). |
 | `created` | string | no | — |
 | `proofPurpose` | string | no | e.g. |
 | `verificationMethod` | — | no | Either a key-identifier string or an embedded object carrying an x5c certificate chain. |
-| `proofValue` | string | yes | Base64 ECDSA signature. |
+| `proofValue` | string | yes | Multibase base58btc (z…) ecdsa-jcs-2019 signature. |
 
 ## JSON Schema
 
 ```json
 {
   "type": "object",
-  "description": "Credential proof. Verified with ECDSA P-256 / SHA-256 over OpenDPP's deterministic key-sorted JSON canonicalization of the credential with `proofValue` blanked (NOT RFC 8785 JCS — not a conformant W3C Data Integrity suite).",
+  "description": "Credential proof. MUST be a conformant W3C `DataIntegrityProof` with `cryptosuite: \"ecdsa-jcs-2019\"` and a multibase base58btc (`z…`) `proofValue`. Verified (ECDSA P-256, IEEE-P1363 raw r‖s) over `sha256(JCS(proof options)) ‖ sha256(JCS(credential without proof))` — RFC 8785 JCS canonicalization, a conformant W3C Data Integrity suite.",
   "required": [
+    "type",
+    "cryptosuite",
     "proofValue"
   ],
   "properties": {
     "type": {
       "type": "string",
-      "description": "e.g. `DataIntegrityProof`."
+      "const": "DataIntegrityProof",
+      "description": "MUST be `DataIntegrityProof`."
+    },
+    "cryptosuite": {
+      "type": "string",
+      "const": "ecdsa-jcs-2019",
+      "description": "MUST be `ecdsa-jcs-2019` (RFC 8785 JCS)."
     },
     "created": {
       "type": "string",
@@ -56,7 +65,7 @@ Credential proof. Verified with ECDSA P-256 / SHA-256 over OpenDPP's determinist
     },
     "proofValue": {
       "type": "string",
-      "description": "Base64 ECDSA signature. Stored verbatim with the event."
+      "description": "Multibase base58btc (`z…`) ecdsa-jcs-2019 signature. Stored verbatim with the event."
     }
   }
 }

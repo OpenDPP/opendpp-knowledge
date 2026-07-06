@@ -5,7 +5,7 @@ description: Standard error body.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/Error
 tags:
   - schema
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
 Standard error body. Authenticated-API errors include `success: false`; some endpoints (and all public resolution errors) omit `success` and return only `error` + `message`.
@@ -17,6 +17,8 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 | `success` | boolean | no | Always false when present. |
 | `error` | string | yes | Short error title (usually the HTTP reason phrase). |
 | `message` | string | yes | Human-readable explanation. |
+| `requestId` | string | no | Correlation id for this request, also returned as the X-Request-Id response header on EVERY response. |
+| `code` | string | no | Optional MACHINE-STABLE error code for the developer-facing write/ingest surface (passport / operator / unit / resolver / facility / events / webhooks) — branc… |
 
 ## JSON Schema
 
@@ -45,6 +47,30 @@ Standard error body. Authenticated-API errors include `success: false`; some end
     "message": {
       "type": "string",
       "description": "Human-readable explanation."
+    },
+    "requestId": {
+      "type": "string",
+      "description": "Correlation id for this request, also returned as the `X-Request-Id` response header on EVERY response. Present in generic (server-error / framework) bodies; quote it to support to correlate with server logs. Adopts a well-formed inbound `X-Request-Id` if you send one."
+    },
+    "code": {
+      "type": "string",
+      "description": "Optional MACHINE-STABLE error code for the developer-facing write/ingest surface (passport / operator / unit / resolver / facility / events / webhooks) — branch on this instead of parsing `message`. Present on the errors it covers (see src/constants/api-error-codes.ts), omitted otherwise.",
+      "enum": [
+        "OPERATOR_NOT_BOUND",
+        "OPERATOR_AMBIGUOUS",
+        "OPERATOR_SCOPE_FORBIDDEN",
+        "GTIN_CHECK_DIGIT_INVALID",
+        "GLN_CHECK_DIGIT_INVALID",
+        "COMPRESSED_DIGITAL_LINK",
+        "PASSPORT_DUPLICATE",
+        "PASSPORT_SEALED_IMMUTABLE",
+        "CATEGORY_IMMUTABLE",
+        "FACILITY_NOT_FOUND",
+        "FACILITY_DUPLICATE",
+        "WEBHOOK_NOT_FOUND",
+        "WEBHOOK_LIMIT_REACHED",
+        "WEBHOOK_URL_REJECTED"
+      ]
     }
   }
 }

@@ -5,10 +5,10 @@ description: 201 envelope of POST /api/v1/passports.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportIngestCreated
 tags:
   - schema
-timestamp: 2026-07-02T00:00:00Z
+timestamp: 2026-07-04T00:00:00Z
 ---
 
-201 envelope of `POST /api/v1/passports`. `passport` is the public redacted JSON-LD; `warnings` is always present (empty for drafts); `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness.
+201 envelope of `POST /api/v1/passports`. `passport` is the public redacted JSON-LD; `warnings`/`notices` are always present (possibly empty); `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness.
 
 ## Schema
 
@@ -17,7 +17,8 @@ timestamp: 2026-07-02T00:00:00Z
 | `success` | boolean | yes | — |
 | `message` | string | yes | "Digital Product Passport successfully validated and ingested", or "Draft passport saved" when draft: true. |
 | `passport` | [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md) | yes | The PUBLIC redacted JSON-LD passport document (unsealed at creation: digitalSeal/proof are null). |
-| `warnings` | array<[ValidationErrorItem](/schemas/ValidationErrorItem.md)> | yes | Non-blocking validation findings. |
+| `warnings` | array<[ValidationErrorItem](/schemas/ValidationErrorItem.md)> | yes | Non-blocking findings — a MIX of ESPR validation warnings (no code) and machine-coded advisories (a code per src/constants/api-advisories.ts, e.g. |
+| `notices` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Informational advisories about helpful things the API did (always coded): OPERATOR_AUTO_ATTRIBUTED (operatorId omitted → the workspace's sole bound operator us… |
 | `vcReady` | boolean | no | #247: whether this passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked (producedAtF… |
 | `vcReadyReason` | string,null | no | Null when vcReady is true; otherwise a short, actionable reason (link a facility with a country of production). |
 
@@ -30,9 +31,10 @@ timestamp: 2026-07-02T00:00:00Z
     "success",
     "message",
     "passport",
-    "warnings"
+    "warnings",
+    "notices"
   ],
-  "description": "201 envelope of `POST /api/v1/passports`. `passport` is the public redacted JSON-LD; `warnings` is always present (empty for drafts); `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness.",
+  "description": "201 envelope of `POST /api/v1/passports`. `passport` is the public redacted JSON-LD; `warnings`/`notices` are always present (possibly empty); `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness.",
   "properties": {
     "success": {
       "type": "boolean",
@@ -51,7 +53,14 @@ timestamp: 2026-07-02T00:00:00Z
       "items": {
         "$ref": "#/components/schemas/ValidationErrorItem"
       },
-      "description": "Non-blocking validation findings. Always present; empty array when none and always empty for drafts."
+      "description": "Non-blocking findings — a MIX of ESPR validation warnings (no `code`) and machine-coded advisories (a `code` per src/constants/api-advisories.ts, e.g. `NON_GS1_PRODUCT_ID`, `PII_SHAPE_DETECTED`). Always present; empty for drafts. See `AdvisoryItem` for the coded shape."
+    },
+    "notices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AdvisoryItem"
+      },
+      "description": "Informational advisories about helpful things the API did (always coded): `OPERATOR_AUTO_ATTRIBUTED` (operatorId omitted → the workspace's sole bound operator used), `GTIN_AUTO_COPIED` (a valid GTIN/GRAI copied into metadata.gtin/grai). Always present; empty when nothing to note."
     },
     "vcReady": {
       "type": "boolean",
