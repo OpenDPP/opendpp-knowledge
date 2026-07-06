@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports
 tags:
   - POST
   - passports
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 `POST /api/v1/passports`
@@ -38,6 +38,7 @@ Creates a SKU/type-level Digital Product Passport.
 
 | Name | In | Required | Type | Description |
 |------|----|----------|------|-------------|
+| `Idempotency-Key` | header | no | string | Optional client idempotency key (≤255 characters, no control characters). |
 | `lang` | query | no | string | Locale for localized friendlyMessage validation texts. |
 
 ## Request body

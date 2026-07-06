@@ -5,7 +5,7 @@ description: 201 partial-success envelope of POST /api/v1/passports/bulk.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportBulkResult
 tags:
   - schema
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 201 partial-success envelope of `POST /api/v1/passports/bulk`. Returned whenever at least one row was inserted, even if other rows failed. Each result row carries a `vcReady` UNTP Verifiable-Credential readiness signal (#247) and a per-row non-blocking `warnings[]` (#249 non-GS1 advisory + #400 PII-shape privacy advisory; empty when the row is clean).

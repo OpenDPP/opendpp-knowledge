@@ -5,7 +5,7 @@ description: Marker replacing per-unit telemetry in anonymous (public-tier) resp
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitRestrictedDataNotice
 tags:
   - schema
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 Marker replacing per-unit telemetry in anonymous (public-tier) responses, with a pointer for requesting legitimate-interest access (Reg. (EU) 2023/1542, Annex XIII(2)-(4)).

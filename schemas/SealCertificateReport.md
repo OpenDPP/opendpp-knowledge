@@ -5,7 +5,7 @@ description: "Present only for x5c-carrying proofs on a verified: true outcome w
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/SealCertificateReport
 tags:
   - schema
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 Present only for x5c-carrying proofs on a `verified: true` outcome whose chain is TRUSTED — `chainValid` AND `keyMatchesProof` both true (the two policy `verified: false` responses AND any untrusted-chain outcome omit it): the certified legal identity of the seal creator (eIDAS Art. 36(1)(b)). An untrusted chain is never surfaced, so an emitted report always has `chainValid: true`.

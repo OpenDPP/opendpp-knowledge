@@ -9,7 +9,7 @@ tags:
   - eIDAS
   - merkle
   - RFC 3161
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 OpenDPP passport seals are **eIDAS advanced electronic seals**: an ECDSA P-256 signature over a

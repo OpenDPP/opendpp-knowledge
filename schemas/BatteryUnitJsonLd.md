@@ -5,7 +5,7 @@ description: "JSON-LD document for one serialised battery unit, privileged tenan
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitJsonLd
 tags:
   - schema
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 JSON-LD document for one serialised battery unit, **privileged tenant view** (`isPrivileged=true`): includes `currentState` + `dynamicData` telemetry (restricted to legitimate-interest holders/authorities on the public view, where a `restrictedData` marker appears instead — never on this endpoint).

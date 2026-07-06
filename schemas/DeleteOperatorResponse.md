@@ -5,7 +5,7 @@ description: DeleteOperatorResponse
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/DeleteOperatorResponse
 tags:
   - schema
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 ## Schema

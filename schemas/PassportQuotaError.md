@@ -5,7 +5,7 @@ description: 402 body for a write blocked by billing.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportQuotaError
 tags:
   - schema
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 402 body for a write blocked by billing. Always carries `error` + `message`. A block caused by the subscription tier's published-passport CAP additionally sets `code: "passport_quota_exceeded"` plus `quota` and `upgradeUrl`. A programmatic (API-key) write on a tier without API access sets `code: "api_access_required"` plus `upgradeUrl` instead. Clients distinguish each from a lapsed-subscription 402 (no `code`) and can prompt an upgrade.

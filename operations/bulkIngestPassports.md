@@ -6,7 +6,7 @@ resource: https://opendpp-node.eu/api/v1/passports/bulk
 tags:
   - POST
   - passports
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 `POST /api/v1/passports/bulk`
@@ -35,6 +35,7 @@ Note the 400 `Bulk Ingestion Failed` body has **no `message` field**, and `error
 
 | Name | In | Required | Type | Description |
 |------|----|----------|------|-------------|
+| `Idempotency-Key` | header | no | string | Optional client idempotency key (≤255 characters, no control characters). |
 | `lang` | query | no | string | Locale for the localized validation text inside per-row errors[] strings (en, bg, hr, cs, da, nl, et, fi, fr, de, el, hu, ga, it, lv, lt, mt, pl, pt, ro, sk, s… |
 
 ## Request body

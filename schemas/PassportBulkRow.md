@@ -5,7 +5,7 @@ description: One bulk-ingestion row.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportBulkRow
 tags:
   - schema
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 One bulk-ingestion row. The HTTP layer only requires each row to be an object; rows missing `productId` or `metadata`, failing ESPR validation, referencing unbound operators/unknown facilities, or duplicating an existing `(productId, operatorId)` pair are SKIPPED and reported as strings in the response `errors[]` — they never fail the whole request (unless every row fails). Bulk rows do not support `draft` or `enrichment`, are always created with `status: "ACTIVE"`, skip the EPCIS traceability audit, and do NOT get `metadata.gtin`/`metadata.grai` auto-injected.

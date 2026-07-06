@@ -5,7 +5,7 @@ description: Always HTTP 200 once the request is well-formed.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/SealVerifyResponse
 tags:
   - schema
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 Always HTTP 200 once the request is well-formed. `verified: false` covers both cryptographic failure and the two registration/binding policy failures — the policy failures add a `message` and OMIT `certificate`/`timestamp` even when an x5c chain or RFC 3161 token was supplied.

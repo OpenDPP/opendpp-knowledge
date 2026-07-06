@@ -5,7 +5,7 @@ description: 400 envelope of the validate-only endpoints.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportValidateOnlyError
 tags:
   - schema
-timestamp: 2026-07-04T00:00:00Z
+timestamp: 2026-07-06T00:00:00Z
 ---
 
 400 envelope of the validate-only endpoints. Three variants: ESPR validation failure (`error: "Validation Failed"`, with `success`, `category`, `errors[]`, optional `warnings[]` — omitted when none; category-validity error items carry no `friendlyMessage`); whitespace-only `productId` (`error: "Bad Request"`, `category: "unknown"`, `errors: []`, no `warnings`); and structural request rejections (body-schema violations, malformed JSON), which return only `error` + `message`.
