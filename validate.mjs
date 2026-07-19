@@ -10,8 +10,14 @@ import { join, relative, sep, dirname } from "node:path";
 const ROOT = process.cwd();
 const SEGMENT_RE = /^[A-Za-z0-9_][A-Za-z0-9_.\-]*$/;
 const REQUIRED = ["type", "title", "description", "timestamp"];
-// Repo-meta Markdown that is NOT an OKF concept (no frontmatter; GitHub-relative links). Skip it.
-const REPO_META = new Set(["README.md", "CONTRIBUTING.md", "CHANGELOG.md", "CODE_OF_CONDUCT.md", "TRADEMARK.md"]);
+// Files this repo OWNS — everything at the root that is not part of the synced bundle. The upstream
+// mirror (opendpp-node's okf-publish.yml) rsyncs the bundle in with `--delete`, so it must --exclude
+// every one of these; its pre-sync gate refuses to delete a path the bundle doesn't own. Asserting
+// they still exist here is the independent second line of defence. Add a file at the root → add it
+// here. (Dot-paths like .github aren't listed: the walker below skips them.)
+const REPO_OWNED = ["README.md", "CONTRIBUTING.md", "LICENSE", "NOTICE", "TRADEMARK.md", "validate.mjs"];
+// The repo-meta Markdown among them is NOT an OKF concept (no frontmatter; GitHub-relative links). Skip it.
+const REPO_META = new Set(REPO_OWNED.filter((f) => f.endsWith(".md")));
 const errors = [];
 
 function walk(dir) {
@@ -77,6 +83,30 @@ for (const p of all.filter((x) => x.endsWith(".md") && !REPO_META.has(x))) {
     if (/^(https?:|mailto:|tel:|data:)/i.test(href) || href.startsWith("#")) continue;
     const target = resolveLink(p, href);
     if (target && !paths.has(target)) errors.push(`${p}: broken internal link "${href}" → "${target}"`);
+  }
+}
+
+// Everything above is presence-driven — it validates what is on disk, so a file that VANISHED is
+// invisible to it. The bundle arrives by `rsync --delete` from opendpp-node, so these two checks
+// enumerate what must be here and report anything the sync removed or never delivered.
+for (const f of REPO_OWNED) {
+  if (!paths.has(f)) errors.push(`${f}: repo-owned file is missing — removed by a mirror sync?`);
+}
+
+// manifest.json lists every concept the bundle claims to ship. One listed but absent means the sync
+// OMITTED it (e.g. an exclude pattern that matched at the wrong depth) — a class the upstream
+// pre-sync gate structurally cannot see, because an omission is not a deletion.
+if (!paths.has("manifest.json")) {
+  errors.push("manifest.json: missing — the bundle manifest is not optional");
+} else {
+  let manifest;
+  try {
+    manifest = JSON.parse(readFileSync(join(ROOT, "manifest.json"), "utf8"));
+  } catch (e) {
+    errors.push(`manifest.json: unparseable (${e.message})`);
+  }
+  for (const c of manifest?.concepts ?? []) {
+    if (!paths.has(c.path)) errors.push(`${c.path}: listed in manifest.json but not on disk`);
   }
 }
 
