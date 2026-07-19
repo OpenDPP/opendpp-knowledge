@@ -16,8 +16,13 @@ const REQUIRED = ["type", "title", "description", "timestamp"];
 // they still exist here is the independent second line of defence. Add a file at the root → add it
 // here. (Dot-paths like .github aren't listed: the walker below skips them.)
 const REPO_OWNED = ["README.md", "CONTRIBUTING.md", "LICENSE", "NOTICE", "TRADEMARK.md", "validate.mjs"];
-// The repo-meta Markdown among them is NOT an OKF concept (no frontmatter; GitHub-relative links). Skip it.
-const REPO_META = new Set(REPO_OWNED.filter((f) => f.endsWith(".md")));
+// Repo-meta Markdown that is NOT an OKF concept (no frontmatter; GitHub-relative links) — skip it.
+// A SUPERSET of the .md files above, deliberately NOT derived from them: this set answers "is this a
+// concept?", REPO_OWNED answers "must this exist?", and CHANGELOG.md / CODE_OF_CONDUCT.md are the
+// first without being the second (conventional names not added yet, already pre-excluded upstream).
+// Deriving one from the other would make the day someone adds CHANGELOG.md the day CI demands OKF
+// frontmatter of it.
+const REPO_META = new Set([...REPO_OWNED.filter((f) => f.endsWith(".md")), "CHANGELOG.md", "CODE_OF_CONDUCT.md"]);
 const errors = [];
 
 function walk(dir) {
@@ -99,13 +104,25 @@ for (const f of REPO_OWNED) {
 if (!paths.has("manifest.json")) {
   errors.push("manifest.json: missing — the bundle manifest is not optional");
 } else {
+  let manifest;
   try {
-    const manifest = JSON.parse(readFileSync(join(ROOT, "manifest.json"), "utf8"));
-    for (const c of manifest.concepts ?? []) {
-      if (!paths.has(c.path)) errors.push(`${c.path}: listed in manifest.json but not on disk`);
-    }
+    manifest = JSON.parse(readFileSync(join(ROOT, "manifest.json"), "utf8"));
   } catch (e) {
     errors.push(`manifest.json: unparseable (${e.message})`);
+  }
+  // Check the manifest is USABLE before trusting a clean run of the loop below. A missing, null or
+  // empty `concepts` would iterate zero times and report success — this check is the only thing
+  // watching for an omitted bundle file, so "validated nothing" must never look like "all valid".
+  // `conceptCount` is the manifest's own count, so a truncated write disagrees with itself.
+  if (manifest && !Array.isArray(manifest.concepts)) {
+    errors.push(`manifest.json: "concepts" is ${typeof manifest.concepts}, expected an array — the omission check cannot run`);
+  } else if (manifest) {
+    if (manifest.conceptCount !== manifest.concepts.length) {
+      errors.push(`manifest.json: conceptCount ${manifest.conceptCount} != concepts.length ${manifest.concepts.length}`);
+    }
+    for (const c of manifest.concepts) {
+      if (!paths.has(c.path)) errors.push(`${c.path}: listed in manifest.json but not on disk`);
+    }
   }
 }
 
