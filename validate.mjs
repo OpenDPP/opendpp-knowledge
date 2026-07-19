@@ -99,14 +99,13 @@ for (const f of REPO_OWNED) {
 if (!paths.has("manifest.json")) {
   errors.push("manifest.json: missing — the bundle manifest is not optional");
 } else {
-  let manifest;
   try {
-    manifest = JSON.parse(readFileSync(join(ROOT, "manifest.json"), "utf8"));
+    const manifest = JSON.parse(readFileSync(join(ROOT, "manifest.json"), "utf8"));
+    for (const c of manifest.concepts ?? []) {
+      if (!paths.has(c.path)) errors.push(`${c.path}: listed in manifest.json but not on disk`);
+    }
   } catch (e) {
     errors.push(`manifest.json: unparseable (${e.message})`);
-  }
-  for (const c of manifest?.concepts ?? []) {
-    if (!paths.has(c.path)) errors.push(`${c.path}: listed in manifest.json but not on disk`);
   }
 }
 
