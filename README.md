@@ -4,6 +4,10 @@
 
 # OpenDPP Knowledge Bundle
 
+> **Generated mirror.** The source of truth is the private `opendpp-node` backend; this bundle is
+> generated from its public OpenAPI spec. **Pull requests are closed automatically** — but **issues are
+> welcome** (see [`CONTRIBUTING.md`](CONTRIBUTING.md)).
+
 > A machine-readable **[Open Knowledge Format](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf)** (OKF)
 > projection of the [OpenDPP](https://opendpp-node.eu) Digital Product Passport **Integration API** —
 > agent-ingestible Markdown for AI agents and humans.
