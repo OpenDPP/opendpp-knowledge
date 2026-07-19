@@ -6,9 +6,9 @@ requests are closed automatically, and which doors *are* open.
 ## What this repository is (and isn't)
 
 This repo is a **generated mirror**. The OKF knowledge bundle here — the cross-linked Markdown
-"concepts" under `guides/`, `tags/`, `operations/`, `schemas/`, `webhooks/`, plus `index.md`,
-`overview.md`, and `manifest.json` — is **regenerated from the public OpenDPP OpenAPI spec** at
-<https://opendpp-node.eu/openapi.json> and refreshed whenever the API version changes. The OpenDPP
+"concepts" under `guides/`, `tags/`, `operations/`, `schemas/`, `webhooks/`, plus the top-level
+index/overview/log/manifest files — is **regenerated from the public OpenDPP OpenAPI spec** at
+<https://opendpp-node.eu/openapi.json> and refreshed whenever the bundle changes. The OpenDPP
 **product backend is a separate, private repository** — it is the source of truth for the spec the
 bundle is generated from.
 
