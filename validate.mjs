@@ -39,6 +39,35 @@ function walk(dir) {
 const all = walk(ROOT);
 const paths = new Set(all);
 
+// manifest.json lists every concept the bundle claims to ship, so it is the only record of what
+// SHOULD be here. A concept listed but absent means the sync OMITTED it (e.g. an exclude pattern
+// matching at the wrong depth) — a class the upstream pre-sync gate structurally cannot see, because
+// an omission is not a deletion. Each guard below returns early: an unusable manifest must report
+// exactly that, never run the loop zero times and let "validated nothing" read as "all valid".
+function manifestErrors(present) {
+  if (!present.has("manifest.json")) return ["manifest.json: missing — the bundle manifest is not optional"];
+
+  let manifest;
+  try {
+    manifest = JSON.parse(readFileSync(join(ROOT, "manifest.json"), "utf8"));
+  } catch (e) {
+    return [`manifest.json: unparseable (${e.message})`];
+  }
+  if (!Array.isArray(manifest.concepts)) {
+    return [`manifest.json: "concepts" is ${typeof manifest.concepts}, expected an array — the omission check cannot run`];
+  }
+
+  const found = [];
+  // The manifest's own count, so a truncated or half-written file disagrees with itself.
+  if (manifest.conceptCount !== manifest.concepts.length) {
+    found.push(`manifest.json: conceptCount ${manifest.conceptCount} != concepts.length ${manifest.concepts.length}`);
+  }
+  for (const c of manifest.concepts) {
+    if (!present.has(c.path)) found.push(`${c.path}: listed in manifest.json but not on disk`);
+  }
+  return found;
+}
+
 function frontmatter(content) {
   if (!content.startsWith("---\n")) return null;
   const end = content.indexOf("\n---", 4);
@@ -98,33 +127,7 @@ for (const f of REPO_OWNED) {
   if (!paths.has(f)) errors.push(`${f}: repo-owned file is missing — removed by a mirror sync?`);
 }
 
-// manifest.json lists every concept the bundle claims to ship. One listed but absent means the sync
-// OMITTED it (e.g. an exclude pattern that matched at the wrong depth) — a class the upstream
-// pre-sync gate structurally cannot see, because an omission is not a deletion.
-if (!paths.has("manifest.json")) {
-  errors.push("manifest.json: missing — the bundle manifest is not optional");
-} else {
-  let manifest;
-  try {
-    manifest = JSON.parse(readFileSync(join(ROOT, "manifest.json"), "utf8"));
-  } catch (e) {
-    errors.push(`manifest.json: unparseable (${e.message})`);
-  }
-  // Check the manifest is USABLE before trusting a clean run of the loop below. A missing, null or
-  // empty `concepts` would iterate zero times and report success — this check is the only thing
-  // watching for an omitted bundle file, so "validated nothing" must never look like "all valid".
-  // `conceptCount` is the manifest's own count, so a truncated write disagrees with itself.
-  if (manifest && !Array.isArray(manifest.concepts)) {
-    errors.push(`manifest.json: "concepts" is ${typeof manifest.concepts}, expected an array — the omission check cannot run`);
-  } else if (manifest) {
-    if (manifest.conceptCount !== manifest.concepts.length) {
-      errors.push(`manifest.json: conceptCount ${manifest.conceptCount} != concepts.length ${manifest.concepts.length}`);
-    }
-    for (const c of manifest.concepts) {
-      if (!paths.has(c.path)) errors.push(`${c.path}: listed in manifest.json but not on disk`);
-    }
-  }
-}
+errors.push(...manifestErrors(paths));
 
 if (errors.length) {
   console.error(`✗ OKF validation failed (${errors.length}):\n  ` + errors.join("\n  "));
