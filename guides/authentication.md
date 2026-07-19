@@ -40,3 +40,4 @@ passport usage against your tier quota for the presented key.
 Write operations are subject to subscription gating (**402** when a workspace subscription has
 lapsed) and, where the workspace enforces it, MFA (**403**). Cookie-authenticated browser sessions
 must additionally send the `X-CSRF-Token` double-submit header; Bearer API-key clients do not.
+
