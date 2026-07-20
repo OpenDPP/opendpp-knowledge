@@ -55,4 +55,3 @@ jobs:
           done
           test -x ./gitleaks
           ./gitleaks detect --source . --redact --no-banner
-# c3a probe: can the App merge a workflow-touching PR? (#834)
