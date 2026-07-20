@@ -55,3 +55,5 @@ drifts from the running service. Do not hand-edit concepts here; they are overwr
 "OpenDPP" is a trademark of Opendpp UAB. The Apache-2.0 license covers the content, not the name:
 forks may rebuild but must rename, and "OpenDPP-conformant" is reserved for output validated
 against the hosted node — see [`TRADEMARK.md`](TRADEMARK.md).
+
+<!-- C3a merge-block probe (#834) — this branch is throwaway -->
