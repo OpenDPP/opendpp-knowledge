@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/api/v1/passports
 tags:
   - POST
   - passports
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 `POST /api/v1/passports`

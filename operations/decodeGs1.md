@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/api/v1/gs1/decode
 tags:
   - POST
   - public-resolution
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 `POST /api/v1/gs1/decode`
@@ -20,7 +22,7 @@ Decodes raw scanner output — AIM-symbology-prefixed **scan data** (e.g. `]Q1ht
 
 **Errors:** missing/multiple/over-long input, or a value GS1's grammar rejects, returns **400** (`Provide exactly one of: scanData, elementString, digitalLink` or `Not a valid GS1 <kind>: <engine message>`); **503** if the engine is unavailable.
 
-**Rate limit:** global limiter only — 100 req/min/IP (standard `x-ratelimit-*` headers).
+**Rate limit (changed in 1.12.0):** an **anonymous** caller gets **2 requests/min per IP** — a per-route cap that replaces the global ceiling, so this endpoint stays a convenience for integrators rather than a free scripted service. Send an `Authorization` header (any valid API key) and the normal ladder applies instead: the global authenticated ceiling, with your per-key tier bucket underneath it. Standard `x-ratelimit-*` headers on both paths; **429** with `retry-after` when exceeded.
 
 ## Request body
 

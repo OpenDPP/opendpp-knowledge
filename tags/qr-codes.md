@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - qr-codes
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Export GS1-Digital-Link QR codes (PNG/SVG, 128–2048 px, GS1 quiet zone) for passports and battery units.

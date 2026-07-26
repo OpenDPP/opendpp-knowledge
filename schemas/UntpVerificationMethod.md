@@ -5,7 +5,9 @@ description: Embedded verification-method object.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/UntpVerificationMethod
 tags:
   - schema
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Embedded verification-method object. The `x5c` chain (base64 DER, leaf first) is honoured ONLY when the node has eIDAS trust anchors configured, every certificate is currently valid, each link verifies against the next, the top is anchored, and the leaf attests the credential issuer — otherwise it is ignored and the registered tenant key is used instead.

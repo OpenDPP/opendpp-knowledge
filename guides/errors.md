@@ -7,7 +7,9 @@ tags:
   - errors
   - validation
   - troubleshooting
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Authenticated endpoints return `{ success: false, error, message }` (some endpoints, and all

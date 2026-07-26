@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/api/v1/facilities
 tags:
   - GET
   - facilities
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 `GET /api/v1/facilities`

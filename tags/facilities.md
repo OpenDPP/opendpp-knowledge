@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - facilities
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Manufacturing facility master data, identified by GS1 GLN-13 (the Unique Facility Identifier). GLN, name, activity and country are public in passport documents; street addresses are never published.

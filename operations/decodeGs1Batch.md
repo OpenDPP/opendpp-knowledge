@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/api/v1/gs1/decode/batch
 tags:
   - POST
   - public-resolution
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 `POST /api/v1/gs1/decode/batch`
@@ -18,7 +20,7 @@ Batch form of `POST /api/v1/gs1/decode` for line-side / warehouse stations captu
 
 **Errors:** a missing/empty/non-array `items`, or more than 200 items, returns **400**; a body over the 256 KiB route cap returns **413**; **503** if the engine is unavailable.
 
-**Rate limit:** global limiter only — 100 req/min/IP (standard `x-ratelimit-*` headers).
+**Rate limit (changed in 1.12.0):** an **anonymous** caller gets **2 requests/min per IP** — a per-route cap that replaces the global ceiling, so this endpoint stays a convenience for integrators rather than a free scripted service. Send an `Authorization` header (any valid API key) and the normal ladder applies instead: the global authenticated ceiling, with your per-key tier bucket underneath it. Standard `x-ratelimit-*` headers on both paths; **429** with `retry-after` when exceeded.
 
 ## Request body
 

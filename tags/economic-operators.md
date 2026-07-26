@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - economic-operators
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Register and manage the economic operators (manufacturers/brands, identified by EORI or national registry id) that passports are issued on behalf of. Operators with passports are archived — never hard-deleted — to preserve passport resolvability (ESPR Art. 9(2)).

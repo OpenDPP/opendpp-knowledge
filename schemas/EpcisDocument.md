@@ -5,7 +5,9 @@ description: A GS1 EPCIS 2.0 document (JSON/JSON-LD).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/EpcisDocument
 tags:
   - schema
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 A GS1 EPCIS 2.0 document (JSON/JSON-LD). This shape is indicative — the OFFICIAL GS1 EPCIS 2.0.1 JSON Schema (vendored on the node, $id https://ref.gs1.org/standards/epcis/2.0.1/epcis-json-schema.json) is authoritative and is what capture validates against.

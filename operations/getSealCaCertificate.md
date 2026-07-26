@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/.well-known/opendpp-seal-ca.pem
 tags:
   - GET
   - eidas-keys
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 `GET /.well-known/opendpp-seal-ca.pem`

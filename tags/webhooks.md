@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - webhooks
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Subscribe HTTPS endpoints to passport lifecycle events. Deliveries are HMAC-SHA256-signed POSTs with retry/backoff — see the webhooks section of this document for the signature scheme and payloads.

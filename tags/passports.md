@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - passports
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Create, validate, read, update, seal and manage the lifecycle of Digital Product Passports. Passport metadata is category-specific: machine-readable JSON Schemas are served live at `GET /api/v1/schemas/{category}` for textiles, batteries, electronics, chemicals and construction; the remaining categories (cosmetics, toys, iron-steel, aluminium) are validated by built-in rules — use the dry-run validators to check payloads for any category.
@@ -16,7 +18,7 @@ Create, validate, read, update, seal and manage the lifecycle of Digital Product
 - [listPassports](/operations/listPassports.md) — `GET /api/v1/passports` — List passports in your workspace (paginated JSON-LD)
 - [createPassport](/operations/createPassport.md) — `POST /api/v1/passports` — Create (ingest) a Digital Product Passport
 - [validatePassport](/operations/validatePassport.md) — `POST /api/v1/passports/validate-only` — Dry-run ESPR validation of passport metadata (nothing is stored)
-- [validatePassportPublic](/operations/validatePassportPublic.md) — `POST /api/v1/passports/validate-only-public` — Public dry-run ESPR metadata validation (strictly rate-limited)
+- [validatePassportPublic](/operations/validatePassportPublic.md) — `POST /api/v1/passports/validate-only-public` — Permission-free dry-run ESPR metadata validation (strictly rate-limited)
 - [bulkIngestPassports](/operations/bulkIngestPassports.md) — `POST /api/v1/passports/bulk` — Bulk-ingest up to 200 passports with per-row error reporting
 - [ingestPassportFromAas](/operations/ingestPassportFromAas.md) — `POST /api/v1/passports/aas/ingest` — Ingest a passport from an AAS JSON Environment (seal-verified)
 - [passportVcReadinessReport](/operations/passportVcReadinessReport.md) — `GET /api/v1/passports/vc-readiness` — Catalog-wide UNTP Verifiable-Credential readiness report

@@ -3,7 +3,7 @@
 * [GET /api/v1/passports](listPassports.md) - List passports in your workspace (paginated JSON-LD)
 * [POST /api/v1/passports](createPassport.md) - Create (ingest) a Digital Product Passport
 * [POST /api/v1/passports/validate-only](validatePassport.md) - Dry-run ESPR validation of passport metadata (nothing is stored)
-* [POST /api/v1/passports/validate-only-public](validatePassportPublic.md) - Public dry-run ESPR metadata validation (strictly rate-limited)
+* [POST /api/v1/passports/validate-only-public](validatePassportPublic.md) - Permission-free dry-run ESPR metadata validation (strictly rate-limited)
 * [POST /api/v1/passports/bulk](bulkIngestPassports.md) - Bulk-ingest up to 200 passports with per-row error reporting
 * [POST /api/v1/passports/aas/ingest](ingestPassportFromAas.md) - Ingest a passport from an AAS JSON Environment (seal-verified)
 * [GET /api/v1/passports/vc-readiness](passportVcReadinessReport.md) - Catalog-wide UNTP Verifiable-Credential readiness report

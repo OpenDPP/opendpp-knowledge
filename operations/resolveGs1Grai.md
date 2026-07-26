@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/8003/{grai}
 tags:
   - GET
   - public-resolution
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 `GET /8003/{grai}`

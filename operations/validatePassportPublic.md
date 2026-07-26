@@ -1,22 +1,26 @@
 ---
 type: API Endpoint
-title: Public dry-run ESPR metadata validation (strictly rate-limited)
-description: Public dry-run ESPR metadata validation (strictly rate-limited)
+title: Permission-free dry-run ESPR metadata validation (strictly rate-limited)
+description: Permission-free dry-run ESPR metadata validation (strictly rate-limited)
 resource: https://opendpp-node.eu/api/v1/passports/validate-only-public
 tags:
   - POST
   - passports
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 `POST /api/v1/passports/validate-only-public`
 
 **Domain:** [Passports](/tags/passports.md)  
-**Authentication:** **Public** — no authentication required.
+**Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Identical validation semantics to `POST /api/v1/passports/validate-only`, but **fully public — no authentication of any kind**, intended for try-before-you-buy schema checks. Nothing is persisted.
+Identical validation semantics to `POST /api/v1/passports/validate-only`, but requires **no specific permission** — any valid API key or Console session is accepted, so every plan including the free tier can call it. Nothing is persisted.
 
-**Rate limit: 10 requests/min per IP** — a strict per-route limit that **replaces** the global 100/min for this endpoint (emits `x-ratelimit-limit` / `x-ratelimit-remaining` / `x-ratelimit-reset` headers and `retry-after` on 429). **Body limit: 65,536 bytes (64 KiB)** → **413** beyond that. These caps exist because the endpoint runs the full validation engine unauthenticated (DoS mitigation).
+**Authentication is required.** Until contract 1.12.0 this endpoint was reachable anonymously; it is not any more, because it runs the full validation engine and was usable as free unauthenticated compute. An anonymous call now returns **401**. The path keeps its `-public` segment for continuity — "public" here means *no permission and no tenant scope*, not *unauthenticated*.
+
+**Rate limit: 10 requests/min per IP** — a strict per-route limit that **replaces** the global ceiling for this endpoint (emits `x-ratelimit-limit` / `x-ratelimit-remaining` / `x-ratelimit-reset` headers and `retry-after` on 429). **Body limit: 65,536 bytes (64 KiB)** → **413** beyond that. Both caps remain as defence in depth against authenticated abuse. The credential is checked **before the body is parsed**, so an anonymous oversized body is rejected as **401**, not 413.
 
 **Behavioral caveats:**
 - No tenant context: the EPCIS traceability lineage audit is **not** run, and `operatorId` is accepted but ignored.
@@ -78,6 +82,7 @@ Schema (required): [PassportValidateOnlyRequest](/schemas/PassportValidateOnlyRe
 
 - **200** — Metadata is valid for its ESPR category. → [PassportValidateOnlyResult](/schemas/PassportValidateOnlyResult.md)
 - **400** — Validation failed or the body was structurally invalid — same three variants as the authenticated validate-only endpoint. → [PassportValidateOnlyError](/schemas/PassportValidateOnlyError.md)
+- **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 65,536-byte (64 KiB) route body limit.
 - **429** — Rate limit exceeded.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
@@ -86,6 +91,7 @@ Schema (required): [PassportValidateOnlyRequest](/schemas/PassportValidateOnlyRe
 
 ```bash
 curl -s \
+  -H 'Authorization: Bearer op_dpp_token_…' \
   -H 'Content-Type: application/json' \
   -X POST 'https://opendpp-node.eu/api/v1/passports/validate-only-public' \
   --data '{"productId":"09501101530003","metadata":{"category":"iron-steel","originCountry":"DE","materialComposition":[{"material":"Recycled steel","percentage":62.5},{"material":"Virgin steel","percentage":37.5}],"facilityDetails":[{"facilityName":"Musterstahl Works Duisburg","location":"Duisburg, DE","activity":"Hot rolling"}],"regulatoryCompliance":{"ceMarking":true,"certificates":[{"name":"EN 10025-2 Mill Certificate","referenceNumber":"MC-2026-00417","issuer":"TUV Rheinland"}]},"scrapMetalContentRatio":62.5,"tensileStrengthClass":"S355","carbonEmissionIntensityPerTon":1.42}}'

@@ -5,7 +5,9 @@ description: One physical serialised battery (raw persisted row — these routes
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitRow
 tags:
   - schema
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 One physical serialised battery (raw persisted row — these routes declare no Fastify response schema, so all model fields are returned as-is). A `BatteryUnit` is an individual instance of a SKU/type-level passport, carrying its real serial in GS1 AI-21.

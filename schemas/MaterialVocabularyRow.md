@@ -5,7 +5,9 @@ description: One entry of the platform-curated material vocabulary.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/MaterialVocabularyRow
 tags:
   - schema
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 One entry of the platform-curated material vocabulary. Entries are unique per (`kind`, `name`).

@@ -5,7 +5,9 @@ description: A tenant's did:web DID document (public-key material only).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/DidWebDocument
 tags:
   - schema
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 A tenant's `did:web` DID document (public-key material only). Verification methods are `JsonWebKey2020` entries with stable `#key-<index>` ids; current and retired keys are both listed so pre-rotation credentials still verify.

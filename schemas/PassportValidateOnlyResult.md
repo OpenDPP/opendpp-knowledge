@@ -5,7 +5,9 @@ description: 200 envelope of the validate-only endpoints (only the declared keys
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportValidateOnlyResult
 tags:
   - schema
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 200 envelope of the validate-only endpoints (only the declared keys are emitted).

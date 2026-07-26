@@ -5,7 +5,9 @@ description: Fastify's default 400 error body, returned when a syntactically mal
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/FastifyDefaultBadRequest
 tags:
   - schema
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Fastify's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework **before the handler runs** (so none of the handler-built `{success:false, ...}` shapes apply).

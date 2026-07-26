@@ -5,7 +5,9 @@ description: Minimal error envelope used by the operator/key self-service handle
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/OperatorMinimalError
 tags:
   - schema
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Minimal error envelope used by the operator/key self-service handlers — note the standard `error` key is ABSENT (unlike the shared Error schema).

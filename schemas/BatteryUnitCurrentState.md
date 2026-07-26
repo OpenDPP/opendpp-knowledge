@@ -5,7 +5,9 @@ description: Latest recorded measurement of the unit (owner/grant tiers only).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitCurrentState
 tags:
   - schema
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Latest recorded measurement of the unit (owner/grant tiers only). All measurement fields are `null` when the latest event did not carry them.

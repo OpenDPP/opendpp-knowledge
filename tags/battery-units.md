@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - battery-units
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 Per-unit battery serialization (real serials, GS1 AI 21) under a SKU-level passport, plus append-only telemetry events (state of health, charge cycles, status changes) per the EU Battery Regulation.

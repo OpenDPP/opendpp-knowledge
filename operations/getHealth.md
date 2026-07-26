@@ -6,7 +6,9 @@ resource: https://opendpp-node.eu/health
 tags:
   - GET
   - service
-timestamp: 2026-07-06T00:00:00Z
+generated:
+  by: process:emit-okf
+  at: 2026-07-26T00:00:00Z
 ---
 
 `GET /health`
@@ -14,7 +16,7 @@ timestamp: 2026-07-06T00:00:00Z
 **Domain:** [Service](/tags/service.md)  
 **Authentication:** **Public** — no authentication required.
 
-Liveness probe. Always returns 200 with the service identity, the current server time (ISO 8601 UTC with milliseconds), and the running build identity (`apiVersion`/`commit`/`builtAt` — the same fields as `GET /api/v1/version`). No authentication, no permission. Subject only to the global platform rate limit (100 req/min/IP, 600/min for known crawler user agents; standard `x-ratelimit-*` headers on responses). This is the one path exempt from tenant-subdomain resolution — it answers 200 on any host.
+Liveness probe. Always returns 200 with the service identity, the current server time (ISO 8601 UTC with milliseconds), and the running build identity (`apiVersion`/`commit`/`builtAt` — the same fields as `GET /api/v1/version`). No authentication, no permission. **Exempt from the platform rate limit** (#810) so a monitor or uptime check can poll it freely — it carries no `x-ratelimit-*` headers. This is the one path exempt from tenant-subdomain resolution — it answers 200 on any host.
 
 ## Responses
 
