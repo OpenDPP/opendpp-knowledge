@@ -2,14 +2,18 @@
 // Standalone OKF conformance check for this published bundle — zero dependencies (Node built-ins only),
 // so it runs in CI without an install step. Mirrors the source-repo validator
 // (opendpp-node:src/okf/validate.ts): every non-reserved .md has a frontmatter block with a non-empty
-// `type` (+ title/description/timestamp); reserved index.md/log.md carry no frontmatter (except the
+// `type` (+ title/description/generated); reserved index.md/log.md carry no frontmatter (except the
 // root index.md, which may declare only okf_version); and every internal Markdown link resolves.
 import { readFileSync, readdirSync } from "node:fs";
 import { join, relative, sep, dirname } from "node:path";
 
 const ROOT = process.cwd();
 const SEGMENT_RE = /^[A-Za-z0-9_][A-Za-z0-9_.\-]*$/;
-const REQUIRED = ["type", "title", "description", "timestamp"];
+// SCALAR required keys. `generated` is NOT here: OKF v0.2 made it a MAPPING (SPEC §5.2), so it needs
+// the block check below rather than a `key: value` probe. The probe is `[ \t]*` and not `\s*` on
+// purpose — `\s` matches newlines, so `\s*\S` would step onto the NEXT line and read an empty
+// `title:` as populated.
+const REQUIRED_SCALAR = ["type", "title", "description"];
 // Files this repo OWNS — everything at the root that is not part of the synced bundle. The upstream
 // mirror (opendpp-node's okf-publish.yml) rsyncs the bundle in with `--delete`, so it must --exclude
 // every one of these; its pre-sync gate refuses to delete a path the bundle doesn't own. Asserting
@@ -75,6 +79,28 @@ function frontmatter(content) {
   return content.slice(4, end + 1);
 }
 
+// OKF v0.2 §5.2 moved provenance into a `generated` MAPPING and RETIRED v0.1's bare `timestamp`:
+//
+//   generated:
+//     by: process:emit-okf
+//     at: 2026-07-26T00:00:00Z
+//
+// Its children are indented, so the scalar probe above cannot reach them — capture the block, then
+// read `by`/`at` out of it. Mirrors the upstream contract (opendpp-node:src/okf/validate.ts): `by` is
+// a non-empty actor, `at` is an ISO 8601 instant.
+function generatedErrors(p, fm) {
+  const block = /^generated:[ \t]*\r?\n((?:[ \t]+\S[^\n]*\r?\n?)*)/m.exec(fm);
+  if (!block) return [`${p}: missing "generated" mapping (SPEC §5.2)`];
+  const out = [];
+  const by = /^[ \t]+by:[ \t]*(\S[^\n]*?)[ \t]*$/m.exec(block[1]);
+  const at = /^[ \t]+at:[ \t]*(\S[^\n]*?)[ \t]*$/m.exec(block[1]);
+  if (!by) out.push(`${p}: "generated.by" is required and must be a non-empty actor (SPEC §5.2/§7)`);
+  if (!at || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(at[1])) {
+    out.push(`${p}: "generated.at" must be an ISO 8601 datetime (SPEC §5.2)`);
+  }
+  return out;
+}
+
 function resolveLink(from, href) {
   let t = href.split("#")[0].trim();
   if (t === "") return null;
@@ -106,7 +132,11 @@ for (const p of all) {
     errors.push(`${p}: missing/invalid frontmatter`);
     continue;
   }
-  for (const key of REQUIRED) if (!new RegExp(`^${key}:\\s*\\S`, "m").test(fm)) errors.push(`${p}: missing non-empty "${key}"`);
+  for (const key of REQUIRED_SCALAR) if (!new RegExp(`^${key}:[ \\t]*\\S`, "m").test(fm)) errors.push(`${p}: missing non-empty "${key}"`);
+  errors.push(...generatedErrors(p, fm));
+  // A bundle carrying BOTH shapes is half-migrated: consumers would read a field the producer no
+  // longer maintains. Upstream rejects it too, so accepting it here would hide the drift.
+  if (/^timestamp:/m.test(fm)) errors.push(`${p}: legacy v0.1 "timestamp" key — use "generated.at" (SPEC §5.2)`);
 }
 
 // internal links resolve (concept files only; repo-meta uses GitHub-relative links)
