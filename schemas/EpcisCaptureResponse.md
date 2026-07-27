@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: EpcisCaptureResponse
-description: EpcisCaptureResponse
+description: "Per-event outcome of capturing an EPCIS 2.0 document, with partial-success semantics: some events may be stored while others fail."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/EpcisCaptureResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Per-event outcome of capturing an EPCIS 2.0 document, with partial-success semantics: some events may be stored while others fail.
 
 ## Schema
 
@@ -23,6 +25,7 @@ generated:
 
 ```json
 {
+  "description": "Per-event outcome of capturing an EPCIS 2.0 document, with partial-success semantics: some events may be stored while others fail.",
   "type": "object",
   "required": [
     "status",

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 The EPCIS event payload. `eventType` is effectively required: it is persisted into a server-side enum, and a missing or unknown value is rejected at the persistence layer (surfacing as the 500 `Database Persistence Failed` body, not a 400).
@@ -16,12 +16,12 @@ The EPCIS event payload. `eventType` is effectively required: it is persisted in
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `id` | string | no | EPC identifier of the subject (e.g. |
+| `id` | string | no | EPC identifier of the subject (e.g. urn:epc:id:sgtin:0950110153.0003.SN-2026-000123). |
 | `eventType` | string | yes | EPCIS 2.0 event type (server-side enum). |
 | `action` | string | no | EPCIS action (server-side enum). |
 | `bizStep` | string | no | CBV business step URI. |
 | `disposition` | string | no | CBV disposition URI. |
-| `readPoint` | string | no | Where the event was observed (e.g. |
+| `readPoint` | string | no | Where the event was observed (e.g. geo:41.1496,-8.6109). |
 | `bizLocation` | string | no | Business location (SGLN URI, DID, or free identifier). |
 | `eventTime` | string | no | When the event occurred (anything new Date() parses). |
 | `epcList` | array<string> | no | EPC URIs observed by the event. |

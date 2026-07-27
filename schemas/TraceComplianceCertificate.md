@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: TraceComplianceCertificate
-description: TraceComplianceCertificate
+description: A compliance certificate for an audited traceability lineage, naming the root event and the regulatory standards checked.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/TraceComplianceCertificate
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+A compliance certificate for an audited traceability lineage, naming the root event and the regulatory standards checked.
 
 ## Schema
 
@@ -16,13 +18,14 @@ generated:
 |----------|------|----------|-------------|
 | `type` | string | yes | — |
 | `rootEventId` | string | yes | — |
-| `status` | string | yes | Screening outcome — informational (e.g. |
-| `regulatoryStandards` | array<string> | yes | Vendor screening-heuristic identifiers applied (e.g. |
+| `status` | string | yes | Screening outcome — informational (e.g. SCREENED_NO_MATCHES when no geographic screen matched); NOT a legal compliance verdict. |
+| `regulatoryStandards` | array<string> | yes | Vendor screening-heuristic identifiers applied (e.g. OpenDPP-EUDR-heuristic, OpenDPP-UFLPA-screen) — informational, NOT EU regulatory standards. |
 
 ## JSON Schema
 
 ```json
 {
+  "description": "A compliance certificate for an audited traceability lineage, naming the root event and the regulatory standards checked.",
   "type": "object",
   "required": [
     "type",

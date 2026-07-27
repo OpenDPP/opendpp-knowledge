@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 200 envelope of the validate-only endpoints (only the declared keys are emitted).
@@ -20,7 +20,7 @@ generated:
 | `message` | string | yes | — |
 | `category` | string | yes | Echo of metadata.category (or "unknown" if absent). |
 | `errors` | array<[ValidationErrorItem](/schemas/ValidationErrorItem.md)> | yes | Always an empty array on 200. |
-| `warnings` | array<[ValidationErrorItem](/schemas/ValidationErrorItem.md)> | no | Non-blocking findings (e.g. |
+| `warnings` | array<[ValidationErrorItem](/schemas/ValidationErrorItem.md)> | no | Non-blocking findings (e.g. malformed supplementary objects like circularityAttributes). |
 
 ## JSON Schema
 

@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Append an immutable telemetry event to a battery unit
-description: Append an immutable telemetry event to a battery unit
+description: "Appends one append-only per-unit dynamic-data record (Annex XIII / Art. 77: SoH, cycle count, remaining capacity, temperature, negative events)."
 resource: https://opendpp-node.eu/api/v1/units/{id}/events
 tags:
   - POST
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/units/{id}/events`
@@ -24,7 +24,7 @@ Appends one **append-only** per-unit dynamic-data record (Annex XIII / Art. 77: 
 
 **Status transition:** when `status` is present and differs from the unit's current status, the unit is updated **in the same transaction** as the event — this works with *any* `eventType`, though `STATUS_CHANGE` is the conventional carrier. Transitioning to **`RECYCLED`** (Art. 77(8)) additionally stamps `ceasedAt` (if not already set; never cleared), after which the public unit view becomes a 410 tombstone and the unit can no longer gain successor units. `status` itself is not locked afterwards — a later event may still set a different value — but `ceasedAt` persists, so the public 410 and the predecessor refusal are permanent.
 
-**Rate limits:** global limiter only — 100 req/min per IP.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Request body
 
@@ -52,7 +52,7 @@ Schema (required): [RecordBatteryUnitEventRequest](/schemas/RecordBatteryUnitEve
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — The transaction failed. → [Error](/schemas/Error.md)
 
 ## Example

@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Tenant revocation status list (W3C Bitstring Status List)
-description: Tenant revocation status list (W3C Bitstring Status List)
+description: Serves the workspace's W3C Bitstring Status List as a signed enveloping vc+jwt (application/vc+jwt) — a BitstringStatusListCredential whose GZIP+base64 encoded bitstring sets the bit of every passport whose status is RECALLED or DECOMMISSI…
 resource: https://opendpp-node.eu/tenants/{tenantId}/status/revocation
 tags:
   - GET
   - verifiable-credentials
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /tenants/{tenantId}/status/revocation`
@@ -30,7 +30,7 @@ No authentication, no permission (public endpoint). Subject only to the global p
 
 - **200** — The signed BitstringStatusListCredential as a compact vc+jwt (JWS string).
 - **404** — No status list for this tenant (unknown workspace or no signing key). → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 
 ## Example
 

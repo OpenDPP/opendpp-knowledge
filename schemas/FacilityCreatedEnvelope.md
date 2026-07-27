@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: FacilityCreatedEnvelope
-description: FacilityCreatedEnvelope
+description: Confirmation that a facility was registered, carrying the stored record.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/FacilityCreatedEnvelope
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Confirmation that a facility was registered, carrying the stored record.
 
 ## Schema
 
@@ -22,6 +24,7 @@ generated:
 
 ```json
 {
+  "description": "Confirmation that a facility was registered, carrying the stored record.",
   "type": "object",
   "required": [
     "success",

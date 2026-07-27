@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Register a webhook subscription (signing secret returned once)
-description: Register a webhook subscription (signing secret returned once)
+description: Registers an endpoint to receive passport lifecycle webhooks for the calling workspace.
 resource: https://opendpp-node.eu/api/v1/webhooks/subscriptions
 tags:
   - POST
   - webhooks
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/webhooks/subscriptions`
@@ -50,7 +50,7 @@ Schema (required): [WebhookSubscriptionCreateRequest](/schemas/WebhookSubscripti
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **409** — The workspace already has 25 webhook subscriptions (the per-tenant cap). → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Persistence failed (details logged server-side) — message "Failed to register webhook subscription.". → [Error](/schemas/Error.md)
 
 ## Example

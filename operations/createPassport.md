@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Create (ingest) a Digital Product Passport
-description: Create (ingest) a Digital Product Passport
+description: Creates a SKU/type-level Digital Product Passport.
 resource: https://opendpp-node.eu/api/v1/passports
 tags:
   - POST
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/passports`
@@ -20,7 +20,7 @@ Creates a SKU/type-level Digital Product Passport.
 
 **Permission:** `passport:create` (Bearer `op_dpp_token_…` API key or session JWT; cookie sessions must also send the `X-CSRF-Token` double-submit header). Write operations are subject to subscription gating (**402**) and, where the workspace enforces it, MFA (**403**).
 
-**Rate limit:** global 100 requests/min per IP (`x-ratelimit-*` headers). **Body limit: 1 MiB (1,048,576 bytes)** → **413** beyond that.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`. **Body limit: 1 MiB (1,048,576 bytes)** → **413** beyond that.
 
 **Validation.** Unless `draft: true`, `metadata` is validated against the ESPR category rules for `metadata.category` plus cross-field rules (e.g. `materialComposition` percentages must sum to 100 ±0.1, `originCountry` must be a real ISO 3166-1 alpha-2 code), and the product's EPCIS traceability lineage is audited. For five categories (textiles, batteries, electronics, chemicals, construction) the authoritative per-category JSON Schema is served live at `GET /api/v1/schemas/{category}`; the other four (cosmetics, toys, iron-steel, aluminium) are validated by built-in server-side rules and `GET /api/v1/schemas/{category}` returns **404** for them. Failure returns the **400 Validation Failed** body with per-field `errors[]` (plus `warnings[]` when any exist — the key is omitted entirely when there are none). A passing payload may still produce non-blocking `warnings[]`, echoed in the 201 — including a **privacy-by-design advisory** (#400) when the metadata *looks* like it carries personal data (a clearly-personal field name such as `email`/`firstName`, or an email-shaped value; scanned one level deep, at most one such advisory). A DPP should carry PRODUCT data, not PII (ESPR FAQ Q16); this advisory never blocks the save. `friendlyMessage` texts are localized via `?lang=` or `Accept-Language` (default `en`); category-validity errors (`metadata.category` missing or unknown) carry no `friendlyMessage`.
 
@@ -106,7 +106,7 @@ Schema (required): [PassportCreateRequest](/schemas/PassportCreateRequest.md).
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **409** — A passport already exists for this (productId, operatorId) pair. → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 1 MiB (1,048,576-byte) body limit.
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

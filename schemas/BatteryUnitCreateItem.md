@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 One unit to serialise. Validation is per-item: an invalid item is skipped (its error string collected) without failing the rest of the batch.
@@ -19,7 +19,7 @@ One unit to serialise. Validation is per-item: an invalid item is skipped (its e
 | `serialNumber` | string | yes | Required. |
 | `manufacturedAt` | string,number | no | Optional. |
 | `status` | [BatteryUnitStatus](/schemas/BatteryUnitStatus.md) | no | Optional initial status. |
-| `predecessorUnitId` | string | no | Optional Art. |
+| `predecessorUnitId` | string | no | Optional Art. 77(7) linkage: id of an existing unit in your tenant (any passport) that this battery was repurposed/remanufactured from. |
 | `predecessorStatus` | string | no | Optional; only meaningful with predecessorUnitId. |
 
 ## JSON Schema

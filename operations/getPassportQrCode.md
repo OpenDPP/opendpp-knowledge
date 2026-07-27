@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Export a print-grade GS1 Digital Link QR code for a passport
-description: Export a print-grade GS1 Digital Link QR code for a passport
+description: Renders the passport's GS1 Digital Link URI (its digitalLinkUri, e.g. https://opendpp-node.eu/01/09501101530003) as a print-grade QR code and returns it as a binary file download.
 resource: https://opendpp-node.eu/api/v1/passports/{id}/qr
 tags:
   - GET
   - qr-codes
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /api/v1/passports/{id}/qr`
@@ -26,7 +26,7 @@ Renders the passport's GS1 Digital Link URI (its `digitalLinkUri`, e.g. `https:/
 
 **Errors:** an invalid query option returns **400** with one of these exact messages: `format must be png or svg`, `size must be a number`, `ecl must be M, Q or H`. An unknown passport returns **404** with message `Passport <id> not found under your Tenant workspace`.
 
-**Rate limit:** global limiter only — 100 requests/min/IP (standard `x-ratelimit-*` headers).
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 
@@ -36,7 +36,7 @@ Renders the passport's GS1 Digital Link URI (its `digitalLinkUri`, e.g. `https:/
 | `format` | query | no | string | Output image format. |
 | `size` | query | no | integer | Rendered width in pixels (PNG) / SVG width attribute. |
 | `ecl` | query | no | string | QR error-correction level: M (~15% recovery), Q (~25%, GS1 product-label guidance, default) or H (~30%). |
-| `hri` | query | no | boolean | When 1/true, renders the GS1 Human-Readable Interpretation (the bracketed AI string, e.g. |
+| `hri` | query | no | boolean | When 1/true, renders the GS1 Human-Readable Interpretation (the bracketed AI string, e.g. (01) 09501101530003 (21) BAT-2026-000123) as vector text beneath the… |
 
 ## Responses
 
@@ -45,7 +45,7 @@ Renders the passport's GS1 Digital Link URI (its `digitalLinkUri`, e.g. `https:/
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: List the platform-curated material vocabulary
-description: List the platform-curated material vocabulary
+description: Lists active entries from the platform-global material vocabulary that powers the searchable material/fiber/chemistry pickers in the passport form.
 resource: https://opendpp-node.eu/api/v1/materials
 tags:
   - GET
   - schemas-vocabulary
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /api/v1/materials`
@@ -26,7 +26,7 @@ Lists active entries from the platform-global material vocabulary that powers th
 
 **Curation:** this vocabulary is curated by the platform operator — the API is read-only for tenant credentials. Free-text material values in passport metadata remain allowed but are never auto-added to this vocabulary.
 
-**Rate limit:** global limiter only — 100 requests/min/IP (standard `x-ratelimit-*` headers).
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 
@@ -41,7 +41,7 @@ Lists active entries from the platform-global material vocabulary that powers th
 - **200** — Active vocabulary entries matching the filters, ordered by kind then name ascending. → [MaterialVocabularyListResponse](/schemas/MaterialVocabularyListResponse.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

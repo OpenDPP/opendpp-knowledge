@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Rotate the tenant's eIDAS ECDSA signing key pair
-description: Rotate the tenant's eIDAS ECDSA signing key pair
+description: Generates a brand-new ECDSA prime256v1 (P-256) key pair for your workspace's eIDAS advanced-seal signing and rotates it into the encrypted database vault, replacing the previous key.
 resource: https://opendpp-node.eu/api/v1/tenants/rotate-keys
 tags:
   - POST
   - eidas-keys
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/tenants/rotate-keys`
@@ -27,7 +27,7 @@ What happens:
 
 **Permission:** `key:write`. Cookie-session clients must send `X-CSRF-Token`; Bearer clients are exempt.
 
-**Rate limit:** global limiter, 100 requests/min/IP.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Responses
 
@@ -35,7 +35,7 @@ What happens:
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Key generation, vault encryption, or database failure. → [Error](/schemas/Error.md), [OperatorMinimalError](/schemas/OperatorMinimalError.md)
 
 ## Example

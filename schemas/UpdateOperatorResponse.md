@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: UpdateOperatorResponse
-description: UpdateOperatorResponse
+description: The economic operator as stored after the update.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/UpdateOperatorResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+The economic operator as stored after the update.
 
 ## Schema
 
@@ -21,6 +23,7 @@ generated:
 
 ```json
 {
+  "description": "The economic operator as stored after the update.",
   "type": "object",
   "required": [
     "success",

@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Approve a pending access request and mint its token
-description: Approve a pending access request and mint its token
+description: Approves a PENDING third-party access request (submitted via the hosted request-access page).
 resource: https://opendpp-node.eu/api/v1/grants/{id}/approve
 tags:
   - POST
   - access-grants
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/grants/{id}/approve`
@@ -20,7 +20,7 @@ Approves a `PENDING` third-party access request (submitted via the hosted reques
 
 The raw token is returned **once** in this response. If the request has a `granteeEmail`, the grantee is additionally e-mailed an inspection link containing the token (`…/unit/{batteryUnitId}?grant=dpp_li_…` or `…/passport/{passportId}?grant=dpp_li_…`) — the only other place the raw token ever exists. The decision is audited as `grant.approved`.
 
-**Permission:** `grant:write` (subscription gating ⇒ 402 possible; cookie sessions need `X-CSRF-Token`; on workspaces enforcing multi-factor authentication, user sessions without a second factor get 403 — API-key clients exempt). **Rate limit:** global limiter, 100 requests/min per IP.
+**Permission:** `grant:write` (subscription gating ⇒ 402 possible; cookie sessions need `X-CSRF-Token`; on workspaces enforcing multi-factor authentication, user sessions without a second factor get 403 — API-key clients exempt). **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 
@@ -47,7 +47,7 @@ Schema (required): [ApproveGrantRequest](/schemas/ApproveGrantRequest.md).
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — No grant with this id exists in this workspace. → [GrantRouteError](/schemas/GrantRouteError.md)
 - **409** — The grant is not PENDING (already decided, active, or revoked). → [GrantRouteError](/schemas/GrantRouteError.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

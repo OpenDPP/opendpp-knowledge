@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: RotateTenantKeysResponse
-description: RotateTenantKeysResponse
+description: Confirmation that the workspace's signing key was rotated, returning the new public key.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/RotateTenantKeysResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Confirmation that the workspace's signing key was rotated, returning the new public key.
 
 ## Schema
 
@@ -22,6 +24,7 @@ generated:
 
 ```json
 {
+  "description": "Confirmation that the workspace's signing key was rotated, returning the new public key.",
   "type": "object",
   "required": [
     "success",

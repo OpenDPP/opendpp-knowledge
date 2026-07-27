@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: FacilityEnvelope
-description: FacilityEnvelope
+description: A single facility record.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/FacilityEnvelope
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+A single facility record.
 
 ## Schema
 
@@ -21,6 +23,7 @@ generated:
 
 ```json
 {
+  "description": "A single facility record.",
   "type": "object",
   "required": [
     "success",

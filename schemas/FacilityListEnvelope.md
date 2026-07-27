@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: FacilityListEnvelope
-description: FacilityListEnvelope
+description: A page of the workspace's facilities, with the paging envelope.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/FacilityListEnvelope
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+A page of the workspace's facilities, with the paging envelope.
 
 ## Schema
 
@@ -26,6 +28,7 @@ generated:
 
 ```json
 {
+  "description": "A page of the workspace's facilities, with the paging envelope.",
   "type": "object",
   "required": [
     "success",

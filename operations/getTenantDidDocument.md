@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Resolve a tenant's did:web DID document
-description: Resolve a tenant's did:web DID document
+description: Resolves the issuing workspace's did:web DID document (application/did+json).
 resource: https://opendpp-node.eu/tenants/{tenantId}/did.json
 tags:
   - GET
   - verifiable-credentials
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /tenants/{tenantId}/did.json`
@@ -32,7 +32,7 @@ No authentication, no permission (public endpoint). Subject only to the global p
 
 - **200** — The tenant's did:web DID document (public keys only). → [DidWebDocument](/schemas/DidWebDocument.md)
 - **404** — No DID document for this tenant (the workspace has not provisioned a signing key). → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 
 ## Example
 

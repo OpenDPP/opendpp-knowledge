@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: GS1 Digital Link resolution by GRAI (AI 8003)
-description: GS1 Digital Link resolution by GRAI (AI 8003)
+description: Unified GS1 Digital Link gateway, GRAI branch (Global Returnable Asset Identifier).
 resource: https://opendpp-node.eu/8003/{grai}
 tags:
   - GET
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /8003/{grai}`
@@ -39,8 +39,9 @@ An additional `/21/{serial}` AI pair after the GRAI behaves exactly like `GET /0
 ## Example
 
 ```bash
+# The Authorization header is optional for the public tier.
 curl -s \
-  -H 'Authorization: Bearer op_dpp_token_…' \  # optional for the public tier
+  -H 'Authorization: Bearer op_dpp_token_…' \
   -X GET 'https://opendpp-node.eu/8003/{grai}'
 ```
 

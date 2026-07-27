@@ -1,20 +1,20 @@
 ---
 type: API Endpoint
 title: Compute a GTIN check digit from a company prefix + item reference
-description: Compute a GTIN check digit from a company prefix + item reference
+description: "The actionable counterpart to the non-GS1 ingest advisory (#255): given the GS1 company prefix your organisation legally owns plus an item reference, OpenDPP computes the GS1 mod-10 check digit and returns the resulting 14-digit GTIN + a D…"
 resource: https://opendpp-node.eu/api/v1/gs1/gtin
 tags:
   - POST
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/gs1/gtin`
 
 **Domain:** [Public Resolution](/tags/public-resolution.md)  
-**Authentication:** Authentication required.
+**Authentication:** **Public** — no authentication required.
 
 The actionable counterpart to the non-GS1 ingest advisory (#255): given the **GS1 company prefix your organisation legally owns** plus an item reference, OpenDPP computes the GS1 **mod-10 check digit** and returns the resulting 14-digit GTIN + a Digital Link preview. Set the GTIN as a passport `productId` to get a scannable GS1 Digital Link.
 
@@ -44,7 +44,6 @@ A JSON body is required.
 
 ```bash
 curl -s \
-  -H 'Authorization: Bearer op_dpp_token_…' \
   -H 'Content-Type: application/json' \
   -X POST 'https://opendpp-node.eu/api/v1/gs1/gtin' \
   --data '{"gs1CompanyPrefix":"0950110153","itemRef":"000"}'

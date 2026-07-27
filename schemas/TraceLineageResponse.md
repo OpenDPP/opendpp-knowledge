@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: TraceLineageResponse
-description: TraceLineageResponse
+description: The upstream pedigree of a traceability event, as a recursive graph of the events it derives from.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/TraceLineageResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+The upstream pedigree of a traceability event, as a recursive graph of the events it derives from.
 
 ## Schema
 
@@ -21,6 +23,7 @@ generated:
 
 ```json
 {
+  "description": "The upstream pedigree of a traceability event, as a recursive graph of the events it derives from.",
   "type": "object",
   "required": [
     "success",

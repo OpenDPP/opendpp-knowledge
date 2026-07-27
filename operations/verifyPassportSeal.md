@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Publicly verify a passport's eIDAS seal, certificate chain and timestamp
-description: Publicly verify a passport's eIDAS seal, certificate chain and timestamp
+description: Public seal-verification API — cryptographically verifies that a Digital Product Passport document was sealed by an economic-operator tenant registered on this node and has not been tampered with.
 resource: https://opendpp-node.eu/api/v1/audit/verify
 tags:
   - POST
   - traceability-audit
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/audit/verify`
@@ -77,7 +77,7 @@ Schema (required): [SealVerifyRequest](/schemas/SealVerifyRequest.md).
 ## Responses
 
 - **200** — Verification processed. → [SealVerifyResponse](/schemas/SealVerifyResponse.md)
-- **400** — Missing cryptographic parameters (after proof-block extraction), or an exception during verification (e.g.
+- **400** — Missing cryptographic parameters (after proof-block extraction), or an exception during verification (e.g. undecodable key material).
 - **429** — Public-resolution rate limit exceeded (30 requests/min per IP; no rate-limit headers). → [Error](/schemas/Error.md)
 
 ## Example

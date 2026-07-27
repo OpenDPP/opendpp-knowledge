@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Update passport metadata (versioned to history)
-description: Update passport metadata (versioned to history)
+description: Replaces the passport's metadata (the Merkle root and leaf hashes are recomputed) and snapshots the previous metadata into the passport's version history (version = count + 1, changedBy = user email or api-key:<id>, changeReason defaults t…
 resource: https://opendpp-node.eu/api/v1/passports/{id}
 tags:
   - PUT
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `PUT /api/v1/passports/{id}`
@@ -36,7 +36,7 @@ Replaces the passport's `metadata` (the Merkle root and leaf hashes are recomput
 
 **Response caveat:** the returned `passport` document is serialized at the **public** redaction tier — `facilityDetails` (and battery restricted keys) appear as `"[REDACTED - Privileged Access Required]"` even though you are the owner.
 
-**Rate limits:** global limiter, 100 req/min/IP.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 
@@ -127,7 +127,7 @@ Schema (required): [PassportUpdateRequest](/schemas/PassportUpdateRequest.md).
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — History snapshot or transactional update failure returns the standard envelope (message may echo the internal error text or fall back to "Failed to update pass… → [Error](/schemas/Error.md)
 
 ## Example

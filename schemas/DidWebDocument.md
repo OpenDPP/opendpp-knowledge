@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 A tenant's `did:web` DID document (public-key material only). Verification methods are `JsonWebKey2020` entries with stable `#key-<index>` ids; current and retired keys are both listed so pre-rotation credentials still verify.

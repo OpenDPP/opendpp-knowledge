@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: BatteryUnitEventListResponse
-description: BatteryUnitEventListResponse
+description: A battery unit's append-only dynamic-data history, newest first.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventListResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+A battery unit's append-only dynamic-data history, newest first.
 
 ## Schema
 
@@ -23,6 +25,7 @@ generated:
 
 ```json
 {
+  "description": "A battery unit's append-only dynamic-data history, newest first.",
   "type": "object",
   "properties": {
     "success": {

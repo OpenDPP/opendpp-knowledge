@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Issue a legitimate-interest access grant directly
-description: Issue a legitimate-interest access grant directly
+description: Directly issues an ACTIVE legitimate-interest access grant (no pending request involved) and mints its capability token.
 resource: https://opendpp-node.eu/api/v1/grants
 tags:
   - POST
   - access-grants
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/grants`
@@ -18,7 +18,7 @@ generated:
 
 Directly issues an `ACTIVE` legitimate-interest access grant (no pending request involved) and mints its capability token. The raw token (`dpp_li_` + 32 hex characters) is returned **once** in this response; only its SHA-256 hash is stored. The grantee presents it to the public resolution endpoints as `Authorization: Bearer dpp_li_…` or `?grant=dpp_li_…` to unlock the restricted (tier-2 / per-unit) data of the granted scope.
 
-**Permission:** `grant:write` (write operations are subject to subscription gating, so 402 is possible). Cookie-session clients must send the `X-CSRF-Token` header; Bearer clients are exempt. On workspaces that enforce multi-factor authentication, user sessions that did not authenticate with a second factor receive 403 on writes (API-key clients are exempt). **Rate limit:** global limiter, 100 requests/min per IP.
+**Permission:** `grant:write` (write operations are subject to subscription gating, so 402 is possible). Cookie-session clients must send the `X-CSRF-Token` header; Bearer clients are exempt. On workspaces that enforce multi-factor authentication, user sessions that did not authenticate with a second factor receive 403 on writes (API-key clients are exempt). **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 Scope semantics:
 - `UNIT` — `batteryUnitId` is required; the unit must belong to this workspace. The unit's parent `passportId` is recorded on the grant.
@@ -53,7 +53,7 @@ Schema (required): [CreateGrantRequest](/schemas/CreateGrantRequest.md).
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — For scopeType UNIT/PASSPORT: the target id does not exist in this workspace (cross-tenant targets and DRAFT passports are indistinguishable from missing ones). → [GrantRouteError](/schemas/GrantRouteError.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

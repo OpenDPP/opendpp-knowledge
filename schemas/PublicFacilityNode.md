@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 Embedded manufacturing-facility JSON-LD node — the GS1 GLN-backed Unique Facility Identifier (UFI, EN 18219). The five listed fields are public; `streetAddress`/`city`/`postalCode` appear ONLY in owner-tier responses (never via legitimate-interest grants).
@@ -20,7 +20,7 @@ Embedded manufacturing-facility JSON-LD node — the GS1 GLN-backed Unique Facil
 | `id` | string | yes | — |
 | `gln` | string | yes | GS1 GLN-13 with a valid modulo-10 check digit. |
 | `name` | string | yes | — |
-| `activity` | string,null | yes | What the facility does in the chain, e.g. |
+| `activity` | string,null | yes | What the facility does in the chain, e.g. cell assembly. |
 | `country` | string | yes | ISO 3166-1 alpha-2 country code. |
 | `streetAddress` | string,null | no | Owner tier only — omitted from public and grant-tier responses. |
 | `city` | string,null | no | Owner tier only. |

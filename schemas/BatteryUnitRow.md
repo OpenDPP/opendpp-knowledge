@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 One physical serialised battery (raw persisted row — these routes declare no Fastify response schema, so all model fields are returned as-is). A `BatteryUnit` is an individual instance of a SKU/type-level passport, carrying its real serial in GS1 AI-21.
@@ -23,8 +23,8 @@ One physical serialised battery (raw persisted row — these routes declare no F
 | `tenantId` | string | yes | Owning tenant id (the demo tenant uses the fixed id tenant-demo-opendpp; regular tenants use UUIDs). |
 | `manufacturedAt` | string,null | yes | — |
 | `status` | [BatteryUnitStatus](/schemas/BatteryUnitStatus.md) | yes | — |
-| `ceasedAt` | string,null | yes | Stamped when the events endpoint transitions status to RECYCLED (Art. |
-| `predecessorUnitId` | string,null | yes | Art. |
+| `ceasedAt` | string,null | yes | Stamped when the events endpoint transitions status to RECYCLED (Art. 77(8) cease-to-exist); never cleared afterwards, even if a later event changes status aga… |
+| `predecessorUnitId` | string,null | yes | Art. 77(7) lineage: the original unit this battery was repurposed/remanufactured from (null for first-life units). |
 | `createdAt` | string | yes | — |
 | `updatedAt` | string | yes | — |
 

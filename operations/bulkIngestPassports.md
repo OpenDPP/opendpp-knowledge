@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Bulk-ingest up to 200 passports with per-row error reporting
-description: Bulk-ingest up to 200 passports with per-row error reporting
+description: "Ingests up to 200 passports in one request with partial-success semantics: each row is validated and inserted independently; failed rows are skipped and reported as human-readable strings in errors[]."
 resource: https://opendpp-node.eu/api/v1/passports/bulk
 tags:
   - POST
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/passports/bulk`
@@ -20,7 +20,7 @@ Ingests up to **200** passports in one request with **partial-success semantics*
 
 **Permission:** `passport:create` (Bearer API key or session JWT + CSRF for cookie sessions; subscription gating → **402**).
 
-**Rate limit:** global 100 requests/min per IP. **Body limit: 1 MiB (1,048,576 bytes)** → **413** beyond that; in practice the `maxItems: 200` envelope cap is the effective bound for typical rows. Envelope violations — empty array, more than 200 items, missing `passports` — are rejected before any row is processed, with the full default validation error body (`{statusCode, code, error, message}`).
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`. **Body limit: 1 MiB (1,048,576 bytes)** → **413** beyond that; in practice the `maxItems: 200` envelope cap is the effective bound for typical rows. Envelope violations — empty array, more than 200 items, missing `passports` — are rejected before any row is processed, with the full default validation error body (`{statusCode, code, error, message}`).
 
 **Per-row behavior (differences from `POST /api/v1/passports`):**
 - Rows are validated with the ESPR category engine only — the **EPCIS traceability audit is NOT run** for bulk rows.
@@ -129,7 +129,7 @@ Schema (required): [PassportBulkRequest](/schemas/PassportBulkRequest.md).
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 1 MiB (1,048,576-byte) body limit.
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

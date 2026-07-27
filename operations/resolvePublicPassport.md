@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Resolve a passport by UUID (JSON-LD / AAS / HTML)
-description: Resolve a passport by UUID (JSON-LD / AAS / HTML)
+description: Public, content-negotiated resolution of a Digital Product Passport by its server-assigned UUID.
 resource: https://opendpp-node.eu/passport/{id}
 tags:
   - GET
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /passport/{id}`
@@ -48,8 +48,9 @@ DRAFT passports are hidden from everyone but the owner (404 with a body identica
 ## Example
 
 ```bash
+# The Authorization header is optional for the public tier.
 curl -s \
-  -H 'Authorization: Bearer op_dpp_token_…' \  # optional for the public tier
+  -H 'Authorization: Bearer op_dpp_token_…' \
   -X GET 'https://opendpp-node.eu/passport/{id}'
 ```
 

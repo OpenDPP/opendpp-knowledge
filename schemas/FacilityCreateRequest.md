@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: FacilityCreateRequest
-description: FacilityCreateRequest
+description: "A facility to register: its GS1 GLN-13, name and country, plus optional activity and street address."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/FacilityCreateRequest
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+A facility to register: its GS1 GLN-13, name and country, plus optional activity and street address.
 
 ## Schema
 
@@ -17,7 +19,7 @@ generated:
 | `gln` | string | yes | GS1 GLN-13. |
 | `name` | string | yes | Facility name. |
 | `country` | string | yes | 2-letter ISO country code (case-insensitive on input; stored uppercase). |
-| `activity` | string | no | Optional activity, e.g. |
+| `activity` | string | no | Optional activity, e.g. "Cell assembly". |
 | `streetAddress` | string | no | Optional street address (owner-only in public views). |
 | `city` | string | no | Optional city (owner-only in public views). |
 | `postalCode` | string | no | Optional postal code (owner-only in public views). |
@@ -27,6 +29,7 @@ generated:
 
 ```json
 {
+  "description": "A facility to register: its GS1 GLN-13, name and country, plus optional activity and street address.",
   "type": "object",
   "required": [
     "gln",

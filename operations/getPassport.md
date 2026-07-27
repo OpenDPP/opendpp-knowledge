@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Fetch a single passport (content-negotiated JSON-LD / AAS / HTML)
-description: Fetch a single passport (content-negotiated JSON-LD / AAS / HTML)
+description: Owner-side alias of the public resolver.
 resource: https://opendpp-node.eu/api/v1/passports/{id}
 tags:
   - GET
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /api/v1/passports/{id}`
@@ -26,7 +26,7 @@ Owner-side alias of the public resolver. Accepts either the passport **UUID** or
 
 Every successful resolution records an anonymized-IP access audit entry.
 
-**Rate limits:** global limiter 100 req/min/IP with `x-ratelimit-*` headers, **plus** the forwarded public resolver's own limiter (30 req/min/IP, no headers) — both 429 shapes are possible (see 429).
+**Rate limits:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys, under a per-IP ceiling raised for `Authorization`-bearing requests; `x-ratelimit-*` headers and a `Retry-After` on **429**. **Plus** the forwarded public resolver's own limiter (30 req/min/IP, no headers) — both 429 shapes are possible (see 429).
 
 ## Parameters
 

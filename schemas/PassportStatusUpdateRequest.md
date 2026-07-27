@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 Body of PUT /api/v1/passports/{id}/status. Only `status` is read; any other keys are ignored (there is no `reason` field).

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 One outbox delivery record (event-level). The payload is not included.
@@ -17,7 +17,7 @@ One outbox delivery record (event-level). The payload is not included.
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
 | `id` | string | yes | Outbox record id. |
-| `event` | string | yes | Event type, e.g. |
+| `event` | string | yes | Event type, e.g. passport.sealed. |
 | `status` | string | yes | Overall delivery state. |
 | `retryCount` | integer | yes | Failed attempts so far (0–5). |
 | `lastAttempt` | string,null | yes | Timestamp of the most recent attempt, or null if never attempted. |

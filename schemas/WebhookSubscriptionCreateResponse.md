@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: WebhookSubscriptionCreateResponse
-description: WebhookSubscriptionCreateResponse
+description: Confirmation that a webhook subscription was created, carrying the stored subscription.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionCreateResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Confirmation that a webhook subscription was created, carrying the stored subscription.
 
 ## Schema
 
@@ -22,6 +24,7 @@ generated:
 
 ```json
 {
+  "description": "Confirmation that a webhook subscription was created, carrying the stored subscription.",
   "type": "object",
   "required": [
     "success",

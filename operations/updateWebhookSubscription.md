@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Update a webhook subscription (url / events / active)
-description: Update a webhook subscription (url / events / active)
+description: "Partially updates a subscription: any of url, events, isActive (key present = set, omitted = unchanged)."
 resource: https://opendpp-node.eu/api/v1/webhooks/subscriptions/{id}
 tags:
   - PATCH
   - webhooks
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `PATCH /api/v1/webhooks/subscriptions/{id}`
@@ -20,7 +20,7 @@ Partially updates a subscription: any of `url`, `events`, `isActive` (key presen
 
 **Permission:** `webhook:write`. Cookie sessions must send `X-CSRF-Token`; write permissions are subscription-gated (**402** when lapsed).
 
-**Rate limit:** global limiter, 100 requests/min per IP.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 
@@ -50,7 +50,7 @@ Schema: [WebhookSubscriptionUpdateRequest](/schemas/WebhookSubscriptionUpdateReq
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

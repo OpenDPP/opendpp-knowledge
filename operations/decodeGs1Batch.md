@@ -1,20 +1,20 @@
 ---
 type: API Endpoint
 title: Batch-decode many GS1 scans / element strings / Digital Links in one request
-description: Batch-decode many GS1 scans / element strings / Digital Links in one request
+description: Batch form of POST /api/v1/gs1/decode for line-side / warehouse stations capturing many scans per second.
 resource: https://opendpp-node.eu/api/v1/gs1/decode/batch
 tags:
   - POST
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/gs1/decode/batch`
 
 **Domain:** [Public Resolution](/tags/public-resolution.md)  
-**Authentication:** Authentication required.
+**Authentication:** **Public** — no authentication required.
 
 Batch form of `POST /api/v1/gs1/decode` for line-side / warehouse stations capturing many scans per second. Send `{ "items": [ … ] }` (≤200), each item exactly one of `scanData`/`elementString`/`digitalLink`, and receive a `results` array aligned to input order — each entry either a decoded scan (`ok: true`, the same fields as the single-scan 200 minus `success`) or an error (`ok: false` + `error`). **Partial-success:** one bad item never fails the batch — the request returns **200** and per-item failures are reported in place. Parsing uses GS1's authoritative Barcode Syntax Engine (vendored WASM). **Public + stateless** (no permission, no tenant data).
 
@@ -46,14 +46,13 @@ A JSON body is required.
 
 - **200** — Per-item decode results aligned to input order (partial-success — one bad item never fails the batch).
 - **400** — Missing/empty/non-array items, or more than 200 items. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **503** — The GS1 Syntax Engine (WASM) could not be loaded. → [Error](/schemas/Error.md)
 
 ## Example
 
 ```bash
 curl -s \
-  -H 'Authorization: Bearer op_dpp_token_…' \
   -H 'Content-Type: application/json' \
   -X POST 'https://opendpp-node.eu/api/v1/gs1/decode/batch' \
   --data '{"items":[{"scanData":"]Q1https://id.gs1.org/01/09501101532007/21/VM-LFP100-26-1"},{"elementString":"(01)09501101532007"},{"digitalLink":"not-a-valid-link"}]}'

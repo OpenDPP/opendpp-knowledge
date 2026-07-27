@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Remove an operator (archives if it has passports, else hard-deletes)
-description: Remove an operator (archives if it has passports, else hard-deletes)
+description: "Removes an operator, choosing automatically between two outcomes (ESPR Art. 9(2)/77 passport-persistence compliance — an operator that still has passports must never be hard-deleted):"
 resource: https://opendpp-node.eu/api/v1/operators/{id}
 tags:
   - DELETE
   - economic-operators
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `DELETE /api/v1/operators/{id}`
@@ -28,7 +28,7 @@ Removes an operator, choosing automatically between two outcomes (ESPR Art. 9(2)
 
 Side effects: an `operator.archived` or `operator.deleted` audit event plus an in-app notification — on the primary archive and hard-delete paths only; the foreign-key fallback archive writes **no** audit event or notification. Unhandled database errors are normalized by the global error handler to the standard `{success: false, error, message}` envelope with a generic message (details are logged server-side).
 
-**Rate limit:** global limiter, 100 requests/min/IP.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 
@@ -44,7 +44,7 @@ Side effects: an `operator.archived` or `operator.deleted` audit event plus an i
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The operator does not exist or is not bound to your workspace. → [OperatorMinimalError](/schemas/OperatorMinimalError.md)
 - **409** — The operator could neither be hard-deleted nor archived (both attempts failed). → [OperatorMinimalError](/schemas/OperatorMinimalError.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Server-side failure. → [Error](/schemas/Error.md)
 
 ## Example

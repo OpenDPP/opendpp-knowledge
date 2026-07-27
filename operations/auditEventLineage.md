@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Run heuristic UFLPA/EUDR compliance screening over an event's lineage
-description: Run heuristic UFLPA/EUDR compliance screening over an event's lineage
+description: "Walks the same upstream lineage DAG as GET /api/v1/events/{id}/lineage and screens every node's location data against two heuristic rules:"
 resource: https://opendpp-node.eu/api/v1/events/{id}/audit
 tags:
   - POST
   - traceability-audit
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/events/{id}/audit`
@@ -25,7 +25,7 @@ These are geographic screening heuristics evaluated against the data registered 
 
 **Permission:** `passport:read` (a read permission despite the POST verb — no subscription gating). Cookie-session clients must send the `X-CSRF-Token` header; Bearer clients are exempt. Tenant scoping and the `SUPER_ADMIN` bypass are identical to the lineage endpoint. **No request body is read** — send an empty body (an empty or absent JSON body is accepted).
 
-**Rate limit:** global limiter, 100 requests/min per IP (standard `x-ratelimit-*` headers).
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 When zero violations are found, the response embeds a `TraceabilityComplianceCertificate` object (status `SCREENED_NO_MATCHES`, screens `OpenDPP-EUDR-heuristic` / `OpenDPP-UFLPA-screen`); otherwise `certificate` is `null` and `errors` lists each violation as a human-readable string. ANY failure — unknown event id, other-tenant id, or even a circular lineage graph — is reported as the same generic 404 body.
 
@@ -41,7 +41,7 @@ When zero violations are found, the response embeds a `TraceabilityComplianceCer
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The audit could not be completed: unknown event id, an event belonging to another tenant, or a circular lineage graph. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: WhoamiResponse
-description: WhoamiResponse
+description: "The calling credential's identity: its workspace, the resolved auth principal and permissions, and active-passport usage against the plan quota."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/WhoamiResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+The calling credential's identity: its workspace, the resolved auth principal and permissions, and active-passport usage against the plan quota.
 
 ## Schema
 
@@ -23,6 +25,7 @@ generated:
 
 ```json
 {
+  "description": "The calling credential's identity: its workspace, the resolved auth principal and permissions, and active-passport usage against the plan quota.",
   "type": "object",
   "required": [
     "success",

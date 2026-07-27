@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: DeleteOperatorResponse
-description: DeleteOperatorResponse
+description: "Outcome of removing an economic operator: whether it was archived rather than deleted, and how many of its passports were archived with it."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/DeleteOperatorResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Outcome of removing an economic operator: whether it was archived rather than deleted, and how many of its passports were archived with it.
 
 ## Schema
 
@@ -22,6 +24,7 @@ generated:
 
 ```json
 {
+  "description": "Outcome of removing an economic operator: whether it was archived rather than deleted, and how many of its passports were archived with it.",
   "type": "object",
   "required": [
     "success",

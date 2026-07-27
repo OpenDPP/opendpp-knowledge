@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: RegisterOperatorRequest
-description: RegisterOperatorRequest
+description: "An economic operator to register: its legal name and registration identifier, with an optional identifier scheme and supply-chain role."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/RegisterOperatorRequest
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+An economic operator to register: its legal name and registration identifier, with an optional identifier scheme and supply-chain role.
 
 ## Schema
 
@@ -17,12 +19,13 @@ generated:
 | `name` | string | yes | Legal/display name. |
 | `regId` | string | yes | Official registration id (EORI, VAT, DUNS, or national registry id). |
 | `regIdScheme` | string,null | no | Optional declaration of what kind of id regId is. |
-| `role` | string | no | Supply-chain role, free text — e.g. |
+| `role` | string | no | Supply-chain role, free text — e.g. MANUFACTURER, IMPORTER, RETAILER. |
 
 ## JSON Schema
 
 ```json
 {
+  "description": "An economic operator to register: its legal name and registration identifier, with an optional identifier scheme and supply-chain role.",
   "type": "object",
   "required": [
     "name",

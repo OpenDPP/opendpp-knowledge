@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Download the platform seal-CA certificate (PEM)
-description: Download the platform seal-CA certificate (PEM)
+description: Downloads the platform seal-CA certificate as PEM.
 resource: https://opendpp-node.eu/.well-known/opendpp-seal-ca.pem
 tags:
   - GET
   - eidas-keys
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /.well-known/opendpp-seal-ca.pem`

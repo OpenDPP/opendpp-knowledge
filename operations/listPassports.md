@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: List passports in your workspace (paginated JSON-LD)
-description: List passports in your workspace (paginated JSON-LD)
+description: Returns the non-archived passports of every economic operator bound to your workspace, newest first (createdAt DESC).
 resource: https://opendpp-node.eu/api/v1/passports
 tags:
   - GET
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /api/v1/passports`
@@ -29,7 +29,7 @@ Returns the **non-archived** passports of every economic operator bound to your 
 - `economicOperator.role` is **absent** from list items and `manufacturingFacility` is always `null` here — fetch a single passport (`GET /api/v1/passports/{id}`) for the facility node and operator role.
 - The response passes through a declared response schema: top-level keys other than `success`, `page`, `limit`, `passports` are stripped. Passport items allow additional properties, so undeclared item keys (`status`, `archivedAt`, `retentionUntil`, `manufacturingFacility`, the flattened metadata keys) pass through intact — but two **declared** item keys are mangled by their subschemas: the `@context` term-map object (second array element) is always emptied to `{}`, and `proof` is emptied to `{}` on sealed items (`null` on unsealed) — `signatureValue`, `merkleRoot`, `redactedLeaves`, `x5c` and `rfc3161` are all stripped from list output. Fetch a single passport (`GET /api/v1/passports/{id}`) or the public resolver for the verifiable proof block.
 
-**Rate limits:** global limiter, 100 requests/min per IP (600/min for known crawler user agents); 429 carries `x-ratelimit-*` headers.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 
@@ -38,7 +38,7 @@ Returns the **non-archived** passports of every economic operator bound to your 
 | `` |  | no | — | — |
 | `` |  | no | — | — |
 | `category` | query | no | string | Exact-match filter on metadata.category. |
-| `originCountry` | query | no | string | Exact-match filter on metadata.originCountry (ISO 3166-1 alpha-2, e.g. |
+| `originCountry` | query | no | string | Exact-match filter on metadata.originCountry (ISO 3166-1 alpha-2, e.g. PT). |
 
 ## Responses
 
@@ -46,7 +46,7 @@ Returns the **non-archived** passports of every economic operator bound to your 
 - **400** — Route validation failure (framework default body — note statusCode/code keys, no success field): page or limit did not match ^[0-9]+$.
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

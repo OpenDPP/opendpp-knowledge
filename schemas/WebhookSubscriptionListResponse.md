@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: WebhookSubscriptionListResponse
-description: WebhookSubscriptionListResponse
+description: The calling workspace's webhook subscriptions.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionListResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+The calling workspace's webhook subscriptions.
 
 ## Schema
 
@@ -21,6 +23,7 @@ generated:
 
 ```json
 {
+  "description": "The calling workspace's webhook subscriptions.",
   "type": "object",
   "required": [
     "success",

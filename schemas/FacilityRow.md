@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 A facility (GS1 GLN) master-data row, exactly as stored. Returned in full to the owning tenant. Public exposure in passport documents differs by format: the *JSON-LD* document exposes `id`, `gln`, `name`, `activity` and `country` of a linked facility; the *AAS* export emits only the GLN, name and country (`manufacturingFacilityGln`/`Name`/`Country`). `streetAddress`, `city` and `postalCode` are emitted only to the owning/bound tenant in both formats.
@@ -19,7 +19,7 @@ A facility (GS1 GLN) master-data row, exactly as stored. Returned in full to the
 | `id` | string | yes | Facility id (UUID). |
 | `gln` | string | yes | GS1 Global Location Number — 13 digits with a valid GS1 modulo-10 check digit. |
 | `name` | string | yes | Facility display name (trimmed, non-empty). |
-| `activity` | string,null | yes | Free-text activity, e.g. |
+| `activity` | string,null | yes | Free-text activity, e.g. "Cell assembly", "Final manufacturing", "Recycling". |
 | `streetAddress` | string,null | yes | Street address. |
 | `city` | string,null | yes | City. |
 | `postalCode` | string,null | yes | Postal code. |

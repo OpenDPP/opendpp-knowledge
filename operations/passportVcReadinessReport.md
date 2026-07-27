@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Catalog-wide UNTP Verifiable-Credential readiness report
-description: Catalog-wide UNTP Verifiable-Credential readiness report
+description: A read-only, tenant-scoped report of which SKUs in your catalog can / can't emit a UNTP Verifiable Credential, and why — so you can fix a whole catalog before relying on VCs, instead of probing passports one at a time.
 resource: https://opendpp-node.eu/api/v1/passports/vc-readiness
 tags:
   - GET
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /api/v1/passports/vc-readiness`
@@ -22,7 +22,7 @@ A read-only, tenant-scoped report of which SKUs in your catalog can / can't emit
 
 **Shape:** each `results[]` row is `{ id, productId, vcReady, blockers[] }` — `blockers[]` reuses the SAME actionable reason the single-passport signal exposes (empty when ready). The top-level `ready` / `notReady` rollup is **catalog-wide** (counts every non-archived passport), while `results` is **paginated** — `page` (default 1) + `limit` (default 100, max 200), with `total` / `totalPages`. NOTE: because the rollup is catalog-wide but `results` is one page, `ready` is generally NOT the count of `vcReady:true` rows on the current page — page through all `totalPages` to enumerate every SKU.
 
-**Rate limits:** global limiter, 100 requests/min per IP.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 

@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: WebhookDeliveriesResponse
-description: WebhookDeliveriesResponse
+description: Recent webhook delivery attempts for a subscription, newest first, for debugging endpoint failures.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/WebhookDeliveriesResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Recent webhook delivery attempts for a subscription, newest first, for debugging endpoint failures.
 
 ## Schema
 
@@ -22,6 +24,7 @@ generated:
 
 ```json
 {
+  "description": "Recent webhook delivery attempts for a subscription, newest first, for debugging endpoint failures.",
   "type": "object",
   "required": [
     "success",

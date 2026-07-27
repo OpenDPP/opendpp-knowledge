@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 Error body used by the grants endpoints' route-level errors (400/403/404/409). Unlike the standard error envelope, it has NO `success` field.
@@ -16,7 +16,7 @@ Error body used by the grants endpoints' route-level errors (400/403/404/409). U
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `error` | string | yes | HTTP reason phrase, e.g. |
+| `error` | string | yes | HTTP reason phrase, e.g. Bad Request, Not Found, Conflict, Forbidden. |
 | `message` | string | yes | Human-readable explanation. |
 
 ## JSON Schema

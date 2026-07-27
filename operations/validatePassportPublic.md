@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Permission-free dry-run ESPR metadata validation (strictly rate-limited)
-description: Permission-free dry-run ESPR metadata validation (strictly rate-limited)
+description: Identical validation semantics to POST /api/v1/passports/validate-only, but requires no specific permission — any valid API key or Console session is accepted, so every plan including the free tier can call it.
 resource: https://opendpp-node.eu/api/v1/passports/validate-only-public
 tags:
   - POST
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/passports/validate-only-public`

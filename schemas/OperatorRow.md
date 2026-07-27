@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 An economic-operator record (`EconomicOperator`). Operators are scoped to your workspace (each workspace keeps its own row for a given `regId`). Returned verbatim from the database (no field stripping); nullable fields are serialized as `null`.
@@ -20,7 +20,7 @@ An economic-operator record (`EconomicOperator`). Operators are scoped to your w
 | `name` | string | yes | Legal/display name of the operator. |
 | `regId` | string | yes | Official registration id (EORI number, VAT id, DUNS, or national business-registry id). |
 | `regIdScheme` | string,null | yes | Which kind of registration id regId is. |
-| `role` | string | yes | Supply-chain role, free text — e.g. |
+| `role` | string | yes | Supply-chain role, free text — e.g. "MANUFACTURER", "IMPORTER", "RETAILER". |
 | `archivedAt` | string,null | yes | Soft-delete / cessation-of-trading marker. |
 | `createdAt` | string | yes | — |
 

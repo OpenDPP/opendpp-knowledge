@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: PassportValidateOnlyRequest
-description: PassportValidateOnlyRequest
+description: A metadata payload to validate against its ESPR category rules without persisting anything.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportValidateOnlyRequest
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+A metadata payload to validate against its ESPR category rules without persisting anything.
 
 ## Schema
 
@@ -22,6 +24,7 @@ generated:
 
 ```json
 {
+  "description": "A metadata payload to validate against its ESPR category rules without persisting anything.",
   "type": "object",
   "required": [
     "productId",

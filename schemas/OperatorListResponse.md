@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: OperatorListResponse
-description: OperatorListResponse
+description: The economic operators bound to the calling workspace.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/OperatorListResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+The economic operators bound to the calling workspace.
 
 ## Schema
 
@@ -22,6 +24,7 @@ generated:
 
 ```json
 {
+  "description": "The economic operators bound to the calling workspace.",
   "type": "object",
   "required": [
     "success",

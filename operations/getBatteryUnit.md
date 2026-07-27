@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Get one battery unit as JSON-LD with its dynamic-data history
-description: Get one battery unit as JSON-LD with its dynamic-data history
+description: "Returns the unit as a JSON-LD document (Content-Type: application/ld+json) in the privileged tenant view: currentState (the latest telemetry snapshot) and dynamicData (the 500 most recent events, newest first by recordedAt) are included; t…"
 resource: https://opendpp-node.eu/api/v1/units/{id}
 tags:
   - GET
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /api/v1/units/{id}`
@@ -22,7 +22,7 @@ Returns the unit as a **JSON-LD document** (`Content-Type: application/ld+json`)
 
 **Permission:** `battery:read`. Operator-scoped credentials may only read units whose passport belongs to their Economic Operator (403).
 
-**Rate limits:** global limiter only — 100 req/min per IP.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Responses
 
@@ -30,7 +30,7 @@ Returns the unit as a **JSON-LD document** (`Content-Type: application/ld+json`)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

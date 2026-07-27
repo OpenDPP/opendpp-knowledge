@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Revoke an access grant (soft revocation)
-description: Revoke an access grant (soft revocation)
+description: "Soft-revokes a grant: sets status: REVOKED and revokedAt (the row is retained for audit; the public resolvers reject the token from then on)."
 resource: https://opendpp-node.eu/api/v1/grants/{id}
 tags:
   - DELETE
   - access-grants
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `DELETE /api/v1/grants/{id}`
@@ -23,7 +23,7 @@ Behavioral caveats (no status precondition — only the kind is checked):
 - Re-revoking an already-`REVOKED` grant returns 200 again and preserves the original `revokedAt`.
 - `AUTHORITY` grants (`kind: AUTHORITY`, platform-issued market-surveillance access) are **not tenant-revocable** — 403. Battery Reg. Art. 77 market-surveillance access must not depend on manufacturer consent; platform admins manage those.
 
-**Permission:** `grant:write` (subscription gating ⇒ 402 possible; cookie sessions need `X-CSRF-Token`; on workspaces enforcing multi-factor authentication, user sessions without a second factor get 403 — API-key clients exempt). **Rate limit:** global limiter, 100 requests/min per IP.
+**Permission:** `grant:write` (subscription gating ⇒ 402 possible; cookie sessions need `X-CSRF-Token`; on workspaces enforcing multi-factor authentication, user sessions without a second factor get 403 — API-key clients exempt). **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 
@@ -38,7 +38,7 @@ Behavioral caveats (no status precondition — only the kind is checked):
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Two distinct bodies share this status: (1) route-level — the grant is an AUTHORITY grant and cannot be revoked by the workspace; body is {error, message} witho… → [Error](/schemas/Error.md), [GrantRouteError](/schemas/GrantRouteError.md)
 - **404** — No grant with this id exists in this workspace. → [GrantRouteError](/schemas/GrantRouteError.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

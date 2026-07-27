@@ -4,7 +4,7 @@
 * [Economic Operators](economic-operators.md) - Register and manage the economic operators (manufacturers/brands, identified by EORI or national registry id) that passports are issued on behalf of.
 * [Battery Units](battery-units.md) - Per-unit battery serialization (real serials, GS1 AI 21) under a SKU-level passport, plus append-only telemetry events (state of health, charge cycles, status…
 * [Facilities](facilities.md) - Manufacturing facility master data, identified by GS1 GLN-13 (the Unique Facility Identifier).
-* [Access Grants](access-grants.md) - Capability tokens implementing tiered access (Battery Regulation Art.
+* [Access Grants](access-grants.md) - Capability tokens implementing tiered access (Battery Regulation Art. 77(9) legitimate-interest access): issue, approve, deny and revoke dpp_li_… / dpp_auth_……
 * [Webhooks](webhooks.md) - Subscribe HTTPS endpoints to passport lifecycle events.
 * [Traceability & Audit](traceability-audit.md) - UNTP/EPCIS supply-chain traceability events, lineage queries, and the public seal verifier.
 * [Public Resolution](public-resolution.md) - Unauthenticated, content-negotiated passport resolution: GS1 Digital Link paths, passport and unit pages.

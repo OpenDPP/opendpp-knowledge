@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: GS1 Digital Link serialised-item redirect (AI 01 + AI 21)
-description: GS1 Digital Link serialised-item redirect (AI 01 + AI 21)
+description: GS1 Digital Link resolution of an *individual serialised item*.
 resource: https://opendpp-node.eu/01/{gtin14}/21/{serial}
 tags:
   - GET
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /01/{gtin14}/21/{serial}`

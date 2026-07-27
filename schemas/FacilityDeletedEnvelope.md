@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: FacilityDeletedEnvelope
-description: FacilityDeletedEnvelope
+description: Confirmation that a facility was deleted.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/FacilityDeletedEnvelope
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Confirmation that a facility was deleted.
 
 ## Schema
 
@@ -20,6 +22,7 @@ generated:
 
 ```json
 {
+  "description": "Confirmation that a facility was deleted.",
   "type": "object",
   "required": [
     "success"

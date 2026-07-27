@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: PassportBulkRequest
-description: PassportBulkRequest
+description: A batch of passports to ingest, with optional dry-run preview and upsert-on-conflict behaviour.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportBulkRequest
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+A batch of passports to ingest, with optional dry-run preview and upsert-on-conflict behaviour.
 
 ## Schema
 
@@ -22,6 +24,7 @@ generated:
 
 ```json
 {
+  "description": "A batch of passports to ingest, with optional dry-run preview and upsert-on-conflict behaviour.",
   "type": "object",
   "required": [
     "passports"

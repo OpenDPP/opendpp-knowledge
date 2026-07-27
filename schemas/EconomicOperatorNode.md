@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 Embedded economic-operator JSON-LD node (public in all tiers).
@@ -19,8 +19,8 @@ Embedded economic-operator JSON-LD node (public in all tiers).
 | `@type` | string | yes | — |
 | `id` | string | yes | — |
 | `name` | string | yes | — |
-| `regId` | string | yes | EORI number or official business-registry identifier (unique platform-wide), e.g. |
-| `role` | string | no | Operator role in the supply chain, e.g. |
+| `regId` | string | yes | EORI number or official business-registry identifier (unique platform-wide), e.g. EU-DEFAULT-001. |
+| `role` | string | no | Operator role in the supply chain, e.g. MANUFACTURER, IMPORTER, RETAILER. |
 
 ## JSON Schema
 

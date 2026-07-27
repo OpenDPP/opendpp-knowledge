@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: BatteryUnitListResponse
-description: BatteryUnitListResponse
+description: A page of the serialised battery units recorded under one passport, with the paging envelope.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitListResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+A page of the serialised battery units recorded under one passport, with the paging envelope.
 
 ## Schema
 
@@ -27,6 +29,7 @@ generated:
 
 ```json
 {
+  "description": "A page of the serialised battery units recorded under one passport, with the paging envelope.",
   "type": "object",
   "properties": {
     "success": {

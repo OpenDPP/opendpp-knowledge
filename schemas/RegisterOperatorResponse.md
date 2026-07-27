@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: RegisterOperatorResponse
-description: RegisterOperatorResponse
+description: Confirmation that an economic operator was registered, carrying the stored record and any non-blocking advisories.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/RegisterOperatorResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Confirmation that an economic operator was registered, carrying the stored record and any non-blocking advisories.
 
 ## Schema
 
@@ -23,6 +25,7 @@ generated:
 
 ```json
 {
+  "description": "Confirmation that an economic operator was registered, carrying the stored record and any non-blocking advisories.",
   "type": "object",
   "required": [
     "success",

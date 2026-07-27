@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Bulk-export print-grade QR labels for many passports as a ZIP
-description: Bulk-export print-grade QR labels for many passports as a ZIP
+description: 'Renders a GS1 Digital Link QR code for each of the supplied passports and returns them as a single application/zip download (Content-Disposition: attachment; filename="labels.zip") — the export counterpart to the bulk import.'
 resource: https://opendpp-node.eu/api/v1/passports/labels
 tags:
   - POST
   - qr-codes
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/passports/labels`
@@ -24,7 +24,7 @@ Renders a GS1 Digital Link QR code for each of the supplied passports and return
 
 **Limits:** at most **200** ids per call (`MAX_BULK_LABELS`, mirrors the bulk-import cap); more returns **400** pointing at the async export. `hri: true` requires `format: "svg"` (same constraint as the single QR). `size` is clamped to 128–2048.
 
-**Rate limit:** global limiter, 100 requests/min/IP.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Request body
 
@@ -46,7 +46,7 @@ A JSON body is required.
 - **200** — A ZIP archive of QR images (one per resolved passport) plus a manifest.json reporting included/skipped ids.
 - **400** — Empty/oversize ids (> 200), an invalid format/size/ecl, or hri: true without format: "svg". → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

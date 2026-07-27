@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Ingest a passport from an AAS JSON Environment (seal-verified)
-description: Ingest a passport from an AAS JSON Environment (seal-verified)
+description: Ingests (creates or updates) a Digital Product Passport from an Industry-4.0 Asset Administration Shell (AAS) JSON Environment — the same format produced by OpenDPP's own AAS export.
 resource: https://opendpp-node.eu/api/v1/passports/aas/ingest
 tags:
   - POST
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `POST /api/v1/passports/aas/ingest`
@@ -20,7 +20,7 @@ Ingests (creates **or updates**) a Digital Product Passport from an Industry-4.0
 
 **Permission:** `passport:create` (Bearer API key or session JWT + CSRF for cookie sessions; subscription gating → **402**).
 
-**Rate limit:** global 100 requests/min per IP. **Body limit: 262,144 bytes (256 KiB)** → **413**.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`. **Body limit: 262,144 bytes (256 KiB)** → **413**.
 
 **Parsing.** The environment must contain a `submodels` array including a submodel with `idShort: "ComplianceMetadata"`, whose `submodelElements` are parsed back into the metadata object; missing it fails 400 (`Ingestion Failed`). `productId` is resolved from `metadata.gtin` || `metadata.grai` || `metadata.productId` || the first shell's `assetInformation.specificAssetIds` entry named `productId` — unresolvable → 400 `Bad Request`. The parsed metadata then passes the full ESPR category validation **plus the EPCIS traceability audit** (400 `Validation Failed` with `errors[]`).
 
@@ -51,7 +51,7 @@ Schema (required): [AasEnvironmentInput](/schemas/AasEnvironmentInput.md).
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 262,144-byte (256 KiB) route body limit.
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Canonical resolvable JSON-LD context for passport & unit documents
-description: Canonical resolvable JSON-LD context for passport & unit documents
+description: Serves the stable, resolvable W3C JSON-LD @context (application/ld+json) that every public passport and battery-unit JSON-LD document references in its @context array — this is the context to dereference when expanding OpenDPP JSON-LD.
 resource: https://opendpp-node.eu/contexts/dpp/v1
 tags:
   - GET
   - schemas-vocabulary
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /contexts/dpp/v1`
@@ -25,7 +25,7 @@ No authentication, no permission (public endpoint). No custom rate limiter — o
 ## Responses
 
 - **200** — The canonical @vocab-based JSON-LD context document (fixed content). → [DppVocabContextDocument](/schemas/DppVocabContextDocument.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 
 ## Example
 

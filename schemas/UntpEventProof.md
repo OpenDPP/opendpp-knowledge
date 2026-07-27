@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 Credential proof. MUST be a conformant W3C `DataIntegrityProof` with `cryptosuite: "ecdsa-jcs-2019"` and a multibase base58btc (`z…`) `proofValue`. Verified (ECDSA P-256, IEEE-P1363 raw r‖s) over `sha256(JCS(proof options)) ‖ sha256(JCS(credential without proof))` — RFC 8785 JCS canonicalization, a conformant W3C Data Integrity suite.
@@ -19,7 +19,7 @@ Credential proof. MUST be a conformant W3C `DataIntegrityProof` with `cryptosuit
 | `type` | string | yes | MUST be DataIntegrityProof. |
 | `cryptosuite` | string | yes | MUST be ecdsa-jcs-2019 (RFC 8785 JCS). |
 | `created` | string | no | — |
-| `proofPurpose` | string | no | e.g. |
+| `proofPurpose` | string | no | e.g. assertionMethod. |
 | `verificationMethod` | — | no | Either a key-identifier string or an embedded object carrying an x5c certificate chain. |
 | `proofValue` | string | yes | Multibase base58btc (z…) ecdsa-jcs-2019 signature. |
 

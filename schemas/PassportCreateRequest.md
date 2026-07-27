@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: PassportCreateRequest
-description: PassportCreateRequest
+description: "A passport to create: its product identifier and ESPR category metadata, with optional operator and facility binding, a draft flag, and enrichment held outside the sealed metadata."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PassportCreateRequest
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+A passport to create: its product identifier and ESPR category metadata, with optional operator and facility binding, a draft flag, and enrichment held outside the sealed metadata.
 
 ## Schema
 
@@ -25,6 +27,7 @@ generated:
 
 ```json
 {
+  "description": "A passport to create: its product identifier and ESPR category metadata, with optional operator and facility binding, a draft flag, and enrichment held outside the sealed metadata.",
   "type": "object",
   "required": [
     "productId",

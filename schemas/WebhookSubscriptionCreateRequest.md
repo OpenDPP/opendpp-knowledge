@@ -1,26 +1,29 @@
 ---
 type: Schema
 title: WebhookSubscriptionCreateRequest
-description: WebhookSubscriptionCreateRequest
+description: An endpoint to receive webhook deliveries, and the event types it subscribes to.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSubscriptionCreateRequest
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+An endpoint to receive webhook deliveries, and the event types it subscribes to.
 
 ## Schema
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `url` | string | yes | Absolute http(s) endpoint URL of your receiver (e.g. |
+| `url` | string | yes | Absolute http(s) endpoint URL of your receiver (e.g. a PLM/ERP integration endpoint). |
 | `events` | array<[WebhookEventFilter](/schemas/WebhookEventFilter.md)> | yes | Non-empty list of event filters. |
 
 ## JSON Schema
 
 ```json
 {
+  "description": "An endpoint to receive webhook deliveries, and the event types it subscribes to.",
   "type": "object",
   "required": [
     "url",

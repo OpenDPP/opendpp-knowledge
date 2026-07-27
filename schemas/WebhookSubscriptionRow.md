@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 A webhook subscription row with the HMAC signing `secret` stripped (it is shown exactly once, in the 201 create response).

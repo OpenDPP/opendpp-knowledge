@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: WebhookSecretRotateResponse
-description: WebhookSecretRotateResponse
+description: Confirmation that a subscription's HMAC signing secret was rotated; the new secret is returned once and cannot be retrieved again.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/WebhookSecretRotateResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Confirmation that a subscription's HMAC signing secret was rotated; the new secret is returned once and cannot be retrieved again.
 
 ## Schema
 
@@ -22,6 +24,7 @@ generated:
 
 ```json
 {
+  "description": "Confirmation that a subscription's HMAC signing secret was rotated; the new secret is returned once and cannot be retrieved again.",
   "type": "object",
   "required": [
     "success",

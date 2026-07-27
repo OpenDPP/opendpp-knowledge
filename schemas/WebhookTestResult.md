@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: WebhookTestResult
-description: WebhookTestResult
+description: The outcome of delivering a signed sample event to a subscription's endpoint right now.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/WebhookTestResult
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+The outcome of delivering a signed sample event to a subscription's endpoint right now.
 
 ## Schema
 
@@ -25,6 +27,7 @@ generated:
 
 ```json
 {
+  "description": "The outcome of delivering a signed sample event to a subscription's endpoint right now.",
   "type": "object",
   "required": [
     "success",

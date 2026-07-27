@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 One JSON-LD passport document as it appears in `GET /api/v1/passports` list responses. Same shape as `PublicPassportJsonLd` with list-specific divergences imposed by the route's declared response serialization: `economicOperator` never carries `role`; `manufacturingFacility` is always `null`; the `@context` term map (second array element) is emptied to `{}`; and `proof` is emptied to `{}` on sealed items (`null` on unsealed) — fetch the single passport for the verifiable proof block.

@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Resolve an individual serialised battery unit
-description: Resolve an individual serialised battery unit
+description: Public, content-negotiated view of one individual serialised unit (battery; Reg. (EU) 2023/1542 Art. 77(2)) by its unit UUID, including the embedded SKU/type passport (ofModel, masked by the same tier rules as GET /passport/{id}).
 resource: https://opendpp-node.eu/unit/{id}
 tags:
   - GET
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /unit/{id}`
@@ -38,15 +38,16 @@ Every resolution is access-audit-logged with an anonymized IP. **Rate limit:** 3
 - **200** — The unit document in the negotiated representation. → [PublicBatteryUnitJsonLd](/schemas/PublicBatteryUnitJsonLd.md)
 - **404** — No unit with that id (a malformed UUID also resolves to this 404). → [Error](/schemas/Error.md)
 - **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
-- **410** — Gone — the unit was RECYCLED (or ceasedAt is set): the battery passport has ceased to exist (Art. → [BatteryUnitTombstoneJsonLd](/schemas/BatteryUnitTombstoneJsonLd.md)
+- **410** — Gone — the unit was RECYCLED (or ceasedAt is set): the battery passport has ceased to exist (Art. 77(8)). → [BatteryUnitTombstoneJsonLd](/schemas/BatteryUnitTombstoneJsonLd.md)
 - **429** — Public-resolution rate limit exceeded (30 requests/min per IP; no rate-limit headers). → [Error](/schemas/Error.md)
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example
 
 ```bash
+# The Authorization header is optional for the public tier.
 curl -s \
-  -H 'Authorization: Bearer op_dpp_token_…' \  # optional for the public tier
+  -H 'Authorization: Bearer op_dpp_token_…' \
   -X GET 'https://opendpp-node.eu/unit/{id}'
 ```
 

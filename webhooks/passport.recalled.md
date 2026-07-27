@@ -8,7 +8,7 @@ tags:
   - event
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 Sent when `PUT /api/v1/passports/{id}/status` transitions a passport to `RECALLED`, transactionally with the status write. The payload is the public JSON-LD passport with `status: "RECALLED"` (seal/proof fields reflect whatever state the passport was in when recalled). Delivered to every active subscription whose filter contains `passport.recalled` or `*`.

@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: OperatorGetResponse
-description: OperatorGetResponse
+description: A single economic operator record.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/OperatorGetResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+A single economic operator record.
 
 ## Schema
 
@@ -21,6 +23,7 @@ generated:
 
 ```json
 {
+  "description": "A single economic operator record.",
   "type": "object",
   "required": [
     "success",

@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: GS1 Digital Link resolution by GTIN-14 (AI 01)
-description: GS1 Digital Link resolution by GTIN-14 (AI 01)
+description: Unified GS1 Digital Link gateway, GTIN branch.
 resource: https://opendpp-node.eu/01/{gtin14}
 tags:
   - GET
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /01/{gtin14}`
@@ -43,8 +43,9 @@ The gateway also accepts additional GS1 AI key/value path pairs after the GTIN; 
 ## Example
 
 ```bash
+# The Authorization header is optional for the public tier.
 curl -s \
-  -H 'Authorization: Bearer op_dpp_token_…' \  # optional for the public tier
+  -H 'Authorization: Bearer op_dpp_token_…' \
   -X GET 'https://opendpp-node.eu/01/{gtin14}'
 ```
 

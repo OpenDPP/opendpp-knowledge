@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: W3C JSON-LD context document for passport terms (secondary, fixed term list)
-description: W3C JSON-LD context document for passport terms (secondary, fixed term list)
+description: "Serves a static W3C JSON-LD @context document (application/ld+json) for the core Digital Product Passport term vocabulary: maps the DPP terms to https://opendpp-node.eu/ns/dpp#… IRIs and createdAt/updatedAt to schema.org dateCreated/dateMo…"
 resource: https://opendpp-node.eu/context/v1
 tags:
   - GET
   - schemas-vocabulary
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /context/v1`
@@ -23,7 +23,7 @@ No authentication, no permission (public endpoint). No custom rate limiter — o
 ## Responses
 
 - **200** — The JSON-LD context document (fixed content). → [DppJsonLdContextDocument](/schemas/DppJsonLdContextDocument.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 
 ## Example
 

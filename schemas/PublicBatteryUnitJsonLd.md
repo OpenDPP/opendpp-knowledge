@@ -1,13 +1,13 @@
 ---
 type: Schema
 title: PublicBatteryUnitJsonLd
-description: Public JSON-LD document for one individual serialised battery unit (Reg.
+description: Public JSON-LD document for one individual serialised battery unit (Reg. (EU) 2023/1542 Art. 77(2)).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/PublicBatteryUnitJsonLd
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 Public JSON-LD document for one individual serialised battery unit (Reg. (EU) 2023/1542 Art. 77(2)). The listed required keys are always present. EXACTLY ONE of two tier-dependent groups is added: anonymous (public) responses carry `restrictedData` (Annex XIII(2)-(4) notice) and OMIT `currentState`/`dynamicData` entirely; owner/grant (privileged) responses carry `currentState` (latest measurement or `null`) and `dynamicData` (up to 500 events, newest first) and omit `restrictedData`. The embedded `ofModel` passport is masked by the caller's tier like `GET /passport/{id}`.
@@ -24,7 +24,7 @@ Public JSON-LD document for one individual serialised battery unit (Reg. (EU) 20
 | `digitalLinkUri` | string | yes | — |
 | `status` | string | yes | Annex XIII battery-status vocabulary. |
 | `manufacturedAt` | string,null | yes | — |
-| `repurposedFrom` | — | yes | Art. |
+| `repurposedFrom` | — | yes | Art. 77(7) lineage: the original unit this repurposed/remanufactured battery came from. |
 | `successorUnits` | array<[BatteryUnitLineageRef](/schemas/BatteryUnitLineageRef.md)> | yes | Units re-placed on the market under a new passport derived from this one (empty array when none). |
 | `ofModel` | [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md) | yes | The SKU/type-level passport this physical unit is an instance of, masked by the caller's tier. |
 | `restrictedData` | [BatteryUnitRestrictedDataNotice](/schemas/BatteryUnitRestrictedDataNotice.md) | no | Present ONLY in anonymous (public-tier) responses. |

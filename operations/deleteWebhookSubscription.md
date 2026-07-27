@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Delete a webhook subscription
-description: Delete a webhook subscription
+description: Deletes a webhook subscription, stopping future deliveries to its endpoint.
 resource: https://opendpp-node.eu/api/v1/webhooks/subscriptions/{id}
 tags:
   - DELETE
   - webhooks
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `DELETE /api/v1/webhooks/subscriptions/{id}`
@@ -35,7 +35,7 @@ The lookup is tenant-scoped: an `id` that exists but belongs to another workspac
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

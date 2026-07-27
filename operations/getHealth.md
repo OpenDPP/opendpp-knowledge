@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Service health check
-description: Service health check
+description: Liveness probe.
 resource: https://opendpp-node.eu/health
 tags:
   - GET
   - service
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /health`
@@ -21,7 +21,7 @@ Liveness probe. Always returns 200 with the service identity, the current server
 ## Responses
 
 - **200** — Service is up. → [HealthStatus](/schemas/HealthStatus.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 
 ## Example
 

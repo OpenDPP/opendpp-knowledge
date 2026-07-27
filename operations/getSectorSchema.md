@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Get the ESPR metadata schema for a product category
-description: Get the ESPR metadata schema for a product category
+description: Returns the machine-readable ESPR metadata schema for a product category.
 resource: https://opendpp-node.eu/api/v1/schemas/{category}
 tags:
   - GET
   - schemas-vocabulary
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `GET /api/v1/schemas/{category}`
@@ -34,7 +34,7 @@ No authentication, no permission (public endpoint). No custom rate limiter — o
 
 - **200** — The category schema (default) or its JSON-LD vocabulary context (Accept: application/ld+json). → [SectorJsonSchemaDocument](/schemas/SectorJsonSchemaDocument.md), [SectorVocabularyContext](/schemas/SectorVocabularyContext.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 
 ## Example
 

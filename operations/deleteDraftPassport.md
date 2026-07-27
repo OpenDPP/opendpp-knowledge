@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Permanently delete a DRAFT passport
-description: Permanently delete a DRAFT passport
+description: Hard-deletes a passport only while it is a DRAFT (never published, not publicly resolvable, no retention duty).
 resource: https://opendpp-node.eu/api/v1/passports/{id}
 tags:
   - DELETE
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 `DELETE /api/v1/passports/{id}`
@@ -24,7 +24,7 @@ Published passports (ACTIVE/RECALLED/DECOMMISSIONED) are refused with **409** �
 
 **Lookup:** by passport **UUID only** (no `productId` aliasing) and only within the passport's **owning tenant** — an operator-binding alone is not sufficient, unlike PUT.
 
-**Rate limits:** global limiter, 100 req/min/IP.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 
@@ -40,7 +40,7 @@ Published passports (ACTIVE/RECALLED/DECOMMISSIONED) are refused with **409** �
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
 - **409** — The passport is not a DRAFT — published passports cannot be hard-deleted. → [Error](/schemas/Error.md)
-- **429** — Global rate limit exceeded (100 requests/min per IP).
+- **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected failure. → [Error](/schemas/Error.md)
 
 ## Example

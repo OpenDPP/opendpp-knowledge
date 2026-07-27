@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 402 body for a write blocked by billing. Always carries `error` + `message`. A block caused by the subscription tier's published-passport CAP additionally sets `code: "passport_quota_exceeded"` plus `quota` and `upgradeUrl`. A programmatic (API-key) write on a tier without API access sets `code: "api_access_required"` plus `upgradeUrl` instead. Clients distinguish each from a lapsed-subscription 402 (no `code`) and can prompt an upgrade.

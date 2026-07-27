@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: BatteryUnitDeleteResponse
-description: BatteryUnitDeleteResponse
+description: Confirmation that a battery unit was deleted.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitDeleteResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Confirmation that a battery unit was deleted.
 
 ## Schema
 
@@ -21,6 +23,7 @@ generated:
 
 ```json
 {
+  "description": "Confirmation that a battery unit was deleted.",
   "type": "object",
   "properties": {
     "success": {

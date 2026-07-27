@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 One entry of the platform-curated material vocabulary. Entries are unique per (`kind`, `name`).
@@ -17,7 +17,7 @@ One entry of the platform-curated material vocabulary. Entries are unique per (`
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
 | `id` | string | yes | — |
-| `name` | string | yes | Canonical display name, e.g. |
+| `name` | string | yes | Canonical display name, e.g. "Organic Cotton" or "Lithium Iron Phosphate (LFP)". |
 | `kind` | string | yes | Vocabulary kind. |
 | `casNumber` | string,null | yes | Optional CAS registry number (chemicals/substances); null when not applicable. |
 | `description` | string,null | yes | Optional short note shown in the picker; null when unset. |

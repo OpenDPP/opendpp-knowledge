@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
 
 Present only for x5c-carrying proofs on a `verified: true` outcome whose chain is TRUSTED — `chainValid` AND `keyMatchesProof` both true (the two policy `verified: false` responses AND any untrusted-chain outcome omit it): the certified legal identity of the seal creator (eIDAS Art. 36(1)(b)). An untrusted chain is never surfaced, so an emitted report always has `chainValid: true`.
@@ -16,9 +16,9 @@ Present only for x5c-carrying proofs on a `verified: true` outcome whose chain i
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `subject` | string | no | Leaf-certificate subject (multi-line RDN string as produced by Node's X509Certificate, e.g. |
+| `subject` | string | no | Leaf-certificate subject (multi-line RDN string as produced by Node's X509Certificate, e.g. CN=OpenDPP Demo Eco Industries Seal). |
 | `issuer` | string | no | Leaf-certificate issuer RDN string. |
-| `validFrom` | string | no | X.509 textual date, e.g. |
+| `validFrom` | string | no | X.509 textual date, e.g. Jan 10 00:00:00 2026 GMT — NOT ISO 8601. |
 | `validTo` | string | no | X.509 textual date — NOT ISO 8601. |
 | `chainValid` | boolean | yes | True only when every chain link signature-verifies, every certificate is within its validity window, AND the top of the chain is anchored to this node's seal C… |
 | `keyMatchesProof` | boolean | no | True when the leaf SPKI equals the supplied publicKey (whitespace-insensitive), or when no explicit public key was supplied (the leaf key was used). |

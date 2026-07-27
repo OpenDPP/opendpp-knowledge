@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: TraceComplianceAuditResponse
-description: TraceComplianceAuditResponse
+description: "The verdict of auditing a traceability lineage: whether it is compliant, any errors found, and the resulting certificate."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/TraceComplianceAuditResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+The verdict of auditing a traceability lineage: whether it is compliant, any errors found, and the resulting certificate.
 
 ## Schema
 
@@ -17,7 +19,7 @@ generated:
 | `success` | boolean | yes | — |
 | `eventId` | string | yes | Echo of the audited root event id. |
 | `compliant` | boolean | yes | — |
-| `errors` | array<string> | yes | Human-readable violation strings, e.g. |
+| `errors` | array<string> | yes | Human-readable violation strings, e.g. UFLPA Compliance Failure: Event [<uuid>] contains raw materials originating from prohibited Xinjiang region (<location>). |
 | `auditedAt` | string | yes | — |
 | `certificate` | — | yes | Present only when compliant is true; null otherwise. |
 
@@ -25,6 +27,7 @@ generated:
 
 ```json
 {
+  "description": "The verdict of auditing a traceability lineage: whether it is compliant, any errors found, and the resulting certificate.",
   "type": "object",
   "required": [
     "success",

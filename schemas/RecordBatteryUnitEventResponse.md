@@ -1,14 +1,16 @@
 ---
 type: Schema
 title: RecordBatteryUnitEventResponse
-description: RecordBatteryUnitEventResponse
+description: Confirmation that a dynamic-data record was appended to a battery unit, echoing the stored event.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/RecordBatteryUnitEventResponse
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-26T00:00:00Z
+  at: 2026-07-27T00:00:00Z
 ---
+
+Confirmation that a dynamic-data record was appended to a battery unit, echoing the stored event.
 
 ## Schema
 
@@ -22,6 +24,7 @@ generated:
 
 ```json
 {
+  "description": "Confirmation that a dynamic-data record was appended to a battery unit, echoing the stored event.",
   "type": "object",
   "properties": {
     "success": {
