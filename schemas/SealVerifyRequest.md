@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 Verification request. Only `payload` is strictly required: `signature` and `publicKey` are extracted from `payload.proof` (proofValue/signatureValue, publicKeyPem, or the x5c leaf SPKI) when omitted, and the request fails 400 only if either is still missing after extraction.

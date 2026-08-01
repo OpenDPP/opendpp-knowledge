@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 The verdict of auditing a traceability lineage: whether it is compliant, any errors found, and the resulting certificate.

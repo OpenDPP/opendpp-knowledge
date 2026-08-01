@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 201 envelope of POST /api/v1/events. Note: `status: "success"` (string), not the usual `success: true` boolean.

@@ -8,7 +8,7 @@ tags:
   - webhooks
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 `POST /api/v1/webhooks/subscriptions`

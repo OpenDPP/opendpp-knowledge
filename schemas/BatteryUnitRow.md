@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 One physical serialised battery (raw persisted row — these routes declare no Fastify response schema, so all model fields are returned as-is). A `BatteryUnit` is an individual instance of a SKU/type-level passport, carrying its real serial in GS1 AI-21.

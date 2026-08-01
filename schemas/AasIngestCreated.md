@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 201 envelope of `POST /api/v1/passports/aas/ingest`. Returned for both newly created passports and in-place updates of existing UNSEALED passports. No webhook event is emitted by this endpoint. `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness (#247) and `warnings` carries the non-GS1 advisory (#249), for parity with `POST /api/v1/passports`.

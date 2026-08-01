@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 200 envelope of POST /api/v1/passports/{id}/seal. `digitalSeal` is duplicated inside `passport.digitalSeal` and `passport.proof.signatureValue`. The passport document is serialized at the PUBLIC redaction tier; masked keys keep their true leaf hashes in `proof.redactedLeaves`. Note: despite the message wording, this endpoint does not change the passport's `status`.

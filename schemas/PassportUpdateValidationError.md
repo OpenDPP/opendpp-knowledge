@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 400 ESPR validation failure body of PUT /api/v1/passports/{id}. DIVERGENCE from POST /api/v1/passports: there is never a `warnings` array on this route.

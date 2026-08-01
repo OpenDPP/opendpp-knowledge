@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 One unit to serialise. Validation is per-item: an invalid item is skipped (its error string collected) without failing the rest of the batch.

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 Envelope of GET /api/v1/passports. The response is serialized against a declared response schema: top-level keys other than these four are stripped. There is NO total count.

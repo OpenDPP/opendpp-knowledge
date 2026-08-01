@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-27T00:00:00Z
+  at: 2026-07-28T00:00:00Z
 ---
 
 Either a single unit object, or a batch wrapper `{units: [...]}`. Precedence: when `units` is present **and is an array** it is used; otherwise the whole body is treated as one unit. (`anyOf`, not `oneOf`: a body carrying both a top-level `serialNumber` and a `units` array matches both shapes and is accepted by the server — `units` wins.)
