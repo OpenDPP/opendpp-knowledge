@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 201 envelope of POST /api/v1/events. Note: `status: "success"` (string), not the usual `success: true` boolean.
@@ -38,7 +38,7 @@ generated:
     },
     "eventId": {
       "type": "string",
-      "description": "Server-generated event id. Use it with `GET /api/v1/events/{id}/lineage` and `POST /api/v1/events/{id}/audit`."
+      "description": "Server-generated event id. Use it with `GET /api/v1/events/{id}/lineage`."
     },
     "untpVerified": {
       "type": "boolean",

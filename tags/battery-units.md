@@ -8,17 +8,18 @@ tags:
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Per-unit battery serialization (real serials, GS1 AI 21) under a SKU-level passport, plus append-only telemetry events (state of health, charge cycles, status changes) per the EU Battery Regulation.
 
 ## Operations
 
-- [validateBatteryUnits](/operations/validateBatteryUnits.md) — `POST /api/v1/passports/{passportId}/units/validate` — Pre-flight: validate battery-unit identifiers without persisting (#263)
+- [validateBatteryUnits](/operations/validateBatteryUnits.md) — `POST /api/v1/passports/{passportId}/units/validate` — Pre-flight: validate battery-unit identifiers without persisting
 - [listBatteryUnits](/operations/listBatteryUnits.md) — `GET /api/v1/passports/{passportId}/units` — List serialised battery units under a passport
 - [serializeBatteryUnits](/operations/serializeBatteryUnits.md) — `POST /api/v1/passports/{passportId}/units` — Serialise individual battery units under a passport (bulk, up to 200)
 - [getBatteryUnit](/operations/getBatteryUnit.md) — `GET /api/v1/units/{id}` — Get one battery unit as JSON-LD with its dynamic-data history
-- [deleteBatteryUnit](/operations/deleteBatteryUnit.md) — `DELETE /api/v1/units/{id}` — Permanently delete a battery unit and its telemetry
-- [listBatteryUnitEvents](/operations/listBatteryUnitEvents.md) — `GET /api/v1/units/{id}/events` — List a battery unit's telemetry history (newest first, max 500)
+- [deleteBatteryUnit](/operations/deleteBatteryUnit.md) — `DELETE /api/v1/units/{id}` — Not deletable: a serialised unit is a marketed physical item (always 409)
+- [listBatteryUnitEvents](/operations/listBatteryUnitEvents.md) — `GET /api/v1/units/{id}/events` — List a battery unit's telemetry history (newest first, cursor-paginated)
 - [recordBatteryUnitEvent](/operations/recordBatteryUnitEvent.md) — `POST /api/v1/units/{id}/events` — Append an immutable telemetry event to a battery unit
+- [bulkRecordBatteryUnitEvents](/operations/bulkRecordBatteryUnitEvents.md) — `POST /api/v1/units/{id}/events/bulk` — Append a batch of telemetry events to a battery unit

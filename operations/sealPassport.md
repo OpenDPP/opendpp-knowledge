@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
-title: Apply the tenant's eIDAS advanced electronic seal
-description: Signs the passport's Merkle root (SHA-256 tree over the key-sorted top-level metadata entries) with the tenant's vault-held ECDSA P-256 (prime256v1) private key, producing an eIDAS advanced electronic seal (this is a local cryptographic se…
+title: Apply the tenant's advanced electronic seal
+description: Signs the passport's Merkle root (SHA-256 tree over the key-sorted top-level metadata entries) with the tenant's vault-held ECDSA P-256 (prime256v1) private key, producing an advanced electronic seal (this is a local cryptographic seal — N…
 resource: https://opendpp-node.eu/api/v1/passports/{id}/seal
 tags:
   - POST
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `POST /api/v1/passports/{id}/seal`
@@ -16,7 +16,7 @@ generated:
 **Domain:** [Passports](/tags/passports.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Signs the passport's Merkle root (SHA-256 tree over the key-sorted top-level `metadata` entries) with the tenant's vault-held **ECDSA P-256 (prime256v1)** private key, producing an eIDAS **advanced** electronic seal (this is a local cryptographic seal — NOT a Commission/EU-registry registration, and NOT a qualified seal). The base64 signature is stored as `digitalSeal` together with the signing public key (PEM), the X.509 chain binding the key to the tenant's legal identity (surfaced as `proof.x5c`, leaf first, base64 DER), and — **best-effort, opt-in** — an RFC 3161 trusted timestamp over SHA-256(merkleRoot) (`proof.rfc3161`; a TSA outage or missing configuration never blocks sealing, the field is simply absent).
+Signs the passport's Merkle root (SHA-256 tree over the key-sorted top-level `metadata` entries) with the tenant's vault-held **ECDSA P-256 (prime256v1)** private key, producing an **advanced** electronic seal (this is a local cryptographic seal — NOT a Commission/EU-registry registration, and NOT a qualified seal). The base64 signature is stored as `digitalSeal` together with the signing public key (PEM), the X.509 chain binding the key to the tenant's legal identity (surfaced as `proof.x5c`, leaf first, base64 DER), and — **best-effort, opt-in** — an RFC 3161 trusted timestamp over SHA-256(merkleRoot) (`proof.rfc3161`; a TSA outage or missing configuration never blocks sealing, the field is simply absent).
 
 A `passport.sealed` webhook is enqueued transactionally with the update (payload: the public-redacted JSON-LD document including the full `proof` block).
 
@@ -28,10 +28,10 @@ A `passport.sealed` webhook is enqueued transactionally with the update (payload
 - The route does **not** modify the passport's `status` — despite the success message's "and published" wording, a DRAFT stays a DRAFT after sealing. Publish via `PUT /api/v1/passports/{id}` (validated save) instead.
 - Re-sealing an already-sealed passport is allowed and **overwrites** the previous seal/timestamp.
 - Once sealed, in-place metadata edits are refused (403 on `PUT /api/v1/passports/{id}`).
-- Requires the tenant's eIDAS key pair to exist — otherwise 400.
+- Requires the tenant's signing key pair to exist — otherwise 400.
 - The returned `passport` document is serialized at the **public** redaction tier (masked keys keep their true leaf hashes in `proof.redactedLeaves`, so the seal stays offline-verifiable after redaction).
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 
@@ -42,7 +42,7 @@ A `passport.sealed` webhook is enqueued transactionally with the update (payload
 ## Responses
 
 - **200** — Passport sealed. → [PassportSealResponse](/schemas/PassportSealResponse.md)
-- **400** — Missing identifier, or the tenant has no eIDAS key pair configured. → [Error](/schemas/Error.md)
+- **400** — Missing identifier, or the tenant has no signing key pair configured. → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)

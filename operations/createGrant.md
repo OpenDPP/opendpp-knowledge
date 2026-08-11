@@ -8,7 +8,7 @@ tags:
   - access-grants
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `POST /api/v1/grants`
@@ -18,7 +18,7 @@ generated:
 
 Directly issues an `ACTIVE` legitimate-interest access grant (no pending request involved) and mints its capability token. The raw token (`dpp_li_` + 32 hex characters) is returned **once** in this response; only its SHA-256 hash is stored. The grantee presents it to the public resolution endpoints as `Authorization: Bearer dpp_li_…` or `?grant=dpp_li_…` to unlock the restricted (tier-2 / per-unit) data of the granted scope.
 
-**Permission:** `grant:write` (write operations are subject to subscription gating, so 402 is possible). Cookie-session clients must send the `X-CSRF-Token` header; Bearer clients are exempt. On workspaces that enforce multi-factor authentication, user sessions that did not authenticate with a second factor receive 403 on writes (API-key clients are exempt). **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Permission:** `grant:write` (write operations are subject to subscription gating, so 402 is possible). Cookie-session clients must send the `X-CSRF-Token` header; Bearer clients are exempt. On workspaces that enforce multi-factor authentication, user sessions that did not authenticate with a second factor receive 403 on writes (API-key clients are exempt). **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 Scope semantics:
 - `UNIT` — `batteryUnitId` is required; the unit must belong to this workspace. The unit's parent `passportId` is recorded on the grant.
@@ -36,7 +36,7 @@ Schema (required): [CreateGrantRequest](/schemas/CreateGrantRequest.md).
 ```json
 {
   "granteeName": "Dr. Elena Varga",
-  "granteeEmail": "e.varga@inspection-example.eu",
+  "granteeEmail": "e.varga@inspection.example",
   "organization": "EU Battery Inspection Services",
   "purpose": "State-of-health verification for second-life suitability assessment under Art. 77(9).",
   "scopeType": "UNIT",
@@ -63,7 +63,7 @@ curl -s \
   -H 'Authorization: Bearer op_dpp_token_…' \
   -H 'Content-Type: application/json' \
   -X POST 'https://opendpp-node.eu/api/v1/grants' \
-  --data '{"granteeName":"Dr. Elena Varga","granteeEmail":"e.varga@inspection-example.eu","organization":"EU Battery Inspection Services","purpose":"State-of-health verification for second-life suitability assessment under Art. 77(9).","scopeType":"UNIT","batteryUnitId":"7c3a91d5-2e4f-4b6a-8c0d-1e2f3a4b5c6d","expiresAt":"2026-09-12T09:41:00.000Z"}'
+  --data '{"granteeName":"Dr. Elena Varga","granteeEmail":"e.varga@inspection.example","organization":"EU Battery Inspection Services","purpose":"State-of-health verification for second-life suitability assessment under Art. 77(9).","scopeType":"UNIT","batteryUnitId":"7c3a91d5-2e4f-4b6a-8c0d-1e2f3a4b5c6d","expiresAt":"2026-09-12T09:41:00.000Z"}'
 ```
 
 ## See also

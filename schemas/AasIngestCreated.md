@@ -7,10 +7,10 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-201 envelope of `POST /api/v1/passports/aas/ingest`. Returned for both newly created passports and in-place updates of existing UNSEALED passports. No webhook event is emitted by this endpoint. `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness (#247) and `warnings` carries the non-GS1 advisory (#249), for parity with `POST /api/v1/passports`.
+201 envelope of `POST /api/v1/passports/aas/ingest`. Returned for both newly created passports and in-place updates of existing UNSEALED passports. No webhook event is emitted by this endpoint. `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness and `warnings` carries the non-GS1 advisory, for parity with `POST /api/v1/passports`.
 
 ## Schema
 
@@ -21,10 +21,10 @@ generated:
 | `passportId` | string | yes | — |
 | `productId` | string | yes | — |
 | `isSealed` | boolean | yes | True when the environment embedded an eidasVerificationSeal submodel (the seal is then stored on the passport). |
-| `signatureVerified` | boolean | yes | True when the embedded seal verified against the tenant's server-held eIDAS public key. |
-| `vcReady` | boolean | yes | #247: whether the ingested passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked. |
+| `signatureVerified` | boolean | yes | True when the embedded seal verified against the tenant's server-held signing public key. |
+| `vcReady` | boolean | yes | Whether the ingested passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked. |
 | `vcReadyReason` | string,null | no | Null when vcReady is true; otherwise a short, actionable reason (link a facility with a country of production). |
-| `warnings` | array<[ValidationErrorItem](/schemas/ValidationErrorItem.md)> | yes | #249: non-blocking advisories. |
+| `warnings` | array<[ValidationErrorItem](/schemas/ValidationErrorItem.md)> | yes | Non-blocking advisories. |
 
 ## JSON Schema
 
@@ -41,7 +41,7 @@ generated:
     "vcReady",
     "warnings"
   ],
-  "description": "201 envelope of `POST /api/v1/passports/aas/ingest`. Returned for both newly created passports and in-place updates of existing UNSEALED passports. No webhook event is emitted by this endpoint. `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness (#247) and `warnings` carries the non-GS1 advisory (#249), for parity with `POST /api/v1/passports`.",
+  "description": "201 envelope of `POST /api/v1/passports/aas/ingest`. Returned for both newly created passports and in-place updates of existing UNSEALED passports. No webhook event is emitted by this endpoint. `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness and `warnings` carries the non-GS1 advisory, for parity with `POST /api/v1/passports`.",
   "properties": {
     "success": {
       "type": "boolean",
@@ -63,11 +63,11 @@ generated:
     },
     "signatureVerified": {
       "type": "boolean",
-      "description": "True when the embedded seal verified against the tenant's server-held eIDAS public key. Always false for unsealed documents. (A sealed-but-unverified document never reaches 201 — it fails 400.)"
+      "description": "True when the embedded seal verified against the tenant's server-held signing public key. Always false for unsealed documents. (A sealed-but-unverified document never reaches 201 — it fails 400.)"
     },
     "vcReady": {
       "type": "boolean",
-      "description": "#247: whether the ingested passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked. AAS ingestion does not set a facility, so a newly created passport is false; an in-place update preserves whatever facility the existing passport had."
+      "description": "Whether the ingested passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked. AAS ingestion does not set a facility, so a newly created passport is false; an in-place update preserves whatever facility the existing passport had."
     },
     "vcReadyReason": {
       "type": [
@@ -81,7 +81,7 @@ generated:
       "items": {
         "$ref": "#/components/schemas/ValidationErrorItem"
       },
-      "description": "#249: non-blocking advisories. Always present (empty array when none); carries the non-GS1 advisory when the resolved `productId` is not a GS1 GTIN-14/GRAI."
+      "description": "Non-blocking advisories. Always present (empty array when none); carries the non-GS1 advisory when the resolved `productId` is not a GS1 GTIN-14/GRAI."
     }
   }
 }

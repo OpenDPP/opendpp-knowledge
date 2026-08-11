@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Error body used by the grants endpoints' route-level errors (400/403/404/409). Unlike the standard error envelope, it has NO `success` field.

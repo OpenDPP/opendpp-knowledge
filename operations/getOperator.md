@@ -8,7 +8,7 @@ tags:
   - economic-operators
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `GET /api/v1/operators/{id}`
@@ -20,7 +20,7 @@ Fetches one economic operator by UUID, scoped to your workspace (`404` if no ope
 
 **Permission:** `operator:read`. An **operator-scoped API key** may only fetch its own operator (`403` otherwise).
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 One JSON-LD passport document as it appears in `GET /api/v1/passports` list responses. Same shape as `PublicPassportJsonLd` with list-specific divergences imposed by the route's declared response serialization: `economicOperator` never carries `role`; `manufacturingFacility` is always `null`; the `@context` term map (second array element) is emptied to `{}`; and `proof` is emptied to `{}` on sealed items (`null` on unsealed) — fetch the single passport for the verifiable proof block.
@@ -21,8 +21,8 @@ One JSON-LD passport document as it appears in `GET /api/v1/passports` list resp
 | `@id` | string | yes | The passport's canonical GS1 Digital Link URI (same value as digitalLinkUri). |
 | `id` | string | yes | Server-assigned passport UUID. |
 | `productId` | string | yes | Caller-supplied product identifier: a GTIN-14 (^[0-9]{14}$ with valid GS1 modulo-10 check digit), a GRAI (^[0-9]{14}[A-Za-z0-9]{0,16}$), or a free-form SKU. |
-| `digitalLinkUri` | string | yes | SKU/type-level GS1 Digital Link URI: {BASE_URL}/{01|8003}/{productId} (AI-21 carries the passport UUID at SKU level; individual units carry their physical seri… |
-| `digitalSeal` | string,null | yes | eIDAS ADVANCED electronic seal: base64 ECDSA prime256v1 (P-256) signature over the Merkle root of the key-sorted metadata. |
+| `digitalLinkUri` | string | yes | SKU/type-level GS1 Digital Link URI: {origin}/{01|8003}/{productId} (AI-21 carries the passport UUID at SKU level; individual units carry their physical serial… |
+| `digitalSeal` | string,null | yes | ADVANCED electronic seal: base64 ECDSA prime256v1 (P-256) signature over the Merkle root of the key-sorted metadata. |
 | `signingPublicKey` | string,null | yes | PEM public key that verifies digitalSeal. |
 | `status` | string | yes | Passport lifecycle status (serialized as ACTIVE when unset). |
 | `archivedAt` | string,null | yes | Soft-delete marker (owner off-boarded / decommissioned). |
@@ -100,14 +100,14 @@ One JSON-LD passport document as it appears in `GET /api/v1/passports` list resp
     "digitalLinkUri": {
       "type": "string",
       "format": "uri",
-      "description": "SKU/type-level GS1 Digital Link URI: `{BASE_URL}/{01|8003}/{productId}` (AI-21 carries the passport UUID at SKU level; individual units carry their physical serial instead)."
+      "description": "SKU/type-level GS1 Digital Link URI: `{origin}/{01|8003}/{productId}` (AI-21 carries the passport UUID at SKU level; individual units carry their physical serial instead)."
     },
     "digitalSeal": {
       "type": [
         "string",
         "null"
       ],
-      "description": "eIDAS ADVANCED electronic seal: base64 ECDSA prime256v1 (P-256) signature over the Merkle root of the key-sorted metadata. `null` when the passport has not been sealed."
+      "description": "ADVANCED electronic seal: base64 ECDSA prime256v1 (P-256) signature over the Merkle root of the key-sorted metadata. `null` when the passport has not been sealed."
     },
     "signingPublicKey": {
       "type": [

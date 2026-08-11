@@ -8,7 +8,7 @@ tags:
   - verifiable-credentials
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `GET /tenants/{tenantId}/did.json`
@@ -16,7 +16,7 @@ generated:
 **Domain:** [Verifiable Credentials](/tags/verifiable-credentials.md)  
 **Authentication:** **Public** — no authentication required.
 
-Resolves the issuing workspace's `did:web` DID document (`application/did+json`). The DID is `did:web:opendpp-node.eu:tenants:{tenantId}`, which per the did:web method dereferences here. The document exposes **only public key material** — the workspace's eIDAS public key(s) as `JsonWebKey2020` verification methods, each with a stable `#key-<index>` id matching the `kid` of the credentials it signs.
+Resolves the issuing workspace's `did:web` DID document (`application/did+json`). The DID is `did:web:opendpp-node.eu:tenants:{tenantId}`, which per the did:web method dereferences here. The document exposes **only public key material** — the workspace's signing public key(s) as `JsonWebKey2020` verification methods, each with a stable `#key-<index>` id matching the `kid` of the credentials it signs.
 
 Use it to verify any OpenDPP-issued Verifiable Credential (`Accept: application/vc+jwt`, `application/vc+ld+json`, or `application/dc+sd-jwt` on the public resolution endpoints) without out-of-band key exchange. Both current and retired keys are published and listed in `assertionMethod`/`authentication`, so credentials issued before a key rotation still verify; new credentials always use the current key. The optional `name` is the issuer's authoritative legal name (the same value used in every credential's `issuer.name`).
 

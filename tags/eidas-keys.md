@@ -8,12 +8,12 @@ tags:
   - eidas-keys
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Tenant signing-key management. Keys are generated and held server-side in an encrypted vault; private key material is never returned by any endpoint.
 
 ## Operations
 
-- [rotateTenantKeys](/operations/rotateTenantKeys.md) — `POST /api/v1/tenants/rotate-keys` — Rotate the tenant's eIDAS ECDSA signing key pair
+- [rotateTenantKeys](/operations/rotateTenantKeys.md) — `POST /api/v1/tenants/rotate-keys` — Rotate the tenant's ECDSA signing key pair
 - [getSealCaCertificate](/operations/getSealCaCertificate.md) — `GET /.well-known/opendpp-seal-ca.pem` — Download the platform seal-CA certificate (PEM)

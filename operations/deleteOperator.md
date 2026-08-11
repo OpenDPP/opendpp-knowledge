@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Remove an operator (archives if it has passports, else hard-deletes)
-description: "Removes an operator, choosing automatically between two outcomes (ESPR Art. 9(2)/77 passport-persistence compliance — an operator that still has passports must never be hard-deleted):"
+description: "Removes an operator, choosing automatically between two outcomes (ESPR passport-persistence compliance — an operator that still has passports must never be hard-deleted):"
 resource: https://opendpp-node.eu/api/v1/operators/{id}
 tags:
   - DELETE
   - economic-operators
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `DELETE /api/v1/operators/{id}`
@@ -16,7 +16,7 @@ generated:
 **Domain:** [Economic Operators](/tags/economic-operators.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Removes an operator, choosing automatically between two outcomes (ESPR Art. 9(2)/77 passport-persistence compliance — an operator that still has passports must never be hard-deleted):
+Removes an operator, choosing automatically between two outcomes (ESPR passport-persistence compliance — an operator that still has passports must never be hard-deleted):
 
 - **Archive (soft delete)** — if the operator has one or more passports, it is archived instead of deleted: `archivedAt` is set on the operator and every active passport of the operator is archived with a `retentionUntil` deadline set to a platform-configured retention period from now (default 15 years). Archived passports remain **publicly resolvable** (the persistence duty) but are excluded from active management lists. Response: `{success: true, archived: true, archivedPassports: <n>}`. Fully reversible via `POST /api/v1/operators/{id}/restore`.
 - **Hard delete** — if the operator has no passports it is permanently deleted (tenant bindings cascade-delete; user/facility/API-key references are set to null). Response: `{success: true, archived: false}` — no `archivedPassports` field.
@@ -28,7 +28,7 @@ Removes an operator, choosing automatically between two outcomes (ESPR Art. 9(2)
 
 Side effects: an `operator.archived` or `operator.deleted` audit event plus an in-app notification — on the primary archive and hard-delete paths only; the foreign-key fallback archive writes **no** audit event or notification. Unhandled database errors are normalized by the global error handler to the standard `{success: false, error, message}` envelope with a generic message (details are logged server-side).
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 

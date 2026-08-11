@@ -10,12 +10,12 @@ tags:
   - EU Battery Regulation
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 OpenDPP is a B2B platform for **EU Digital Product Passports (DPPs)**, aligned with the data
-requirements of the ESPR (Regulation (EU) 2024/1781) and the EU Battery Regulation
-(Regulation (EU) 2023/1542). This knowledge bundle is a machine-readable projection of the **public
+requirements of the ESPR and the EU Battery Regulation.
+This knowledge bundle is a machine-readable projection of the **public
 integration surface**: everything an external system needs to create, validate, seal, publish,
 resolve and verify passports. It is generated from the same OpenAPI 3.1 document served at
 [`/openapi.json`](https://opendpp-node.eu/openapi.json); the human-readable reference is at
@@ -26,7 +26,7 @@ resolve and verify passports. It is generated from the same OpenAPI 3.1 document
 - **Create & validate** SKU/type-level passports against ESPR category rules — see
   [createPassport](/operations/createPassport.md) and the dry-run
   [validatePassport](/operations/validatePassport.md).
-- **Seal** a passport with an eIDAS **advanced** electronic seal and **verify** it offline — see
+- **Seal** a passport with an **advanced** electronic seal and **verify** it offline — see
   [sealPassport](/operations/sealPassport.md) and [verifyPassportSeal](/operations/verifyPassportSeal.md),
   and the [sealing & verification](/guides/sealing-and-verification.md) playbook.
 - **Serialise** individual battery units (GS1 AI 21) and append telemetry — the

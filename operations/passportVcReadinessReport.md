@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `GET /api/v1/passports/vc-readiness`
@@ -16,13 +16,13 @@ generated:
 **Domain:** [Passports](/tags/passports.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-A read-only, tenant-scoped report of which SKUs in your catalog can / can't emit a UNTP **Verifiable Credential**, and why — so you can fix a whole catalog before relying on VCs, instead of probing passports one at a time. It **aggregates the same per-passport `vcReady` signal** (#247) returned on every ingest response: a passport is VC-ready only when it links a manufacturing `Facility` with a country of production.
+A read-only, tenant-scoped report of which SKUs in your catalog can / can't emit a UNTP **Verifiable Credential**, and why — so you can fix a whole catalog before relying on VCs, instead of probing passports one at a time. It **aggregates the same per-passport `vcReady` signal** returned on every ingest response: a passport is VC-ready only when it links a manufacturing `Facility` with a country of production.
 
 **Permission:** `passport:read` (read-only — no subscription/402 gate). Operator scoping + the non-archived filter match the passports list.
 
 **Shape:** each `results[]` row is `{ id, productId, vcReady, blockers[] }` — `blockers[]` reuses the SAME actionable reason the single-passport signal exposes (empty when ready). The top-level `ready` / `notReady` rollup is **catalog-wide** (counts every non-archived passport), while `results` is **paginated** — `page` (default 1) + `limit` (default 100, max 200), with `total` / `totalPages`. NOTE: because the rollup is catalog-wide but `results` is one page, `ready` is generally NOT the count of `vcReady:true` rows on the current page — page through all `totalPages` to enumerate every SKU.
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 

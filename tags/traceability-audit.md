@@ -8,7 +8,7 @@ tags:
   - traceability-audit
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 UNTP/EPCIS supply-chain traceability events, lineage queries, and the public seal verifier. The verifier checks the cryptographic seal AND that the signing workspace is bound to the economic operator declared in the payload.
@@ -18,5 +18,4 @@ UNTP/EPCIS supply-chain traceability events, lineage queries, and the public sea
 - [registerTraceabilityEvent](/operations/registerTraceabilityEvent.md) — `POST /api/v1/events` — Register a UNTP/EPCIS 2.0 traceability event (VC-shaped)
 - [captureEpcisDocument](/operations/captureEpcisDocument.md) — `POST /api/v1/events/epcis` — Capture a native GS1 EPCIS 2.0 document (JSON/JSON-LD)
 - [getEventLineage](/operations/getEventLineage.md) — `GET /api/v1/events/{id}/lineage` — Retrieve the upstream pedigree of an event as a recursive lineage DAG
-- [auditEventLineage](/operations/auditEventLineage.md) — `POST /api/v1/events/{id}/audit` — Run heuristic UFLPA/EUDR compliance screening over an event's lineage
-- [verifyPassportSeal](/operations/verifyPassportSeal.md) — `POST /api/v1/audit/verify` — Publicly verify a passport's eIDAS seal, certificate chain and timestamp
+- [verifyPassportSeal](/operations/verifyPassportSeal.md) — `POST /api/v1/audit/verify` — Publicly verify a passport's seal, certificate chain and timestamp

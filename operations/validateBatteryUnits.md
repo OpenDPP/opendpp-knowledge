@@ -1,6 +1,6 @@
 ---
 type: API Endpoint
-title: "Pre-flight: validate battery-unit identifiers without persisting (#263)"
+title: "Pre-flight: validate battery-unit identifiers without persisting"
 description: NON-MUTATING pre-flight for bulk unit import.
 resource: https://opendpp-node.eu/api/v1/passports/{passportId}/units/validate
 tags:
@@ -8,7 +8,7 @@ tags:
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `POST /api/v1/passports/{passportId}/units/validate`
@@ -20,7 +20,7 @@ NON-MUTATING pre-flight for bulk unit import. Runs the SAME engine-backed AI-21 
 
 **Permission:** `battery:write` (gated as the write permission, like other validate-only checks; subscription gating → 402). **Validation:** `serialNumber` charset/length (`^[A-Za-z0-9._-]{1,20}$`, a URL-safe subset of GS1 AI-21 CSET 82) PLUS authoritative GS1-engine conformance for EVERY unit — a GTIN-keyed passport's unit Digital Link must parse cleanly through the engine, and a non-GTIN passport's AI-21 serial VALUE is validated through the same engine (CSET-82 charset + length); `status` must be a valid unit status; `manufacturedAt` must be Date-parseable. Predecessor linkage is NOT checked here (a persistence-time concern). The verdict order matches the input order.
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Request body
 

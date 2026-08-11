@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Confirmation that the workspace's signing key was rotated, returning the new public key.
@@ -17,7 +17,7 @@ Confirmation that the workspace's signing key was rotated, returning the new pub
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
 | `success` | boolean | yes | — |
-| `message` | string | yes | Always "eIDAS Asymmetric Key Pair generated and rotated in secure DB custody successfully". |
+| `message` | string | yes | Outcome message. |
 | `publicKey` | string | yes | The new ECDSA prime256v1 (P-256) public key, PEM-encoded (SPKI, -----BEGIN PUBLIC KEY----- block, trailing newline). |
 
 ## JSON Schema
@@ -38,7 +38,7 @@ Confirmation that the workspace's signing key was rotated, returning the new pub
     },
     "message": {
       "type": "string",
-      "description": "Always `\"eIDAS Asymmetric Key Pair generated and rotated in secure DB custody successfully\"`."
+      "description": "Outcome message. On a first provisioning: `\"eIDAS Asymmetric Key Pair generated in secure DB custody successfully.\"` On a rotation, a message noting that the previous key is retired but retained in your DID document so existing credentials keep verifying."
     },
     "publicKey": {
       "type": "string",

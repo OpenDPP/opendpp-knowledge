@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Create, validate, read, update, seal and manage the lifecycle of Digital Product Passports. Passport metadata is category-specific: machine-readable JSON Schemas are served live at `GET /api/v1/schemas/{category}` for textiles, batteries, electronics, chemicals and construction; the remaining categories (cosmetics, toys, iron-steel, aluminium) are validated by built-in rules — use the dry-run validators to check payloads for any category.
@@ -25,5 +25,5 @@ Create, validate, read, update, seal and manage the lifecycle of Digital Product
 - [getPassport](/operations/getPassport.md) — `GET /api/v1/passports/{id}` — Fetch a single passport (content-negotiated JSON-LD / AAS / HTML)
 - [updatePassport](/operations/updatePassport.md) — `PUT /api/v1/passports/{id}` — Update passport metadata (versioned to history)
 - [deleteDraftPassport](/operations/deleteDraftPassport.md) — `DELETE /api/v1/passports/{id}` — Permanently delete a DRAFT passport
-- [sealPassport](/operations/sealPassport.md) — `POST /api/v1/passports/{id}/seal` — Apply the tenant's eIDAS advanced electronic seal
+- [sealPassport](/operations/sealPassport.md) — `POST /api/v1/passports/{id}/seal` — Apply the tenant's advanced electronic seal
 - [updatePassportStatus](/operations/updatePassportStatus.md) — `PUT /api/v1/passports/{id}/status` — Transition passport lifecycle status (recall / decommission / reactivate)

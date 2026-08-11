@@ -7,10 +7,10 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-201 partial-success envelope of `POST /api/v1/passports/bulk`. Returned whenever at least one row was inserted, even if other rows failed. Each result row carries a `vcReady` UNTP Verifiable-Credential readiness signal (#247) and a per-row non-blocking `warnings[]` (#249 non-GS1 advisory + #400 PII-shape privacy advisory; empty when the row is clean).
+201 partial-success envelope of `POST /api/v1/passports/bulk`. Returned whenever at least one row was inserted, even if other rows failed. Each result row carries a `vcReady` UNTP Verifiable-Credential readiness signal and a per-row non-blocking `warnings[]` (non-GS1 advisory + PII-shape privacy advisory; empty when the row is clean).
 
 ## Schema
 
@@ -33,7 +33,7 @@ generated:
     "insertedCount",
     "results"
   ],
-  "description": "201 partial-success envelope of `POST /api/v1/passports/bulk`. Returned whenever at least one row was inserted, even if other rows failed. Each result row carries a `vcReady` UNTP Verifiable-Credential readiness signal (#247) and a per-row non-blocking `warnings[]` (#249 non-GS1 advisory + #400 PII-shape privacy advisory; empty when the row is clean).",
+  "description": "201 partial-success envelope of `POST /api/v1/passports/bulk`. Returned whenever at least one row was inserted, even if other rows failed. Each result row carries a `vcReady` UNTP Verifiable-Credential readiness signal and a per-row non-blocking `warnings[]` (non-GS1 advisory + PII-shape privacy advisory; empty when the row is clean).",
   "properties": {
     "success": {
       "type": "boolean",
@@ -68,7 +68,7 @@ generated:
           },
           "vcReady": {
             "type": "boolean",
-            "description": "#247: whether this row's passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked. On a `dryRun` preview this reflects the EFFECTIVE facility after import (the row's facility, else the existing passport's preserved one)."
+            "description": "Whether this row's passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked. On a `dryRun` preview this reflects the EFFECTIVE facility after import (the row's facility, else the existing passport's preserved one)."
           },
           "vcReadyReason": {
             "type": [
@@ -79,7 +79,7 @@ generated:
           },
           "warnings": {
             "type": "array",
-            "description": "Per-row non-blocking advisories — the #249 non-GS1 \"no scannable QR\" note and the #400 PII-shape privacy advisory. Empty `[]` when the row is clean; never blocks the row.",
+            "description": "Per-row non-blocking advisories — the non-GS1 \"no scannable QR\" note and the PII-shape privacy advisory. Empty `[]` when the row is clean; never blocks the row.",
             "items": {
               "$ref": "#/components/schemas/AdvisoryItem"
             }

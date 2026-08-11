@@ -1,14 +1,14 @@
 ---
 type: Webhook Event
 title: passport.sealed
-description: Passport sealed with an eIDAS advanced seal
+description: Passport sealed with an advanced electronic seal
 resource: https://opendpp-node.eu/openapi.json#/webhooks/passport.sealed
 tags:
   - webhook
   - event
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Sent when a passport is sealed via `POST /api/v1/passports/{id}/seal`, transactionally with the seal write. The payload carries the populated `digitalSeal`, `signingPublicKey`, and the `proof` block: `merkleRoot` always; an `x5c` certificate chain binding the signing key to the tenant's legal identity **when the tenant's signing key has an issued chain**; an **optional** `rfc3161` trusted timestamp; and `redactedLeaves` hashes **when the passport carries masked metadata keys**. Delivered to every active subscription whose filter contains `passport.sealed` or `*`.

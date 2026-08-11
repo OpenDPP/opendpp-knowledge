@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 One unit to serialise. Validation is per-item: an invalid item is skipped (its error string collected) without failing the rest of the batch.
@@ -19,7 +19,7 @@ One unit to serialise. Validation is per-item: an invalid item is skipped (its e
 | `serialNumber` | string | yes | Required. |
 | `manufacturedAt` | string,number | no | Optional. |
 | `status` | [BatteryUnitStatus](/schemas/BatteryUnitStatus.md) | no | Optional initial status. |
-| `predecessorUnitId` | string | no | Optional Art. 77(7) linkage: id of an existing unit in your tenant (any passport) that this battery was repurposed/remanufactured from. |
+| `predecessorUnitId` | string | no | Optional lineage linkage: id of an existing unit in your tenant (any passport) that this battery was repurposed/remanufactured from. |
 | `predecessorStatus` | string | no | Optional; only meaningful with predecessorUnitId. |
 
 ## JSON Schema
@@ -43,12 +43,12 @@ One unit to serialise. Validation is per-item: an invalid item is skipped (its e
     },
     "status": {
       "$ref": "#/components/schemas/BatteryUnitStatus",
-      "description": "Optional initial status. Defaults to `IN_SERVICE`. Note: creating a unit directly with `RECYCLED` makes the public view a 410 tombstone but does NOT stamp `ceasedAt` (only the events-route transition does), so such a unit can still be referenced as a predecessor.",
+      "description": "Optional initial status. Defaults to `IN_SERVICE`. Creating a unit directly with `RECYCLED` records an already-ceased battery: `ceasedAt` is stamped at creation, the public view is a 410 tombstone, and the unit is refused as a `predecessorUnitId`.",
       "default": "IN_SERVICE"
     },
     "predecessorUnitId": {
       "type": "string",
-      "description": "Optional Art. 77(7) linkage: id of an existing unit **in your tenant** (any passport) that this battery was repurposed/remanufactured from. A recycled predecessor (`ceasedAt` set) is refused — the check keys on `ceasedAt`, which only the events-route `RECYCLED` transition stamps. Atomically with creation, a `STATUS_CHANGE` event (`{status, successorUnitId, successorSerial}`) is appended to the predecessor and its status set to `predecessorStatus`."
+      "description": "Optional lineage linkage: id of an existing unit **in your tenant** (any passport) that this battery was repurposed/remanufactured from. A recycled predecessor is refused — the check keys on terminality (`ceasedAt` set or a terminal `status`), however the unit reached it. Atomically with creation, a `STATUS_CHANGE` event (`{status, successorUnitId, successorSerial}`) is appended to the predecessor and its status set to `predecessorStatus`."
     },
     "predecessorStatus": {
       "type": "string",

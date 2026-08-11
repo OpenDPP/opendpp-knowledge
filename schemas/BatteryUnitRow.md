@@ -1,16 +1,16 @@
 ---
 type: Schema
 title: BatteryUnitRow
-description: One physical serialised battery (raw persisted row — these routes declare no Fastify response schema, so all model fields are returned as-is).
+description: One physical serialised battery — the reads return exactly the fields documented here.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitRow
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-One physical serialised battery (raw persisted row — these routes declare no Fastify response schema, so all model fields are returned as-is). A `BatteryUnit` is an individual instance of a SKU/type-level passport, carrying its real serial in GS1 AI-21.
+One physical serialised battery — the reads return exactly the fields documented here. A `BatteryUnit` is an individual instance of a SKU/type-level passport, carrying its real serial in GS1 AI-21.
 
 ## Schema
 
@@ -18,13 +18,13 @@ One physical serialised battery (raw persisted row — these routes declare no F
 |----------|------|----------|-------------|
 | `id` | string | yes | — |
 | `serialNumber` | string | yes | The battery's real physical serial number (GS1 AI-21 value). |
-| `digitalLinkUri` | string | yes | Per-unit GS1 Digital Link: {BASE_URL}/{01|8003}/{productId}/21/{serialNumber} — AI 01 for GTIN (and non-GS1 SKUs), 8003 for GRAI. |
+| `digitalLinkUri` | string | yes | Per-unit GS1 Digital Link: {origin}/{01|8003}/{productId}/21/{serialNumber} — AI 01 for GTIN (and non-GS1 SKUs), 8003 for GRAI. |
 | `passportId` | string | yes | The SKU/type-level passport this unit is an instance of. |
-| `tenantId` | string | yes | Owning tenant id (the demo tenant uses the fixed id tenant-demo-opendpp; regular tenants use UUIDs). |
+| `tenantId` | string | yes | Owning tenant id. |
 | `manufacturedAt` | string,null | yes | — |
 | `status` | [BatteryUnitStatus](/schemas/BatteryUnitStatus.md) | yes | — |
-| `ceasedAt` | string,null | yes | Stamped when the events endpoint transitions status to RECYCLED (Art. 77(8) cease-to-exist); never cleared afterwards, even if a later event changes status aga… |
-| `predecessorUnitId` | string,null | yes | Art. 77(7) lineage: the original unit this battery was repurposed/remanufactured from (null for first-life units). |
+| `ceasedAt` | string,null | yes | Stamped when the unit enters a terminal status — at creation for a unit created with initial status RECYCLED, or by the events endpoint on the RECYCLED transit… |
+| `predecessorUnitId` | string,null | yes | Lineage: the original unit this battery was repurposed/remanufactured from (null for first-life units). |
 | `createdAt` | string | yes | — |
 | `updatedAt` | string | yes | — |
 
@@ -33,7 +33,7 @@ One physical serialised battery (raw persisted row — these routes declare no F
 ```json
 {
   "type": "object",
-  "description": "One physical serialised battery (raw persisted row — these routes declare no Fastify response schema, so all model fields are returned as-is). A `BatteryUnit` is an individual instance of a SKU/type-level passport, carrying its real serial in GS1 AI-21.",
+  "description": "One physical serialised battery — the reads return exactly the fields documented here. A `BatteryUnit` is an individual instance of a SKU/type-level passport, carrying its real serial in GS1 AI-21.",
   "properties": {
     "id": {
       "type": "string"
@@ -46,7 +46,7 @@ One physical serialised battery (raw persisted row — these routes declare no F
     "digitalLinkUri": {
       "type": "string",
       "format": "uri",
-      "description": "Per-unit GS1 Digital Link: `{BASE_URL}/{01|8003}/{productId}/21/{serialNumber}` — AI `01` for GTIN (and non-GS1 SKUs), `8003` for GRAI. Unique platform-wide."
+      "description": "Per-unit GS1 Digital Link: `{origin}/{01|8003}/{productId}/21/{serialNumber}` — AI `01` for GTIN (and non-GS1 SKUs), `8003` for GRAI. Unique platform-wide."
     },
     "passportId": {
       "type": "string",
@@ -54,7 +54,7 @@ One physical serialised battery (raw persisted row — these routes declare no F
     },
     "tenantId": {
       "type": "string",
-      "description": "Owning tenant id (the demo tenant uses the fixed id `tenant-demo-opendpp`; regular tenants use UUIDs)."
+      "description": "Owning tenant id."
     },
     "manufacturedAt": {
       "type": [
@@ -72,14 +72,14 @@ One physical serialised battery (raw persisted row — these routes declare no F
         "null"
       ],
       "format": "date-time",
-      "description": "Stamped when the events endpoint transitions `status` to `RECYCLED` (Art. 77(8) cease-to-exist); never cleared afterwards, even if a later event changes `status` again. Non-null means the public unit view is a 410 tombstone and the unit is refused as a `predecessorUnitId`. Note: a unit *created* with initial status `RECYCLED` does NOT get `ceasedAt` stamped (the public view still tombstones on the status alone, but the predecessor refusal does not apply)."
+      "description": "Stamped when the unit enters a terminal status — at creation for a unit created with initial status `RECYCLED`, or by the events endpoint on the `RECYCLED` transition; never cleared afterwards. Non-null means the public unit view is a 410 tombstone and the unit is refused as a `predecessorUnitId`."
     },
     "predecessorUnitId": {
       "type": [
         "string",
         "null"
       ],
-      "description": "Art. 77(7) lineage: the original unit this battery was repurposed/remanufactured from (`null` for first-life units)."
+      "description": "Lineage: the original unit this battery was repurposed/remanufactured from (`null` for first-life units)."
     },
     "createdAt": {
       "type": "string",

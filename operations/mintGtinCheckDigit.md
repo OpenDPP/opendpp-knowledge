@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Compute a GTIN check digit from a company prefix + item reference
-description: "The actionable counterpart to the non-GS1 ingest advisory (#255): given the GS1 company prefix your organisation legally owns plus an item reference, OpenDPP computes the GS1 mod-10 check digit and returns the resulting 14-digit GTIN + a D…"
+description: "The actionable counterpart to the non-GS1 ingest advisory: given the GS1 company prefix your organisation legally owns plus an item reference, OpenDPP computes the GS1 mod-10 check digit and returns the resulting 14-digit GTIN + a Digital…"
 resource: https://opendpp-node.eu/api/v1/gs1/gtin
 tags:
   - POST
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `POST /api/v1/gs1/gtin`
@@ -16,7 +16,7 @@ generated:
 **Domain:** [Public Resolution](/tags/public-resolution.md)  
 **Authentication:** **Public** — no authentication required.
 
-The actionable counterpart to the non-GS1 ingest advisory (#255): given the **GS1 company prefix your organisation legally owns** plus an item reference, OpenDPP computes the GS1 **mod-10 check digit** and returns the resulting 14-digit GTIN + a Digital Link preview. Set the GTIN as a passport `productId` to get a scannable GS1 Digital Link.
+The actionable counterpart to the non-GS1 ingest advisory: given the **GS1 company prefix your organisation legally owns** plus an item reference, OpenDPP computes the GS1 **mod-10 check digit** and returns the resulting 14-digit GTIN + a Digital Link preview. Set the GTIN as a passport `productId` to get a scannable GS1 Digital Link.
 
 **It ONLY completes the check digit** — it never allocates a GS1 company prefix or asserts ownership (a real GTIN requires a prefix licensed to you by GS1). `gs1CompanyPrefix` is REQUIRED; a request with none is refused (**400**). `gs1CompanyPrefix + itemRef` must be exactly **13 digits** (the check digit forms the 14th) and both must be digit strings, else **400**.
 

@@ -8,7 +8,7 @@ tags:
   - qr-codes
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `GET /api/v1/units/{id}/qr`
@@ -16,9 +16,9 @@ generated:
 **Domain:** [QR Codes](/tags/qr-codes.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Renders the battery unit's GS1 Digital Link URI as a print-grade QR code — the AI-21 path segment carries the unit's **real physical serial number** (e.g. `https://opendpp-node.eu/01/09501101530003/21/BAT-2026-000123`). This is the carrier each individual battery must wear (per-unit passports, Battery Regulation Art. 77(2)).
+Renders the battery unit's GS1 Digital Link URI as a print-grade QR code — the AI-21 path segment carries the unit's **real physical serial number** (e.g. `https://opendpp-node.eu/01/09501101530003/21/BAT-2026-000123`). This is the carrier each individual battery must wear (per-unit passports, per the EU Battery Regulation).
 
-**Permission:** `battery:read` (read-only — subscription status is **not** checked on `:read` permissions, so this endpoint never returns 402). Works with a Bearer API key, a Bearer JWT, or the `opendpp_session` cookie.
+**Permission:** `battery:read` (read-only — subscription status is **not** checked on `:read` permissions, so this endpoint never returns 402). Works with a Bearer API key, a Bearer JWT, or an authenticated browser session.
 
 **Identifier resolution:** `{id}` is the BatteryUnit **UUID only** — unlike the passport QR route there is **no** serial-number fallback. Lookup is tenant-scoped. Credentials scoped to an Economic Operator receive **403** (`Your access is restricted to Economic Operator: <operatorId>`) when the unit's parent passport belongs to a different operator.
 
@@ -26,7 +26,7 @@ Renders the battery unit's GS1 Digital Link URI as a print-grade QR code — the
 
 **Errors:** an invalid query option returns **400** with one of these exact messages: `format must be png or svg`, `size must be a number`, `ecl must be M, Q or H`. An unknown unit returns **404** with message `Battery unit <id> not found under your Tenant workspace`.
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 

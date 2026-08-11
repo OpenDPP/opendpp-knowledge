@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Outcome of removing an economic operator: whether it was archived rather than deleted, and how many of its passports were archived with it.

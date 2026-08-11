@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `POST /api/v1/passports/bulk`
@@ -20,10 +20,9 @@ Ingests up to **200** passports in one request with **partial-success semantics*
 
 **Permission:** `passport:create` (Bearer API key or session JWT + CSRF for cookie sessions; subscription gating → **402**).
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`. **Body limit: 1 MiB (1,048,576 bytes)** → **413** beyond that; in practice the `maxItems: 200` envelope cap is the effective bound for typical rows. Envelope violations — empty array, more than 200 items, missing `passports` — are rejected before any row is processed, with the full default validation error body (`{statusCode, code, error, message}`).
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`. **Body limit: 1 MiB (1,048,576 bytes)** → **413** beyond that; in practice the `maxItems: 200` envelope cap is the effective bound for typical rows. Envelope violations — empty array, more than 200 items, missing `passports` — are rejected before any row is processed, with the full default validation error body (`{statusCode, code, error, message}`).
 
 **Per-row behavior (differences from `POST /api/v1/passports`):**
-- Rows are validated with the ESPR category engine only — the **EPCIS traceability audit is NOT run** for bulk rows.
 - No `draft` support: every inserted row is created with `status: "ACTIVE"`. No `enrichment` support.
 - A valid GTIN-14/GRAI `productId` is **not** auto-copied into `metadata.gtin`/`metadata.grai` (unlike single ingestion).
 - Operator resolution per row: explicit `operatorId` must be bound to your workspace; otherwise the workspace's first bound operator is used; operator-scoped API keys force their operator. Lookups are cached within the request.

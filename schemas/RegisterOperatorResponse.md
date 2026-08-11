@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Confirmation that an economic operator was registered, carrying the stored record and any non-blocking advisories.
@@ -19,7 +19,7 @@ Confirmation that an economic operator was registered, carrying the stored recor
 | `success` | boolean | yes | — |
 | `message` | string | yes | Always "Economic Operator supplier registered successfully" (also when an existing operator was bound rather than created). |
 | `operator` | [OperatorRow](/schemas/OperatorRow.md) | yes | — |
-| `warnings` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Non-blocking advisories (#404). |
+| `warnings` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Non-blocking advisories. |
 
 ## JSON Schema
 
@@ -47,7 +47,7 @@ Confirmation that an economic operator was registered, carrying the stored recor
     },
     "warnings": {
       "type": "array",
-      "description": "Non-blocking advisories (#404). Carries a single EORI-not-found note when the OPT-IN `EORI_EXISTENCE_CHECK` is enabled and a declared EORI is not found in the EU EOS register. Empty `[]` otherwise. Never blocks registration.",
+      "description": "Non-blocking advisories. Carries a single EORI-not-found note when the OPT-IN EORI existence check is enabled and a declared EORI is not found in the EU EOS register. Empty `[]` otherwise. Never blocks registration.",
       "items": {
         "$ref": "#/components/schemas/AdvisoryItem"
       }

@@ -8,7 +8,7 @@ tags:
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `GET /01/{gtin14}/21/{serial}`
@@ -18,13 +18,13 @@ generated:
 
 GS1 Digital Link resolution of an *individual serialised item*. This path never returns a document directly — on success it issues a `302` redirect (the query string, including `?grant=`, is preserved on the `Location` URL):
 
-1. If the GTIN resolves to a SKU/type passport that has a serialised battery unit whose `serialNumber` equals the AI-21 value → `302` to `/unit/{unitId}` (Battery Reg. Art. 77(2) per-unit view).
+1. If the GTIN resolves to a SKU/type passport that has a serialised battery unit whose `serialNumber` equals the AI-21 value → `302` to `/unit/{unitId}` (per-unit view).
 2. Otherwise (legacy fallback) the AI-21 value is matched against the passport UUID, `metadata.serialNumber`, or `metadata["21"]`; if a passport matches → `302` to `/passport/{passportId}`.
 3. Otherwise → `404` (content-negotiated).
 
 The ambiguity check of the bare-GTIN branch is skipped when an AI-21 serial is present. The redirect handler itself never evaluates credentials — access tiers (owner / grant / public) apply at the redirect target; carry the grant in `?grant=` (preserved across the redirect) or re-send the `Authorization` header to the target. On tenant subdomains the lookup is scoped to that tenant (unknown subdomain → 404, JSON only).
 
-No permission string (public endpoint). **Rate limit:** 30 requests/min/IP (in-memory public limiter; two-field 429 body without `success`). The limiter adds no headers of its own — `x-ratelimit-*` headers come from the global platform limit, which applies on top — and the redirect target counts as a second request against both.
+No permission string (public endpoint). **Rate limit:** 30 requests/min/IP (two-field 429 body without `success`). The limiter adds no headers of its own — `x-ratelimit-*` headers come from the global platform limit, which applies on top — and the redirect target counts as a second request against both.
 
 ## Parameters
 

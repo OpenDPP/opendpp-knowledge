@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Standard error body. Authenticated-API errors include `success: false`; some endpoints (and all public resolution errors) omit `success` and return only `error` + `message`.
@@ -56,7 +56,7 @@ Standard error body. Authenticated-API errors include `success: false`; some end
     },
     "code": {
       "type": "string",
-      "description": "Optional MACHINE-STABLE error code for the developer-facing write/ingest surface (passport / operator / unit / resolver / facility / events / webhooks) — branch on this instead of parsing `message`. Present on the errors it covers (see src/constants/api-error-codes.ts), omitted otherwise.",
+      "description": "Optional MACHINE-STABLE error code for the developer-facing write/ingest surface (passport / operator / unit / resolver / facility / events / webhooks) — branch on this instead of parsing `message`. Present on the errors it covers — the `code` enum below is the full set — and omitted otherwise.",
       "enum": [
         "OPERATOR_NOT_BOUND",
         "OPERATOR_AMBIGUOUS",
@@ -83,7 +83,10 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 - [whoami](/operations/whoami.md) (`GET /api/v1/whoami`)
 - [validateBatteryUnits](/operations/validateBatteryUnits.md) (`POST /api/v1/passports/{passportId}/units/validate`)
 - [serializeBatteryUnits](/operations/serializeBatteryUnits.md) (`POST /api/v1/passports/{passportId}/units`)
+- [deleteBatteryUnit](/operations/deleteBatteryUnit.md) (`DELETE /api/v1/units/{id}`)
+- [listBatteryUnitEvents](/operations/listBatteryUnitEvents.md) (`GET /api/v1/units/{id}/events`)
 - [recordBatteryUnitEvent](/operations/recordBatteryUnitEvent.md) (`POST /api/v1/units/{id}/events`)
+- [bulkRecordBatteryUnitEvents](/operations/bulkRecordBatteryUnitEvents.md) (`POST /api/v1/units/{id}/events/bulk`)
 - [createFacility](/operations/createFacility.md) (`POST /api/v1/facilities`)
 - [getFacility](/operations/getFacility.md) (`GET /api/v1/facilities/{id}`)
 - [updateFacility](/operations/updateFacility.md) (`PUT /api/v1/facilities/{id}`)
@@ -115,7 +118,6 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 - [registerTraceabilityEvent](/operations/registerTraceabilityEvent.md) (`POST /api/v1/events`)
 - [captureEpcisDocument](/operations/captureEpcisDocument.md) (`POST /api/v1/events/epcis`)
 - [getEventLineage](/operations/getEventLineage.md) (`GET /api/v1/events/{id}/lineage`)
-- [auditEventLineage](/operations/auditEventLineage.md) (`POST /api/v1/events/{id}/audit`)
 - [getTenantDidDocument](/operations/getTenantDidDocument.md) (`GET /tenants/{tenantId}/did.json`)
 - [getTenantRevocationStatusList](/operations/getTenantRevocationStatusList.md) (`GET /tenants/{tenantId}/status/revocation`)
 - [listWebhookSubscriptions](/operations/listWebhookSubscriptions.md) (`GET /api/v1/webhooks/subscriptions`)

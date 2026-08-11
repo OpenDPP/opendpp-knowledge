@@ -1,8 +1,8 @@
 {
   "okfVersion": "0.2",
-  "apiVersion": "1.12.2",
-  "generated": "2026-07-28T00:00:00Z",
-  "conceptCount": 213,
+  "apiVersion": "1.13.0",
+  "generated": "2026-08-09T00:00:00Z",
+  "conceptCount": 212,
   "concepts": [
     {
       "path": "overview.md",
@@ -36,14 +36,14 @@
       "path": "guides/public-access-tiers.md",
       "type": "Reference",
       "title": "Public access tiers",
-      "description": "How one resolution URL serves tiered views via capability tokens (Battery Reg. Art. 77(9)).",
+      "description": "How one resolution URL serves tiered views via capability tokens.",
       "resource": "https://opendpp-node.eu/api-reference"
     },
     {
       "path": "guides/sealing-and-verification.md",
       "type": "Playbook",
       "title": "Sealing & verification",
-      "description": "Apply an eIDAS advanced electronic seal and verify it offline from the redacted document.",
+      "description": "Apply an advanced electronic seal and verify it offline from the redacted document.",
       "resource": "https://opendpp-node.eu/security"
     },
     {
@@ -92,7 +92,7 @@
       "path": "tags/access-grants.md",
       "type": "Reference",
       "title": "Access Grants",
-      "description": "Capability tokens implementing tiered access (Battery Regulation Art. 77(9) legitimate-interest access): issue, approve, deny and revoke dpp_li_… / dpp_auth_… tokens.",
+      "description": "Capability tokens implementing tiered legitimate-interest access: issue, approve, deny and revoke dpp_li_… / dpp_auth_… tokens.",
       "resource": "https://opendpp-node.eu/api-reference"
     },
     {
@@ -168,7 +168,7 @@
     {
       "path": "operations/validateBatteryUnits.md",
       "type": "API Endpoint",
-      "title": "Pre-flight: validate battery-unit identifiers without persisting (#263)",
+      "title": "Pre-flight: validate battery-unit identifiers without persisting",
       "description": "NON-MUTATING pre-flight for bulk unit import.",
       "resource": "https://opendpp-node.eu/api/v1/passports/{passportId}/units/validate"
     },
@@ -183,7 +183,7 @@
       "path": "operations/serializeBatteryUnits.md",
       "type": "API Endpoint",
       "title": "Serialise individual battery units under a passport (bulk, up to 200)",
-      "description": "Creates one or many individual physical battery units (Battery Reg. (EU) 2023/1542 Art. 77(2)) under a SKU/type-level passport.",
+      "description": "Creates one or many individual physical battery units (EU Battery Regulation) under a SKU/type-level passport.",
       "resource": "https://opendpp-node.eu/api/v1/passports/{passportId}/units"
     },
     {
@@ -196,15 +196,15 @@
     {
       "path": "operations/deleteBatteryUnit.md",
       "type": "API Endpoint",
-      "title": "Permanently delete a battery unit and its telemetry",
-      "description": "HARD delete — permanently removes the unit row and cascades all of its BatteryUnitEvent telemetry.",
+      "title": "Not deletable: a serialised unit is a marketed physical item (always 409)",
+      "description": "Always refused with 409.",
       "resource": "https://opendpp-node.eu/api/v1/units/{id}"
     },
     {
       "path": "operations/listBatteryUnitEvents.md",
       "type": "API Endpoint",
-      "title": "List a battery unit's telemetry history (newest first, max 500)",
-      "description": "Returns the unit's append-only dynamic-data history ordered by recordedAt DESC, capped at the 500 most recent events.",
+      "title": "List a battery unit's telemetry history (newest first, cursor-paginated)",
+      "description": "Returns one page of the unit's append-only dynamic-data history ordered by recordedAt DESC, ties broken by id DESC — so paging is deterministic.",
       "resource": "https://opendpp-node.eu/api/v1/units/{id}/events"
     },
     {
@@ -213,6 +213,13 @@
       "title": "Append an immutable telemetry event to a battery unit",
       "description": "Appends one append-only per-unit dynamic-data record (Annex XIII / Art. 77: SoH, cycle count, remaining capacity, temperature, negative events).",
       "resource": "https://opendpp-node.eu/api/v1/units/{id}/events"
+    },
+    {
+      "path": "operations/bulkRecordBatteryUnitEvents.md",
+      "type": "API Endpoint",
+      "title": "Append a batch of telemetry events to a battery unit",
+      "description": "Appends up to 500 append-only dynamic-data records to one unit in a single request — the batch venue for backfilling a fleet's telemetry.",
+      "resource": "https://opendpp-node.eu/api/v1/units/{id}/events/bulk"
     },
     {
       "path": "operations/listFacilities.md",
@@ -253,7 +260,7 @@
       "path": "operations/listGrants.md",
       "type": "API Endpoint",
       "title": "List access grants and pending access requests",
-      "description": "Lists the workspace's access grants — capability-token grants for the Battery Regulation's restricted data tiers (Reg. (EU) 2023/1542 Art. 77(9), Annex XIII(2)–(4)) — including undecided third-party access requests (status: PENDING, issuer…",
+      "description": "Lists the workspace's access grants — capability-token grants for the Battery Regulation's restricted data tiers (Annex XIII(2)–(4)) — including undecided third-party access requests (status: PENDING, issuerType: REQUEST) submitted via the…",
       "resource": "https://opendpp-node.eu/api/v1/grants"
     },
     {
@@ -316,7 +323,7 @@
       "path": "operations/deleteOperator.md",
       "type": "API Endpoint",
       "title": "Remove an operator (archives if it has passports, else hard-deletes)",
-      "description": "Removes an operator, choosing automatically between two outcomes (ESPR Art. 9(2)/77 passport-persistence compliance — an operator that still has passports must never be hard-deleted):",
+      "description": "Removes an operator, choosing automatically between two outcomes (ESPR passport-persistence compliance — an operator that still has passports must never be hard-deleted):",
       "resource": "https://opendpp-node.eu/api/v1/operators/{id}"
     },
     {
@@ -329,8 +336,8 @@
     {
       "path": "operations/rotateTenantKeys.md",
       "type": "API Endpoint",
-      "title": "Rotate the tenant's eIDAS ECDSA signing key pair",
-      "description": "Generates a brand-new ECDSA prime256v1 (P-256) key pair for your workspace's eIDAS advanced-seal signing and rotates it into the encrypted database vault, replacing the previous key.",
+      "title": "Rotate the tenant's ECDSA signing key pair",
+      "description": "Generates a brand-new ECDSA prime256v1 (P-256) key pair for your workspace's advanced-seal signing and rotates it into the encrypted database vault, replacing the previous key.",
       "resource": "https://opendpp-node.eu/api/v1/tenants/rotate-keys"
     },
     {
@@ -406,8 +413,8 @@
     {
       "path": "operations/sealPassport.md",
       "type": "API Endpoint",
-      "title": "Apply the tenant's eIDAS advanced electronic seal",
-      "description": "Signs the passport's Merkle root (SHA-256 tree over the key-sorted top-level metadata entries) with the tenant's vault-held ECDSA P-256 (prime256v1) private key, producing an eIDAS advanced electronic seal (this is a local cryptographic se…",
+      "title": "Apply the tenant's advanced electronic seal",
+      "description": "Signs the passport's Merkle root (SHA-256 tree over the key-sorted top-level metadata entries) with the tenant's vault-held ECDSA P-256 (prime256v1) private key, producing an advanced electronic seal (this is a local cryptographic seal — N…",
       "resource": "https://opendpp-node.eu/api/v1/passports/{id}/seal"
     },
     {
@@ -449,7 +456,7 @@
       "path": "operations/resolvePublicBatteryUnit.md",
       "type": "API Endpoint",
       "title": "Resolve an individual serialised battery unit",
-      "description": "Public, content-negotiated view of one individual serialised unit (battery; Reg. (EU) 2023/1542 Art. 77(2)) by its unit UUID, including the embedded SKU/type passport (ofModel, masked by the same tier rules as GET /passport/{id}).",
+      "description": "Public, content-negotiated view of one individual serialised unit (battery) by its unit UUID, including the embedded SKU/type passport (ofModel, masked by the same tier rules as GET /passport/{id}).",
       "resource": "https://opendpp-node.eu/unit/{id}"
     },
     {
@@ -498,7 +505,7 @@
       "path": "operations/mintGtinCheckDigit.md",
       "type": "API Endpoint",
       "title": "Compute a GTIN check digit from a company prefix + item reference",
-      "description": "The actionable counterpart to the non-GS1 ingest advisory (#255): given the GS1 company prefix your organisation legally owns plus an item reference, OpenDPP computes the GS1 mod-10 check digit and returns the resulting 14-digit GTIN + a D…",
+      "description": "The actionable counterpart to the non-GS1 ingest advisory: given the GS1 company prefix your organisation legally owns plus an item reference, OpenDPP computes the GS1 mod-10 check digit and returns the resulting 14-digit GTIN + a Digital…",
       "resource": "https://opendpp-node.eu/api/v1/gs1/gtin"
     },
     {
@@ -565,16 +572,9 @@
       "resource": "https://opendpp-node.eu/api/v1/events/{id}/lineage"
     },
     {
-      "path": "operations/auditEventLineage.md",
-      "type": "API Endpoint",
-      "title": "Run heuristic UFLPA/EUDR compliance screening over an event's lineage",
-      "description": "Walks the same upstream lineage DAG as GET /api/v1/events/{id}/lineage and screens every node's location data against two heuristic rules:",
-      "resource": "https://opendpp-node.eu/api/v1/events/{id}/audit"
-    },
-    {
       "path": "operations/verifyPassportSeal.md",
       "type": "API Endpoint",
-      "title": "Publicly verify a passport's eIDAS seal, certificate chain and timestamp",
+      "title": "Publicly verify a passport's seal, certificate chain and timestamp",
       "description": "Public seal-verification API — cryptographically verifies that a Digital Product Passport document was sealed by an economic-operator tenant registered on this node and has not been tampered with.",
       "resource": "https://opendpp-node.eu/api/v1/audit/verify"
     },
@@ -691,13 +691,6 @@
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitCurrentState"
     },
     {
-      "path": "schemas/BatteryUnitDeleteResponse.md",
-      "type": "Schema",
-      "title": "BatteryUnitDeleteResponse",
-      "description": "Confirmation that a battery unit was deleted.",
-      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitDeleteResponse"
-    },
-    {
       "path": "schemas/BatteryUnitDynamicDataEvent.md",
       "type": "Schema",
       "title": "BatteryUnitDynamicDataEvent",
@@ -708,7 +701,7 @@
       "path": "schemas/BatteryUnitEventListResponse.md",
       "type": "Schema",
       "title": "BatteryUnitEventListResponse",
-      "description": "A battery unit's append-only dynamic-data history, newest first.",
+      "description": "One page of a battery unit's append-only dynamic-data history, newest first.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventListResponse"
     },
     {
@@ -722,7 +715,7 @@
       "path": "schemas/BatteryUnitEventRow.md",
       "type": "Schema",
       "title": "BatteryUnitEventRow",
-      "description": "One immutable per-unit telemetry record (raw persisted row).",
+      "description": "One immutable per-unit telemetry record — the reads return exactly the fields documented here.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventRow"
     },
     {
@@ -743,7 +736,7 @@
       "path": "schemas/BatteryUnitLineageRef.md",
       "type": "Schema",
       "title": "BatteryUnitLineageRef",
-      "description": "Public lineage pointer between battery units (Art. 77(7)).",
+      "description": "Public lineage pointer between battery units.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitLineageRef"
     },
     {
@@ -757,14 +750,14 @@
       "path": "schemas/BatteryUnitRestrictedDataNotice.md",
       "type": "Schema",
       "title": "BatteryUnitRestrictedDataNotice",
-      "description": "Marker replacing per-unit telemetry in anonymous (public-tier) responses, with a pointer for requesting legitimate-interest access (Reg. (EU) 2023/1542, Annex XIII(2)-(4)).",
+      "description": "Marker replacing per-unit telemetry in anonymous (public-tier) responses, with a pointer for requesting legitimate-interest access (Annex XIII(2)-(4)).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitRestrictedDataNotice"
     },
     {
       "path": "schemas/BatteryUnitRow.md",
       "type": "Schema",
       "title": "BatteryUnitRow",
-      "description": "One physical serialised battery (raw persisted row — these routes declare no Fastify response schema, so all model fields are returned as-is).",
+      "description": "One physical serialised battery — the reads return exactly the fields documented here.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitRow"
     },
     {
@@ -778,15 +771,29 @@
       "path": "schemas/BatteryUnitStatus.md",
       "type": "Schema",
       "title": "BatteryUnitStatus",
-      "description": "Annex XIII battery-status vocabulary (Battery Reg. (EU) 2023/1542).",
+      "description": "Annex XIII battery-status vocabulary (EU Battery Regulation).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitStatus"
     },
     {
       "path": "schemas/BatteryUnitTombstoneJsonLd.md",
       "type": "Schema",
       "title": "BatteryUnitTombstoneJsonLd",
-      "description": "Art. 77(8) tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist.",
+      "description": "Tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitTombstoneJsonLd"
+    },
+    {
+      "path": "schemas/BulkBatteryUnitEventsRequest.md",
+      "type": "Schema",
+      "title": "BulkBatteryUnitEventsRequest",
+      "description": "A batch of telemetry records for one unit.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BulkBatteryUnitEventsRequest"
+    },
+    {
+      "path": "schemas/BulkBatteryUnitEventsResponse.md",
+      "type": "Schema",
+      "title": "BulkBatteryUnitEventsResponse",
+      "description": "The partial-success report of a bulk telemetry ingest.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BulkBatteryUnitEventsResponse"
     },
     {
       "path": "schemas/CreateGrantRequest.md",
@@ -904,7 +911,7 @@
       "path": "schemas/FastifyDefaultBadRequest.md",
       "type": "Schema",
       "title": "FastifyDefaultBadRequest",
-      "description": "Fastify's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework before the handler runs (so none of the handler-built {success:false, ...} shapes apply).",
+      "description": "The framework's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework before the handler runs (so none of the handler-built {success:false, ...} shapes apply).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FastifyDefaultBadRequest"
     },
     {
@@ -967,7 +974,7 @@
       "path": "schemas/MerkleTreeAttestationProof.md",
       "type": "Schema",
       "title": "MerkleTreeAttestationProof",
-      "description": "OpenDPP's own proof type — an eIDAS ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted metadata (one leaf per top-level metadata key).",
+      "description": "OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted metadata (one leaf per top-level metadata key).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/MerkleTreeAttestationProof"
     },
     {
@@ -1149,7 +1156,7 @@
       "path": "schemas/PublicBatteryUnitJsonLd.md",
       "type": "Schema",
       "title": "PublicBatteryUnitJsonLd",
-      "description": "Public JSON-LD document for one individual serialised battery unit (Reg. (EU) 2023/1542 Art. 77(2)).",
+      "description": "Public JSON-LD document for one individual serialised battery unit (EU Battery Regulation).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PublicBatteryUnitJsonLd"
     },
     {
@@ -1270,20 +1277,6 @@
       "title": "ServiceVersion",
       "description": "Running API contract version and source build identity, returned by GET /api/v1/version.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/ServiceVersion"
-    },
-    {
-      "path": "schemas/TraceComplianceAuditResponse.md",
-      "type": "Schema",
-      "title": "TraceComplianceAuditResponse",
-      "description": "The verdict of auditing a traceability lineage: whether it is compliant, any errors found, and the resulting certificate.",
-      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/TraceComplianceAuditResponse"
-    },
-    {
-      "path": "schemas/TraceComplianceCertificate.md",
-      "type": "Schema",
-      "title": "TraceComplianceCertificate",
-      "description": "A compliance certificate for an audited traceability lineage, naming the root event and the regulatory standards checked.",
-      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/TraceComplianceCertificate"
     },
     {
       "path": "schemas/TraceEventRegistered.md",
@@ -1478,7 +1471,7 @@
       "path": "webhooks/passport.sealed.md",
       "type": "Webhook Event",
       "title": "passport.sealed",
-      "description": "Passport sealed with an eIDAS advanced seal",
+      "description": "Passport sealed with an advanced electronic seal",
       "resource": "https://opendpp-node.eu/openapi.json#/webhooks/passport.sealed"
     },
     {

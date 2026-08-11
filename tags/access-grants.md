@@ -1,17 +1,17 @@
 ---
 type: Reference
 title: Access Grants
-description: "Capability tokens implementing tiered access (Battery Regulation Art. 77(9) legitimate-interest access): issue, approve, deny and revoke dpp_li_… / dpp_auth_… tokens."
+description: "Capability tokens implementing tiered legitimate-interest access: issue, approve, deny and revoke dpp_li_… / dpp_auth_… tokens."
 resource: https://opendpp-node.eu/api-reference
 tags:
   - api domain
   - access-grants
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-Capability tokens implementing tiered access (Battery Regulation Art. 77(9) legitimate-interest access): issue, approve, deny and revoke `dpp_li_…` / `dpp_auth_…` tokens. Third parties request access via the hosted request page; granted tokens unlock restricted fields on the public resolution endpoints (Bearer or `?grant=`).
+Capability tokens implementing tiered legitimate-interest access: issue, approve, deny and revoke `dpp_li_…` / `dpp_auth_…` tokens. Third parties request access via the hosted request page; granted tokens unlock restricted fields on the public resolution endpoints (Bearer or `?grant=`).
 
 ## Operations
 

@@ -7,10 +7,10 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-The public, redacted JSON-LD Digital Product Passport document (`application/ld+json`). All listed top-level keys are ALWAYS present (`null` where not applicable). Additionally, every key of the (masked) `metadata` object — except the reserved document keys (`@context`, `@type`, `@id`, `id`, `productId`, `digitalLinkUri`, `digitalSeal`, `signingPublicKey`, `status`, `archivedAt`, `retentionUntil`, `proof`, `createdAt`, `updatedAt`, `economicOperator`, `manufacturingFacility`, `metadata`) — is ALSO flattened onto the document root for direct semantic-graph querying (hence `additionalProperties: true`); flattened values are identical to the corresponding `metadata` values, including redaction placeholders. Tier-masked metadata keys are replaced (in both places) with the literal string `[REDACTED - Privileged Access Required]`. Masking by tier: anonymous public callers lose the per-category restricted keys (category `batteries`: `detailedPerformance`, `lifecycleAndInUse`, `circularityAndDisassembly` — masked only when actually present) AND the owner-only key `facilityDetails`; legitimate-interest/authority grant holders lose only `facilityDetails`; owner-tier responses are unmasked and additionally include the facility street address fields. Note: `facilityDetails` is placeholder-masked in EVERY non-owner response, even when the underlying metadata never contained the key — in that case it has no entry in `proof.redactedLeaves`. Each masked key that exists in the sealed metadata keeps its true Merkle leaf hash in `proof.redactedLeaves`, so the eIDAS seal stays verifiable offline after redaction (see `MerkleTreeAttestationProof` for the reconstruction rule).
+The public, redacted JSON-LD Digital Product Passport document (`application/ld+json`). All listed top-level keys are ALWAYS present (`null` where not applicable). Additionally, every key of the (masked) `metadata` object — except the reserved document keys (`@context`, `@type`, `@id`, `id`, `productId`, `digitalLinkUri`, `digitalSeal`, `signingPublicKey`, `status`, `archivedAt`, `retentionUntil`, `proof`, `createdAt`, `updatedAt`, `economicOperator`, `manufacturingFacility`, `metadata`) — is ALSO flattened onto the document root for direct semantic-graph querying (hence `additionalProperties: true`); flattened values are identical to the corresponding `metadata` values, including redaction placeholders. Tier-masked metadata keys are replaced (in both places) with the literal string `[REDACTED - Privileged Access Required]`. Masking by tier: anonymous public callers lose the per-category restricted keys (category `batteries`: `detailedPerformance`, `lifecycleAndInUse`, `circularityAndDisassembly` — masked only when actually present) AND the owner-only key `facilityDetails`; legitimate-interest/authority grant holders lose only `facilityDetails`; owner-tier responses are unmasked and additionally include the facility street address fields. Note: `facilityDetails` is placeholder-masked in EVERY non-owner response, even when the underlying metadata never contained the key — in that case it has no entry in `proof.redactedLeaves`. Each masked key that exists in the sealed metadata keeps its true Merkle leaf hash in `proof.redactedLeaves`, so the seal stays verifiable offline after redaction (see `MerkleTreeAttestationProof` for the reconstruction rule).
 
 ## Schema
 
@@ -21,8 +21,8 @@ The public, redacted JSON-LD Digital Product Passport document (`application/ld+
 | `@id` | string | yes | The passport's canonical GS1 Digital Link URI (same value as digitalLinkUri). |
 | `id` | string | yes | Server-assigned passport UUID. |
 | `productId` | string | yes | Caller-supplied product identifier: a GTIN-14 (^[0-9]{14}$ with valid GS1 modulo-10 check digit), a GRAI (^[0-9]{14}[A-Za-z0-9]{0,16}$), or a free-form SKU. |
-| `digitalLinkUri` | string | yes | SKU/type-level GS1 Digital Link URI: {BASE_URL}/{01|8003}/{productId} (AI-21 carries the passport UUID at SKU level; individual units carry their physical seri… |
-| `digitalSeal` | string,null | yes | eIDAS ADVANCED electronic seal: base64 ECDSA prime256v1 (P-256) signature over the Merkle root of the key-sorted metadata. |
+| `digitalLinkUri` | string | yes | SKU/type-level GS1 Digital Link URI: {origin}/{01|8003}/{productId} (AI-21 carries the passport UUID at SKU level; individual units carry their physical serial… |
+| `digitalSeal` | string,null | yes | ADVANCED electronic seal: base64 ECDSA prime256v1 (P-256) signature over the Merkle root of the key-sorted metadata. |
 | `signingPublicKey` | string,null | yes | PEM public key that verifies digitalSeal. |
 | `status` | string | yes | Passport lifecycle status (serialized as ACTIVE when unset). |
 | `archivedAt` | string,null | yes | Soft-delete marker (owner off-boarded / decommissioned). |
@@ -39,7 +39,7 @@ The public, redacted JSON-LD Digital Product Passport document (`application/ld+
 ```json
 {
   "type": "object",
-  "description": "The public, redacted JSON-LD Digital Product Passport document (`application/ld+json`). All listed top-level keys are ALWAYS present (`null` where not applicable). Additionally, every key of the (masked) `metadata` object — except the reserved document keys (`@context`, `@type`, `@id`, `id`, `productId`, `digitalLinkUri`, `digitalSeal`, `signingPublicKey`, `status`, `archivedAt`, `retentionUntil`, `proof`, `createdAt`, `updatedAt`, `economicOperator`, `manufacturingFacility`, `metadata`) — is ALSO flattened onto the document root for direct semantic-graph querying (hence `additionalProperties: true`); flattened values are identical to the corresponding `metadata` values, including redaction placeholders. Tier-masked metadata keys are replaced (in both places) with the literal string `[REDACTED - Privileged Access Required]`. Masking by tier: anonymous public callers lose the per-category restricted keys (category `batteries`: `detailedPerformance`, `lifecycleAndInUse`, `circularityAndDisassembly` — masked only when actually present) AND the owner-only key `facilityDetails`; legitimate-interest/authority grant holders lose only `facilityDetails`; owner-tier responses are unmasked and additionally include the facility street address fields. Note: `facilityDetails` is placeholder-masked in EVERY non-owner response, even when the underlying metadata never contained the key — in that case it has no entry in `proof.redactedLeaves`. Each masked key that exists in the sealed metadata keeps its true Merkle leaf hash in `proof.redactedLeaves`, so the eIDAS seal stays verifiable offline after redaction (see `MerkleTreeAttestationProof` for the reconstruction rule).",
+  "description": "The public, redacted JSON-LD Digital Product Passport document (`application/ld+json`). All listed top-level keys are ALWAYS present (`null` where not applicable). Additionally, every key of the (masked) `metadata` object — except the reserved document keys (`@context`, `@type`, `@id`, `id`, `productId`, `digitalLinkUri`, `digitalSeal`, `signingPublicKey`, `status`, `archivedAt`, `retentionUntil`, `proof`, `createdAt`, `updatedAt`, `economicOperator`, `manufacturingFacility`, `metadata`) — is ALSO flattened onto the document root for direct semantic-graph querying (hence `additionalProperties: true`); flattened values are identical to the corresponding `metadata` values, including redaction placeholders. Tier-masked metadata keys are replaced (in both places) with the literal string `[REDACTED - Privileged Access Required]`. Masking by tier: anonymous public callers lose the per-category restricted keys (category `batteries`: `detailedPerformance`, `lifecycleAndInUse`, `circularityAndDisassembly` — masked only when actually present) AND the owner-only key `facilityDetails`; legitimate-interest/authority grant holders lose only `facilityDetails`; owner-tier responses are unmasked and additionally include the facility street address fields. Note: `facilityDetails` is placeholder-masked in EVERY non-owner response, even when the underlying metadata never contained the key — in that case it has no entry in `proof.redactedLeaves`. Each masked key that exists in the sealed metadata keeps its true Merkle leaf hash in `proof.redactedLeaves`, so the seal stays verifiable offline after redaction (see `MerkleTreeAttestationProof` for the reconstruction rule).",
   "additionalProperties": true,
   "required": [
     "@context",
@@ -100,14 +100,14 @@ The public, redacted JSON-LD Digital Product Passport document (`application/ld+
     "digitalLinkUri": {
       "type": "string",
       "format": "uri",
-      "description": "SKU/type-level GS1 Digital Link URI: `{BASE_URL}/{01|8003}/{productId}` (AI-21 carries the passport UUID at SKU level; individual units carry their physical serial instead)."
+      "description": "SKU/type-level GS1 Digital Link URI: `{origin}/{01|8003}/{productId}` (AI-21 carries the passport UUID at SKU level; individual units carry their physical serial instead)."
     },
     "digitalSeal": {
       "type": [
         "string",
         "null"
       ],
-      "description": "eIDAS ADVANCED electronic seal: base64 ECDSA prime256v1 (P-256) signature over the Merkle root of the key-sorted metadata. `null` when the passport has not been sealed."
+      "description": "ADVANCED electronic seal: base64 ECDSA prime256v1 (P-256) signature over the Merkle root of the key-sorted metadata. `null` when the passport has not been sealed."
     },
     "signingPublicKey": {
       "type": [

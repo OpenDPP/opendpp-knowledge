@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 201 envelope of `POST /api/v1/passports`. `passport` is the public redacted JSON-LD; `warnings`/`notices` are always present (possibly empty); `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness.
@@ -19,9 +19,9 @@ generated:
 | `success` | boolean | yes | — |
 | `message` | string | yes | "Digital Product Passport successfully validated and ingested", or "Draft passport saved" when draft: true. |
 | `passport` | [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md) | yes | The PUBLIC redacted JSON-LD passport document (unsealed at creation: digitalSeal/proof are null). |
-| `warnings` | array<[ValidationErrorItem](/schemas/ValidationErrorItem.md)> | yes | Non-blocking findings — a MIX of ESPR validation warnings (no code) and machine-coded advisories (a code per src/constants/api-advisories.ts, e.g. NON_GS1_PROD… |
+| `warnings` | array<[ValidationErrorItem](/schemas/ValidationErrorItem.md)> | yes | Non-blocking findings — a MIX of ESPR validation warnings (no code) and machine-coded advisories (a stable code, e.g. NON_GS1_PRODUCT_ID, PII_SHAPE_DETECTED). |
 | `notices` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Informational advisories about helpful things the API did (always coded): OPERATOR_AUTO_ATTRIBUTED (operatorId omitted → the workspace's sole bound operator us… |
-| `vcReady` | boolean | no | #247: whether this passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked (producedAtF… |
+| `vcReady` | boolean | no | Whether this passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked (producedAtFacilit… |
 | `vcReadyReason` | string,null | no | Null when vcReady is true; otherwise a short, actionable reason (link a facility with a country of production). |
 
 ## JSON Schema
@@ -55,7 +55,7 @@ generated:
       "items": {
         "$ref": "#/components/schemas/ValidationErrorItem"
       },
-      "description": "Non-blocking findings — a MIX of ESPR validation warnings (no `code`) and machine-coded advisories (a `code` per src/constants/api-advisories.ts, e.g. `NON_GS1_PRODUCT_ID`, `PII_SHAPE_DETECTED`). Always present; empty for drafts. See `AdvisoryItem` for the coded shape."
+      "description": "Non-blocking findings — a MIX of ESPR validation warnings (no `code`) and machine-coded advisories (a stable `code`, e.g. `NON_GS1_PRODUCT_ID`, `PII_SHAPE_DETECTED`). Always present; empty for drafts. See `AdvisoryItem` for the coded shape."
     },
     "notices": {
       "type": "array",
@@ -66,7 +66,7 @@ generated:
     },
     "vcReady": {
       "type": "boolean",
-      "description": "#247: whether this passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked (`producedAtFacility` + `countryOfProduction` are required by the UNTP DPP schema; a GLN is optional). The passport still publishes and resolves as AAS / JSON-LD / HTML regardless."
+      "description": "Whether this passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked (`producedAtFacility` + `countryOfProduction` are required by the UNTP DPP schema; a GLN is optional). The passport still publishes and resolves as AAS / JSON-LD / HTML regardless."
     },
     "vcReadyReason": {
       "type": [

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 A passport to create: its product identifier and ESPR category metadata, with optional operator and facility binding, a draft flag, and enrichment held outside the sealed metadata.
@@ -20,7 +20,7 @@ A passport to create: its product identifier and ESPR category metadata, with op
 | `operatorId` | string | no | UUID of an EconomicOperator bound to your tenant workspace (403 if not bound). |
 | `facilityId` | string | no | Optional UUID of a Facility (GLN-backed Unique Facility Identifier) in your workspace; 400 if not found. |
 | `metadata` | [PassportMetadataInput](/schemas/PassportMetadataInput.md) | yes | — |
-| `draft` | boolean | no | When true: skips ALL ESPR/traceability validation, stores the passport with status: "DRAFT" (not publicly resolvable), and emits no webhook. |
+| `draft` | boolean | no | When true: skips ALL ESPR validation, stores the passport with status: "DRAFT" (not publicly resolvable), and emits no webhook. |
 | `enrichment` | [PassportEnrichmentInput](/schemas/PassportEnrichmentInput.md) | no | — |
 
 ## JSON Schema
@@ -53,7 +53,7 @@ A passport to create: its product identifier and ESPR category metadata, with op
     "draft": {
       "type": "boolean",
       "default": false,
-      "description": "When true: skips ALL ESPR/traceability validation, stores the passport with `status: \"DRAFT\"` (not publicly resolvable), and emits no webhook. Publish later via a validated edit."
+      "description": "When true: skips ALL ESPR validation, stores the passport with `status: \"DRAFT\"` (not publicly resolvable), and emits no webhook. Publish later via a validated edit."
     },
     "enrichment": {
       "$ref": "#/components/schemas/PassportEnrichmentInput"

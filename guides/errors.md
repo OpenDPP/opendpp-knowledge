@@ -9,7 +9,7 @@ tags:
   - troubleshooting
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Authenticated endpoints return `{ success: false, error, message }` (some endpoints, and all
@@ -25,7 +25,7 @@ texts are localizable via `?lang=` or `Accept-Language` (28 languages, default `
 [validatePassportPublic](/operations/validatePassportPublic.md).
 
 Bulk endpoints report row-level problems as `errors: string[]`. Malformed JSON and query-string
-violations return Fastify's default `{ statusCode, code, error, message }` body.
+violations return a default `{ statusCode, code, error, message }` body.
 
 # Status codes you will encounter
 

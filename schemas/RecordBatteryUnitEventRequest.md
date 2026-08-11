@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 One telemetry record. All measurements are optional and independently nullable; numeric ranges are enforced with 400 on violation.
@@ -88,7 +88,7 @@ One telemetry record. All measurements are optional and independently nullable; 
     },
     "status": {
       "$ref": "#/components/schemas/BatteryUnitStatus",
-      "description": "Optional status transition, applied to the unit in the same transaction when it differs from the current status (works with any `eventType`; conventionally paired with `STATUS_CHANGE`). Transitioning to `RECYCLED` stamps `ceasedAt` (if not already set; never cleared) and turns the public unit view into a 410 tombstone (Art. 77(8)); `status` itself is not locked afterwards — a later event may still set a different value — but `ceasedAt` persists, so the 410 and the predecessor refusal are permanent."
+      "description": "Optional status transition, applied to the unit in the same transaction when it differs from the current status (works with any `eventType`; conventionally paired with `STATUS_CHANGE`). Transitioning to `RECYCLED` stamps `ceasedAt` (if not already set; never cleared) and turns the public unit view into a 410 tombstone; `RECYCLED` is terminal — once the unit's status is `RECYCLED` every further event is refused (400 `Terminal Unit Status`), so the status can never change again."
     }
   },
   "required": [

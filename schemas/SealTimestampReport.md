@@ -7,10 +7,10 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-Present only when `payload.proof.rfc3161.token` was supplied AND verification proceeds past the key-registration and operator-binding gates (the two policy `verified: false` responses omit it). Reports presence, the TSA-asserted genTime from the token's TSTInfo, and — when the node has a TSA CA configured (`TSA_CA_PEM`) — `timeAuthenticated`: the result of verifying the token's CMS SignedData signature over its TSTInfo and chaining the signer certificate to that anchor.
+Present only when `payload.proof.rfc3161.token` was supplied AND verification proceeds past the key-registration and operator-binding gates (the two policy `verified: false` responses omit it). Reports presence, the TSA-asserted genTime from the token's TSTInfo, and — when the node has a TSA trust anchor configured — `timeAuthenticated`: the result of verifying the token's CMS SignedData signature over its TSTInfo and chaining the signer certificate to that anchor.
 
 ## Schema
 
@@ -26,7 +26,7 @@ Present only when `payload.proof.rfc3161.token` was supplied AND verification pr
 ```json
 {
   "type": "object",
-  "description": "Present only when `payload.proof.rfc3161.token` was supplied AND verification proceeds past the key-registration and operator-binding gates (the two policy `verified: false` responses omit it). Reports presence, the TSA-asserted genTime from the token's TSTInfo, and — when the node has a TSA CA configured (`TSA_CA_PEM`) — `timeAuthenticated`: the result of verifying the token's CMS SignedData signature over its TSTInfo and chaining the signer certificate to that anchor.",
+  "description": "Present only when `payload.proof.rfc3161.token` was supplied AND verification proceeds past the key-registration and operator-binding gates (the two policy `verified: false` responses omit it). Reports presence, the TSA-asserted genTime from the token's TSTInfo, and — when the node has a TSA trust anchor configured — `timeAuthenticated`: the result of verifying the token's CMS SignedData signature over its TSTInfo and chaining the signer certificate to that anchor.",
   "required": [
     "present",
     "genTime"
@@ -46,7 +46,7 @@ Present only when `payload.proof.rfc3161.token` was supplied AND verification pr
     },
     "timeAuthenticated": {
       "type": "boolean",
-      "description": "True only when the token's RFC 3161 CMS SignedData signature verifies over its TSTInfo AND the signer passes full trust-path validation to the node's configured TSA CA anchor (`TSA_CA_PEM`): the signer is an end-entity timestamping certificate (a CRITICAL `id-kp-timeStamping` EKU, not a CA) that is VALID at the asserted `genTime` and chains through CA-constrained, genTime-valid intermediates to the anchor (itself a CA valid at `genTime`). False when the signature fails, when the path is not policy-valid, and when no TSA CA is configured (the asserted `genTime` is then unauthenticated). This is the node's own cryptographic check and does not replace a verifier's independent `openssl ts -verify`."
+      "description": "True only when the token's RFC 3161 CMS SignedData signature verifies over its TSTInfo AND the signer passes full trust-path validation to the node's configured TSA trust anchor: the signer is an end-entity timestamping certificate (a CRITICAL `id-kp-timeStamping` EKU, not a CA) that is VALID at the asserted `genTime` and chains through CA-constrained, genTime-valid intermediates to the anchor (itself a CA valid at `genTime`). False when the signature fails, when the path is not policy-valid, and when no TSA CA is configured (the asserted `genTime` is then unauthenticated). This is the node's own cryptographic check and does not replace a verifier's independent `openssl ts -verify`."
     },
     "note": {
       "type": "string",

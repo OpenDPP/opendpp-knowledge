@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: List access grants and pending access requests
-description: "Lists the workspace's access grants — capability-token grants for the Battery Regulation's restricted data tiers (Reg. (EU) 2023/1542 Art. 77(9), Annex XIII(2)–(4)) — including undecided third-party access requests (status: PENDING, issuer…"
+description: "Lists the workspace's access grants — capability-token grants for the Battery Regulation's restricted data tiers (Annex XIII(2)–(4)) — including undecided third-party access requests (status: PENDING, issuerType: REQUEST) submitted via the…"
 resource: https://opendpp-node.eu/api/v1/grants
 tags:
   - GET
   - access-grants
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `GET /api/v1/grants`
@@ -16,9 +16,9 @@ generated:
 **Domain:** [Access Grants](/tags/access-grants.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Lists the workspace's access grants — capability-token grants for the Battery Regulation's restricted data tiers (Reg. (EU) 2023/1542 Art. 77(9), Annex XIII(2)–(4)) — including undecided third-party access **requests** (`status: PENDING`, `issuerType: REQUEST`) submitted via the hosted request-access page.
+Lists the workspace's access grants — capability-token grants for the Battery Regulation's restricted data tiers (Annex XIII(2)–(4)) — including undecided third-party access **requests** (`status: PENDING`, `issuerType: REQUEST`) submitted via the hosted request-access page.
 
-**Permission:** `grant:read`. **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Permission:** `grant:read`. **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 Paginated with `?page` (default 1) and `?limit` (default 100, max 200), grouped by `status` ascending (alphabetical: `ACTIVE`, `DENIED`, `PENDING`, `REVOKED`) and newest-first within each group. `AUTHORITY` grants (platform-issued market-surveillance access) are listed for transparency but are not tenant-revocable (`revocable: false`). Raw capability tokens are never included — only issuance/approval responses contain them, once.
 

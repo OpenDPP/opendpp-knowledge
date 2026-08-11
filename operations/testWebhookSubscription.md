@@ -8,7 +8,7 @@ tags:
   - webhooks
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `POST /api/v1/webhooks/subscriptions/{id}/test`
@@ -18,7 +18,7 @@ generated:
 
 Delivers a single **signed sample** event to the subscription's URL right now and reports the outcome — use it to confirm your endpoint is reachable and that your signature verification works, without waiting for a real passport event. The payload is a representative public JSON-LD passport document marked `_test: true`; it is signed exactly like a production delivery (HMAC-SHA256 over `${timestamp}.${body}`). The event type is a concrete value from the subscription's filter (the `*` wildcard is skipped; defaults to `passport.sealed`).
 
-**Permission:** `webhook:write`. **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Permission:** `webhook:write`. **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 

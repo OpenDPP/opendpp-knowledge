@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 The calling credential's identity: its workspace, the resolved auth principal and permissions, and active-passport usage against the plan quota.

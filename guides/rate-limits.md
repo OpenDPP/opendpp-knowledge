@@ -10,7 +10,7 @@ tags:
   - tiers
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Two limits apply, and which one binds depends on how you call.
@@ -23,15 +23,15 @@ Two limits apply, and which one binds depends on how you call.
 | Scale | **600 requests/min** |
 | Enterprise | **unlimited** |
 
-A second ceiling of **3x that rate** applies across all of a workspace's keys together, so issuing
-more keys divides throughput fairly between your own systems rather than multiplying it. Plans below
-Growth do not include API access. Exceeding either budget returns `429` with a `Retry-After` header.
+A second ceiling of **3x that rate** applies across all of a workspace's
+keys together, so issuing more keys divides throughput fairly between your own systems rather than
+multiplying it. Plans below Growth do not include API access. Exceeding either budget returns `429` with a `Retry-After` header.
 
 ## Per IP (all traffic)
 
 | Surface | Limit | Headers |
 |---------|-------|---------|
-| Anonymous, all endpoints | **100 requests/min per IP** (raised for `Authorization`-bearing requests and verified crawlers) | `x-ratelimit-limit`, `x-ratelimit-remaining`, `x-ratelimit-reset` |
+| Anonymous, all endpoints | **100 requests/min per IP** (authenticated calls sit on a higher ceiling) | `x-ratelimit-limit`, `x-ratelimit-remaining`, `x-ratelimit-reset` |
 | Public passport resolution | **30 requests/min per IP** | none |
 | Public validator | **10 requests/min per IP** | none |
 | GS1 decode / check-digit helpers, anonymous | **2 requests/min per IP** | `x-ratelimit-*` |

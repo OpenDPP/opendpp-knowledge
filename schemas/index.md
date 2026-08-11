@@ -7,20 +7,21 @@
 * [ApproveGrantRequest](ApproveGrantRequest.md) - Approval body — only the final expiry is supplied; everything else comes from the original request.
 * [BatteryUnitCreateItem](BatteryUnitCreateItem.md) - One unit to serialise.
 * [BatteryUnitCurrentState](BatteryUnitCurrentState.md) - Latest recorded measurement of the unit (owner/grant tiers only).
-* [BatteryUnitDeleteResponse](BatteryUnitDeleteResponse.md) - Confirmation that a battery unit was deleted.
 * [BatteryUnitDynamicDataEvent](BatteryUnitDynamicDataEvent.md) - One telemetry event in the JSON-LD dynamicData history (privileged view only).
-* [BatteryUnitEventListResponse](BatteryUnitEventListResponse.md) - A battery unit's append-only dynamic-data history, newest first.
+* [BatteryUnitEventListResponse](BatteryUnitEventListResponse.md) - One page of a battery unit's append-only dynamic-data history, newest first.
 * [BatteryUnitEventNode](BatteryUnitEventNode.md) - One append-only telemetry event (owner/grant tiers only).
-* [BatteryUnitEventRow](BatteryUnitEventRow.md) - One immutable per-unit telemetry record (raw persisted row).
+* [BatteryUnitEventRow](BatteryUnitEventRow.md) - One immutable per-unit telemetry record — the reads return exactly the fields documented here.
 * [BatteryUnitEventType](BatteryUnitEventType.md) - Per-unit dynamic-data event category (Annex XIII / Art. 77 telemetry).
 * [BatteryUnitJsonLd](BatteryUnitJsonLd.md) - JSON-LD document for one serialised battery unit, privileged tenant view (isPrivileged=true): includes currentState + dynamicData telemetry…
-* [BatteryUnitLineageRef](BatteryUnitLineageRef.md) - Public lineage pointer between battery units (Art. 77(7)).
+* [BatteryUnitLineageRef](BatteryUnitLineageRef.md) - Public lineage pointer between battery units.
 * [BatteryUnitListResponse](BatteryUnitListResponse.md) - A page of the serialised battery units recorded under one passport, with the paging envelope.
-* [BatteryUnitRestrictedDataNotice](BatteryUnitRestrictedDataNotice.md) - Marker replacing per-unit telemetry in anonymous (public-tier) responses, with a pointer for requesting legitimate-interest access (Reg. (E…
-* [BatteryUnitRow](BatteryUnitRow.md) - One physical serialised battery (raw persisted row — these routes declare no Fastify response schema, so all model fields are returned as-i…
+* [BatteryUnitRestrictedDataNotice](BatteryUnitRestrictedDataNotice.md) - Marker replacing per-unit telemetry in anonymous (public-tier) responses, with a pointer for requesting legitimate-interest access (Annex X…
+* [BatteryUnitRow](BatteryUnitRow.md) - One physical serialised battery — the reads return exactly the fields documented here.
 * [BatteryUnitSerialisationFailedError](BatteryUnitSerialisationFailedError.md) - 400 body when every item in the serialisation batch failed.
-* [BatteryUnitStatus](BatteryUnitStatus.md) - Annex XIII battery-status vocabulary (Battery Reg. (EU) 2023/1542).
-* [BatteryUnitTombstoneJsonLd](BatteryUnitTombstoneJsonLd.md) - Art. 77(8) tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist.
+* [BatteryUnitStatus](BatteryUnitStatus.md) - Annex XIII battery-status vocabulary (EU Battery Regulation).
+* [BatteryUnitTombstoneJsonLd](BatteryUnitTombstoneJsonLd.md) - Tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist.
+* [BulkBatteryUnitEventsRequest](BulkBatteryUnitEventsRequest.md) - A batch of telemetry records for one unit.
+* [BulkBatteryUnitEventsResponse](BulkBatteryUnitEventsResponse.md) - The partial-success report of a bulk telemetry ingest.
 * [CreateGrantRequest](CreateGrantRequest.md) - Direct-issuance body.
 * [DeleteOperatorResponse](DeleteOperatorResponse.md) - Outcome of removing an economic operator: whether it was archived rather than deleted, and how many of its passports were archived with it.
 * [DidWebDocument](DidWebDocument.md) - A tenant's did:web DID document (public-key material only).
@@ -37,7 +38,7 @@
 * [FacilityListEnvelope](FacilityListEnvelope.md) - A page of the workspace's facilities, with the paging envelope.
 * [FacilityRow](FacilityRow.md) - A facility (GS1 GLN) master-data row, exactly as stored.
 * [FacilityUpdateRequest](FacilityUpdateRequest.md) - Partial update.
-* [FastifyDefaultBadRequest](FastifyDefaultBadRequest.md) - Fastify's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework before the handler…
+* [FastifyDefaultBadRequest](FastifyDefaultBadRequest.md) - The framework's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework before the h…
 * [GrantDecisionResponse](GrantDecisionResponse.md) - Returned by deny and revoke: the updated grant, no token.
 * [GrantIssuedResponse](GrantIssuedResponse.md) - Returned by direct issuance (201) and request approval (200).
 * [GrantListResponse](GrantListResponse.md) - List envelope for GET /api/v1/grants (paginated).
@@ -46,7 +47,7 @@
 * [HealthStatus](HealthStatus.md) - Health-check body of GET /health.
 * [MaterialVocabularyListResponse](MaterialVocabularyListResponse.md) - Envelope of GET /api/v1/materials.
 * [MaterialVocabularyRow](MaterialVocabularyRow.md) - One entry of the platform-curated material vocabulary.
-* [MerkleTreeAttestationProof](MerkleTreeAttestationProof.md) - OpenDPP's own proof type — an eIDAS ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted me…
+* [MerkleTreeAttestationProof](MerkleTreeAttestationProof.md) - OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted metadata…
 * [OperatorGetResponse](OperatorGetResponse.md) - A single economic operator record.
 * [OperatorListResponse](OperatorListResponse.md) - The economic operators bound to the calling workspace.
 * [OperatorMinimalError](OperatorMinimalError.md) - Minimal error envelope used by the operator/key self-service handlers — note the standard error key is ABSENT (unlike the shared Error sche…
@@ -72,7 +73,7 @@
 * [PassportValidateOnlyError](PassportValidateOnlyError.md) - 400 envelope of the validate-only endpoints.
 * [PassportValidateOnlyRequest](PassportValidateOnlyRequest.md) - A metadata payload to validate against its ESPR category rules without persisting anything.
 * [PassportValidateOnlyResult](PassportValidateOnlyResult.md) - 200 envelope of the validate-only endpoints (only the declared keys are emitted).
-* [PublicBatteryUnitJsonLd](PublicBatteryUnitJsonLd.md) - Public JSON-LD document for one individual serialised battery unit (Reg. (EU) 2023/1542 Art. 77(2)).
+* [PublicBatteryUnitJsonLd](PublicBatteryUnitJsonLd.md) - Public JSON-LD document for one individual serialised battery unit (EU Battery Regulation).
 * [PublicFacilityNode](PublicFacilityNode.md) - Embedded manufacturing-facility JSON-LD node — the GS1 GLN-backed Unique Facility Identifier (UFI, EN 18219).
 * [PublicPassportJsonLd](PublicPassportJsonLd.md) - The public, redacted JSON-LD Digital Product Passport document (application/ld+json).
 * [RecordBatteryUnitEventRequest](RecordBatteryUnitEventRequest.md) - One telemetry record.
@@ -90,8 +91,6 @@
 * [SerializeBatteryUnitsRequest](SerializeBatteryUnitsRequest.md) - Either a single unit object, or a batch wrapper {units: [...]}.
 * [SerializeBatteryUnitsResponse](SerializeBatteryUnitsResponse.md) - Returned (201) when at least one unit was created.
 * [ServiceVersion](ServiceVersion.md) - Running API contract version and source build identity, returned by GET /api/v1/version.
-* [TraceComplianceAuditResponse](TraceComplianceAuditResponse.md) - The verdict of auditing a traceability lineage: whether it is compliant, any errors found, and the resulting certificate.
-* [TraceComplianceCertificate](TraceComplianceCertificate.md) - A compliance certificate for an audited traceability lineage, naming the root event and the regulatory standards checked.
 * [TraceEventRegistered](TraceEventRegistered.md) - 201 envelope of POST /api/v1/events.
 * [TraceLineageNode](TraceLineageNode.md) - One node of the recursive upstream lineage DAG.
 * [TraceLineageResponse](TraceLineageResponse.md) - The upstream pedigree of a traceability event, as a recursive graph of the events it derives from.

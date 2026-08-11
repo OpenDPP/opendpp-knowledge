@@ -1,16 +1,16 @@
 ---
 type: Schema
 title: BatteryUnitEventRow
-description: One immutable per-unit telemetry record (raw persisted row).
+description: One immutable per-unit telemetry record — the reads return exactly the fields documented here.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventRow
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-One immutable per-unit telemetry record (raw persisted row). Append-only: no update or delete path exists.
+One immutable per-unit telemetry record — the reads return exactly the fields documented here. Append-only: no update or delete path exists.
 
 ## Schema
 
@@ -33,7 +33,7 @@ One immutable per-unit telemetry record (raw persisted row). Append-only: no upd
 ```json
 {
   "type": "object",
-  "description": "One immutable per-unit telemetry record (raw persisted row). Append-only: no update or delete path exists.",
+  "description": "One immutable per-unit telemetry record — the reads return exactly the fields documented here. Append-only: no update or delete path exists.",
   "properties": {
     "id": {
       "type": "string"
@@ -120,3 +120,4 @@ One immutable per-unit telemetry record (raw persisted row). Append-only: no upd
 
 - schema [RecordBatteryUnitEventResponse](/schemas/RecordBatteryUnitEventResponse.md)
 - schema [BatteryUnitEventListResponse](/schemas/BatteryUnitEventListResponse.md)
+- schema [BulkBatteryUnitEventsResponse](/schemas/BulkBatteryUnitEventsResponse.md)

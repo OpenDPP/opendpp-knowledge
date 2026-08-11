@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `PUT /api/v1/passports/{id}/status`
@@ -32,7 +32,7 @@ Transitions a **published** passport between live lifecycle states. The request 
 
 **Caveats:** DRAFT passports are refused with 409 (publish first via a validated `PUT /api/v1/passports/{id}`). Sealed passports CAN change status — `status` is stored alongside the document, not inside the sealed metadata Merkle tree. The returned `passport` document is serialized at the **public** redaction tier.
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 

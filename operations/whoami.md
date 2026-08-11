@@ -8,7 +8,7 @@ tags:
   - account
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `GET /api/v1/whoami`
@@ -18,11 +18,11 @@ generated:
 
 Returns a compact, integration-focused view of the calling credential: the workspace, the principal's role and resolved permissions, whether the session is an API key, the operator the key is scoped to (`null` = workspace-wide), and active-passport usage against the tier quota. Use it to verify a key works, discover the effective permission set, and surface remaining quota.
 
-This is the public counterpart to the console's `GET /api/v1/me`; profile, localization and billing details are intentionally not exposed here.
+Profile, localization and billing details are deliberately not exposed here — this is the integration view of the credential.
 
 **Permission:** none beyond a valid tenant-scoped session — any API key can call it. Platform-admin sessions are rejected with `403` (they are not tenant-scoped).
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Responses
 

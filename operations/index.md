@@ -10,7 +10,7 @@
 * [GET /api/v1/passports/{id}](getPassport.md) - Fetch a single passport (content-negotiated JSON-LD / AAS / HTML)
 * [PUT /api/v1/passports/{id}](updatePassport.md) - Update passport metadata (versioned to history)
 * [DELETE /api/v1/passports/{id}](deleteDraftPassport.md) - Permanently delete a DRAFT passport
-* [POST /api/v1/passports/{id}/seal](sealPassport.md) - Apply the tenant's eIDAS advanced electronic seal
+* [POST /api/v1/passports/{id}/seal](sealPassport.md) - Apply the tenant's advanced electronic seal
 * [PUT /api/v1/passports/{id}/status](updatePassportStatus.md) - Transition passport lifecycle status (recall / decommission / reactivate)
 
 # Economic Operators
@@ -24,13 +24,14 @@
 
 # Battery Units
 
-* [POST /api/v1/passports/{passportId}/units/validate](validateBatteryUnits.md) - Pre-flight: validate battery-unit identifiers without persisting (#263)
+* [POST /api/v1/passports/{passportId}/units/validate](validateBatteryUnits.md) - Pre-flight: validate battery-unit identifiers without persisting
 * [GET /api/v1/passports/{passportId}/units](listBatteryUnits.md) - List serialised battery units under a passport
 * [POST /api/v1/passports/{passportId}/units](serializeBatteryUnits.md) - Serialise individual battery units under a passport (bulk, up to 200)
 * [GET /api/v1/units/{id}](getBatteryUnit.md) - Get one battery unit as JSON-LD with its dynamic-data history
-* [DELETE /api/v1/units/{id}](deleteBatteryUnit.md) - Permanently delete a battery unit and its telemetry
-* [GET /api/v1/units/{id}/events](listBatteryUnitEvents.md) - List a battery unit's telemetry history (newest first, max 500)
+* [DELETE /api/v1/units/{id}](deleteBatteryUnit.md) - Not deletable: a serialised unit is a marketed physical item (always 409)
+* [GET /api/v1/units/{id}/events](listBatteryUnitEvents.md) - List a battery unit's telemetry history (newest first, cursor-paginated)
 * [POST /api/v1/units/{id}/events](recordBatteryUnitEvent.md) - Append an immutable telemetry event to a battery unit
+* [POST /api/v1/units/{id}/events/bulk](bulkRecordBatteryUnitEvents.md) - Append a batch of telemetry events to a battery unit
 
 # Facilities
 
@@ -63,8 +64,7 @@
 * [POST /api/v1/events](registerTraceabilityEvent.md) - Register a UNTP/EPCIS 2.0 traceability event (VC-shaped)
 * [POST /api/v1/events/epcis](captureEpcisDocument.md) - Capture a native GS1 EPCIS 2.0 document (JSON/JSON-LD)
 * [GET /api/v1/events/{id}/lineage](getEventLineage.md) - Retrieve the upstream pedigree of an event as a recursive lineage DAG
-* [POST /api/v1/events/{id}/audit](auditEventLineage.md) - Run heuristic UFLPA/EUDR compliance screening over an event's lineage
-* [POST /api/v1/audit/verify](verifyPassportSeal.md) - Publicly verify a passport's eIDAS seal, certificate chain and timestamp
+* [POST /api/v1/audit/verify](verifyPassportSeal.md) - Publicly verify a passport's seal, certificate chain and timestamp
 
 # Public Resolution
 
@@ -97,7 +97,7 @@
 
 # eIDAS Keys
 
-* [POST /api/v1/tenants/rotate-keys](rotateTenantKeys.md) - Rotate the tenant's eIDAS ECDSA signing key pair
+* [POST /api/v1/tenants/rotate-keys](rotateTenantKeys.md) - Rotate the tenant's ECDSA signing key pair
 * [GET /.well-known/opendpp-seal-ca.pem](getSealCaCertificate.md) - Download the platform seal-CA certificate (PEM)
 
 # Account

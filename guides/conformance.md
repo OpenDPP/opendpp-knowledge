@@ -9,7 +9,7 @@ tags:
   - honesty
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 OpenDPP is deliberately precise about what it claims. In short:
@@ -23,8 +23,8 @@ OpenDPP is deliberately precise about what it claims. In short:
   credential, emitted both as an enveloping `vc+jwt` and as an embedded `ecdsa-jcs-2019` Data Integrity
   proof, and CI-validated against the official UNTP DPP schema and the off-the-shelf `@digitalbazaar`
   cryptosuite.
-- **The legacy passport seal** is a vendor `MerkleTreeAttestationProof` — an eIDAS *advanced* (not
-  qualified) seal. It is never presented as the conformant credential; that is a separate artifact.
+- **The legacy passport seal** is a vendor `MerkleTreeAttestationProof` — an *advanced* (not
+  qualified) electronic seal. It is never presented as the conformant credential; that is a separate artifact.
 
 The authoritative per-path conform / partial / roadmap matrix lives in the open-source interop kit at
 [github.com/OpenDPP/opendpp-interop](https://github.com/OpenDPP/opendpp-interop). No competent

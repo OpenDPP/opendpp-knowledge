@@ -8,7 +8,7 @@ tags:
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `GET /api/v1/passports/{passportId}/units`
@@ -18,9 +18,9 @@ generated:
 
 Lists **all** serialised units of the passport, newest first (`createdAt` DESC). **Paginated** with `?page` (default 1) and `?limit` (default 100, max 200) — a SKU may carry many physical units; `count` is this page's size, `total`/`totalPages` describe the full set.
 
-**Permission:** `battery:read`. Operator-scoped credentials may only read passports of their own Economic Operator (403). Units are raw persisted rows (no Fastify response schema, nothing stripped).
+**Permission:** `battery:read`. Operator-scoped credentials may only read passports of their own Economic Operator (403). Units are returned as stored.
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 

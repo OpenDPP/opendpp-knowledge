@@ -1,23 +1,23 @@
 ---
 type: Schema
 title: FastifyDefaultBadRequest
-description: Fastify's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework before the handler runs (so none of the handler-built {success:false, ...} shapes apply).
+description: The framework's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework before the handler runs (so none of the handler-built {success:false, ...} shapes apply).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/FastifyDefaultBadRequest
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-Fastify's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework **before the handler runs** (so none of the handler-built `{success:false, ...}` shapes apply).
+The framework's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework **before the handler runs** (so none of the handler-built `{success:false, ...}` shapes apply).
 
 ## Schema
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
 | `statusCode` | integer | yes | — |
-| `code` | string | no | Fastify error code, e.g. FST_ERR_CTP_INVALID_JSON_BODY. |
+| `code` | string | no | Framework error code, e.g. FST_ERR_CTP_INVALID_JSON_BODY. |
 | `error` | string | yes | — |
 | `message` | string | yes | — |
 
@@ -26,7 +26,7 @@ Fastify's default 400 error body, returned when a syntactically malformed JSON r
 ```json
 {
   "type": "object",
-  "description": "Fastify's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework **before the handler runs** (so none of the handler-built `{success:false, ...}` shapes apply).",
+  "description": "The framework's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework **before the handler runs** (so none of the handler-built `{success:false, ...}` shapes apply).",
   "properties": {
     "statusCode": {
       "type": "integer",
@@ -34,7 +34,7 @@ Fastify's default 400 error body, returned when a syntactically malformed JSON r
     },
     "code": {
       "type": "string",
-      "description": "Fastify error code, e.g. `FST_ERR_CTP_INVALID_JSON_BODY`. May be absent."
+      "description": "Framework error code, e.g. `FST_ERR_CTP_INVALID_JSON_BODY`. May be absent."
     },
     "error": {
       "type": "string",

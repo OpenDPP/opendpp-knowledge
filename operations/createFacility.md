@@ -8,7 +8,7 @@ tags:
   - facilities
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `POST /api/v1/facilities`
@@ -32,7 +32,7 @@ Registers a manufacturing/processing facility as tenant-scoped master data, back
 
 Emits a `facility.created` audit event and an in-app notification.
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Request body
 
@@ -60,7 +60,7 @@ Schema (required): [FacilityCreateRequest](/schemas/FacilityCreateRequest.md).
 - **403** — Forbidden. → [Error](/schemas/Error.md)
 - **409** — A facility with this GLN is already registered. → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
-- **500** — Internal error (standard envelope). → [Error](/schemas/Error.md)
+- **500** — Internal error (standard envelope), with the message Failed to register facility for unexpected database errors; a failure inside the auth layer returns messag… → [Error](/schemas/Error.md)
 
 ## Example
 

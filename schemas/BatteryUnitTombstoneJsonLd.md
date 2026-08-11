@@ -1,16 +1,16 @@
 ---
 type: Schema
 title: BatteryUnitTombstoneJsonLd
-description: "Art. 77(8) tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist."
+description: "Tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitTombstoneJsonLd
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-Art. 77(8) tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist. This minimal record confirms the unit existed, that it was recycled and when, plus the (still living) model-passport link. Grants and owner credentials do not override the tombstone on the public URL; the underlying data is retained internally for the statutory retention window.
+Tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist. This minimal record confirms the unit existed, that it was recycled and when, plus the (still living) model-passport link. Grants and owner credentials do not override the tombstone on the public URL; the underlying data is retained internally for the statutory retention window.
 
 ## Schema
 
@@ -31,7 +31,7 @@ Art. 77(8) tombstone (HTTP 410): once a battery is recycled its passport has cea
 ```json
 {
   "type": "object",
-  "description": "Art. 77(8) tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist. This minimal record confirms the unit existed, that it was recycled and when, plus the (still living) model-passport link. Grants and owner credentials do not override the tombstone on the public URL; the underlying data is retained internally for the statutory retention window.",
+  "description": "Tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist. This minimal record confirms the unit existed, that it was recycled and when, plus the (still living) model-passport link. Grants and owner credentials do not override the tombstone on the public URL; the underlying data is retained internally for the statutory retention window.",
   "additionalProperties": false,
   "required": [
     "@context",

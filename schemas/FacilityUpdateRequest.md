@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Partial update. `gln` and `operatorId` are immutable — if present they are silently ignored, as is any unknown key. For `activity`/`streetAddress`/`city`/`postalCode` the *presence* of the key matters: the value is stringified and trimmed, and anything that trims to empty (null, "", or a whitespace-only string) clears the field to null — the same normalization as POST.

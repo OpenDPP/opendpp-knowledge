@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Always HTTP 200 once the request is well-formed. `verified: false` covers both cryptographic failure and the two registration/binding policy failures — the policy failures add a `message` and OMIT `certificate`/`timestamp` even when an x5c chain or RFC 3161 token was supplied.

@@ -8,7 +8,7 @@ tags:
   - schemas-vocabulary
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `GET /api/v1/materials`
@@ -18,7 +18,7 @@ generated:
 
 Lists active entries from the platform-global material vocabulary that powers the searchable material/fiber/chemistry pickers in the passport form. This is shared reference data, deliberately **not** tenant-scoped, so DPP data stays comparable across tenants.
 
-**Auth:** any authenticated session — Bearer API key, Bearer JWT, or `opendpp_session` cookie. **No specific permission string is required** and subscription status is not checked, so this endpoint never returns 402. On a tenant-subdomain host, credentials belonging to a different tenant receive **403** with message `Cross-tenant access blocked.`.
+**Auth:** any authenticated session — Bearer API key, Bearer JWT, or browser session. **No specific permission string is required** and subscription status is not checked, so this endpoint never returns 402. On a tenant-subdomain host, credentials belonging to a different tenant receive **403** with message `Cross-tenant access blocked.`.
 
 **Filtering & ordering:** `kind` filters by vocabulary kind — an unrecognized value is **silently ignored** (the filter simply isn't applied; no 400). `search` is a trimmed, case-insensitive substring match on `name` (blank values ignored). Only active entries are returned, ordered by `kind` ascending then `name` ascending. `limit` is clamped to 1–1000 (default 1000); there is no pagination.
 
@@ -26,7 +26,7 @@ Lists active entries from the platform-global material vocabulary that powers th
 
 **Curation:** this vocabulary is curated by the platform operator — the API is read-only for tenant credentials. Free-text material values in passport metadata remain allowed but are never auto-added to this vocabulary.
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 

@@ -1,7 +1,7 @@
 ---
 type: Playbook
 title: Sealing & verification
-description: Apply an eIDAS advanced electronic seal and verify it offline from the redacted document.
+description: Apply an advanced electronic seal and verify it offline from the redacted document.
 resource: https://opendpp-node.eu/security
 tags:
   - sealing
@@ -11,10 +11,10 @@ tags:
   - RFC 3161
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-OpenDPP passport seals are **eIDAS advanced electronic seals**: an ECDSA P-256 signature over a
+OpenDPP passport seals are **advanced electronic seals**: an ECDSA P-256 signature over a
 Merkle root of the passport content, with an optional RFC 3161 timestamp. (This is an *advanced*
 seal — a *qualified* seal would require a QTSP; OpenDPP does not issue qualified seals.)
 

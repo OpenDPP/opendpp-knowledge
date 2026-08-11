@@ -1,16 +1,16 @@
 ---
 type: Schema
 title: BatteryUnitLineageRef
-description: Public lineage pointer between battery units (Art. 77(7)).
+description: Public lineage pointer between battery units.
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitLineageRef
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
-Public lineage pointer between battery units (Art. 77(7)).
+Public lineage pointer between battery units.
 
 ## Schema
 
@@ -26,7 +26,7 @@ Public lineage pointer between battery units (Art. 77(7)).
 ```json
 {
   "type": "object",
-  "description": "Public lineage pointer between battery units (Art. 77(7)).",
+  "description": "Public lineage pointer between battery units.",
   "required": [
     "unitId",
     "serialNumber",

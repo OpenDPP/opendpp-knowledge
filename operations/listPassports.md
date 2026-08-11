@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 `GET /api/v1/passports`
@@ -29,7 +29,7 @@ Returns the **non-archived** passports of every economic operator bound to your 
 - `economicOperator.role` is **absent** from list items and `manufacturingFacility` is always `null` here — fetch a single passport (`GET /api/v1/passports/{id}`) for the facility node and operator role.
 - The response passes through a declared response schema: top-level keys other than `success`, `page`, `limit`, `passports` are stripped. Passport items allow additional properties, so undeclared item keys (`status`, `archivedAt`, `retentionUntil`, `manufacturingFacility`, the flattened metadata keys) pass through intact — but two **declared** item keys are mangled by their subschemas: the `@context` term-map object (second array element) is always emptied to `{}`, and `proof` is emptied to `{}` on sealed items (`null` on unsealed) — `signatureValue`, `merkleRoot`, `redactedLeaves`, `x5c` and `rfc3161` are all stripped from list output. Fetch a single passport (`GET /api/v1/passports/{id}`) or the public resolver for the verifiable proof block.
 
-**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is raised for `Authorization`-bearing requests, so it is not the binding limit here. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
+**Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
 ## Parameters
 

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-07-28T00:00:00Z
+  at: 2026-08-09T00:00:00Z
 ---
 
 Per-unit dynamic-data event category (Annex XIII / Art. 77 telemetry).
@@ -33,3 +33,4 @@ Per-unit dynamic-data event category (Annex XIII / Art. 77 telemetry).
 - schema [BatteryUnitEventRow](/schemas/BatteryUnitEventRow.md)
 - schema [BatteryUnitDynamicDataEvent](/schemas/BatteryUnitDynamicDataEvent.md)
 - schema [RecordBatteryUnitEventRequest](/schemas/RecordBatteryUnitEventRequest.md)
+- schema [BulkBatteryUnitEventsRequest](/schemas/BulkBatteryUnitEventsRequest.md)
