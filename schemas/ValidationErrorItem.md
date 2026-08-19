@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 One field-level finding from ESPR category validation. `path` uses dot/bracket notation into the metadata object (e.g. `materialComposition[0].percentage`).
@@ -49,8 +49,8 @@ One field-level finding from ESPR category validation. `path` uses dot/bracket n
 
 ## Used by
 
-- [createPassport](/operations/createPassport.md) (`POST /api/v1/passports`)
-- [ingestPassportFromAas](/operations/ingestPassportFromAas.md) (`POST /api/v1/passports/aas/ingest`)
+- schema [PassportCreateValidationError](/schemas/PassportCreateValidationError.md)
+- schema [AasIngestValidationError](/schemas/AasIngestValidationError.md)
 - schema [PassportIngestCreated](/schemas/PassportIngestCreated.md)
 - schema [PassportValidateOnlyResult](/schemas/PassportValidateOnlyResult.md)
 - schema [PassportValidateOnlyError](/schemas/PassportValidateOnlyError.md)

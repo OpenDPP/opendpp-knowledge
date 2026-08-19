@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 `POST /api/v1/passports/bulk`
@@ -123,7 +123,7 @@ Schema (required): [PassportBulkRequest](/schemas/PassportBulkRequest.md).
 ## Responses
 
 - **201** — Bulk run finished with at least one inserted row. → [PassportBulkResult](/schemas/PassportBulkResult.md)
-- **400** — Either every row failed (Bulk Ingestion Failed, with string errors[] and no message field), or the request never reached row processing: envelope violations of… → [PassportBulkFailure](/schemas/PassportBulkFailure.md)
+- **400** — Either every row failed (Bulk Ingestion Failed, with string errors[] and no message field), or the request never reached row processing: envelope violations of… → [PassportBulkBadRequest](/schemas/PassportBulkBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
@@ -143,4 +143,4 @@ curl -s \
 
 ## See also
 
-Schemas: [PassportBulkFailure](/schemas/PassportBulkFailure.md), [PassportBulkRequest](/schemas/PassportBulkRequest.md), [PassportBulkResult](/schemas/PassportBulkResult.md).
+Schemas: [PassportBulkBadRequest](/schemas/PassportBulkBadRequest.md), [PassportBulkRequest](/schemas/PassportBulkRequest.md), [PassportBulkResult](/schemas/PassportBulkResult.md).

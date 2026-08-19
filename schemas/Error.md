@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Standard error body. Authenticated-API errors include `success: false`; some endpoints (and all public resolution errors) omit `success` and return only `error` + `message`.
@@ -82,7 +82,6 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 
 - [whoami](/operations/whoami.md) (`GET /api/v1/whoami`)
 - [validateBatteryUnits](/operations/validateBatteryUnits.md) (`POST /api/v1/passports/{passportId}/units/validate`)
-- [serializeBatteryUnits](/operations/serializeBatteryUnits.md) (`POST /api/v1/passports/{passportId}/units`)
 - [deleteBatteryUnit](/operations/deleteBatteryUnit.md) (`DELETE /api/v1/units/{id}`)
 - [listBatteryUnitEvents](/operations/listBatteryUnitEvents.md) (`GET /api/v1/units/{id}/events`)
 - [recordBatteryUnitEvent](/operations/recordBatteryUnitEvent.md) (`POST /api/v1/units/{id}/events`)
@@ -91,14 +90,10 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 - [getFacility](/operations/getFacility.md) (`GET /api/v1/facilities/{id}`)
 - [updateFacility](/operations/updateFacility.md) (`PUT /api/v1/facilities/{id}`)
 - [deleteFacility](/operations/deleteFacility.md) (`DELETE /api/v1/facilities/{id}`)
-- [revokeGrant](/operations/revokeGrant.md) (`DELETE /api/v1/grants/{id}`)
-- [registerOperator](/operations/registerOperator.md) (`POST /api/v1/operators`)
 - [updateOperator](/operations/updateOperator.md) (`PATCH /api/v1/operators/{id}`)
 - [deleteOperator](/operations/deleteOperator.md) (`DELETE /api/v1/operators/{id}`)
 - [restoreOperator](/operations/restoreOperator.md) (`POST /api/v1/operators/{id}/restore`)
-- [rotateTenantKeys](/operations/rotateTenantKeys.md) (`POST /api/v1/tenants/rotate-keys`)
 - [createPassport](/operations/createPassport.md) (`POST /api/v1/passports`)
-- [ingestPassportFromAas](/operations/ingestPassportFromAas.md) (`POST /api/v1/passports/aas/ingest`)
 - [getPassport](/operations/getPassport.md) (`GET /api/v1/passports/{id}`)
 - [updatePassport](/operations/updatePassport.md) (`PUT /api/v1/passports/{id}`)
 - [deleteDraftPassport](/operations/deleteDraftPassport.md) (`DELETE /api/v1/passports/{id}`)
@@ -124,4 +119,12 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 - [createWebhookSubscription](/operations/createWebhookSubscription.md) (`POST /api/v1/webhooks/subscriptions`)
 - [updateWebhookSubscription](/operations/updateWebhookSubscription.md) (`PATCH /api/v1/webhooks/subscriptions/{id}`)
 - [deleteWebhookSubscription](/operations/deleteWebhookSubscription.md) (`DELETE /api/v1/webhooks/subscriptions/{id}`)
+- schema [BatteryUnitSerialiseBadRequest](/schemas/BatteryUnitSerialiseBadRequest.md)
+- schema [BatteryUnitEventBadRequest](/schemas/BatteryUnitEventBadRequest.md)
+- schema [GrantRevokeForbidden](/schemas/GrantRevokeForbidden.md)
+- schema [OperatorMinimalErrorResponse](/schemas/OperatorMinimalErrorResponse.md)
+- schema [PassportCreateBadRequest](/schemas/PassportCreateBadRequest.md)
+- schema [AasIngestBadRequest](/schemas/AasIngestBadRequest.md)
+- schema [PassportGetNotFound](/schemas/PassportGetNotFound.md)
+- schema [PassportUpdateBadRequest](/schemas/PassportUpdateBadRequest.md)
 - the shared error responses

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 An Asset Administration Shell (AAS) JSON Environment — the format produced by OpenDPP's AAS export of a passport. MUST contain a submodel with `idShort: "ComplianceMetadata"` whose `submodelElements` (AAS `Property` elements and `SubmodelElementCollection`s) are parsed back into the passport metadata object; absence fails 400 `Ingestion Failed`. MAY contain an `eidasVerificationSeal` submodel (elements `digitalSealHash`, `cryptographicSignature`, `pemPublicKey`) — when present, the seal is verified against the tenant's SERVER-HELD signing public key (the embedded `pemPublicKey` is never trusted as the verification key). Body limit 256 KiB.

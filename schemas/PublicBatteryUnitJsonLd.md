@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Public JSON-LD document for one individual serialised battery unit (EU Battery Regulation). The listed required keys are always present. EXACTLY ONE of two tier-dependent groups is added: anonymous (public) responses carry `restrictedData` (Annex XIII(2)-(4) notice) and OMIT `currentState`/`dynamicData` entirely; owner/grant (privileged) responses carry `currentState` (latest measurement or `null`) and `dynamicData` (up to 500 events, newest first) and omit `restrictedData`. The embedded `ofModel` passport is masked by the caller's tier like `GET /passport/{id}`.
@@ -39,7 +39,6 @@ Public JSON-LD document for one individual serialised battery unit (EU Battery R
 {
   "type": "object",
   "description": "Public JSON-LD document for one individual serialised battery unit (EU Battery Regulation). The listed required keys are always present. EXACTLY ONE of two tier-dependent groups is added: anonymous (public) responses carry `restrictedData` (Annex XIII(2)-(4) notice) and OMIT `currentState`/`dynamicData` entirely; owner/grant (privileged) responses carry `currentState` (latest measurement or `null`) and `dynamicData` (up to 500 events, newest first) and omit `restrictedData`. The embedded `ofModel` passport is masked by the caller's tier like `GET /passport/{id}`.",
-  "additionalProperties": false,
   "required": [
     "@context",
     "@type",

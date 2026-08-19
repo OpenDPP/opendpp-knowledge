@@ -11,7 +11,7 @@ tags:
   - RFC 3161
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 OpenDPP passport seals are **advanced electronic seals**: an ECDSA P-256 signature over a

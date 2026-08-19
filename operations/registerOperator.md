@@ -8,7 +8,7 @@ tags:
   - economic-operators
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 `POST /api/v1/operators`
@@ -43,12 +43,12 @@ Schema (required): [RegisterOperatorRequest](/schemas/RegisterOperatorRequest.md
 ## Responses
 
 - **201** — Operator registered (or an existing operator with the same regId was bound to your workspace). → [RegisterOperatorResponse](/schemas/RegisterOperatorResponse.md)
-- **400** — Two distinct bodies. → [Error](/schemas/Error.md), [OperatorMinimalError](/schemas/OperatorMinimalError.md)
+- **400** — Two distinct bodies. → [OperatorMinimalErrorResponse](/schemas/OperatorMinimalErrorResponse.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
-- **500** — Database/handler failure. → [Error](/schemas/Error.md), [OperatorMinimalError](/schemas/OperatorMinimalError.md)
+- **500** — Database/handler failure. → [OperatorMinimalErrorResponse](/schemas/OperatorMinimalErrorResponse.md)
 
 ## Example
 
@@ -62,4 +62,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md), [OperatorMinimalError](/schemas/OperatorMinimalError.md), [RegisterOperatorRequest](/schemas/RegisterOperatorRequest.md), [RegisterOperatorResponse](/schemas/RegisterOperatorResponse.md).
+Schemas: [OperatorMinimalErrorResponse](/schemas/OperatorMinimalErrorResponse.md), [RegisterOperatorRequest](/schemas/RegisterOperatorRequest.md), [RegisterOperatorResponse](/schemas/RegisterOperatorResponse.md).

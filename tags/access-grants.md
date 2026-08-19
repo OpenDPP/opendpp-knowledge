@@ -8,7 +8,7 @@ tags:
   - access-grants
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Capability tokens implementing tiered legitimate-interest access: issue, approve, deny and revoke `dpp_li_…` / `dpp_auth_…` tokens. Third parties request access via the hosted request page; granted tokens unlock restricted fields on the public resolution endpoints (Bearer or `?grant=`).

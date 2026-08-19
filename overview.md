@@ -10,7 +10,7 @@ tags:
   - EU Battery Regulation
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 OpenDPP is a B2B platform for **EU Digital Product Passports (DPPs)**, aligned with the data

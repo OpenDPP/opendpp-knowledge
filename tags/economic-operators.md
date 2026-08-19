@@ -8,7 +8,7 @@ tags:
   - economic-operators
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Register and manage the economic operators (manufacturers/brands, identified by EORI or national registry id) that passports are issued on behalf of. Operators with passports are archived — never hard-deleted — so their passports stay resolvable.

@@ -8,7 +8,7 @@ tags:
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 `POST /api/v1/gs1/decode/batch`
@@ -44,7 +44,7 @@ A JSON body is required.
 
 ## Responses
 
-- **200** — Per-item decode results aligned to input order (partial-success — one bad item never fails the batch).
+- **200** — Per-item decode results aligned to input order (partial-success — one bad item never fails the batch). → [Gs1BatchDecodeResult](/schemas/Gs1BatchDecodeResult.md)
 - **400** — Missing/empty/non-array items, or more than 200 items. → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **503** — The GS1 Syntax Engine (WASM) could not be loaded. → [Error](/schemas/Error.md)
@@ -60,4 +60,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md).
+Schemas: [Error](/schemas/Error.md), [Gs1BatchDecodeResult](/schemas/Gs1BatchDecodeResult.md).

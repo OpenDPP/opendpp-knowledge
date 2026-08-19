@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Per-event outcome of capturing an EPCIS 2.0 document, with partial-success semantics: some events may be stored while others fail.

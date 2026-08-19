@@ -2,12 +2,15 @@
 
 * [AasEnvironment](AasEnvironment.md) - An Asset Administration Shell (AAS) v3.0 environment export of the passport, served as application/aas+json.
 * [AasEnvironmentInput](AasEnvironmentInput.md) - An Asset Administration Shell (AAS) JSON Environment — the format produced by OpenDPP's AAS export of a passport.
+* [AasIngestBadRequest](AasIngestBadRequest.md) - The 400 bodies of AAS ingestion: the standard error triple (bad request / signature verification / ingestion failure), or an ESPR validatio…
 * [AasIngestCreated](AasIngestCreated.md) - 201 envelope of POST /api/v1/passports/aas/ingest.
+* [AasIngestValidationError](AasIngestValidationError.md)
 * [AdvisoryItem](AdvisoryItem.md) - One non-blocking advisory on a response's warnings[] (a heads-up — the request still succeeded) or notices[] (informational — something hel…
 * [ApproveGrantRequest](ApproveGrantRequest.md) - Approval body — only the final expiry is supplied; everything else comes from the original request.
 * [BatteryUnitCreateItem](BatteryUnitCreateItem.md) - One unit to serialise.
 * [BatteryUnitCurrentState](BatteryUnitCurrentState.md) - Latest recorded measurement of the unit (owner/grant tiers only).
 * [BatteryUnitDynamicDataEvent](BatteryUnitDynamicDataEvent.md) - One telemetry event in the JSON-LD dynamicData history (privileged view only).
+* [BatteryUnitEventBadRequest](BatteryUnitEventBadRequest.md) - The two 400 bodies of event recording: the standard error triple from handler validation, and the framework's default request-rejection bod…
 * [BatteryUnitEventListResponse](BatteryUnitEventListResponse.md) - One page of a battery unit's append-only dynamic-data history, newest first.
 * [BatteryUnitEventNode](BatteryUnitEventNode.md) - One append-only telemetry event (owner/grant tiers only).
 * [BatteryUnitEventRow](BatteryUnitEventRow.md) - One immutable per-unit telemetry record — the reads return exactly the fields documented here.
@@ -18,11 +21,13 @@
 * [BatteryUnitRestrictedDataNotice](BatteryUnitRestrictedDataNotice.md) - Marker replacing per-unit telemetry in anonymous (public-tier) responses, with a pointer for requesting legitimate-interest access (Annex X…
 * [BatteryUnitRow](BatteryUnitRow.md) - One physical serialised battery — the reads return exactly the fields documented here.
 * [BatteryUnitSerialisationFailedError](BatteryUnitSerialisationFailedError.md) - 400 body when every item in the serialisation batch failed.
+* [BatteryUnitSerialiseBadRequest](BatteryUnitSerialiseBadRequest.md) - The three 400 bodies of unit serialisation: the standard error triple, the all-items-failed Serialisation Failed report, and the framework'…
 * [BatteryUnitStatus](BatteryUnitStatus.md) - Annex XIII battery-status vocabulary (EU Battery Regulation).
 * [BatteryUnitTombstoneJsonLd](BatteryUnitTombstoneJsonLd.md) - Tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist.
 * [BulkBatteryUnitEventsRequest](BulkBatteryUnitEventsRequest.md) - A batch of telemetry records for one unit.
 * [BulkBatteryUnitEventsResponse](BulkBatteryUnitEventsResponse.md) - The partial-success report of a bulk telemetry ingest.
 * [CreateGrantRequest](CreateGrantRequest.md) - Direct-issuance body.
+* [DefaultRequestRejectionError](DefaultRequestRejectionError.md) - The default 400 body of a request rejected before the handler runs — a syntactically malformed JSON body, or an envelope (schema) violation…
 * [DeleteOperatorResponse](DeleteOperatorResponse.md) - Outcome of removing an economic operator: whether it was archived rather than deleted, and how many of its passports were archived with it.
 * [DidWebDocument](DidWebDocument.md) - A tenant's did:web DID document (public-key material only).
 * [DppJsonLdContextDocument](DppJsonLdContextDocument.md) - The fixed W3C JSON-LD context document served by GET /context/v1: maps DigitalProductPassport, economicOperator, metadata, digitalSeal, sig…
@@ -38,12 +43,18 @@
 * [FacilityListEnvelope](FacilityListEnvelope.md) - A page of the workspace's facilities, with the paging envelope.
 * [FacilityRow](FacilityRow.md) - A facility (GS1 GLN) master-data row, exactly as stored.
 * [FacilityUpdateRequest](FacilityUpdateRequest.md) - Partial update.
-* [FastifyDefaultBadRequest](FastifyDefaultBadRequest.md) - The framework's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework before the h…
+* [ForwardedResolverError](ForwardedResolverError.md) - Forwarded public-resolver body (no success field).
+* [ForwardedResolverRateLimitError](ForwardedResolverRateLimitError.md) - Forwarded public-resolver limiter body (no success field, no headers).
+* [GlobalRateLimitError](GlobalRateLimitError.md) - Global rate-limit plugin default body (with x-ratelimit-* headers).
 * [GrantDecisionResponse](GrantDecisionResponse.md) - Returned by deny and revoke: the updated grant, no token.
 * [GrantIssuedResponse](GrantIssuedResponse.md) - Returned by direct issuance (201) and request approval (200).
 * [GrantListResponse](GrantListResponse.md) - List envelope for GET /api/v1/grants (paginated).
+* [GrantRevokeForbidden](GrantRevokeForbidden.md) - The two 403 bodies of grant revocation: the route-level {error, message} body (an AUTHORITY grant cannot be revoked by the workspace; no su…
 * [GrantRouteError](GrantRouteError.md) - Error body used by the grants endpoints' route-level errors (400/403/404/409).
 * [GrantRow](GrantRow.md) - Tenant-facing projection of an access grant.
+* [Gs1BatchDecodeError](Gs1BatchDecodeError.md) - A per-item decode failure — the batch itself still returns 200 (partial-success).
+* [Gs1BatchDecodeOk](Gs1BatchDecodeOk.md) - A successfully decoded item — the same fields as the single-scan 200 minus success.
+* [Gs1BatchDecodeResult](Gs1BatchDecodeResult.md) - One batch-decode result, aligned to its input item: a decoded scan (ok: true) or a per-item error (ok: false + error).
 * [HealthStatus](HealthStatus.md) - Health-check body of GET /health.
 * [MaterialVocabularyListResponse](MaterialVocabularyListResponse.md) - Envelope of GET /api/v1/materials.
 * [MaterialVocabularyRow](MaterialVocabularyRow.md) - One entry of the platform-curated material vocabulary.
@@ -51,14 +62,20 @@
 * [OperatorGetResponse](OperatorGetResponse.md) - A single economic operator record.
 * [OperatorListResponse](OperatorListResponse.md) - The economic operators bound to the calling workspace.
 * [OperatorMinimalError](OperatorMinimalError.md) - Minimal error envelope used by the operator/key self-service handlers — note the standard error key is ABSENT (unlike the shared Error sche…
+* [OperatorMinimalErrorResponse](OperatorMinimalErrorResponse.md) - An operator-endpoint error: either the route's minimal {error, message} body (no success field) or the standard middleware envelope.
 * [OperatorRow](OperatorRow.md) - An economic-operator record (EconomicOperator).
 * [PassportAasEnvironment](PassportAasEnvironment.md) - IDTA Asset Administration Shell environment (returned when Accept contains application/aas+json), role-filtered for the caller's access tie…
+* [PassportBulkBadRequest](PassportBulkBadRequest.md) - The 400 bodies of bulk ingestion: every row failed (Bulk Ingestion Failed), or the request never reached row processing and returns the def…
 * [PassportBulkFailure](PassportBulkFailure.md) - 400 body of POST /api/v1/passports/bulk when EVERY row failed.
 * [PassportBulkRequest](PassportBulkRequest.md) - A batch of passports to ingest, with optional dry-run preview and upsert-on-conflict behaviour.
 * [PassportBulkResult](PassportBulkResult.md) - 201 partial-success envelope of POST /api/v1/passports/bulk.
 * [PassportBulkRow](PassportBulkRow.md) - One bulk-ingestion row.
+* [PassportCreateBadRequest](PassportCreateBadRequest.md) - The 400 bodies of passport creation: an ESPR validation failure with per-field errors[], or the standard error triple / pre-handler rejecti…
 * [PassportCreateRequest](PassportCreateRequest.md) - A passport to create: its product identifier and ESPR category metadata, with optional operator and facility binding, a draft flag, and enr…
+* [PassportCreateValidationError](PassportCreateValidationError.md)
 * [PassportEnrichmentInput](PassportEnrichmentInput.md) - Optional presentational (non-regulatory) marketing enrichment, stored OUTSIDE the ESPR-validated metadata and the Merkle seal; it never app…
+* [PassportGetNotFound](PassportGetNotFound.md) - The two 404 bodies of an authenticated passport read: the standard workspace-scoped envelope, or the body forwarded from the public resolve…
+* [PassportGetTooManyRequests](PassportGetTooManyRequests.md) - The two 429 bodies of an authenticated passport read: the global limiter's default body (with x-ratelimit-* headers), or the body forwarded…
 * [PassportIngestCreated](PassportIngestCreated.md) - 201 envelope of POST /api/v1/passports.
 * [PassportListItem](PassportListItem.md) - One JSON-LD passport document as it appears in GET /api/v1/passports list responses.
 * [PassportListResponse](PassportListResponse.md) - Envelope of GET /api/v1/passports.
@@ -67,6 +84,7 @@
 * [PassportSealResponse](PassportSealResponse.md) - 200 envelope of POST /api/v1/passports/{id}/seal.
 * [PassportStatusUpdateRequest](PassportStatusUpdateRequest.md) - Body of PUT /api/v1/passports/{id}/status.
 * [PassportStatusUpdateResponse](PassportStatusUpdateResponse.md) - 200 envelope of PUT /api/v1/passports/{id}/status.
+* [PassportUpdateBadRequest](PassportUpdateBadRequest.md) - The two 400 bodies of a passport update: the standard error triple, or an ESPR validation failure (which, unlike creation, carries NO warni…
 * [PassportUpdateRequest](PassportUpdateRequest.md) - Body of PUT /api/v1/passports/{id}.
 * [PassportUpdateResponse](PassportUpdateResponse.md) - 200 envelope of PUT /api/v1/passports/{id}.
 * [PassportUpdateValidationError](PassportUpdateValidationError.md) - 400 ESPR validation failure body of PUT /api/v1/passports/{id}.

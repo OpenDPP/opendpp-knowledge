@@ -8,7 +8,7 @@ tags:
   - access-grants
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 `DELETE /api/v1/grants/{id}`
@@ -36,7 +36,7 @@ Behavioral caveats (no status precondition — only the kind is checked):
 - **200** — Grant revoked (idempotent: re-revoking keeps the original revokedAt). → [GrantDecisionResponse](/schemas/GrantDecisionResponse.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
-- **403** — Two distinct bodies share this status: (1) route-level — the grant is an AUTHORITY grant and cannot be revoked by the workspace; body is {error, message} witho… → [Error](/schemas/Error.md), [GrantRouteError](/schemas/GrantRouteError.md)
+- **403** — Two distinct bodies share this status: (1) route-level — the grant is an AUTHORITY grant and cannot be revoked by the workspace; body is {error, message} witho… → [GrantRevokeForbidden](/schemas/GrantRevokeForbidden.md)
 - **404** — No grant with this id exists in this workspace. → [GrantRouteError](/schemas/GrantRouteError.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
@@ -51,4 +51,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md), [GrantDecisionResponse](/schemas/GrantDecisionResponse.md), [GrantRouteError](/schemas/GrantRouteError.md).
+Schemas: [GrantDecisionResponse](/schemas/GrantDecisionResponse.md), [GrantRevokeForbidden](/schemas/GrantRevokeForbidden.md), [GrantRouteError](/schemas/GrantRouteError.md).

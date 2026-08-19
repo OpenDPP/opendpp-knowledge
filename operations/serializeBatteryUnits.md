@@ -8,7 +8,7 @@ tags:
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 `POST /api/v1/passports/{passportId}/units`
@@ -52,7 +52,7 @@ Schema (required): [SerializeBatteryUnitsRequest](/schemas/SerializeBatteryUnits
 ## Responses
 
 - **201** — At least one unit was serialised. → [SerializeBatteryUnitsResponse](/schemas/SerializeBatteryUnitsResponse.md)
-- **400** — Three shapes: (1) standard Bad Request triple when the body is not a JSON object, the units array is empty, or more than 200 units are sent; (2) Serialisation… → [BatteryUnitSerialisationFailedError](/schemas/BatteryUnitSerialisationFailedError.md), [Error](/schemas/Error.md), [FastifyDefaultBadRequest](/schemas/FastifyDefaultBadRequest.md)
+- **400** — Three shapes: (1) standard Bad Request triple when the body is not a JSON object, the units array is empty, or more than 200 units are sent; (2) Serialisation… → [BatteryUnitSerialiseBadRequest](/schemas/BatteryUnitSerialiseBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
@@ -72,4 +72,4 @@ curl -s \
 
 ## See also
 
-Schemas: [BatteryUnitSerialisationFailedError](/schemas/BatteryUnitSerialisationFailedError.md), [Error](/schemas/Error.md), [FastifyDefaultBadRequest](/schemas/FastifyDefaultBadRequest.md), [SerializeBatteryUnitsRequest](/schemas/SerializeBatteryUnitsRequest.md), [SerializeBatteryUnitsResponse](/schemas/SerializeBatteryUnitsResponse.md).
+Schemas: [BatteryUnitSerialiseBadRequest](/schemas/BatteryUnitSerialiseBadRequest.md), [SerializeBatteryUnitsRequest](/schemas/SerializeBatteryUnitsRequest.md), [SerializeBatteryUnitsResponse](/schemas/SerializeBatteryUnitsResponse.md).

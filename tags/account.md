@@ -8,7 +8,7 @@ tags:
   - account
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Identity of the authenticated API key / session: workspace, role, permissions, operator scope, and passport usage against the tier quota — the integration-facing counterpart to the console's profile endpoints.

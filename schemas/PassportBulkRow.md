@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 One bulk-ingestion row. The HTTP layer only requires each row to be an object; rows missing `productId` or `metadata`, failing ESPR validation, referencing unbound operators/unknown facilities, or duplicating an existing `(productId, operatorId)` pair are SKIPPED and reported as strings in the response `errors[]` — they never fail the whole request (unless every row fails). Bulk rows do not support `draft` or `enrichment`, are always created with `status: "ACTIVE"`, and do NOT get `metadata.gtin`/`metadata.grai` auto-injected.

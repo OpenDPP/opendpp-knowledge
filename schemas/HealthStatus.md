@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Health-check body of `GET /health`. Carries the running build identity (`apiVersion`/`commit`/`builtAt`) in addition to the liveness fields.
@@ -29,7 +29,6 @@ Health-check body of `GET /health`. Carries the running build identity (`apiVers
 {
   "type": "object",
   "description": "Health-check body of `GET /health`. Carries the running build identity (`apiVersion`/`commit`/`builtAt`) in addition to the liveness fields.",
-  "additionalProperties": false,
   "required": [
     "status",
     "service",

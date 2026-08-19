@@ -1,8 +1,8 @@
 {
   "okfVersion": "0.2",
-  "apiVersion": "1.13.0",
-  "generated": "2026-08-09T00:00:00Z",
-  "conceptCount": 212,
+  "apiVersion": "1.14.0",
+  "generated": "2026-08-17T00:00:00Z",
+  "conceptCount": 230,
   "concepts": [
     {
       "path": "overview.md",
@@ -656,11 +656,25 @@
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/AasEnvironmentInput"
     },
     {
+      "path": "schemas/AasIngestBadRequest.md",
+      "type": "Schema",
+      "title": "AasIngestBadRequest",
+      "description": "The 400 bodies of AAS ingestion: the standard error triple (bad request / signature verification / ingestion failure), or an ESPR validation failure with per-field errors[].",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/AasIngestBadRequest"
+    },
+    {
       "path": "schemas/AasIngestCreated.md",
       "type": "Schema",
       "title": "AasIngestCreated",
       "description": "201 envelope of POST /api/v1/passports/aas/ingest.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/AasIngestCreated"
+    },
+    {
+      "path": "schemas/AasIngestValidationError.md",
+      "type": "Schema",
+      "title": "AAS ESPR validation failure",
+      "description": "AAS ESPR validation failure",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/AasIngestValidationError"
     },
     {
       "path": "schemas/AdvisoryItem.md",
@@ -696,6 +710,13 @@
       "title": "BatteryUnitDynamicDataEvent",
       "description": "One telemetry event in the JSON-LD dynamicData history (privileged view only).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitDynamicDataEvent"
+    },
+    {
+      "path": "schemas/BatteryUnitEventBadRequest.md",
+      "type": "Schema",
+      "title": "BatteryUnitEventBadRequest",
+      "description": "The two 400 bodies of event recording: the standard error triple from handler validation, and the framework's default request-rejection body for malformed JSON.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventBadRequest"
     },
     {
       "path": "schemas/BatteryUnitEventListResponse.md",
@@ -768,6 +789,13 @@
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitSerialisationFailedError"
     },
     {
+      "path": "schemas/BatteryUnitSerialiseBadRequest.md",
+      "type": "Schema",
+      "title": "BatteryUnitSerialiseBadRequest",
+      "description": "The three 400 bodies of unit serialisation: the standard error triple, the all-items-failed Serialisation Failed report, and the framework's default request-rejection body.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitSerialiseBadRequest"
+    },
+    {
       "path": "schemas/BatteryUnitStatus.md",
       "type": "Schema",
       "title": "BatteryUnitStatus",
@@ -801,6 +829,13 @@
       "title": "CreateGrantRequest",
       "description": "Direct-issuance body.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/CreateGrantRequest"
+    },
+    {
+      "path": "schemas/DefaultRequestRejectionError.md",
+      "type": "Schema",
+      "title": "Default request-rejection error body",
+      "description": "The default 400 body of a request rejected before the handler runs — a syntactically malformed JSON body, or an envelope (schema) violation — so none of the handler-built {success:false, ...} shapes apply.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/DefaultRequestRejectionError"
     },
     {
       "path": "schemas/DeleteOperatorResponse.md",
@@ -908,11 +943,25 @@
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FacilityUpdateRequest"
     },
     {
-      "path": "schemas/FastifyDefaultBadRequest.md",
+      "path": "schemas/ForwardedResolverError.md",
       "type": "Schema",
-      "title": "FastifyDefaultBadRequest",
-      "description": "The framework's default 400 error body, returned when a syntactically malformed JSON request body is rejected by the framework before the handler runs (so none of the handler-built {success:false, ...} shapes apply).",
-      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/FastifyDefaultBadRequest"
+      "title": "ForwardedResolverError",
+      "description": "Forwarded public-resolver body (no success field).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/ForwardedResolverError"
+    },
+    {
+      "path": "schemas/ForwardedResolverRateLimitError.md",
+      "type": "Schema",
+      "title": "ForwardedResolverRateLimitError",
+      "description": "Forwarded public-resolver limiter body (no success field, no headers).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/ForwardedResolverRateLimitError"
+    },
+    {
+      "path": "schemas/GlobalRateLimitError.md",
+      "type": "Schema",
+      "title": "GlobalRateLimitError",
+      "description": "Global rate-limit plugin default body (with x-ratelimit-* headers).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/GlobalRateLimitError"
     },
     {
       "path": "schemas/GrantDecisionResponse.md",
@@ -936,6 +985,13 @@
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/GrantListResponse"
     },
     {
+      "path": "schemas/GrantRevokeForbidden.md",
+      "type": "Schema",
+      "title": "GrantRevokeForbidden",
+      "description": "The two 403 bodies of grant revocation: the route-level {error, message} body (an AUTHORITY grant cannot be revoked by the workspace; no success field) and the standard middleware envelope.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/GrantRevokeForbidden"
+    },
+    {
       "path": "schemas/GrantRouteError.md",
       "type": "Schema",
       "title": "GrantRouteError",
@@ -948,6 +1004,27 @@
       "title": "GrantRow",
       "description": "Tenant-facing projection of an access grant.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/GrantRow"
+    },
+    {
+      "path": "schemas/Gs1BatchDecodeError.md",
+      "type": "Schema",
+      "title": "Gs1BatchDecodeError",
+      "description": "A per-item decode failure — the batch itself still returns 200 (partial-success).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/Gs1BatchDecodeError"
+    },
+    {
+      "path": "schemas/Gs1BatchDecodeOk.md",
+      "type": "Schema",
+      "title": "Gs1BatchDecodeOk",
+      "description": "A successfully decoded item — the same fields as the single-scan 200 minus success.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/Gs1BatchDecodeOk"
+    },
+    {
+      "path": "schemas/Gs1BatchDecodeResult.md",
+      "type": "Schema",
+      "title": "Gs1BatchDecodeResult",
+      "description": "One batch-decode result, aligned to its input item: a decoded scan (ok: true) or a per-item error (ok: false + error).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/Gs1BatchDecodeResult"
     },
     {
       "path": "schemas/HealthStatus.md",
@@ -999,6 +1076,13 @@
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/OperatorMinimalError"
     },
     {
+      "path": "schemas/OperatorMinimalErrorResponse.md",
+      "type": "Schema",
+      "title": "OperatorMinimalErrorResponse",
+      "description": "An operator-endpoint error: either the route's minimal {error, message} body (no success field) or the standard middleware envelope.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/OperatorMinimalErrorResponse"
+    },
+    {
       "path": "schemas/OperatorRow.md",
       "type": "Schema",
       "title": "OperatorRow",
@@ -1011,6 +1095,13 @@
       "title": "PassportAasEnvironment",
       "description": "IDTA Asset Administration Shell environment (returned when Accept contains application/aas+json), role-filtered for the caller's access tier.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportAasEnvironment"
+    },
+    {
+      "path": "schemas/PassportBulkBadRequest.md",
+      "type": "Schema",
+      "title": "PassportBulkBadRequest",
+      "description": "The 400 bodies of bulk ingestion: every row failed (Bulk Ingestion Failed), or the request never reached row processing and returns the default request-rejection body.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportBulkBadRequest"
     },
     {
       "path": "schemas/PassportBulkFailure.md",
@@ -1041,6 +1132,13 @@
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportBulkRow"
     },
     {
+      "path": "schemas/PassportCreateBadRequest.md",
+      "type": "Schema",
+      "title": "PassportCreateBadRequest",
+      "description": "The 400 bodies of passport creation: an ESPR validation failure with per-field errors[], or the standard error triple / pre-handler rejection.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportCreateBadRequest"
+    },
+    {
       "path": "schemas/PassportCreateRequest.md",
       "type": "Schema",
       "title": "PassportCreateRequest",
@@ -1048,11 +1146,32 @@
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportCreateRequest"
     },
     {
+      "path": "schemas/PassportCreateValidationError.md",
+      "type": "Schema",
+      "title": "ESPR validation failure",
+      "description": "ESPR validation failure",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportCreateValidationError"
+    },
+    {
       "path": "schemas/PassportEnrichmentInput.md",
       "type": "Schema",
       "title": "PassportEnrichmentInput",
       "description": "Optional presentational (non-regulatory) marketing enrichment, stored OUTSIDE the ESPR-validated metadata and the Merkle seal; it never appears in the JSON-LD passport document.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportEnrichmentInput"
+    },
+    {
+      "path": "schemas/PassportGetNotFound.md",
+      "type": "Schema",
+      "title": "PassportGetNotFound",
+      "description": "The two 404 bodies of an authenticated passport read: the standard workspace-scoped envelope, or the body forwarded from the public resolver (no success field).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportGetNotFound"
+    },
+    {
+      "path": "schemas/PassportGetTooManyRequests.md",
+      "type": "Schema",
+      "title": "PassportGetTooManyRequests",
+      "description": "The two 429 bodies of an authenticated passport read: the global limiter's default body (with x-ratelimit-* headers), or the body forwarded from the inner public resolver's limiter (no headers).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportGetTooManyRequests"
     },
     {
       "path": "schemas/PassportIngestCreated.md",
@@ -1109,6 +1228,13 @@
       "title": "PassportStatusUpdateResponse",
       "description": "200 envelope of PUT /api/v1/passports/{id}/status.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportStatusUpdateResponse"
+    },
+    {
+      "path": "schemas/PassportUpdateBadRequest.md",
+      "type": "Schema",
+      "title": "PassportUpdateBadRequest",
+      "description": "The two 400 bodies of a passport update: the standard error triple, or an ESPR validation failure (which, unlike creation, carries NO warnings array).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportUpdateBadRequest"
     },
     {
       "path": "schemas/PassportUpdateRequest.md",

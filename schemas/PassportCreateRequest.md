@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 A passport to create: its product identifier and ESPR category metadata, with optional operator and facility binding, a draft flag, and enrichment held outside the sealed metadata.

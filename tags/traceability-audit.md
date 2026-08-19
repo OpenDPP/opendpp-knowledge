@@ -8,7 +8,7 @@ tags:
   - traceability-audit
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 UNTP/EPCIS supply-chain traceability events, lineage queries, and the public seal verifier. The verifier checks the cryptographic seal AND that the signing workspace is bound to the economic operator declared in the payload.

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Minimal error envelope used by the operator/key self-service handlers — note the standard `error` key is ABSENT (unlike the shared Error schema).
@@ -43,7 +43,6 @@ Minimal error envelope used by the operator/key self-service handlers — note t
 
 ## Used by
 
-- [registerOperator](/operations/registerOperator.md) (`POST /api/v1/operators`)
 - [deleteOperator](/operations/deleteOperator.md) (`DELETE /api/v1/operators/{id}`)
-- [rotateTenantKeys](/operations/rotateTenantKeys.md) (`POST /api/v1/tenants/rotate-keys`)
+- schema [OperatorMinimalErrorResponse](/schemas/OperatorMinimalErrorResponse.md)
 - the shared error responses

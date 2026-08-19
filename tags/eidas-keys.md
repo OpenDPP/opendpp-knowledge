@@ -8,7 +8,7 @@ tags:
   - eidas-keys
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Tenant signing-key management. Keys are generated and held server-side in an encrypted vault; private key material is never returned by any endpoint.

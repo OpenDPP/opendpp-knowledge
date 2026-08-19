@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 `POST /api/v1/passports`
@@ -100,7 +100,7 @@ Schema (required): [PassportCreateRequest](/schemas/PassportCreateRequest.md).
 ## Responses
 
 - **201** — Passport created (or draft saved). → [PassportIngestCreated](/schemas/PassportIngestCreated.md)
-- **400** — Three variants share this status: (1) Validation Failed — the metadata failed ESPR category / cross-field validation; carries per-field errors[] (and warnings[… → [Error](/schemas/Error.md), [ValidationErrorItem](/schemas/ValidationErrorItem.md)
+- **400** — Three variants share this status: (1) Validation Failed — the metadata failed ESPR category / cross-field validation; carries per-field errors[] (and warnings[… → [PassportCreateBadRequest](/schemas/PassportCreateBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
@@ -121,4 +121,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md), [PassportCreateRequest](/schemas/PassportCreateRequest.md), [PassportIngestCreated](/schemas/PassportIngestCreated.md), [ValidationErrorItem](/schemas/ValidationErrorItem.md).
+Schemas: [Error](/schemas/Error.md), [PassportCreateBadRequest](/schemas/PassportCreateBadRequest.md), [PassportCreateRequest](/schemas/PassportCreateRequest.md), [PassportIngestCreated](/schemas/PassportIngestCreated.md).

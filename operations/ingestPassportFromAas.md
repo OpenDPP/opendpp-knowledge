@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 `POST /api/v1/passports/aas/ingest`
@@ -46,7 +46,7 @@ Schema (required): [AasEnvironmentInput](/schemas/AasEnvironmentInput.md).
 ## Responses
 
 - **201** — Passport created or (if it existed unsealed) updated from the AAS environment. → [AasIngestCreated](/schemas/AasIngestCreated.md)
-- **400** — Four variants share this status: Bad Request (non-object body, unresolvable productId, no bound operator), Signature Verification Failed (embedded seal invalid… → [Error](/schemas/Error.md), [ValidationErrorItem](/schemas/ValidationErrorItem.md)
+- **400** — Four variants share this status: Bad Request (non-object body, unresolvable productId, no bound operator), Signature Verification Failed (embedded seal invalid… → [AasIngestBadRequest](/schemas/AasIngestBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
@@ -64,4 +64,4 @@ curl -s \
 
 ## See also
 
-Schemas: [AasEnvironmentInput](/schemas/AasEnvironmentInput.md), [AasIngestCreated](/schemas/AasIngestCreated.md), [Error](/schemas/Error.md), [ValidationErrorItem](/schemas/ValidationErrorItem.md).
+Schemas: [AasEnvironmentInput](/schemas/AasEnvironmentInput.md), [AasIngestBadRequest](/schemas/AasIngestBadRequest.md), [AasIngestCreated](/schemas/AasIngestCreated.md).

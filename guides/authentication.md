@@ -10,7 +10,7 @@ tags:
   - security
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Authenticate with a tenant **API key** sent as a Bearer token:

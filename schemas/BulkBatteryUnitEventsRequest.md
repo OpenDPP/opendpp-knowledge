@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 A batch of telemetry records for one unit. Telemetry only — a record carrying `status` is refused per-item; status transitions go through the single-event endpoint.

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 A GS1 EPCIS 2.0 document (JSON/JSON-LD). This shape is indicative — the OFFICIAL GS1 EPCIS 2.0.1 JSON Schema (vendored on the node, $id https://ref.gs1.org/standards/epcis/2.0.1/epcis-json-schema.json) is authoritative and is what capture validates against.

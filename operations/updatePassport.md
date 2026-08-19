@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 `PUT /api/v1/passports/{id}`
@@ -122,7 +122,7 @@ Schema (required): [PassportUpdateRequest](/schemas/PassportUpdateRequest.md).
 ## Responses
 
 - **200** — Updated (or published) passport. → [PassportUpdateResponse](/schemas/PassportUpdateResponse.md)
-- **400** — Either a plain Bad Request — body is not a JSON object; metadata missing/not an object; facilityId not found in your workspace (Facility <facilityId> not found… → [Error](/schemas/Error.md), [PassportUpdateValidationError](/schemas/PassportUpdateValidationError.md)
+- **400** — Either a plain Bad Request — body is not a JSON object; metadata missing/not an object; facilityId not found in your workspace (Facility <facilityId> not found… → [PassportUpdateBadRequest](/schemas/PassportUpdateBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
@@ -142,4 +142,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md), [PassportUpdateRequest](/schemas/PassportUpdateRequest.md), [PassportUpdateResponse](/schemas/PassportUpdateResponse.md), [PassportUpdateValidationError](/schemas/PassportUpdateValidationError.md).
+Schemas: [Error](/schemas/Error.md), [PassportUpdateBadRequest](/schemas/PassportUpdateBadRequest.md), [PassportUpdateRequest](/schemas/PassportUpdateRequest.md), [PassportUpdateResponse](/schemas/PassportUpdateResponse.md).

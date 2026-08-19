@@ -8,7 +8,7 @@ tags:
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 `POST /api/v1/units/{id}/events`
@@ -22,7 +22,7 @@ Appends one **append-only** per-unit dynamic-data record (Annex XIII / Art. 77: 
 
 **Validation (400 with the standard error triple):** `eventType` is required and must be one of `SOH_MEASUREMENT|CHARGE_CYCLE|STATUS_CHANGE|NEGATIVE_EVENT|OTHER`; `stateOfHealth` 0–100; `cycleCount` and `remainingCapacityAh` 0–9007199254740991; `temperatureC` −273.15–10000 (each may also be `null`/omitted); `status`, if present, must be a valid unit status; `recordedAt` must be Date-parseable (defaults to server time when omitted). `cycleCount` is truncated to an integer before persisting; a `payload` that is not an object or array is silently dropped (stored as `null`) — JSON **arrays** pass the server's `typeof` check and are persisted verbatim.
 
-**Status transition:** when `status` is present and differs from the unit's current status, the unit is updated **in the same transaction** as the event — this works with *any* `eventType`, though `STATUS_CHANGE` is the conventional carrier. Transitioning to **`RECYCLED`** additionally stamps `ceasedAt` (if not already set; never cleared), after which the public unit view becomes a 410 tombstone and the unit can no longer gain successor units. `RECYCLED` is terminal: once the unit's status is `RECYCLED` this endpoint refuses **every** further event with **400** `Terminal Unit Status` — neither `status` nor telemetry can change again; serialise a successor unit via `predecessorUnitId` instead.
+**Status transition:** when `status` is present and differs from the unit's current status, the unit is updated **in the same transaction** as the event — this works with *any* `eventType`, though `STATUS_CHANGE` is the conventional carrier. Transitioning to **`RECYCLED`** additionally stamps `ceasedAt` (if not already set; never cleared), after which the public unit view becomes a 410 tombstone and the unit can no longer gain successor units. `RECYCLED` is terminal: once the unit's status is `RECYCLED` this endpoint refuses **every** further event with **400** `Terminal Unit Status` — neither `status` nor telemetry can change again. A second life must be linked with `predecessorUnitId` **before** the predecessor is recycled — a terminal unit is itself refused as a `predecessorUnitId`, so there is no path back once it is recycled.
 
 **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
@@ -53,7 +53,7 @@ Schema (required): [RecordBatteryUnitEventRequest](/schemas/RecordBatteryUnitEve
 ## Responses
 
 - **201** — Event appended (and, when status was supplied and differed, the unit's status transitioned in the same transaction). → [RecordBatteryUnitEventResponse](/schemas/RecordBatteryUnitEventResponse.md)
-- **400** — Two shapes: (1) the standard error triple from handler validation — messages: Request body must be a valid JSON object; eventType must be one of: SOH_MEASUREME… → [Error](/schemas/Error.md), [FastifyDefaultBadRequest](/schemas/FastifyDefaultBadRequest.md)
+- **400** — Two shapes: (1) the standard error triple from handler validation — messages: Request body must be a valid JSON object; eventType must be one of: SOH_MEASUREME… → [BatteryUnitEventBadRequest](/schemas/BatteryUnitEventBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
@@ -73,4 +73,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md), [FastifyDefaultBadRequest](/schemas/FastifyDefaultBadRequest.md), [RecordBatteryUnitEventRequest](/schemas/RecordBatteryUnitEventRequest.md), [RecordBatteryUnitEventResponse](/schemas/RecordBatteryUnitEventResponse.md).
+Schemas: [BatteryUnitEventBadRequest](/schemas/BatteryUnitEventBadRequest.md), [Error](/schemas/Error.md), [RecordBatteryUnitEventRequest](/schemas/RecordBatteryUnitEventRequest.md), [RecordBatteryUnitEventResponse](/schemas/RecordBatteryUnitEventResponse.md).

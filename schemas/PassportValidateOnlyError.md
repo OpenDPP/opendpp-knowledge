@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 400 envelope of the validate-only endpoints. Three variants: ESPR validation failure (`error: "Validation Failed"`, with `success`, `category`, `errors[]`, optional `warnings[]` — omitted when none; category-validity error items carry no `friendlyMessage`); whitespace-only `productId` (`error: "Bad Request"`, `category: "unknown"`, `errors: []`, no `warnings`); and structural request rejections (body-schema violations, malformed JSON), which return only `error` + `message`.

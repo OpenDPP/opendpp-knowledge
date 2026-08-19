@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Optional presentational (non-regulatory) marketing enrichment, stored OUTSIDE the ESPR-validated metadata and the Merkle seal; it never appears in the JSON-LD passport document. Server-side it is whitelist-sanitized rather than rejected: unknown keys are dropped; `tagline` is trimmed and capped at 200 chars, `description` at 4000, image `caption` at 200, link `label` at 120; at most 24 `images` and 24 `links` are kept; URLs must be http, https, or mailto (any other scheme, e.g. `javascript:` or `data:`, is silently dropped). An enrichment that sanitizes down to nothing is stored as null.

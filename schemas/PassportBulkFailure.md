@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 400 body of `POST /api/v1/passports/bulk` when EVERY row failed. Note: `errors` is an array of STRINGS (not objects) and there is NO `message` field.
@@ -53,4 +53,4 @@ generated:
 
 ## Used by
 
-- [bulkIngestPassports](/operations/bulkIngestPassports.md) (`POST /api/v1/passports/bulk`)
+- schema [PassportBulkBadRequest](/schemas/PassportBulkBadRequest.md)

@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 `GET /api/v1/passports/{id}`
@@ -39,9 +39,9 @@ Every successful resolution records an anonymized-IP access audit entry.
 - **200** — The resolved passport. → [PassportAasEnvironment](/schemas/PassportAasEnvironment.md), [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
-- **404** — Two distinct bodies. → [Error](/schemas/Error.md)
+- **404** — Two distinct bodies. → [PassportGetNotFound](/schemas/PassportGetNotFound.md)
 - **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
-- **429** — Two possible sources.
+- **429** — Two possible sources. → [PassportGetTooManyRequests](/schemas/PassportGetTooManyRequests.md)
 - **500** — Unexpected failure. → [Error](/schemas/Error.md)
 
 ## Example
@@ -54,4 +54,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md), [PassportAasEnvironment](/schemas/PassportAasEnvironment.md), [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md).
+Schemas: [Error](/schemas/Error.md), [PassportAasEnvironment](/schemas/PassportAasEnvironment.md), [PassportGetNotFound](/schemas/PassportGetNotFound.md), [PassportGetTooManyRequests](/schemas/PassportGetTooManyRequests.md), [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md).

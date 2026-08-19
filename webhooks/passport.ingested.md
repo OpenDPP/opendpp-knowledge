@@ -8,7 +8,7 @@ tags:
   - event
 generated:
   by: process:emit-okf
-  at: 2026-08-09T00:00:00Z
+  at: 2026-08-17T00:00:00Z
 ---
 
 Sent when a passport becomes active for the first time: a non-draft `POST /api/v1/passports` create, the **first publish** of a draft via `PUT /api/v1/passports/{id}`, or each successfully ingested row of `POST /api/v1/passports/bulk`. Draft creation does NOT emit it, non-publish updates and deletes emit nothing, and **AAS ingestion (`POST /api/v1/passports/aas/ingest`) emits no webhook events at all**. The payload is the freshly created passport: `status: "ACTIVE"` with `digitalSeal` and `proof` still `null` (unless a previously sealed draft is re-published). Emission is enqueued transactionally with the passport write (outbox pattern) and delivered asynchronously to every active subscription whose filter contains `passport.ingested` or `*`.
