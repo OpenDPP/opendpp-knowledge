@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 The EPCIS event payload. `eventType` is effectively required: it is persisted into a server-side enum, and a missing or unknown value is rejected at the persistence layer (surfacing as the 500 `Database Persistence Failed` body, not a 400).
 

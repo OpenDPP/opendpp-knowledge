@@ -10,6 +10,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Create, validate, read, update, seal and manage the lifecycle of Digital Product Passports. Passport metadata is category-specific: machine-readable JSON Schemas are served live at `GET /api/v1/schemas/{category}` for textiles, batteries, electronics, chemicals and construction; the remaining categories (cosmetics, toys, iron-steel, aluminium) are validated by built-in rules — use the dry-run validators to check payloads for any category.
 

@@ -11,6 +11,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 OpenDPP is deliberately precise about what it claims. In short:
 

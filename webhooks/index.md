@@ -1,3 +1,4 @@
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 # Webhook events
 
 * [passport.ingested](passport.ingested.md) - Sent when a passport becomes active for the first time: a non-draft POST /api/v1/passports create, the first publish of a draft via PUT /ap…

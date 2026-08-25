@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Subscribable event filter values. `*` matches every emitted event. `passport.status_updated` (decommission/reactivate) and `passport.updated` (in-place edit of a published passport) are now first-class subscribable filters.
 

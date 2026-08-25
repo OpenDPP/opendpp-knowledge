@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Confirmation that a dynamic-data record was appended to a battery unit, echoing the stored event.
 

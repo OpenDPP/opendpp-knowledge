@@ -1,3 +1,4 @@
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 # Schemas
 
 * [AasEnvironment](AasEnvironment.md) - An Asset Administration Shell (AAS) v3.0 environment export of the passport, served as application/aas+json.

@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Minimal error envelope used by the operator/key self-service handlers — note the standard `error` key is ABSENT (unlike the shared Error schema).
 

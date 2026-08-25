@@ -1,3 +1,4 @@
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 # Log
 
 ## 2026-08-17

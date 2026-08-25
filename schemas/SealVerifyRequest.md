@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Verification request. Only `payload` is strictly required: `signature` and `publicKey` are extracted from `payload.proof` (proofValue/signatureValue, publicKeyPem, or the x5c leaf SPKI) when omitted, and the request fails 400 only if either is still missing after extraction.
 

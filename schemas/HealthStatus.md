@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Health-check body of `GET /health`. Carries the running build identity (`apiVersion`/`commit`/`builtAt`) in addition to the liveness fields.
 

@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 200 envelope of PUT /api/v1/passports/{id}/status. The passport document is serialized at the PUBLIC redaction tier.
 

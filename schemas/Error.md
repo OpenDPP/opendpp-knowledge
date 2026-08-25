@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Standard error body. Authenticated-API errors include `success: false`; some endpoints (and all public resolution errors) omit `success` and return only `error` + `message`.
 

@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 An economic-operator record (`EconomicOperator`). Operators are scoped to your workspace (each workspace keeps its own row for a given `regId`). Returned verbatim from the database (no field stripping); nullable fields are serialized as `null`.
 

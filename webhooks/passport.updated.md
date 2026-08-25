@@ -10,6 +10,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Sent when an already-published (non-draft) passport's content is edited in place via `PUT /api/v1/passports/{id}`, transactionally with the update write. This is **distinct from first publish** (that emits `passport.ingested`, not this event) and is **never** emitted for sealed passports — in-place edits of a sealed passport are rejected with `403`. The payload is the updated public JSON-LD passport with `status: "ACTIVE"`. Delivered to every active subscription whose filter contains `passport.updated` or `*`.
 

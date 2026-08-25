@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 A passport to create: its product identifier and ESPR category metadata, with optional operator and facility binding, a draft flag, and enrichment held outside the sealed metadata.
 

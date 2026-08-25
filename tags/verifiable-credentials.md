@@ -10,6 +10,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Issuer trust endpoints that back the UNTP Verifiable Credential representations: the workspace's `did:web` DID document (public keys only) and its W3C Bitstring Status List for revocation. Unauthenticated; resolve these to verify and revocation-check any OpenDPP-issued credential.
 

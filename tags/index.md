@@ -1,3 +1,4 @@
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 # API domains
 
 * [Passports](passports.md) - Create, validate, read, update, seal and manage the lifecycle of Digital Product Passports.

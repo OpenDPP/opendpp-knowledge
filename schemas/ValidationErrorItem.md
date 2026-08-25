@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 One field-level finding from ESPR category validation. `path` uses dot/bracket notation into the metadata object (e.g. `materialComposition[0].percentage`).
 

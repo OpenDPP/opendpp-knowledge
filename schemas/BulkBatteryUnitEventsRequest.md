@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 A batch of telemetry records for one unit. Telemetry only — a record carrying `status` is refused per-item; status transitions go through the single-event endpoint.
 

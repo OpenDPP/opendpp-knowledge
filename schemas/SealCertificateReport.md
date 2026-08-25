@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Present only for x5c-carrying proofs on a `verified: true` outcome whose chain is TRUSTED — `chainValid` AND `keyMatchesProof` both true (the two policy `verified: false` responses AND any untrusted-chain outcome omit it): the certified legal identity of the seal creator. An untrusted chain is never surfaced, so an emitted report always has `chainValid: true`.
 

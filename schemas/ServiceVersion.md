@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Running API contract version and source build identity, returned by `GET /api/v1/version`. The `apiVersion` MAJOR is the safe thing to pin an integration or generated SDK to.
 

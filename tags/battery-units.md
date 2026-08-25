@@ -10,6 +10,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Per-unit battery serialization (real serials, GS1 AI 21) under a SKU-level passport, plus append-only telemetry events (state of health, charge cycles, status changes) per the EU Battery Regulation.
 

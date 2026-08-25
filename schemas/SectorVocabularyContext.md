@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Per-category JSON-LD vocabulary context, returned by `GET /api/v1/schemas/{category}` when `Accept` contains `application/ld+json`. Fixed shape: `@vocab` is `https://w3id.org/opendpp/schemas/{category}#` plus mappings for `id`, `type`, `category`, `materialComposition`, `originCountry`, `facilityDetails` and `regulatoryCompliance`.
 

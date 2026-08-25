@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 400 body when **every** item in the serialisation batch failed. Note: `errors` is an array of plain strings and there is **no `message` field** (unlike the standard error triple).
 

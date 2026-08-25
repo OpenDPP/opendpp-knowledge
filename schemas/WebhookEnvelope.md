@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 The signed body of every webhook delivery. `data` is the public (redacted) JSON-LD passport document; `type` is the concrete event name (also in the `X-OpenDPP-Event` header); `id` is the stable delivery id (also in the `X-OpenDPP-Delivery` header) and is CONSTANT across all retries of the same event, so deduplicate on it for exactly-once processing; `created` is the event time (stable across retries, distinct from the per-attempt `X-OpenDPP-Timestamp`).
 

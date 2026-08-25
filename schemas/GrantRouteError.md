@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Error body used by the grants endpoints' route-level errors (400/403/404/409). Unlike the standard error envelope, it has NO `success` field.
 

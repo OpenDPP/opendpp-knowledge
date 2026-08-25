@@ -13,6 +13,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Public resolution is **content-negotiated**: one URL serves several representations, so a passport
 never drifts between formats. Set the `Accept` header on

@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Partial update. `gln` and `operatorId` are immutable — if present they are silently ignored, as is any unknown key. For `activity`/`streetAddress`/`city`/`postalCode` the *presence* of the key matters: the value is stringified and trimmed, and anything that trims to empty (null, "", or a whitespace-only string) clears the field to null — the same normalization as POST.
 

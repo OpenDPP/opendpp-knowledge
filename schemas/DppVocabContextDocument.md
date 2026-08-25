@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 The canonical resolvable JSON-LD context served by `GET /contexts/dpp/v1` — the context every public passport and battery-unit document references in its `@context`. Declares `@vocab` (so unknown terms expand under the OpenDPP namespace) plus core term mappings; `@version` is the numeric JSON-LD 1.1 marker, so `@context` values are a mix of strings and that number.
 

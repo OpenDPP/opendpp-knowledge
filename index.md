@@ -1,6 +1,7 @@
 ---
 okf_version: "0.2"
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 # OpenDPP Integration API — Knowledge Bundle
 

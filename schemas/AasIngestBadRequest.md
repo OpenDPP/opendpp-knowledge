@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 The 400 bodies of AAS ingestion: the standard error triple (bad request / signature verification / ingestion failure), or an ESPR validation failure with per-field `errors[]`.
 

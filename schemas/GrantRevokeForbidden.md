@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 The two 403 bodies of grant revocation: the route-level `{error, message}` body (an `AUTHORITY` grant cannot be revoked by the workspace; no `success` field) and the standard middleware envelope.
 

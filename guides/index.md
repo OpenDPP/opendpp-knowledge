@@ -1,3 +1,4 @@
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 # Guides
 
 * [Authentication & tenancy](authentication.md) - Authenticate with a tenant API key as a Bearer token; tenant identity is token-bound.

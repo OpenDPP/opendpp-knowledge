@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 One node of the recursive upstream lineage DAG. All keys are always present; `location`, `readPoint` and `issuerDid` are null when unset. `location` mirrors the stored `bizLocation`. A shared ancestor reached through multiple downstream paths appears once under each path (the DAG is expanded into a tree).
 

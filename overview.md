@@ -12,6 +12,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 OpenDPP is a B2B platform for **EU Digital Product Passports (DPPs)**, aligned with the data
 requirements of the ESPR and the EU Battery Regulation.

@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Envelope of GET /api/v1/passports. The response is serialized against a declared response schema: top-level keys other than these four are stripped. There is NO total count.
 

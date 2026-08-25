@@ -1,3 +1,4 @@
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 # Passports
 
 * [GET /api/v1/passports](listPassports.md) - List passports in your workspace (paginated JSON-LD)

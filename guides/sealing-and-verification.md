@@ -13,6 +13,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 OpenDPP passport seals are **advanced electronic seals**: an ECDSA P-256 signature over a
 Merkle root of the passport content, with an optional RFC 3161 timestamp. (This is an *advanced*

@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 The 400 bodies of bulk ingestion: every row failed (`Bulk Ingestion Failed`), or the request never reached row processing and returns the default request-rejection body.
 

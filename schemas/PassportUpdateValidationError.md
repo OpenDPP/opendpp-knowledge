@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 400 ESPR validation failure body of PUT /api/v1/passports/{id}. DIVERGENCE from POST /api/v1/passports: there is never a `warnings` array on this route.
 

@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Direct-issuance body. Over-length strings are silently truncated to the documented maximum, not rejected; unknown fields are ignored. The grant kind is always `LEGITIMATE_INTEREST` — there is no `kind`/`type` field.
 

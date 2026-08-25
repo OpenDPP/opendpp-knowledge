@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 The fixed W3C JSON-LD context document served by `GET /context/v1`: maps `DigitalProductPassport`, `economicOperator`, `metadata`, `digitalSeal`, `signingPublicKey` and `proof` to `https://opendpp-node.eu/ns/dpp#…` IRIs, and `createdAt`/`updatedAt` to schema.org `dateCreated`/`dateModified`.
 

@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Returned by direct issuance (201) and request approval (200). `token` is the raw capability token — shown ONCE here (and, on approval, in the grantee's inspection-link e-mail); only its SHA-256 hash is persisted.
 

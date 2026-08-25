@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Present only when `payload.proof.rfc3161.token` was supplied AND verification proceeds past the key-registration and operator-binding gates (the two policy `verified: false` responses omit it). Reports presence, the TSA-asserted genTime from the token's TSTInfo, and — when the node has a TSA trust anchor configured — `timeAuthenticated`: the result of verifying the token's CMS SignedData signature over its TSTInfo and chaining the signer certificate to that anchor.
 

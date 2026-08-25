@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Embedded verification-method object. The `x5c` chain (base64 DER, leaf first) is honoured ONLY when the node has trust anchors configured, every certificate is currently valid, each link verifies against the next, the top is anchored, and the leaf attests the credential issuer — otherwise it is ignored and the registered tenant key is used instead.
 

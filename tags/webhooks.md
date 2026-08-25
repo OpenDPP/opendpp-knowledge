@@ -10,6 +10,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Subscribe HTTPS endpoints to passport lifecycle events. Deliveries are HMAC-SHA256-signed POSTs with retry/backoff — see the webhooks section of this document for the signature scheme and payloads.
 

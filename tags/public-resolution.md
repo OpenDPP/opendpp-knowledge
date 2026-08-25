@@ -10,6 +10,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Unauthenticated, content-negotiated passport resolution: GS1 Digital Link paths, passport and unit pages. One URL serves JSON-LD (default), an AAS environment (`Accept: application/aas+json`), a signed UNTP Verifiable Credential (`Accept: application/vc+jwt` enveloping, `application/vc+ld+json` embedded `ecdsa-jcs-2019` Data Integrity, or `application/dc+sd-jwt` SD-JWT-VC selective disclosure; the first two also item-level on `/unit/:id`), or HTML (`Accept: text/html`). Tiered by optional credentials or grant tokens. Rate limit: 30 requests/min per IP.
 

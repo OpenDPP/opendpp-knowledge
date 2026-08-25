@@ -10,6 +10,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Manufacturing facility master data, identified by GS1 GLN-13 (the Unique Facility Identifier). GLN, name, activity and country are public in passport documents; street addresses are never published.
 

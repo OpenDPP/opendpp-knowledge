@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 JSON-LD document for one serialised battery unit, **privileged tenant view** (`isPrivileged=true`): includes `currentState` + `dynamicData` telemetry (restricted to legitimate-interest holders/authorities on the public view, where a `restrictedData` marker appears instead — never on this endpoint).
 

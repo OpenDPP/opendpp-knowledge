@@ -10,6 +10,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Export GS1-Digital-Link QR codes (PNG/SVG, 128–2048 px, GS1 quiet zone) for passports and battery units.
 

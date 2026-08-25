@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Tenant-facing projection of an access grant. The token hash, issuer user id, revoking actor and request IP are never exposed; raw capability tokens appear only in the one-time issuance/approval responses. All fields are always present (nullable ones serialize as `null`).
 

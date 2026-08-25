@@ -9,6 +9,7 @@ generated:
   by: process:emit-okf
   at: 2026-08-17T00:00:00Z
 ---
+<!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 One non-blocking advisory on a response's `warnings[]` (a heads-up — the request still succeeded) or `notices[]` (informational — something helpful the API did). The `code` is a MACHINE-STABLE handle an interface can switch on, map to its own localized string, or link to docs; the human `message` (developer-facing) and `friendlyMessage` (end-user, localizable) wording may change, but the code will not.
 
