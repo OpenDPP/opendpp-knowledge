@@ -1,7 +1,7 @@
 ---
 type: Playbook
 title: Sealing & verification
-description: Apply an advanced electronic seal and verify it offline from the redacted document.
+description: Apply an advanced electronic seal and verify it — including from a redacted document.
 resource: https://opendpp-node.eu/security
 tags:
   - sealing
@@ -11,7 +11,7 @@ tags:
   - RFC 3161
 generated:
   by: process:emit-okf
-  at: 2026-08-17T00:00:00Z
+  at: 2026-09-01T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -27,12 +27,14 @@ generated and held server-side in an encrypted vault and is never returned; rota
 
 # Verify a seal
 
-Anyone can verify a seal — no account required. [verifyPassportSeal](/operations/verifyPassportSeal.md)
-recomputes every Merkle leaf from the submitted values, so it requires the **unredacted** document
-(caller-supplied redacted-leaf hashes are deliberately not trusted) and checks that the signing
-workspace is bound to the economic operator declared in the payload.
+[verifyPassportSeal](/operations/verifyPassportSeal.md) is public and unauthenticated, and verifies
+seals issued on this node — the signing key must be registered to a workspace here, so a seal from
+another node is declined without cryptographic evaluation. It recomputes every Merkle leaf from the
+submitted values, so it requires the **unredacted** document (caller-supplied redacted-leaf hashes
+are deliberately not trusted) and checks that the signing workspace is bound to the economic
+operator declared in the payload.
 
-# Offline verification of redacted documents
+# Verifying redacted documents
 
 Redacted documents stay verifiable **offline**: masked fields keep their true leaf hashes in
 `proof.redactedLeaves` (see [MerkleTreeAttestationProof](/schemas/MerkleTreeAttestationProof.md)),

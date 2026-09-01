@@ -8,7 +8,7 @@ tags:
   - webhooks
 generated:
   by: process:emit-okf
-  at: 2026-08-17T00:00:00Z
+  at: 2026-09-01T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -21,7 +21,7 @@ Deletes a webhook subscription, stopping future deliveries to its endpoint.
 
 **Permission:** `webhook:write` (cookie sessions must send `X-CSRF-Token`; write permissions are subscription-gated, `402`).
 
-The lookup is tenant-scoped: an `id` that exists but belongs to another workspace returns the same `404` with message `"Webhook subscription not found under your tenant"`. Deleting and re-creating is the only way to rotate a signing secret. Global rate limit 100 requests/min/IP.
+The lookup is tenant-scoped: an `id` that exists but belongs to another workspace returns the same `404` with message `"Webhook subscription not found under your tenant"`. Deleting is not how a signing secret is rotated — `POST /api/v1/webhooks/subscriptions/{id}/rotate-secret` does that in place, and `PATCH /api/v1/webhooks/subscriptions/{id}` changes the address without minting a new secret. Global rate limit 100 requests/min/IP.
 
 ## Parameters
 

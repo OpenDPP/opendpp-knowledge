@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-08-17T00:00:00Z
+  at: 2026-09-01T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -24,7 +24,7 @@ Transitions a **published** passport between live lifecycle states. The request 
 **Lookup:** passport **UUID or `productId`** (UUID tried first), scoped to operators bound to your workspace.
 
 **Effects:**
-- `DECOMMISSIONED` — sets `retentionUntil = now + the configured retention period` (default 15 years), starting the minimum-availability retention clock. The passport stays publicly resolvable.
+- `DECOMMISSIONED` — sets `retentionUntil = now + the configured retention period` (default 10 years), starting the minimum-availability retention clock. The passport stays publicly resolvable.
 - `ACTIVE` (reactivation) — clears `retentionUntil` **and** `archivedAt`.
 - `RECALLED` — marks the product recalled.
 - The status change, the version-history entry (who/when/what) and the webhook enqueue are **transactional**; an in-app notification is created **best-effort after the transaction commits** (a notification failure never affects the response).

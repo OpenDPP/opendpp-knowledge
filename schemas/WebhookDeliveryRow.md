@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-17T00:00:00Z
+  at: 2026-09-01T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -56,9 +56,10 @@ One outbox delivery record (event-level). The payload is not included.
       "enum": [
         "PENDING",
         "DELIVERED",
-        "FAILED"
+        "FAILED",
+        "NO_SUBSCRIBERS"
       ],
-      "description": "Overall delivery state. FAILED after 5 exhausted attempts (dead-lettered)."
+      "description": "Overall delivery state. DELIVERED means the event reached every matching endpoint. NO_SUBSCRIBERS means no active subscription filtered for this event, so nothing was sent. FAILED after six exhausted attempts (dead-lettered), or when the last matching subscription was removed while the event was still failing."
     },
     "retryCount": {
       "type": "integer",

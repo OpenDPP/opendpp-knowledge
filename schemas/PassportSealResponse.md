@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-08-17T00:00:00Z
+  at: 2026-09-01T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -20,7 +20,7 @@ generated:
 | `success` | boolean | yes | Always true on 200. |
 | `message` | string | yes | — |
 | `digitalSeal` | string | yes | Base64 ECDSA P-256 (prime256v1) SHA-256 signature over the metadata Merkle root (ADVANCED electronic seal — not a qualified seal, not a W3C DataIntegrityProof). |
-| `signingPublicKey` | string | yes | PEM-encoded public key of the tenant's signing key pair; verify the seal offline against proof.merkleRoot. |
+| `signingPublicKey` | string | yes | PEM-encoded public key of the tenant's signing key pair; the seal is offline-verifiable against proof.merkleRoot with standard ECDSA tooling. |
 | `passport` | [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md) | yes | — |
 | `warnings` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Publish-time re-warning: a single non-GS1 advisory when the sealed passport's productId is not a GS1 GTIN/GRAI (it has no scannable Digital Link — mint a GTIN… |
 
@@ -53,7 +53,7 @@ generated:
     },
     "signingPublicKey": {
       "type": "string",
-      "description": "PEM-encoded public key of the tenant's signing key pair; verify the seal offline against `proof.merkleRoot`."
+      "description": "PEM-encoded public key of the tenant's signing key pair; the seal is offline-verifiable against `proof.merkleRoot` with standard ECDSA tooling."
     },
     "passport": {
       "$ref": "#/components/schemas/PublicPassportJsonLd"

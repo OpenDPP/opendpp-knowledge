@@ -8,7 +8,7 @@ tags:
   - webhooks
 generated:
   by: process:emit-okf
-  at: 2026-08-17T00:00:00Z
+  at: 2026-09-01T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -25,7 +25,7 @@ Registers an endpoint to receive passport lifecycle webhooks for the calling wor
 
 **Event filters:** `events` must be a non-empty array drawn from `passport.ingested`, `passport.updated`, `passport.sealed`, `passport.recalled`, `passport.status_updated`, `*`. The `*` wildcard matches every emitted event.
 
-**Signing secret — shown once:** the `201` response contains the full subscription row **including** the HMAC-SHA256 signing secret (`whsec_` + 32 lowercase hex chars, server-generated, never client-supplied). This is the only time the secret is ever returned: the list endpoint strips it and there is no rotation or update endpoint — delete and re-create to rotate.
+**Signing secret — shown once:** the `201` response contains the full subscription row **including** the HMAC-SHA256 signing secret (`whsec_` + 32 lowercase hex chars, server-generated, never client-supplied). This is the only time the secret is ever returned: the list endpoint strips it. To change the `url`, `events` or `isActive` in place use `PATCH /api/v1/webhooks/subscriptions/{id}` — the secret is kept, so the receiver keeps validating. To replace the secret use `POST /api/v1/webhooks/subscriptions/{id}/rotate-secret`, which returns the new one once. Neither needs the subscription deleted and re-created.
 
 **Limits:** maximum **25 subscriptions per workspace** (`409 Conflict`). Global rate limit 100 requests/min/IP (`429` with `x-ratelimit-*` headers). Unknown request-body fields are ignored.
 

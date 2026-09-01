@@ -10,7 +10,7 @@ tags:
   - EU Battery Regulation
 generated:
   by: process:emit-okf
-  at: 2026-08-17T00:00:00Z
+  at: 2026-09-01T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -27,7 +27,7 @@ resolve and verify passports. It is generated from the same OpenAPI 3.1 document
 - **Create & validate** SKU/type-level passports against ESPR category rules — see
   [createPassport](/operations/createPassport.md) and the dry-run
   [validatePassport](/operations/validatePassport.md).
-- **Seal** a passport with an **advanced** electronic seal and **verify** it offline — see
+- **Seal** a passport with an **advanced** electronic seal and **verify** it — see
   [sealPassport](/operations/sealPassport.md) and [verifyPassportSeal](/operations/verifyPassportSeal.md),
   and the [sealing & verification](/guides/sealing-and-verification.md) playbook.
 - **Serialise** individual battery units (GS1 AI 21) and append telemetry — the

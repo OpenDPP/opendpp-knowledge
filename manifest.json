@@ -1,7 +1,7 @@
 {
   "okfVersion": "0.2",
-  "apiVersion": "1.14.0",
-  "generated": "2026-08-17T00:00:00Z",
+  "apiVersion": "1.15.0",
+  "generated": "2026-09-01T00:00:00Z",
   "conceptCount": 230,
   "concepts": [
     {
@@ -43,7 +43,7 @@
       "path": "guides/sealing-and-verification.md",
       "type": "Playbook",
       "title": "Sealing & verification",
-      "description": "Apply an advanced electronic seal and verify it offline from the redacted document.",
+      "description": "Apply an advanced electronic seal and verify it — including from a redacted document.",
       "resource": "https://opendpp-node.eu/security"
     },
     {
