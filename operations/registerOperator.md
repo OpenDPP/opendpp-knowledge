@@ -8,7 +8,7 @@ tags:
   - economic-operators
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -23,7 +23,7 @@ Registers an economic operator (manufacturer, importer, supplier, …) and binds
 
 **Deduplication (per workspace):** operators are scoped to your workspace — `regId` is unique *within* your workspace, not across the platform. If **your workspace** already has an operator with the submitted `regId`, that existing record is returned and the submitted `name`, `role` and `regIdScheme` are **ignored**. A `regId` already used by *another* workspace is irrelevant — you always get **your own** operator row (so one workspace can never bind to, rename, or archive another's operator). The call is idempotent: re-registering an already-bound operator succeeds with `201` again. The per-workspace match includes **archived** operators: if your workspace's operator for that `regId` is archived, the archived record is returned as-is (`archivedAt` non-null) with `201` — registration does not un-archive it; use `POST /api/v1/operators/{id}/restore` to reactivate it.
 
-**Registration-id integrity:** fabricated `EORI-MOCK…` ids are rejected on every path. When `regIdScheme` is `EORI`, `regId` must match `^[A-Z]{2}[A-Za-z0-9]{1,15}$` (2-letter ISO 3166 country prefix followed by up to 15 alphanumerics, e.g. `DE1234567890`). Validation is syntax-only by default. When the node operator enables the OPT-IN EORI existence check, a declared `EORI` `regId` is additionally checked for EXISTENCE against the EU Commission EOS validation service and, if not found, a NON-BLOCKING advisory is added to the 201 `warnings[]` — the operator is still registered (best-effort, fail-open: a network error, or a freshly-issued / GB EORI, never blocks registration). With the check off, `warnings` is `[]`.
+**Operator identifier (EN 18219 clause 6):** `regIdScheme` is required and names the ISO/IEC 6523 scheme `regId` is issued under — `VAT` (an EU VAT identification number: member-state prefix + 5–12 alphanumerics), `DUNS` (nine digits), `LEI` (20 characters, ISO 17442 check digits) or `GLN` (13 digits, GS1 check digit); `regId` is checked against that shape, and fabricated `EORI-MOCK…` ids are rejected on every path. Each scheme has an ICD (0223, 0060, 0199, 0088), which is how the EN 18223 `economicOperatorId` is written on every passport. The EORI is a customs identifier with no ICD: send it as the OPTIONAL `eori` field, syntax-checked (`^[A-Z]{2}[A-Za-z0-9]{1,15}$`). When the node operator enables the OPT-IN EORI existence check, a supplied `eori` is additionally checked for EXISTENCE against the EU Commission EOS validation service and, if not found, a NON-BLOCKING advisory is added to the 201 `warnings[]` — the operator is still registered (best-effort, fail-open). With the check off, or no `eori`, `warnings` is `[]`.
 
 Side effects: an `operator.created` audit event and an in-app notification are recorded.
 
@@ -36,7 +36,7 @@ Schema (required): [RegisterOperatorRequest](/schemas/RegisterOperatorRequest.md
 ```json
 {
   "name": "Default EU Manufacturing Operator",
-  "regId": "EU-DEFAULT-001",
+  "regId": "LT000000000001",
   "role": "MANUFACTURER"
 }
 ```
@@ -58,7 +58,7 @@ curl -s \
   -H 'Authorization: Bearer op_dpp_token_…' \
   -H 'Content-Type: application/json' \
   -X POST 'https://opendpp-node.eu/api/v1/operators' \
-  --data '{"name":"Default EU Manufacturing Operator","regId":"EU-DEFAULT-001","role":"MANUFACTURER"}'
+  --data '{"name":"Default EU Manufacturing Operator","regId":"LT000000000001","role":"MANUFACTURER"}'
 ```
 
 ## See also

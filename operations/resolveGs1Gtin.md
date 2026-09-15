@@ -8,7 +8,7 @@ tags:
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -31,6 +31,7 @@ The gateway also accepts additional GS1 AI key/value path pairs after the GTIN; 
 |------|----|----------|------|-------------|
 | `gtin14` | path | yes | string | GTIN-14: exactly 14 digits with a valid GS1 modulo-10 check digit (the check digit is validated server-side — the pattern alone is not sufficient). |
 | `grant` | query | no | string | Capability grant token (dpp_li_… / dpp_auth_…); equivalent to Authorization: Bearer. |
+| `representation` | query | no | string | Which serialisation form of the JSON-LD passport document to return. |
 
 ## Responses
 
@@ -38,7 +39,7 @@ The gateway also accepts additional GS1 AI key/value path pairs after the GTIN; 
 - **400** — Invalid GTIN-14 (must be 14 digits with a valid modulo-10 check digit) or — when no tenant scope is in play and no AI-21 serial was given — an ambiguous lookup… → [Error](/schemas/Error.md)
 - **404** — No passport matches the identifier (content-negotiated: HTML page for Accept: text/html, JSON otherwise; Vary: Accept set), a DRAFT match was hidden from a non… → [Error](/schemas/Error.md)
 - **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
-- **429** — Public-resolution rate limit exceeded (30 requests/min per IP; no rate-limit headers). → [Error](/schemas/Error.md)
+- **429** — Public-resolution rate limit exceeded — 30 requests/min per IP for an ANONYMOUS caller; a credentialed call is handed back to its authenticated budget. → [Error](/schemas/Error.md)
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

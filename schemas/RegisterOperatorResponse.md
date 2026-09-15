@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -48,7 +48,7 @@ Confirmation that an economic operator was registered, carrying the stored recor
     },
     "warnings": {
       "type": "array",
-      "description": "Non-blocking advisories. Carries a single EORI-not-found note when the OPT-IN EORI existence check is enabled and a declared EORI is not found in the EU EOS register. Empty `[]` otherwise. Never blocks registration.",
+      "description": "Non-blocking advisories. Carries a single EORI-not-found note when the OPT-IN EORI existence check is enabled and the supplied `eori` is not found in the EU EOS register. Empty `[]` otherwise. Never blocks registration.",
       "items": {
         "$ref": "#/components/schemas/AdvisoryItem"
       }

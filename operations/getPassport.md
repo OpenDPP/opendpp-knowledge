@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -33,7 +33,7 @@ Every successful resolution records an anonymized-IP access audit entry.
 
 | Name | In | Required | Type | Description |
 |------|----|----------|------|-------------|
-| `id` | path | yes | string | Passport UUID or caller-supplied productId (GTIN-14 / GRAI / SKU). |
+| `id` | path | yes | string | Passport UUID, caller-supplied productId (GTIN-14 / GRAI / SKU) or the passport's own GS1 Digital Link URL (its digitalProductPassportId, percent-encoded as on… |
 
 ## Responses
 
@@ -42,7 +42,7 @@ Every successful resolution records an anonymized-IP access audit entry.
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — Two distinct bodies. → [PassportGetNotFound](/schemas/PassportGetNotFound.md)
 - **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
-- **429** — Two possible sources. → [PassportGetTooManyRequests](/schemas/PassportGetTooManyRequests.md)
+- **429** — Two possible sources, and both carry retry-after and x-ratelimit-limit/x-ratelimit-remaining/x-ratelimit-reset describing the ceiling that refused. → [PassportGetTooManyRequests](/schemas/PassportGetTooManyRequests.md)
 - **500** — Unexpected failure. → [Error](/schemas/Error.md)
 
 ## Example

@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -24,7 +24,7 @@ Replaces the passport's `metadata` (the Merkle root and leaf hashes are recomput
 **Lookup:** by passport **UUID only** — `productId` aliasing is NOT supported on this endpoint. The passport must belong to an operator bound to your workspace.
 
 **Draft semantics (`draft` flag):**
-- `draft: true` **skips ESPR validation entirely** and forces `status: "DRAFT"` — note this also demotes an already-published (ACTIVE/RECALLED/DECOMMISSIONED) passport back to DRAFT.
+- `draft: true` **skips ESPR validation entirely** and keeps the passport a DRAFT. Publishing is one-way: on an already-published (ACTIVE/RECALLED/DECOMMISSIONED) passport it is **refused with 409** (`code: DRAFT_DEMOTION_REFUSED`) — take a live passport out of public resolution with `PUT /api/v1/passports/{id}/status` (RECALLED / DECOMMISSIONED), which preserves the archived versions the persistence duty requires.
 - `draft` absent/false: `metadata` is validated against the ESPR category rules (400 on failure — see below). If the passport was a DRAFT it is **published**: status becomes `ACTIVE`, a `passport.ingested` webhook is enqueued transactionally (public-redacted JSON-LD payload) and an in-app notification is created best-effort afterwards. Editing an already-published (live) passport leaves its status untouched and enqueues a `passport.updated` webhook instead (same public-redacted JSON-LD payload).
 
 **Validation divergence:** the 400 validation body here contains `errors` but — unlike `POST /api/v1/passports` — **never a `warnings` array**. `friendlyMessage` is localized via the `lang` query parameter or `Accept-Language` (28 languages, default `en`; unsupported values silently fall back).
@@ -75,7 +75,20 @@ Schema (required): [PassportUpdateRequest](/schemas/PassportUpdateRequest.md).
         "percentage": 20
       }
     ],
-    "careInstructions": "Machine wash cold, line dry",
+    "careInstructions": [
+      [
+        {
+          "value": "Machine wash cold",
+          "language": "en-GB"
+        }
+      ],
+      [
+        {
+          "value": "Line dry",
+          "language": "en-GB"
+        }
+      ]
+    ],
     "size": "M",
     "facilityDetails": [
       {
@@ -96,9 +109,10 @@ Schema (required): [PassportUpdateRequest](/schemas/PassportUpdateRequest.md).
         ],
         "traceabilityDocs": [
           {
-            "documentName": "GOTS scope certificate",
+            "resourceTitle": "GOTS scope certificate",
             "documentHash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-            "documentUrl": "https://docs.aurora-textiles.example/gots.pdf"
+            "contentType": "application/pdf",
+            "url": "https://docs.aurora-textiles.example/gots.pdf"
           }
         ]
       }
@@ -128,6 +142,7 @@ Schema (required): [PassportUpdateRequest](/schemas/PassportUpdateRequest.md).
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
+- **409** — Publishing is one-way: draft: true on a passport that is already published (ACTIVE/RECALLED/DECOMMISSIONED). → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — History snapshot or transactional update failure returns the standard envelope with the message "Failed to update passport". → [Error](/schemas/Error.md)
 
@@ -138,7 +153,7 @@ curl -s \
   -H 'Authorization: Bearer op_dpp_token_…' \
   -H 'Content-Type: application/json' \
   -X PUT 'https://opendpp-node.eu/api/v1/passports/{id}' \
-  --data '{"metadata":{"category":"textiles","originCountry":"PT","materialComposition":[{"material":"Organic cotton","percentage":80},{"material":"Recycled polyester","percentage":20}],"fiberComposition":[{"fiber":"cotton","percentage":80},{"fiber":"polyester","percentage":20}],"careInstructions":"Machine wash cold, line dry","size":"M","facilityDetails":[{"facilityName":"Aurora Spinning Mill","location":"Porto, PT","activity":"Spinning","eudrPlots":[{"plotId":"PLOT-001","polygonType":"point","coordinates":[{"lat":41.1579,"lng":-8.6291}]}],"traceabilityDocs":[{"documentName":"GOTS scope certificate","d…'
+  --data '{"metadata":{"category":"textiles","originCountry":"PT","materialComposition":[{"material":"Organic cotton","percentage":80},{"material":"Recycled polyester","percentage":20}],"fiberComposition":[{"fiber":"cotton","percentage":80},{"fiber":"polyester","percentage":20}],"careInstructions":[[{"value":"Machine wash cold","language":"en-GB"}],[{"value":"Line dry","language":"en-GB"}]],"size":"M","facilityDetails":[{"facilityName":"Aurora Spinning Mill","location":"Porto, PT","activity":"Spinning","eudrPlots":[{"plotId":"PLOT-001","polygonType":"point","coordinates":[{"lat":41.1579,"lng":-8.6291}]}…'
 ```
 
 ## See also

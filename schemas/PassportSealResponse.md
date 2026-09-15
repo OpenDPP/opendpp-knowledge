@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -22,7 +22,7 @@ generated:
 | `digitalSeal` | string | yes | Base64 ECDSA P-256 (prime256v1) SHA-256 signature over the metadata Merkle root (ADVANCED electronic seal — not a qualified seal, not a W3C DataIntegrityProof). |
 | `signingPublicKey` | string | yes | PEM-encoded public key of the tenant's signing key pair; the seal is offline-verifiable against proof.merkleRoot with standard ECDSA tooling. |
 | `passport` | [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md) | yes | — |
-| `warnings` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Publish-time re-warning: a single non-GS1 advisory when the sealed passport's productId is not a GS1 GTIN/GRAI (it has no scannable Digital Link — mint a GTIN… |
+| `warnings` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Publish-time re-warning: a single non-GS1 advisory when the sealed passport's productId is not a GS1 GTIN/GRAI (its identifier is an EN IEC 61406 Identificatio… |
 
 ## JSON Schema
 
@@ -60,7 +60,7 @@ generated:
     },
     "warnings": {
       "type": "array",
-      "description": "Publish-time re-warning: a single non-GS1 advisory when the sealed passport's `productId` is not a GS1 GTIN/GRAI (it has no scannable Digital Link — mint a GTIN you own via `POST /api/v1/gs1/gtin`). Empty `[]` when the productId is GS1-keyed. Non-blocking.",
+      "description": "Publish-time re-warning: a single non-GS1 advisory when the sealed passport's `productId` is not a GS1 GTIN/GRAI (its identifier is an EN IEC 61406 Identification Link, not a GS1 Digital Link — mint a GTIN you own via `POST /api/v1/gs1/gtin`). Empty `[]` when the productId is GS1-keyed. Non-blocking.",
       "items": {
         "$ref": "#/components/schemas/AdvisoryItem"
       }

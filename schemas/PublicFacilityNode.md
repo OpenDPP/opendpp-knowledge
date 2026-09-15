@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -95,4 +95,5 @@ Embedded manufacturing-facility JSON-LD node — the GS1 GLN-backed Unique Facil
 
 ## Used by
 
+- schema [PassportListItem](/schemas/PassportListItem.md)
 - schema [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md)

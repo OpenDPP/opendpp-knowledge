@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -64,10 +64,13 @@ Standard error body. Authenticated-API errors include `success: false`; some end
         "OPERATOR_SCOPE_FORBIDDEN",
         "GTIN_CHECK_DIGIT_INVALID",
         "GLN_CHECK_DIGIT_INVALID",
+        "UNSUPPORTED_KEY_QUALIFIER",
+        "UNSUPPORTED_REPRESENTATION",
         "COMPRESSED_DIGITAL_LINK",
         "PASSPORT_DUPLICATE",
         "PASSPORT_SEALED_IMMUTABLE",
         "CATEGORY_IMMUTABLE",
+        "DRAFT_DEMOTION_REFUSED",
         "FACILITY_NOT_FOUND",
         "FACILITY_DUPLICATE",
         "WEBHOOK_NOT_FOUND",
@@ -95,6 +98,7 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 - [deleteOperator](/operations/deleteOperator.md) (`DELETE /api/v1/operators/{id}`)
 - [restoreOperator](/operations/restoreOperator.md) (`POST /api/v1/operators/{id}/restore`)
 - [createPassport](/operations/createPassport.md) (`POST /api/v1/passports`)
+- [ingestPassportFromAas](/operations/ingestPassportFromAas.md) (`POST /api/v1/passports/aas/ingest`)
 - [getPassport](/operations/getPassport.md) (`GET /api/v1/passports/{id}`)
 - [updatePassport](/operations/updatePassport.md) (`PUT /api/v1/passports/{id}`)
 - [deleteDraftPassport](/operations/deleteDraftPassport.md) (`DELETE /api/v1/passports/{id}`)

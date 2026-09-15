@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -59,7 +59,7 @@ Returned (201) when at least one unit was created. Partial success is possible: 
     },
     "warnings": {
       "type": "array",
-      "description": "Non-blocking advisories. Carries a single note when the passport's `productId` is NOT a GS1 GTIN — the created units then have no scannable GS1 unit Digital Link (`/01/{gtin}/21/{serial}`) and resolve only via `/unit/{id}`. Empty `[]` for a GTIN-keyed passport.",
+      "description": "Non-blocking advisories. Carries a single note when the passport's `productId` is NOT a GS1 GTIN — the created units then have no GS1 unit Digital Link (`/01/{gtin}/21/{serial}`); each is identified by an EN IEC 61406 Identification Link `/unit/{id}?.P={productId}&.S={serial}`, scannable but not through GS1 resolvers. Empty `[]` for a GTIN-keyed passport.",
       "items": {
         "$ref": "#/components/schemas/AdvisoryItem"
       }

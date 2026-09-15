@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -20,7 +20,7 @@ generated:
 | `success` | boolean | yes | Always true on 200. |
 | `message` | string | yes | "Draft published" when a validated save promoted a DRAFT to ACTIVE; the longer message otherwise. |
 | `passport` | [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md) | yes | — |
-| `warnings` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Non-blocking advisories. |
+| `warnings` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Non-blocking advisories on a validated save: the data-carrier declaration checks (a symbology that does not fit the declared print attributes, a category whose… |
 
 ## JSON Schema
 
@@ -52,7 +52,7 @@ generated:
     },
     "warnings": {
       "type": "array",
-      "description": "Non-blocking advisories. Carries a single note when saving with `\"draft\": true` DEMOTED an already-published (ACTIVE/RECALLED/DECOMMISSIONED) passport to DRAFT — it is then no longer publicly resolvable. Empty `[]` otherwise.",
+      "description": "Non-blocking advisories on a validated save: the data-carrier declaration checks (a symbology that does not fit the declared print attributes, a category whose carrier granularity does not match). Always `[]` when `draft: true`.",
       "items": {
         "$ref": "#/components/schemas/AdvisoryItem"
       }

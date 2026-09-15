@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -19,7 +19,7 @@ One physical serialised battery — the reads return exactly the fields document
 |----------|------|----------|-------------|
 | `id` | string | yes | — |
 | `serialNumber` | string | yes | The battery's real physical serial number (GS1 AI-21 value). |
-| `digitalLinkUri` | string | yes | Per-unit GS1 Digital Link: {origin}/{01|8003}/{productId}/21/{serialNumber} — AI 01 for GTIN (and non-GS1 SKUs), 8003 for GRAI. |
+| `digitalLinkUri` | string | yes | The unit's identifier URI. |
 | `passportId` | string | yes | The SKU/type-level passport this unit is an instance of. |
 | `tenantId` | string | yes | Owning tenant id. |
 | `manufacturedAt` | string,null | yes | — |
@@ -47,7 +47,7 @@ One physical serialised battery — the reads return exactly the fields document
     "digitalLinkUri": {
       "type": "string",
       "format": "uri",
-      "description": "Per-unit GS1 Digital Link: `{origin}/{01|8003}/{productId}/21/{serialNumber}` — AI `01` for GTIN (and non-GS1 SKUs), `8003` for GRAI. Unique platform-wide."
+      "description": "The unit's identifier URI. Under a GTIN-keyed passport, the GS1 Digital Link `{origin}/01/{gtin}/21/{serialNumber}` (AI 21 = the physical serial). Under any other passport — a GRAI, whose key admits no AI 21 qualifier, or a non-GS1 `productId` — an EN IEC 61406 Identification Link on the unit's own route, `{origin}/unit/{id}?.P={productId}&.S={serialNumber}` (EN 18219 Scheme 2, item level). Unique platform-wide."
     },
     "passportId": {
       "type": "string",

@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -27,7 +27,7 @@ Identical validation semantics to `POST /api/v1/passports/validate-only`, but re
 - No tenant context: `operatorId` is accepted but ignored.
 - The 200 body always carries `errors: []`; `warnings` is omitted entirely when there are none (same omission on the 400 Validation Failed body).
 - Error/warning `friendlyMessage` localization via `?lang=` / `Accept-Language` (28 languages, default `en`); category-validity errors carry no `friendlyMessage`.
-- Structural rejections of the request body (e.g. missing `productId`) and malformed JSON return just `{"error": "Bad Request", "message": …}`; a whitespace-only `productId` or a malformed GTIN-14 `productId` (14 digits failing the GS1 mod-10 check) gets the fuller `Bad Request` body shown below.
+- Structural rejections of the request body (e.g. missing `productId`) and malformed JSON return just `{"error": "Bad Request", "message": …}`; a whitespace-only `productId`, a malformed GTIN-14 `productId` (14 digits failing the GS1 mod-10 check) or an invalid `carrier` declaration gets the fuller `Bad Request` body shown below.
 
 ## Parameters
 

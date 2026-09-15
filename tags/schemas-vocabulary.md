@@ -8,7 +8,7 @@ tags:
   - schemas-vocabulary
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -18,5 +18,6 @@ Machine-readable contracts: per-category ESPR JSON Schemas, the W3C JSON-LD cont
 
 - [getSectorSchema](/operations/getSectorSchema.md) — `GET /api/v1/schemas/{category}` — Get the ESPR metadata schema for a product category
 - [getDppJsonLdContext](/operations/getDppJsonLdContext.md) — `GET /contexts/dpp/v1` — Canonical resolvable JSON-LD context for passport & unit documents
+- [getDppVocabulary](/operations/getDppVocabulary.md) — `GET /ns/dpp` — The OpenDPP vocabulary every passport term IRI resolves to
 - [getJsonLdContext](/operations/getJsonLdContext.md) — `GET /context/v1` — W3C JSON-LD context document for passport terms (secondary, fixed term list)
 - [listMaterials](/operations/listMaterials.md) — `GET /api/v1/materials` — List the platform-curated material vocabulary

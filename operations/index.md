@@ -1,6 +1,9 @@
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 # Passports
 
+* [GET /api/v1/passports/{id}/history](listPassportHistory.md) - List a passport's archived versions
+* [GET /api/v1/passports/{id}/history/at](getPassportVersionAtDate.md) - Read the version that was current at an instant
+* [GET /api/v1/passports/{id}/history/{version}](getPassportVersion.md) - Read one archived version
 * [GET /api/v1/passports](listPassports.md) - List passports in your workspace (paginated JSON-LD)
 * [POST /api/v1/passports](createPassport.md) - Create (ingest) a Digital Product Passport
 * [POST /api/v1/passports/validate-only](validatePassport.md) - Dry-run ESPR validation of passport metadata (nothing is stored)
@@ -28,7 +31,7 @@
 * [POST /api/v1/passports/{passportId}/units/validate](validateBatteryUnits.md) - Pre-flight: validate battery-unit identifiers without persisting
 * [GET /api/v1/passports/{passportId}/units](listBatteryUnits.md) - List serialised battery units under a passport
 * [POST /api/v1/passports/{passportId}/units](serializeBatteryUnits.md) - Serialise individual battery units under a passport (bulk, up to 200)
-* [GET /api/v1/units/{id}](getBatteryUnit.md) - Get one battery unit as JSON-LD with its dynamic-data history
+* [GET /api/v1/units/{id}](getBatteryUnit.md) - Get one battery unit with its dynamic-data history, as JSON-LD or a rendered page
 * [DELETE /api/v1/units/{id}](deleteBatteryUnit.md) - Not deletable: a serialised unit is a marketed physical item (always 409)
 * [GET /api/v1/units/{id}/events](listBatteryUnitEvents.md) - List a battery unit's telemetry history (newest first, cursor-paginated)
 * [POST /api/v1/units/{id}/events](recordBatteryUnitEvent.md) - Append an immutable telemetry event to a battery unit
@@ -87,6 +90,7 @@
 
 * [GET /api/v1/schemas/{category}](getSectorSchema.md) - Get the ESPR metadata schema for a product category
 * [GET /contexts/dpp/v1](getDppJsonLdContext.md) - Canonical resolvable JSON-LD context for passport & unit documents
+* [GET /ns/dpp](getDppVocabulary.md) - The OpenDPP vocabulary every passport term IRI resolves to
 * [GET /context/v1](getJsonLdContext.md) - W3C JSON-LD context document for passport terms (secondary, fixed term list)
 * [GET /api/v1/materials](listMaterials.md) - List the platform-curated material vocabulary
 

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -23,6 +23,7 @@ A passport to create: its product identifier and ESPR category metadata, with op
 | `metadata` | [PassportMetadataInput](/schemas/PassportMetadataInput.md) | yes | — |
 | `draft` | boolean | no | When true: skips ALL ESPR validation, stores the passport with status: "DRAFT" (not publicly resolvable), and emits no webhook. |
 | `enrichment` | [PassportEnrichmentInput](/schemas/PassportEnrichmentInput.md) | no | — |
+| `carrier` | [CarrierDeclaration](/schemas/CarrierDeclaration.md) | no | — |
 
 ## JSON Schema
 
@@ -38,7 +39,7 @@ A passport to create: its product identifier and ESPR category metadata, with op
     "productId": {
       "type": "string",
       "minLength": 1,
-      "description": "Product identifier: a GTIN-14 (exactly 14 digits with a valid GS1 mod-10 check digit — auto-copied to `metadata.gtin`), a GRAI (14-digit numeric asset id with valid check digit + optional up to 16 alphanumeric serial chars, total 14–30 — auto-copied to `metadata.grai`), or a free-form SKU. Determines the GS1 Application Identifier (`01` vs `8003`) in the generated Digital Link URI. Whitespace-only values are rejected 400. Unique per economic operator (409 on duplicate)."
+      "description": "Product identifier: a GTIN-14 (exactly 14 digits with a valid GS1 mod-10 check digit — auto-copied to `metadata.gtin`), a GRAI (14-digit numeric asset id with valid check digit + optional up to 16 alphanumeric serial chars, total 14–30 — auto-copied to `metadata.grai`), or a free-form SKU. Determines the identifier URI: the GS1 Application Identifier (`01` vs `8003`) of the Digital Link, or an Identification Link for a non-GS1 SKU. Characters must be ISO/IEC 646 (7-bit ASCII; EN 18219 §4.3.2) — anything else, and whitespace-only values, are rejected 400. Unique per economic operator (409 on duplicate)."
     },
     "operatorId": {
       "type": "string",
@@ -58,6 +59,9 @@ A passport to create: its product identifier and ESPR category metadata, with op
     },
     "enrichment": {
       "$ref": "#/components/schemas/PassportEnrichmentInput"
+    },
+    "carrier": {
+      "$ref": "#/components/schemas/CarrierDeclaration"
     }
   }
 }

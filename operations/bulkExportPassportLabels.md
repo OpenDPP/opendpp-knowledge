@@ -8,7 +8,7 @@ tags:
   - qr-codes
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -45,7 +45,7 @@ A JSON body is required.
 ## Responses
 
 - **200** — A ZIP archive of QR images (one per resolved passport) plus a manifest.json reporting included/skipped ids.
-- **400** — Empty/oversize ids (> 200), an invalid format/size/ecl, or hri: true without format: "svg". → [Error](/schemas/Error.md)
+- **400** — Empty/oversize ids (> 200), an invalid format/size/ecl, hri: true without format: "svg", or an xDimensionMm outside 0.396–2 mm / combined with a non-SVG format… → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)

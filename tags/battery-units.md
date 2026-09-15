@@ -8,7 +8,7 @@ tags:
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -19,7 +19,7 @@ Per-unit battery serialization (real serials, GS1 AI 21) under a SKU-level passp
 - [validateBatteryUnits](/operations/validateBatteryUnits.md) — `POST /api/v1/passports/{passportId}/units/validate` — Pre-flight: validate battery-unit identifiers without persisting
 - [listBatteryUnits](/operations/listBatteryUnits.md) — `GET /api/v1/passports/{passportId}/units` — List serialised battery units under a passport
 - [serializeBatteryUnits](/operations/serializeBatteryUnits.md) — `POST /api/v1/passports/{passportId}/units` — Serialise individual battery units under a passport (bulk, up to 200)
-- [getBatteryUnit](/operations/getBatteryUnit.md) — `GET /api/v1/units/{id}` — Get one battery unit as JSON-LD with its dynamic-data history
+- [getBatteryUnit](/operations/getBatteryUnit.md) — `GET /api/v1/units/{id}` — Get one battery unit with its dynamic-data history, as JSON-LD or a rendered page
 - [deleteBatteryUnit](/operations/deleteBatteryUnit.md) — `DELETE /api/v1/units/{id}` — Not deletable: a serialised unit is a marketed physical item (always 409)
 - [listBatteryUnitEvents](/operations/listBatteryUnitEvents.md) — `GET /api/v1/units/{id}/events` — List a battery unit's telemetry history (newest first, cursor-paginated)
 - [recordBatteryUnitEvent](/operations/recordBatteryUnitEvent.md) — `POST /api/v1/units/{id}/events` — Append an immutable telemetry event to a battery unit

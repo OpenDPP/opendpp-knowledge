@@ -1,8 +1,8 @@
 {
   "okfVersion": "0.2",
-  "apiVersion": "1.15.0",
-  "generated": "2026-09-01T00:00:00Z",
-  "conceptCount": 230,
+  "apiVersion": "1.16.0",
+  "generated": "2026-09-03T00:00:00Z",
+  "conceptCount": 241,
   "concepts": [
     {
       "path": "overview.md",
@@ -189,8 +189,8 @@
     {
       "path": "operations/getBatteryUnit.md",
       "type": "API Endpoint",
-      "title": "Get one battery unit as JSON-LD with its dynamic-data history",
-      "description": "Returns the unit as a JSON-LD document (Content-Type: application/ld+json) in the privileged tenant view: currentState (the latest telemetry snapshot) and dynamicData (the 500 most recent events, newest first by recordedAt) are included; t…",
+      "title": "Get one battery unit with its dynamic-data history, as JSON-LD or a rendered page",
+      "description": "Returns the unit in the privileged tenant view, as a JSON-LD document (Content-Type: application/ld+json, the default) or a server-rendered page — see *Content negotiation* below: currentState (the latest telemetry snapshot) and dynamicDat…",
       "resource": "https://opendpp-node.eu/api/v1/units/{id}"
     },
     {
@@ -341,6 +341,27 @@
       "resource": "https://opendpp-node.eu/api/v1/tenants/rotate-keys"
     },
     {
+      "path": "operations/listPassportHistory.md",
+      "type": "API Endpoint",
+      "title": "List a passport's archived versions",
+      "description": "The archived versions of a passport, newest first.",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{id}/history"
+    },
+    {
+      "path": "operations/getPassportVersionAtDate.md",
+      "type": "API Endpoint",
+      "title": "Read the version that was current at an instant",
+      "description": "The metadata that was current at date: the first version archived after that instant (an archived version is the state a change replaced), or the live passport when nothing changed since — then current is true, version is the live version…",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{id}/history/at"
+    },
+    {
+      "path": "operations/getPassportVersion.md",
+      "type": "API Endpoint",
+      "title": "Read one archived version",
+      "description": "One archived version with the metadata it held, its validity window (validFrom … validUntil), who recorded the change that replaced it and why.",
+      "resource": "https://opendpp-node.eu/api/v1/passports/{id}/history/{version}"
+    },
+    {
       "path": "operations/listPassports.md",
       "type": "API Endpoint",
       "title": "List passports in your workspace (paginated JSON-LD)",
@@ -414,7 +435,7 @@
       "path": "operations/sealPassport.md",
       "type": "API Endpoint",
       "title": "Apply the tenant's advanced electronic seal",
-      "description": "Signs the passport's Merkle root (SHA-256 tree over the key-sorted top-level metadata entries) with the tenant's vault-held ECDSA P-256 (prime256v1) private key, producing an advanced electronic seal (this is a local cryptographic seal — N…",
+      "description": "Signs the passport's Merkle root (SHA-256 tree over the passport's key-sorted data elements, one leaf per element) with the tenant's vault-held ECDSA P-256 (prime256v1) private key, producing an advanced electronic seal (this is a local cr…",
       "resource": "https://opendpp-node.eu/api/v1/passports/{id}/seal"
     },
     {
@@ -479,6 +500,13 @@
       "title": "Canonical resolvable JSON-LD context for passport & unit documents",
       "description": "Serves the stable, resolvable W3C JSON-LD @context (application/ld+json) that every public passport and battery-unit JSON-LD document references in its @context array — this is the context to dereference when expanding OpenDPP JSON-LD.",
       "resource": "https://opendpp-node.eu/contexts/dpp/v1"
+    },
+    {
+      "path": "operations/getDppVocabulary.md",
+      "type": "API Endpoint",
+      "title": "The OpenDPP vocabulary every passport term IRI resolves to",
+      "description": "Serves the RDFS/OWL-shaped vocabulary document (application/ld+json) that defines the terms a passport or unit document uses.",
+      "resource": "https://opendpp-node.eu/ns/dpp"
     },
     {
       "path": "operations/getJsonLdContext.md",
@@ -824,6 +852,13 @@
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BulkBatteryUnitEventsResponse"
     },
     {
+      "path": "schemas/CarrierDeclaration.md",
+      "type": "Schema",
+      "title": "CarrierDeclaration",
+      "description": "EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: the symbology (Clause 6), where it is placed (§5.4.2–5.4.6), the X dimension it is printed at (§5.5.2…",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/CarrierDeclaration"
+    },
+    {
       "path": "schemas/CreateGrantRequest.md",
       "type": "Schema",
       "title": "CreateGrantRequest",
@@ -871,6 +906,13 @@
       "title": "EconomicOperatorNode",
       "description": "Embedded economic-operator JSON-LD node (public in all tiers).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/EconomicOperatorNode"
+    },
+    {
+      "path": "schemas/En18223DataElement.md",
+      "type": "Schema",
+      "title": "En18223DataElement",
+      "description": "One data element of the EN 18223:2026 Annex A expanded form: its relative identifier, its clause 4 subclass, the identifier of its definition in the dictionary served at GET /ns/dpp, and — for a single-valued element — the Table 7 valueDat…",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/En18223DataElement"
     },
     {
       "path": "schemas/EpcisCaptureResponse.md",
@@ -1051,7 +1093,7 @@
       "path": "schemas/MerkleTreeAttestationProof.md",
       "type": "Schema",
       "title": "MerkleTreeAttestationProof",
-      "description": "OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted metadata (one leaf per top-level metadata key).",
+      "description": "OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the passport's data elements (one leaf per element, key-sorted).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/MerkleTreeAttestationProof"
     },
     {
@@ -1172,6 +1214,34 @@
       "title": "PassportGetTooManyRequests",
       "description": "The two 429 bodies of an authenticated passport read: the global limiter's default body (with x-ratelimit-* headers), or the body forwarded from the inner public resolver's limiter (no headers).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportGetTooManyRequests"
+    },
+    {
+      "path": "schemas/PassportHistoryError.md",
+      "type": "Schema",
+      "title": "PassportHistoryError",
+      "description": "PassportHistoryError",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportHistoryError"
+    },
+    {
+      "path": "schemas/PassportHistoryList.md",
+      "type": "Schema",
+      "title": "PassportHistoryList",
+      "description": "PassportHistoryList",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportHistoryList"
+    },
+    {
+      "path": "schemas/PassportHistoryVersion.md",
+      "type": "Schema",
+      "title": "PassportHistoryVersion",
+      "description": "PassportHistoryVersion",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportHistoryVersion"
+    },
+    {
+      "path": "schemas/PassportHistoryVersionSummary.md",
+      "type": "Schema",
+      "title": "PassportHistoryVersionSummary",
+      "description": "PassportHistoryVersionSummary",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PassportHistoryVersionSummary"
     },
     {
       "path": "schemas/PassportIngestCreated.md",
@@ -1296,8 +1366,15 @@
       "path": "schemas/PublicPassportJsonLd.md",
       "type": "Schema",
       "title": "PublicPassportJsonLd",
-      "description": "The public, redacted JSON-LD Digital Product Passport document (application/ld+json).",
+      "description": "The public, redacted JSON-LD Digital Product Passport document (application/ld+json), serialised as EN 18223:2026 clause 5.2 prescribes: the nine Table 1 header attributes and the server-owned document keys listed here, then EVERY data ele…",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PublicPassportJsonLd"
+    },
+    {
+      "path": "schemas/PublicPassportJsonLdExpanded.md",
+      "type": "Schema",
+      "title": "PublicPassportJsonLdExpanded",
+      "description": "The EN 18223:2026 Annex A expanded form of PublicPassportJsonLd, returned for ?representation=full (or its expanded alias) on application/ld+json.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/PublicPassportJsonLdExpanded"
     },
     {
       "path": "schemas/RecordBatteryUnitEventRequest.md",
@@ -1317,7 +1394,7 @@
       "path": "schemas/RegisterOperatorRequest.md",
       "type": "Schema",
       "title": "RegisterOperatorRequest",
-      "description": "An economic operator to register: its legal name and registration identifier, with an optional identifier scheme and supply-chain role.",
+      "description": "An economic operator to register: its legal name, its identifier under an EN 18219 clause 6 scheme, optionally its EORI and supply-chain role.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/RegisterOperatorRequest"
     },
     {
@@ -1457,7 +1534,7 @@
       "path": "schemas/UpdateOperatorRequest.md",
       "type": "Schema",
       "title": "UpdateOperatorRequest",
-      "description": "Both fields are optional.",
+      "description": "Every field is optional.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/UpdateOperatorRequest"
     },
     {

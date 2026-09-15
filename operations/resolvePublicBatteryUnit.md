@@ -8,7 +8,7 @@ tags:
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -37,10 +37,11 @@ Every resolution is access-audit-logged with an anonymized IP. **Rate limit:** 3
 ## Responses
 
 - **200** — The unit document in the negotiated representation. → [PublicBatteryUnitJsonLd](/schemas/PublicBatteryUnitJsonLd.md)
+- **400** — A malformed Identification Link qualifier: .P or .S given more than once (EN IEC 61406-2 Data Identifiers are single-valued), which is refused rather than read… → [Error](/schemas/Error.md)
 - **404** — No unit with that id (a malformed UUID also resolves to this 404). → [Error](/schemas/Error.md)
 - **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
 - **410** — Gone — the unit was RECYCLED (or ceasedAt is set): the battery passport has ceased to exist. → [BatteryUnitTombstoneJsonLd](/schemas/BatteryUnitTombstoneJsonLd.md)
-- **429** — Public-resolution rate limit exceeded (30 requests/min per IP; no rate-limit headers). → [Error](/schemas/Error.md)
+- **429** — Public-resolution rate limit exceeded — 30 requests/min per IP for an ANONYMOUS caller; a credentialed call is handed back to its authenticated budget. → [Error](/schemas/Error.md)
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

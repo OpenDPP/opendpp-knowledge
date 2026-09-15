@@ -8,7 +8,7 @@ tags:
   - qr-codes
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -37,7 +37,8 @@ Renders the passport's GS1 Digital Link URI (its `digitalLinkUri`, e.g. `https:/
 | `format` | query | no | string | Output image format. |
 | `size` | query | no | integer | Rendered width in pixels (PNG) / SVG width attribute. |
 | `ecl` | query | no | string | QR error-correction level: M (~15% recovery), Q (~25%, GS1 product-label guidance, default) or H (~30%). |
-| `hri` | query | no | boolean | When 1/true, renders the GS1 Human-Readable Interpretation (the bracketed AI string, e.g. (01) 09501101530003 (21) BAT-2026-000123) as vector text beneath the… |
+| `hri` | query | no | boolean | When 1/true, renders the Human-Readable Interpretation beneath the QR symbol as vector text — EN 18220 5.7.2: the information the carrier encodes, in a clearly… |
+| `xDimensionMm` | query | no | number | Width of ONE module in millimetres, chosen for the scanning environment the printed carrier will live in (EN 18220 5.5.2). |
 
 ## Responses
 

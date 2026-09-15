@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -47,10 +47,11 @@ Schema (required): [AasEnvironmentInput](/schemas/AasEnvironmentInput.md).
 ## Responses
 
 - **201** — Passport created or (if it existed unsealed) updated from the AAS environment. → [AasIngestCreated](/schemas/AasIngestCreated.md)
-- **400** — Four variants share this status: Bad Request (non-object body, unresolvable productId, no bound operator), Signature Verification Failed (embedded seal invalid… → [AasIngestBadRequest](/schemas/AasIngestBadRequest.md)
+- **400** — Four variants share this status: Bad Request (non-object body, unresolvable or non-ISO/IEC 646 productId, no bound operator), Signature Verification Failed (em… → [AasIngestBadRequest](/schemas/AasIngestBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
+- **409** — The identifier this ingest would publish was already issued by this economic operator to a passport that has since been purged. → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 262,144-byte (256 KiB) route body limit.
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
@@ -65,4 +66,4 @@ curl -s \
 
 ## See also
 
-Schemas: [AasEnvironmentInput](/schemas/AasEnvironmentInput.md), [AasIngestBadRequest](/schemas/AasIngestBadRequest.md), [AasIngestCreated](/schemas/AasIngestCreated.md).
+Schemas: [AasEnvironmentInput](/schemas/AasEnvironmentInput.md), [AasIngestBadRequest](/schemas/AasIngestBadRequest.md), [AasIngestCreated](/schemas/AasIngestCreated.md), [Error](/schemas/Error.md).

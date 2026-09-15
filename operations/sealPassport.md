@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Apply the tenant's advanced electronic seal
-description: Signs the passport's Merkle root (SHA-256 tree over the key-sorted top-level metadata entries) with the tenant's vault-held ECDSA P-256 (prime256v1) private key, producing an advanced electronic seal (this is a local cryptographic seal — N…
+description: Signs the passport's Merkle root (SHA-256 tree over the passport's key-sorted data elements, one leaf per element) with the tenant's vault-held ECDSA P-256 (prime256v1) private key, producing an advanced electronic seal (this is a local cr…
 resource: https://opendpp-node.eu/api/v1/passports/{id}/seal
 tags:
   - POST
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -17,7 +17,7 @@ generated:
 **Domain:** [Passports](/tags/passports.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Signs the passport's Merkle root (SHA-256 tree over the key-sorted top-level `metadata` entries) with the tenant's vault-held **ECDSA P-256 (prime256v1)** private key, producing an **advanced** electronic seal (this is a local cryptographic seal — NOT a Commission/EU-registry registration, and NOT a qualified seal). The base64 signature is stored as `digitalSeal` together with the signing public key (PEM), the X.509 chain binding the key to the tenant's legal identity (surfaced as `proof.x5c`, leaf first, base64 DER), and — **best-effort, opt-in** — an RFC 3161 trusted timestamp over SHA-256(merkleRoot) (`proof.rfc3161`; a TSA outage or missing configuration never blocks sealing, the field is simply absent).
+Signs the passport's Merkle root (SHA-256 tree over the passport's key-sorted data elements, one leaf per element) with the tenant's vault-held **ECDSA P-256 (prime256v1)** private key, producing an **advanced** electronic seal (this is a local cryptographic seal — NOT a Commission/EU-registry registration, and NOT a qualified seal). The base64 signature is stored as `digitalSeal` together with the signing public key (PEM), the X.509 chain binding the key to the tenant's legal identity (surfaced as `proof.x5c`, leaf first, base64 DER), and — **best-effort, opt-in** — an RFC 3161 trusted timestamp over SHA-256(merkleRoot) (`proof.rfc3161`; a TSA outage or missing configuration never blocks sealing, the field is simply absent).
 
 A `passport.sealed` webhook is enqueued transactionally with the update (payload: the public-redacted JSON-LD document including the full `proof` block).
 
@@ -38,7 +38,7 @@ A `passport.sealed` webhook is enqueued transactionally with the update (payload
 
 | Name | In | Required | Type | Description |
 |------|----|----------|------|-------------|
-| `id` | path | yes | string | Passport UUID or caller-supplied productId (GTIN-14 / GRAI / SKU). |
+| `id` | path | yes | string | Passport UUID, caller-supplied productId (GTIN-14 / GRAI / SKU) or the passport's own GS1 Digital Link URL (its digitalProductPassportId, percent-encoded as on… |
 
 ## Responses
 

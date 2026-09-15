@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -16,6 +16,9 @@ Create, validate, read, update, seal and manage the lifecycle of Digital Product
 
 ## Operations
 
+- [listPassportHistory](/operations/listPassportHistory.md) — `GET /api/v1/passports/{id}/history` — List a passport's archived versions
+- [getPassportVersionAtDate](/operations/getPassportVersionAtDate.md) — `GET /api/v1/passports/{id}/history/at` — Read the version that was current at an instant
+- [getPassportVersion](/operations/getPassportVersion.md) — `GET /api/v1/passports/{id}/history/{version}` — Read one archived version
 - [listPassports](/operations/listPassports.md) — `GET /api/v1/passports` — List passports in your workspace (paginated JSON-LD)
 - [createPassport](/operations/createPassport.md) — `POST /api/v1/passports` — Create (ingest) a Digital Product Passport
 - [validatePassport](/operations/validatePassport.md) — `POST /api/v1/passports/validate-only` — Dry-run ESPR validation of passport metadata (nothing is stored)

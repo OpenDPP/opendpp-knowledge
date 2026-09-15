@@ -1,17 +1,17 @@
 ---
 type: Schema
 title: MerkleTreeAttestationProof
-description: "OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted metadata (one leaf per top-level metadata key)."
+description: "OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the passport's data elements (one leaf per element, key-sorted)."
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/MerkleTreeAttestationProof
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
-OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted metadata (one leaf per top-level metadata key). Deliberately NOT a W3C DataIntegrityProof / `ecdsa-jcs-2019` Verifiable Credential (no RFC 8785 JCS canonicalization). Verifiable offline: rebuild the Merkle root from `metadata` — substituting each `redactedLeaves` hash for its placeholder-masked key, and EXCLUDING any placeholder-masked key that has no `redactedLeaves` entry (such a key was never present in the sealed metadata; the serializer injects the owner-only placeholder unconditionally) — then verify `signatureValue` with `publicKeyPem`; the `x5c` chain validates against the platform seal CA (`GET /.well-known/opendpp-seal-ca.pem`) and the `rfc3161` token via `openssl ts -verify`.
+OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the passport's data elements (one leaf per element, key-sorted). Deliberately NOT a W3C DataIntegrityProof / `ecdsa-jcs-2019` Verifiable Credential (no RFC 8785 JCS canonicalization). Verifiable offline from the served document: `sealedKeys` names the root keys whose values are sealed leaves — pick exactly those off the root, substitute each `redactedLeaves` hash for its placeholder-masked key, fold in every `redactedLeaves` entry for a key the document does not carry (a dropped element), rebuild the root, then verify `signatureValue` with `publicKeyPem`; the `x5c` chain validates against the platform seal CA (`GET /.well-known/opendpp-seal-ca.pem`) and the `rfc3161` token via `openssl ts -verify`.
 
 ## Schema
 
@@ -28,6 +28,7 @@ OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 si
 | `x5c` | array<string> | no | OPTIONAL (omitted when no chain was recorded at seal time). |
 | `rfc3161` | object | no | OPTIONAL (omitted when timestamping was off/unavailable at seal time). |
 | `merkleRoot` | string | yes | Hex SHA-256 Merkle root over the key-sorted metadata leaves. |
+| `sealedKeys` | array<string> | yes | The root keys whose values are the leaves of the sealed tree, sorted by code unit: every data element the document carries whose value — or whose redactedLeave… |
 | `redactedLeaves` | object | no | OPTIONAL — present only when at least one masked key actually exists in the underlying sealed metadata. |
 
 ## JSON Schema
@@ -35,7 +36,7 @@ OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 si
 ```json
 {
   "type": "object",
-  "description": "OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted metadata (one leaf per top-level metadata key). Deliberately NOT a W3C DataIntegrityProof / `ecdsa-jcs-2019` Verifiable Credential (no RFC 8785 JCS canonicalization). Verifiable offline: rebuild the Merkle root from `metadata` — substituting each `redactedLeaves` hash for its placeholder-masked key, and EXCLUDING any placeholder-masked key that has no `redactedLeaves` entry (such a key was never present in the sealed metadata; the serializer injects the owner-only placeholder unconditionally) — then verify `signatureValue` with `publicKeyPem`; the `x5c` chain validates against the platform seal CA (`GET /.well-known/opendpp-seal-ca.pem`) and the `rfc3161` token via `openssl ts -verify`.",
+  "description": "OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the passport's data elements (one leaf per element, key-sorted). Deliberately NOT a W3C DataIntegrityProof / `ecdsa-jcs-2019` Verifiable Credential (no RFC 8785 JCS canonicalization). Verifiable offline from the served document: `sealedKeys` names the root keys whose values are sealed leaves — pick exactly those off the root, substitute each `redactedLeaves` hash for its placeholder-masked key, fold in every `redactedLeaves` entry for a key the document does not carry (a dropped element), rebuild the root, then verify `signatureValue` with `publicKeyPem`; the `x5c` chain validates against the platform seal CA (`GET /.well-known/opendpp-seal-ca.pem`) and the `rfc3161` token via `openssl ts -verify`.",
   "required": [
     "@type",
     "type",
@@ -45,7 +46,8 @@ OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 si
     "verificationMethod",
     "signatureValue",
     "publicKeyPem",
-    "merkleRoot"
+    "merkleRoot",
+    "sealedKeys"
   ],
   "properties": {
     "@type": {
@@ -120,6 +122,13 @@ OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 si
       "pattern": "^[0-9a-f]{64}$",
       "description": "Hex SHA-256 Merkle root over the key-sorted metadata leaves."
     },
+    "sealedKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The root keys whose values are the leaves of the sealed tree, sorted by code unit: every data element the document carries whose value — or whose `redactedLeaves` hash, when masked — entered the seal. Pick these off the document root to rebuild `merkleRoot`. A placeholder the serialiser injected for a key the sealed elements never had is not listed, so nothing has to be excluded by hand."
+    },
     "redactedLeaves": {
       "type": "object",
       "additionalProperties": {
@@ -135,3 +144,4 @@ OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 si
 ## Used by
 
 - schema [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md)
+- schema [PublicPassportJsonLdExpanded](/schemas/PublicPassportJsonLdExpanded.md)

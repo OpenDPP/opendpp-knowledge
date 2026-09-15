@@ -8,7 +8,7 @@ tags:
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -34,7 +34,7 @@ An additional `/21/{serial}` AI pair after the GRAI behaves exactly like `GET /0
 - **400** — Invalid GRAI (format / check digit) or — without tenant scope and AI-21 serial — an ambiguous lookup. → [Error](/schemas/Error.md)
 - **404** — No passport matches (content-negotiated HTML/JSON, Vary: Accept), DRAFT hidden from non-owner, or unknown tenant subdomain (JSON only). → [Error](/schemas/Error.md)
 - **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
-- **429** — Public-resolution rate limit exceeded (30 requests/min per IP; no rate-limit headers). → [Error](/schemas/Error.md)
+- **429** — Public-resolution rate limit exceeded — 30 requests/min per IP for an ANONYMOUS caller; a credentialed call is handed back to its authenticated budget. → [Error](/schemas/Error.md)
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

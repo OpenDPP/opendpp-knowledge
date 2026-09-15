@@ -27,6 +27,7 @@
 * [BatteryUnitTombstoneJsonLd](BatteryUnitTombstoneJsonLd.md) - Tombstone (HTTP 410): once a battery is recycled its passport has ceased to exist.
 * [BulkBatteryUnitEventsRequest](BulkBatteryUnitEventsRequest.md) - A batch of telemetry records for one unit.
 * [BulkBatteryUnitEventsResponse](BulkBatteryUnitEventsResponse.md) - The partial-success report of a bulk telemetry ingest.
+* [CarrierDeclaration](CarrierDeclaration.md) - EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: t…
 * [CreateGrantRequest](CreateGrantRequest.md) - Direct-issuance body.
 * [DefaultRequestRejectionError](DefaultRequestRejectionError.md) - The default 400 body of a request rejected before the handler runs — a syntactically malformed JSON body, or an envelope (schema) violation…
 * [DeleteOperatorResponse](DeleteOperatorResponse.md) - Outcome of removing an economic operator: whether it was archived rather than deleted, and how many of its passports were archived with it.
@@ -34,6 +35,7 @@
 * [DppJsonLdContextDocument](DppJsonLdContextDocument.md) - The fixed W3C JSON-LD context document served by GET /context/v1: maps DigitalProductPassport, economicOperator, metadata, digitalSeal, sig…
 * [DppVocabContextDocument](DppVocabContextDocument.md) - The canonical resolvable JSON-LD context served by GET /contexts/dpp/v1 — the context every public passport and battery-unit document refer…
 * [EconomicOperatorNode](EconomicOperatorNode.md) - Embedded economic-operator JSON-LD node (public in all tiers).
+* [En18223DataElement](En18223DataElement.md) - One data element of the EN 18223:2026 Annex A expanded form: its relative identifier, its clause 4 subclass, the identifier of its definiti…
 * [EpcisCaptureResponse](EpcisCaptureResponse.md) - Per-event outcome of capturing an EPCIS 2.0 document, with partial-success semantics: some events may be stored while others fail.
 * [EpcisDocument](EpcisDocument.md) - A GS1 EPCIS 2.0 document (JSON/JSON-LD).
 * [Error](Error.md) - Standard error body.
@@ -59,7 +61,7 @@
 * [HealthStatus](HealthStatus.md) - Health-check body of GET /health.
 * [MaterialVocabularyListResponse](MaterialVocabularyListResponse.md) - Envelope of GET /api/v1/materials.
 * [MaterialVocabularyRow](MaterialVocabularyRow.md) - One entry of the platform-curated material vocabulary.
-* [MerkleTreeAttestationProof](MerkleTreeAttestationProof.md) - OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the key-sorted metadata…
+* [MerkleTreeAttestationProof](MerkleTreeAttestationProof.md) - OpenDPP's own proof type — an ADVANCED electronic seal: an ECDSA prime256v1 signature over a SHA-256 Merkle root of the passport's data ele…
 * [OperatorGetResponse](OperatorGetResponse.md) - A single economic operator record.
 * [OperatorListResponse](OperatorListResponse.md) - The economic operators bound to the calling workspace.
 * [OperatorMinimalError](OperatorMinimalError.md) - Minimal error envelope used by the operator/key self-service handlers — note the standard error key is ABSENT (unlike the shared Error sche…
@@ -77,6 +79,10 @@
 * [PassportEnrichmentInput](PassportEnrichmentInput.md) - Optional presentational (non-regulatory) marketing enrichment, stored OUTSIDE the ESPR-validated metadata and the Merkle seal; it never app…
 * [PassportGetNotFound](PassportGetNotFound.md) - The two 404 bodies of an authenticated passport read: the standard workspace-scoped envelope, or the body forwarded from the public resolve…
 * [PassportGetTooManyRequests](PassportGetTooManyRequests.md) - The two 429 bodies of an authenticated passport read: the global limiter's default body (with x-ratelimit-* headers), or the body forwarded…
+* [PassportHistoryError](PassportHistoryError.md)
+* [PassportHistoryList](PassportHistoryList.md)
+* [PassportHistoryVersion](PassportHistoryVersion.md)
+* [PassportHistoryVersionSummary](PassportHistoryVersionSummary.md)
 * [PassportIngestCreated](PassportIngestCreated.md) - 201 envelope of POST /api/v1/passports.
 * [PassportListItem](PassportListItem.md) - One JSON-LD passport document as it appears in GET /api/v1/passports list responses.
 * [PassportListResponse](PassportListResponse.md) - Envelope of GET /api/v1/passports.
@@ -94,10 +100,11 @@
 * [PassportValidateOnlyResult](PassportValidateOnlyResult.md) - 200 envelope of the validate-only endpoints (only the declared keys are emitted).
 * [PublicBatteryUnitJsonLd](PublicBatteryUnitJsonLd.md) - Public JSON-LD document for one individual serialised battery unit (EU Battery Regulation).
 * [PublicFacilityNode](PublicFacilityNode.md) - Embedded manufacturing-facility JSON-LD node — the GS1 GLN-backed Unique Facility Identifier (UFI, EN 18219).
-* [PublicPassportJsonLd](PublicPassportJsonLd.md) - The public, redacted JSON-LD Digital Product Passport document (application/ld+json).
+* [PublicPassportJsonLd](PublicPassportJsonLd.md) - The public, redacted JSON-LD Digital Product Passport document (application/ld+json), serialised as EN 18223:2026 clause 5.2 prescribes: th…
+* [PublicPassportJsonLdExpanded](PublicPassportJsonLdExpanded.md) - The EN 18223:2026 Annex A expanded form of PublicPassportJsonLd, returned for ?representation=full (or its expanded alias) on application/l…
 * [RecordBatteryUnitEventRequest](RecordBatteryUnitEventRequest.md) - One telemetry record.
 * [RecordBatteryUnitEventResponse](RecordBatteryUnitEventResponse.md) - Confirmation that a dynamic-data record was appended to a battery unit, echoing the stored event.
-* [RegisterOperatorRequest](RegisterOperatorRequest.md) - An economic operator to register: its legal name and registration identifier, with an optional identifier scheme and supply-chain role.
+* [RegisterOperatorRequest](RegisterOperatorRequest.md) - An economic operator to register: its legal name, its identifier under an EN 18219 clause 6 scheme, optionally its EORI and supply-chain ro…
 * [RegisterOperatorResponse](RegisterOperatorResponse.md) - Confirmation that an economic operator was registered, carrying the stored record and any non-blocking advisories.
 * [RestoreOperatorResponse](RestoreOperatorResponse.md) - Outcome of restoring an archived economic operator, including how many of its passports were restored.
 * [RotateTenantKeysResponse](RotateTenantKeysResponse.md) - Confirmation that the workspace's signing key was rotated, returning the new public key.
@@ -117,7 +124,7 @@
 * [UntpEventCredentialSubject](UntpEventCredentialSubject.md) - The EPCIS event payload.
 * [UntpEventProof](UntpEventProof.md) - Credential proof.
 * [UntpVerificationMethod](UntpVerificationMethod.md) - Embedded verification-method object.
-* [UpdateOperatorRequest](UpdateOperatorRequest.md) - Both fields are optional.
+* [UpdateOperatorRequest](UpdateOperatorRequest.md) - Every field is optional.
 * [UpdateOperatorResponse](UpdateOperatorResponse.md) - The economic operator as stored after the update.
 * [ValidationErrorItem](ValidationErrorItem.md) - One field-level finding from ESPR category validation.
 * [WebhookDeliveriesResponse](WebhookDeliveriesResponse.md) - Recent webhook delivery attempts for a subscription, newest first, for debugging endpoint failures.

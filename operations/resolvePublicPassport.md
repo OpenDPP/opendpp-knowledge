@@ -8,7 +8,7 @@ tags:
   - public-resolution
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -36,14 +36,15 @@ DRAFT passports are hidden from everyone but the owner (404 with a body identica
 |------|----|----------|------|-------------|
 | `id` | path | yes | string | The passport's server-assigned UUID (returned as id on creation and embedded as AI-21 in the SKU-level Digital Link URI). |
 | `grant` | query | no | string | Capability grant token (dpp_li_… legitimate-interest, dpp_auth_… authority) — the inspection-link path for QR-scanning inspectors who cannot set headers. |
+| `representation` | query | no | string | Which serialisation form of the JSON-LD passport document to return. |
 
 ## Responses
 
-- **200** — The passport in the negotiated representation. → [AasEnvironment](/schemas/AasEnvironment.md), [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md)
-- **400** — Passport identifier missing. → [Error](/schemas/Error.md)
+- **200** — The passport in the negotiated representation (for application/ld+json, the compressed form by default or the EN 18223 Annex A form with ?representation=full). → [AasEnvironment](/schemas/AasEnvironment.md), [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md)
+- **400** — A malformed Identification Link qualifier: .P or .S given more than once (EN IEC 61406-2 Data Identifiers are single-valued), which is refused rather than read… → [Error](/schemas/Error.md)
 - **404** — No passport with that UUID — or the passport is a DRAFT and the caller is not owner-tier (identical body, deliberate). → [Error](/schemas/Error.md)
 - **406** — The requested representation cannot be produced for this resource. → [Error](/schemas/Error.md)
-- **429** — Public-resolution rate limit exceeded (30 requests/min per IP; no rate-limit headers). → [Error](/schemas/Error.md)
+- **429** — Public-resolution rate limit exceeded — 30 requests/min per IP for an ANONYMOUS caller; a credentialed call is handed back to its authenticated budget. → [Error](/schemas/Error.md)
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
 ## Example

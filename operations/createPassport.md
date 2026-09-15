@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -27,7 +27,7 @@ Creates a SKU/type-level Digital Product Passport.
 
 **Drafts.** `draft: true` skips ALL validation, stores the passport with `status: "DRAFT"` (not publicly resolvable), returns `message: "Draft passport saved"` with `warnings: []`, and does **not** emit a webhook.
 
-**Identifier handling.** `productId` may be a GTIN-14 (14 digits, GS1 mod-10 check digit), a GRAI (14-digit numeric asset id + up to 16 alphanumeric serial chars), or a free-form SKU. A 14-digit `productId` whose GS1 mod-10 check digit is invalid is rejected with **400** (a typo'd GTIN is never silently downgraded to a SKU); a non-numeric or non-14-digit `productId` is accepted as a non-GS1 SKU and carries a non-blocking `warnings[]` advisory that it resolves via `/passport/{id}` with no scannable GS1 QR. A valid GTIN-14 is auto-copied into `metadata.gtin` (a GRAI into `metadata.grai`) before storage. The server mints a UUID passport id and a GS1 Digital Link URI `https://opendpp-node.eu/{01|8003}/{productId}`.
+**Identifier handling.** `productId` may be a GTIN-14 (14 digits, GS1 mod-10 check digit), a GRAI (14-digit numeric asset id + up to 16 alphanumeric serial chars), or a free-form SKU. A 14-digit `productId` whose GS1 mod-10 check digit is invalid is rejected with **400** (a typo'd GTIN is never silently downgraded to a SKU); a non-numeric or non-14-digit `productId` is accepted as a non-GS1 SKU and carries a non-blocking `warnings[]` advisory that it is issued as an EN IEC 61406 Identification Link (`/passport/{id}?.P={productId}`, EN 18219 Scheme 2) rather than a GS1 Digital Link — scannable, but not through GS1 resolvers. A valid GTIN-14 is auto-copied into `metadata.gtin` (a GRAI into `metadata.grai`) before storage. The server mints a UUID passport id and the identifier URI: a GS1 Digital Link `https://opendpp-node.eu/{01|8003}/{productId}` for a GS1 key, or an EN IEC 61406 Identification Link `https://opendpp-node.eu/passport/{id}?.P={productId}` otherwise.
 
 **Operator binding.** With `operatorId` omitted, the passport is attributed to the first economic operator bound to your workspace; if no operator is bound at all the request fails **400** (the API never fabricates an operator identity — register one via `POST /api/v1/operators`). An `operatorId` not bound to your workspace → **403**. Operator-scoped API keys force their own operator and **403** on mismatch. The `(productId, operatorId)` pair is unique → **409** on duplicates. An optional `facilityId` must reference a Facility in your workspace (**400** otherwise).
 
@@ -105,7 +105,7 @@ Schema (required): [PassportCreateRequest](/schemas/PassportCreateRequest.md).
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
-- **409** — A passport already exists for this (productId, operatorId) pair. → [Error](/schemas/Error.md)
+- **409** — A passport already exists for this (productId, operatorId) pair — or the identifier this create would publish was already issued by this economic operator to a… → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 1 MiB (1,048,576-byte) body limit.
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)

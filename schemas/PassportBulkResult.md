@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -80,7 +80,7 @@ generated:
           },
           "warnings": {
             "type": "array",
-            "description": "Per-row non-blocking advisories — the non-GS1 \"no scannable QR\" note and the PII-shape privacy advisory. Empty `[]` when the row is clean; never blocks the row.",
+            "description": "Per-row non-blocking advisories — the non-GS1 \"Identification Link, not a GS1 Digital Link\" note and the PII-shape privacy advisory. Empty `[]` when the row is clean; never blocks the row.",
             "items": {
               "$ref": "#/components/schemas/AdvisoryItem"
             }
@@ -93,7 +93,7 @@ generated:
       "items": {
         "type": "string"
       },
-      "description": "Human-readable per-row failure strings, prefixed `[SKU: <productId>]` (or \"Missing or invalid productId in spreadsheet row\"). Present ONLY when at least one row failed — omitted otherwise."
+      "description": "Human-readable per-row failure strings, prefixed `[SKU: <productId>]` (or \"Missing or invalid productId in spreadsheet row\"). Present ONLY when at least one row failed — omitted otherwise. A row whose identifier this economic operator already issued to a since-purged passport is reported here too: an issued identifier is never reassigned to a different product (EN 18219 §4.1.2)."
     }
   }
 }

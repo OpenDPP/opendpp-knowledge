@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -20,7 +20,8 @@ Embedded economic-operator JSON-LD node (public in all tiers).
 | `@type` | string | yes | — |
 | `id` | string | yes | — |
 | `name` | string | yes | — |
-| `regId` | string | yes | EORI number or official business-registry identifier (unique platform-wide), e.g. EU-DEFAULT-001. |
+| `regId` | string | yes | The identifier issued under regIdScheme — e.g. LT000000000001, an EU VAT identification number. |
+| `regIdScheme` | string | yes | The EN 18219 clause 6 scheme regId is issued under — VAT, DUNS, LEI or GLN, each with an ISO/IEC 6523 ICD — so the header's economicOperatorId reads as ICD:ide… |
 | `role` | string | no | Operator role in the supply chain, e.g. MANUFACTURER, IMPORTER, RETAILER. |
 
 ## JSON Schema
@@ -33,7 +34,8 @@ Embedded economic-operator JSON-LD node (public in all tiers).
     "@type",
     "id",
     "name",
-    "regId"
+    "regId",
+    "regIdScheme"
   ],
   "properties": {
     "@type": {
@@ -48,7 +50,18 @@ Embedded economic-operator JSON-LD node (public in all tiers).
     },
     "regId": {
       "type": "string",
-      "description": "EORI number or official business-registry identifier (unique platform-wide), e.g. `EU-DEFAULT-001`."
+      "description": "The identifier issued under `regIdScheme` — e.g. `LT000000000001`, an EU VAT identification number. Unique within the operator's workspace."
+    },
+    "regIdScheme": {
+      "type": "string",
+      "enum": [
+        "VAT",
+        "DUNS",
+        "LEI",
+        "GLN",
+        "UNDECLARED"
+      ],
+      "description": "The EN 18219 clause 6 scheme `regId` is issued under — `VAT`, `DUNS`, `LEI` or `GLN`, each with an ISO/IEC 6523 ICD — so the header's `economicOperatorId` reads as `ICD:identifier`. `UNDECLARED` only on an operator that predates the declaration; its `economicOperatorId` is then the identifier as registered."
     },
     "role": {
       "type": "string",

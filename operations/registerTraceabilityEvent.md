@@ -8,7 +8,7 @@ tags:
   - traceability-audit
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -27,7 +27,7 @@ Registers a supply-chain traceability event carried as a VC-shaped UNTP credenti
 1. *Structural* — the body must be an object containing `credentialSubject`, otherwise 400 `Bad Request`.
 2. *EPCIS rule* — `action` is strictly forbidden on `TransformationEvent` (any non-null value → 400 `Schema Validation Error`).
 3. *Cryptographic* — the credential's `proof` MUST be a conformant W3C `DataIntegrityProof` with `cryptosuite: "ecdsa-jcs-2019"` and a multibase base58btc (`z…`) `proofValue`; any other proof shape (e.g. the legacy key-sorted `MerkleTreeAttestationProof`) is rejected. The ECDSA P-256 signature is verified per that cryptosuite over `sha256(JCS(proof options)) ‖ sha256(JCS(credential without proof))` — RFC 8785 JCS canonicalization, IEEE-P1363 raw r‖s — a conformant, interoperable Data Integrity suite, which is what makes the persisted `isUntpCompliant: true` honest. The verification key is resolved in trust order: (a) an embedded `proof.verificationMethod.x5c` chain, accepted ONLY when the node has trust anchors configured, the chain validates against them, every certificate is currently valid, and the leaf attests the issuer; (b) ALL of the authoritative vault keys (current + retired, so a pre-rotation credential still verifies) of the tenant whose UNIQUE subdomain EXACTLY equals the trailing `:`-segment of the issuer DID. If no key resolves or the signature does not verify → 400 `Cryptographic Verification Failed`.
-4. *Operator scoping* — if your API key is scoped to an Economic Operator, the credential's declared operator DID — the `issuer` DID, or `credentialSubject.responsibleOperatorDid` only when `issuer` is absent — must contain the bound operator's registration id (e.g. `EU-DEFAULT-001`), otherwise 403 with `message: "Your access is restricted to Economic Operator: <operatorId> (<regId>)"`.
+4. *Operator scoping* — if your API key is scoped to an Economic Operator, the credential's declared operator DID — the `issuer` DID, or `credentialSubject.responsibleOperatorDid` only when `issuer` is absent — must contain the bound operator's registration id (e.g. `LT000000000001`), otherwise 403 with `message: "Your access is restricted to Economic Operator: <operatorId> (<regId>)"`.
 
 **Persistence:** the stored event id is ALWAYS server-generated (UUID) — the credential's own `id` is never used as the primary key (prevents cross-tenant id squatting); the issuer DID is retained as `issuerDid`. Defaults applied on write: `bizStep` → `urn:epcglobal:cbv:bizstep:receiving`; `disposition` → `urn:epcglobal:cbv:disp:in_progress`; `readPoint` → `geo:<latitude>,<longitude>` derived from `credentialSubject.originLocation` when present; `bizLocation` → `responsibleOperatorDid`; `eventTime` → `issuanceDate`, else the server clock; `epcList` → `[credentialSubject.id]` when not supplied as an array (or `[]`). The row is stored with `isUntpCompliant: true` and the `proof.proofValue` retained.
 
@@ -48,7 +48,7 @@ Schema (required): [UntpEventCredential](/schemas/UntpEventCredential.md).
     "VerifiableCredential",
     "DigitalTraceabilityEvent"
   ],
-  "issuer": "did:web:opendpp-node.eu:EU-DEFAULT-001:demo",
+  "issuer": "did:web:opendpp-node.eu:LT000000000001:demo",
   "issuanceDate": "2026-06-12T09:41:00.000Z",
   "credentialSubject": {
     "id": "urn:epc:id:sgtin:0950110153.0003.SN-2026-000123",
@@ -62,14 +62,14 @@ Schema (required): [UntpEventCredential](/schemas/UntpEventCredential.md).
     "epcList": [
       "urn:epc:id:sgtin:0950110153.0003.SN-2026-000123"
     ],
-    "responsibleOperatorDid": "did:web:opendpp-node.eu:EU-DEFAULT-001:demo"
+    "responsibleOperatorDid": "did:web:opendpp-node.eu:LT000000000001:demo"
   },
   "proof": {
     "type": "DataIntegrityProof",
     "cryptosuite": "ecdsa-jcs-2019",
     "created": "2026-06-12T09:41:00.000Z",
     "proofPurpose": "assertionMethod",
-    "verificationMethod": "did:web:opendpp-node.eu:EU-DEFAULT-001:demo#key-1",
+    "verificationMethod": "did:web:opendpp-node.eu:LT000000000001:demo#key-1",
     "proofValue": "z4oey5q2M3XKaxup3tmzN4DRFTLVqpLMweBrSxMY2xEQLExampleEcdsaJcs2019MultibaseBase58btcProofValue"
   }
 }
@@ -92,7 +92,7 @@ curl -s \
   -H 'Authorization: Bearer op_dpp_token_…' \
   -H 'Content-Type: application/json' \
   -X POST 'https://opendpp-node.eu/api/v1/events' \
-  --data '{"@context":["https://www.w3.org/ns/credentials/v2","https://vocabulary.uncefact.org/untp/dpp/"],"id":"urn:uuid:0e7a2c1c-6f4e-4a08-9d2e-3b1f5a7c9d10","type":["VerifiableCredential","DigitalTraceabilityEvent"],"issuer":"did:web:opendpp-node.eu:EU-DEFAULT-001:demo","issuanceDate":"2026-06-12T09:41:00.000Z","credentialSubject":{"id":"urn:epc:id:sgtin:0950110153.0003.SN-2026-000123","eventType":"ObjectEvent","action":"OBSERVE","bizStep":"urn:epcglobal:cbv:bizstep:shipping","disposition":"urn:epcglobal:cbv:disp:in_transit","readPoint":"geo:41.1496,-8.6109","bizLocation":"urn:epc:id:sgln:09501101530…'
+  --data '{"@context":["https://www.w3.org/ns/credentials/v2","https://vocabulary.uncefact.org/untp/dpp/"],"id":"urn:uuid:0e7a2c1c-6f4e-4a08-9d2e-3b1f5a7c9d10","type":["VerifiableCredential","DigitalTraceabilityEvent"],"issuer":"did:web:opendpp-node.eu:LT000000000001:demo","issuanceDate":"2026-06-12T09:41:00.000Z","credentialSubject":{"id":"urn:epc:id:sgtin:0950110153.0003.SN-2026-000123","eventType":"ObjectEvent","action":"OBSERVE","bizStep":"urn:epcglobal:cbv:bizstep:shipping","disposition":"urn:epcglobal:cbv:disp:in_transit","readPoint":"geo:41.1496,-8.6109","bizLocation":"urn:epc:id:sgln:09501101530…'
 ```
 
 ## See also

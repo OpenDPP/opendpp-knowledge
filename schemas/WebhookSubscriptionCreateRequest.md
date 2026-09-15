@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -17,7 +17,7 @@ An endpoint to receive webhook deliveries, and the event types it subscribes to.
 
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
-| `url` | string | yes | Absolute http(s) endpoint URL of your receiver (e.g. a PLM/ERP integration endpoint). |
+| `url` | string | yes | Absolute https endpoint URL of your receiver (e.g. a PLM/ERP integration endpoint). |
 | `events` | array<[WebhookEventFilter](/schemas/WebhookEventFilter.md)> | yes | Non-empty list of event filters. |
 
 ## JSON Schema
@@ -34,7 +34,7 @@ An endpoint to receive webhook deliveries, and the event types it subscribes to.
     "url": {
       "type": "string",
       "format": "uri",
-      "description": "Absolute http(s) endpoint URL of your receiver (e.g. a PLM/ERP integration endpoint). DNS-resolved and SSRF-guarded at registration: malformed URLs, loopback, private (RFC 1918/CGNAT), link-local/cloud-metadata, multicast, and equivalent IPv6 ranges are rejected with 400. Redirects are never followed at delivery time."
+      "description": "Absolute **https** endpoint URL of your receiver (e.g. a PLM/ERP integration endpoint). Cleartext `http://` targets are rejected with 400: the delivered payload is the full passport document, so the transport is encrypted or the subscription is refused. DNS-resolved and SSRF-guarded at registration too: malformed URLs, loopback, private (RFC 1918/CGNAT), link-local/cloud-metadata, multicast, and equivalent IPv6 ranges are rejected with 400. Redirects are never followed at delivery time."
     },
     "events": {
       "type": "array",

@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
-title: Get one battery unit as JSON-LD with its dynamic-data history
-description: "Returns the unit as a JSON-LD document (Content-Type: application/ld+json) in the privileged tenant view: currentState (the latest telemetry snapshot) and dynamicData (the 500 most recent events, newest first by recordedAt) are included; t…"
+title: Get one battery unit with its dynamic-data history, as JSON-LD or a rendered page
+description: "Returns the unit in the privileged tenant view, as a JSON-LD document (Content-Type: application/ld+json, the default) or a server-rendered page — see *Content negotiation* below: currentState (the latest telemetry snapshot) and dynamicDat…"
 resource: https://opendpp-node.eu/api/v1/units/{id}
 tags:
   - GET
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -17,7 +17,9 @@ generated:
 **Domain:** [Battery Units](/tags/battery-units.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Returns the unit as a **JSON-LD document** (`Content-Type: application/ld+json`) in the **privileged tenant view**: `currentState` (the latest telemetry snapshot) and `dynamicData` (the **500 most recent** events, newest first by `recordedAt`) are included; the public `restrictedData` marker is absent. The embedded `ofModel` is the SKU/type passport document rendered in the **owner (unredacted) variant** — legitimate-interest-tier metadata and owner-only keys are NOT masked, unlike the anonymous public document.
+Returns the unit in the **privileged tenant view**, as a **JSON-LD document** (`Content-Type: application/ld+json`, the default) or a **server-rendered page** — see *Content negotiation* below: `currentState` (the latest telemetry snapshot) and `dynamicData` (the **500 most recent** events, newest first by `recordedAt`) are included; the public `restrictedData` marker is absent. The embedded `ofModel` is the SKU/type passport document rendered in the **owner (unredacted) variant** — legitimate-interest-tier metadata and owner-only keys are NOT masked, unlike the anonymous public document.
+
+**Content negotiation:** the representation is chosen by RFC 7231 §5.3.2 `Accept` q-value negotiation — `text/html` → the server-rendered unit page, localized from `Accept-Language`; anything else, including an absent `Accept`, `*/*` or `application/json`, → JSON-LD. Both forms carry the same privileged tier. `Vary: Accept, Accept-Language` is always set on the 200. The public twin `GET /unit/{id}` additionally negotiates the UNTP credential representations; those are public-tier artifacts and are not offered here.
 
 **Caveat:** this authenticated endpoint does **not** load lineage relations, so `repurposedFrom` is always `null` and `successorUnits` is always `[]` here even when lineage exists; the public resolver view (`GET /unit/{id}`) does resolve them.
 
@@ -27,7 +29,7 @@ Returns the unit as a **JSON-LD document** (`Content-Type: application/ld+json`)
 
 ## Responses
 
-- **200** — The unit's JSON-LD document (privileged view, telemetry included). → [BatteryUnitJsonLd](/schemas/BatteryUnitJsonLd.md)
+- **200** — The unit (privileged view, telemetry included), in the representation Accept selected. → [BatteryUnitJsonLd](/schemas/BatteryUnitJsonLd.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)

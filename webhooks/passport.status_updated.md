@@ -8,14 +8,14 @@ tags:
   - event
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
 Sent when `PUT /api/v1/passports/{id}/status` performs a non-recall transition: decommissioning (`DECOMMISSIONED`, which also sets `retentionUntil` and starts the retention clock) or reactivation back to `ACTIVE`. Subscribe to it directly with the `passport.status_updated` filter (or `*`).
 
 **Delivery contract** (sender `User-Agent: OpenDPP-Webhook-Outbox/1.0`):
-- The body is a JSON **envelope** `{ id, type, created, data }`: `data` is the **public (redacted) JSON-LD passport document**, `type` is the event name (also in the `X-OpenDPP-Event` header), and `id` is the stable delivery id (also in the `X-OpenDPP-Delivery` header, constant across retries). The owner-only `facilityDetails` metadata key **always appears with the masked value `[REDACTED - Privileged Access Required]`** (in `metadata`, flattened at top level, and in the `@context` term map) even when the passport never set that key; restricted metadata keys likewise appear masked.
+- The body is a JSON **envelope** `{ id, type, created, data }`: `data` is the **public (redacted) JSON-LD passport document**, `type` is the event name (also in the `X-OpenDPP-Event` header), and `id` is the stable delivery id (also in the `X-OpenDPP-Delivery` header, constant across retries). The owner-only `facilityDetails` metadata key **always appears with the masked value `[REDACTED - Privileged Access Required]`** (at the document root and in the `@context` term map) even when the passport never set that key; restricted metadata keys likewise appear masked.
 - **Success = any HTTP 2xx** within the **5-second** timeout. Redirects are **never followed** (3xx = failure). Response body ignored.
 - **Retries:** up to **6 delivery attempts** total. Failed attempts 1–5 schedule the next attempt ~1 min / 5 min / 30 min / 2 h / 12 h after the previous failure; the **6th failed attempt dead-letters the event** and the workspace is notified in-app.
 - **Per-subscription dedup:** endpoints that already returned 2xx are not re-POSTed on retries; still treat delivery as at-least-once, but the **`X-OpenDPP-Delivery`** id is STABLE across retries, so deduplicate on it for exactly-once.

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -18,10 +18,11 @@ Body of PUT /api/v1/passports/{id}. Unknown keys are ignored.
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
 | `metadata` | object | yes | Full replacement ESPR metadata object. |
-| `draft` | boolean | no | true = save as draft: skips ESPR validation and forces status DRAFT (this also demotes an already-published passport back to DRAFT). |
+| `draft` | boolean | no | true = save as draft: skips ESPR validation and keeps status DRAFT; refused with 409 DRAFT_DEMOTION_REFUSED on an already-published passport (publishing is one… |
 | `changeReason` | string | no | Free-text reason recorded on the version-history snapshot. |
 | `facilityId` | string,null | no | GLN-backed facility assignment. |
 | `enrichment` | — | no | Presentational marketing block stored OUTSIDE the ESPR-validated metadata and the Merkle seal. |
+| `carrier` | — | no | EN 18220 data-carrier declaration. |
 
 ## JSON Schema
 
@@ -41,7 +42,7 @@ Body of PUT /api/v1/passports/{id}. Unknown keys are ignored.
     "draft": {
       "type": "boolean",
       "default": false,
-      "description": "true = save as draft: skips ESPR validation and forces status DRAFT (this also demotes an already-published passport back to DRAFT). false/absent = validated save; a DRAFT passport is published (status ACTIVE, emits the passport.ingested webhook)."
+      "description": "true = save as draft: skips ESPR validation and keeps status DRAFT; refused with 409 `DRAFT_DEMOTION_REFUSED` on an already-published passport (publishing is one-way). false/absent = validated save; a DRAFT passport is published (status ACTIVE, emits the passport.ingested webhook)."
     },
     "changeReason": {
       "type": "string",
@@ -64,6 +65,17 @@ Body of PUT /api/v1/passports/{id}. Unknown keys are ignored.
         }
       ],
       "description": "Presentational marketing block stored OUTSIDE the ESPR-validated metadata and the Merkle seal. Include the key (even null/{}) to overwrite; omit to leave unchanged. An empty result after sanitation clears the block."
+    },
+    "carrier": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/CarrierDeclaration"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "EN 18220 data-carrier declaration. Include the key to overwrite (null clears it); omit to leave unchanged. An invalid declaration is a 400."
     }
   }
 }

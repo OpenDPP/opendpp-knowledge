@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-01T00:00:00Z
+  at: 2026-09-03T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -48,7 +48,7 @@ Verification request. Only `payload` is strictly required: `signature` and `publ
             },
             "regId": {
               "type": "string",
-              "description": "Operator registration id (e.g. EORI-style `EU-DEFAULT-001`). Must resolve to a registered Economic Operator bound to the signing tenant, or verification fails (`verified: false`)."
+              "description": "The operator's identifier as registered under its EN 18219 clause 6 scheme (e.g. the demo operator's VAT number `LT000000000001`). Must resolve to a registered Economic Operator bound to the signing tenant, or verification fails (`verified: false`)."
             }
           }
         },
