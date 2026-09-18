@@ -1,8 +1,8 @@
 {
   "okfVersion": "0.2",
-  "apiVersion": "1.16.0",
-  "generated": "2026-09-03T00:00:00Z",
-  "conceptCount": 241,
+  "apiVersion": "1.17.0",
+  "generated": "2026-09-15T00:00:00Z",
+  "conceptCount": 255,
   "concepts": [
     {
       "path": "overview.md",
@@ -107,6 +107,13 @@
       "type": "Reference",
       "title": "Traceability & Audit",
       "description": "UNTP/EPCIS supply-chain traceability events, lineage queries, and the public seal verifier.",
+      "resource": "https://opendpp-node.eu/api-reference"
+    },
+    {
+      "path": "tags/en-18222-life-cycle-api.md",
+      "type": "Reference",
+      "title": "EN 18222 Life Cycle API",
+      "description": "The CEN EN 18222:2026 Life Cycle API, served at the paths clause 8 specifies.",
       "resource": "https://opendpp-node.eu/api-reference"
     },
     {
@@ -220,6 +227,69 @@
       "title": "Append a batch of telemetry events to a battery unit",
       "description": "Appends up to 500 append-only dynamic-data records to one unit in a single request — the batch venue for backfilling a fleet's telemetry.",
       "resource": "https://opendpp-node.eu/api/v1/units/{id}/events/bulk"
+    },
+    {
+      "path": "operations/readDPPById.md",
+      "type": "API Endpoint",
+      "title": "ReadDPPById — return the DPP with the specified DPP ID",
+      "description": "EN 18222:2026 clause 4.2, Table 1; bound by clause 8.2, Table 16.",
+      "resource": "https://opendpp-node.eu/v1/dpps/{dppId}"
+    },
+    {
+      "path": "operations/updateDPPById.md",
+      "type": "API Endpoint",
+      "title": "UpdateDPPById — partial update of a DPP with a specified DPP ID",
+      "description": "EN 18222:2026 clause 4.7, Table 6; bound by clause 8.2, Table 16.",
+      "resource": "https://opendpp-node.eu/v1/dpps/{dppId}"
+    },
+    {
+      "path": "operations/deleteDPPById.md",
+      "type": "API Endpoint",
+      "title": "DeleteDPPById — remove the DPP with the specified DPP ID",
+      "description": "EN 18222:2026 clause 4.8, Table 7; bound by clause 8.2, Table 16.",
+      "resource": "https://opendpp-node.eu/v1/dpps/{dppId}"
+    },
+    {
+      "path": "operations/readDPPByProductId.md",
+      "type": "API Endpoint",
+      "title": "ReadDPPByProductId — return the current active DPP for a product identifier",
+      "description": "EN 18222:2026 clause 4.3, Table 2; bound by clause 8.2, Table 16.",
+      "resource": "https://opendpp-node.eu/v1/dppsByProductId/{productId}"
+    },
+    {
+      "path": "operations/readDPPVersionByIdAndDate.md",
+      "type": "API Endpoint",
+      "title": "ReadDPPVersionByIdAndDate — return the DPP version current at a given date",
+      "description": "EN 18222:2026 clause 4.4, Table 3; bound by clause 8.2, Table 16.",
+      "resource": "https://opendpp-node.eu/v1/dppsByIdAndDate/{dppId}"
+    },
+    {
+      "path": "operations/readDPPIdsByProductIds.md",
+      "type": "API Endpoint",
+      "title": "ReadDPPIdsByProductIds — return the DPP identifiers matching a set of product identifiers",
+      "description": "EN 18222:2026 clause 4.5, Table 4; bound by clause 8.2, Table 16.",
+      "resource": "https://opendpp-node.eu/v1/dppsByProductIds"
+    },
+    {
+      "path": "operations/createDPP.md",
+      "type": "API Endpoint",
+      "title": "CreateDPP — create a new DPP and return its identifier",
+      "description": "EN 18222:2026 clause 4.6, Table 5; bound by clause 8.2, Table 16.",
+      "resource": "https://opendpp-node.eu/v1/dpps"
+    },
+    {
+      "path": "operations/readDataElement.md",
+      "type": "API Endpoint",
+      "title": "ReadDataElement — return one data element by its absolute path",
+      "description": "EN 18222:2026 clause 6.2, Table 9; bound by clause 8.4, Table 18.",
+      "resource": "https://opendpp-node.eu/v1/dpps/{dppId}/elements/{elementIdPath}"
+    },
+    {
+      "path": "operations/updateDataElement.md",
+      "type": "API Endpoint",
+      "title": "UpdateDataElement — update, amend or remove one data element",
+      "description": "EN 18222:2026 clause 6.3, Table 10; bound by clause 8.4, Table 18.",
+      "resource": "https://opendpp-node.eu/v1/dpps/{dppId}/elements/{elementIdPath}"
     },
     {
       "path": "operations/listFacilities.md",
@@ -906,6 +976,34 @@
       "title": "EconomicOperatorNode",
       "description": "Embedded economic-operator JSON-LD node (public in all tiers).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/EconomicOperatorNode"
+    },
+    {
+      "path": "schemas/En18222DppIdList.md",
+      "type": "Schema",
+      "title": "En18222DppIdList",
+      "description": "EN 18222 Table 4 — the digitalProductPassportId of every passport matching the supplied product identifiers.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/En18222DppIdList"
+    },
+    {
+      "path": "schemas/En18222Message.md",
+      "type": "Schema",
+      "title": "En18222Message",
+      "description": "EN 18222:2026 Table 13 — a message carrying information for the requester.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/En18222Message"
+    },
+    {
+      "path": "schemas/En18222ProductIdQuery.md",
+      "type": "Schema",
+      "title": "En18222ProductIdQuery",
+      "description": "The product identifiers to resolve.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/En18222ProductIdQuery"
+    },
+    {
+      "path": "schemas/En18222Result.md",
+      "type": "Schema",
+      "title": "En18222Result",
+      "description": "EN 18222:2026 Table 12 — the result object returned when a method fails to execute (clause 7.2).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/En18222Result"
     },
     {
       "path": "schemas/En18223DataElement.md",

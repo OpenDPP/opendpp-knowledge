@@ -8,6 +8,7 @@
 * [Access Grants](access-grants.md) - Capability tokens implementing tiered legitimate-interest access: issue, approve, deny and revoke dpp_li_… / dpp_auth_… tokens.
 * [Webhooks](webhooks.md) - Subscribe HTTPS endpoints to passport lifecycle events.
 * [Traceability & Audit](traceability-audit.md) - UNTP/EPCIS supply-chain traceability events, lineage queries, and the public seal verifier.
+* [EN 18222 Life Cycle API](en-18222-life-cycle-api.md) - The CEN EN 18222:2026 Life Cycle API, served at the paths clause 8 specifies.
 * [Public Resolution](public-resolution.md) - Unauthenticated, content-negotiated passport resolution: GS1 Digital Link paths, passport and unit pages.
 * [Verifiable Credentials](verifiable-credentials.md) - Issuer trust endpoints that back the UNTP Verifiable Credential representations: the workspace's did:web DID document (public keys only) and its W3C Bitstring…
 * [Schemas & Vocabulary](schemas-vocabulary.md) - Machine-readable contracts: per-category ESPR JSON Schemas, the W3C JSON-LD context, and the curated materials vocabulary.

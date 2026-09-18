@@ -35,6 +35,10 @@
 * [DppJsonLdContextDocument](DppJsonLdContextDocument.md) - The fixed W3C JSON-LD context document served by GET /context/v1: maps DigitalProductPassport, economicOperator, metadata, digitalSeal, sig…
 * [DppVocabContextDocument](DppVocabContextDocument.md) - The canonical resolvable JSON-LD context served by GET /contexts/dpp/v1 — the context every public passport and battery-unit document refer…
 * [EconomicOperatorNode](EconomicOperatorNode.md) - Embedded economic-operator JSON-LD node (public in all tiers).
+* [En18222DppIdList](En18222DppIdList.md) - EN 18222 Table 4 — the digitalProductPassportId of every passport matching the supplied product identifiers.
+* [En18222Message](En18222Message.md) - EN 18222:2026 Table 13 — a message carrying information for the requester.
+* [En18222ProductIdQuery](En18222ProductIdQuery.md) - The product identifiers to resolve.
+* [En18222Result](En18222Result.md) - EN 18222:2026 Table 12 — the result object returned when a method fails to execute (clause 7.2).
 * [En18223DataElement](En18223DataElement.md) - One data element of the EN 18223:2026 Annex A expanded form: its relative identifier, its clause 4 subclass, the identifier of its definiti…
 * [EpcisCaptureResponse](EpcisCaptureResponse.md) - Per-event outcome of capturing an EPCIS 2.0 document, with partial-success semantics: some events may be stored while others fail.
 * [EpcisDocument](EpcisDocument.md) - A GS1 EPCIS 2.0 document (JSON/JSON-LD).

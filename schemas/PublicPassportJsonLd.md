@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-03T00:00:00Z
+  at: 2026-09-15T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -265,6 +265,10 @@ The public, redacted JSON-LD Digital Product Passport document (`application/ld+
 
 ## Used by
 
+- [readDPPById](/operations/readDPPById.md) (`GET /v1/dpps/{dppId}`)
+- [updateDPPById](/operations/updateDPPById.md) (`PATCH /v1/dpps/{dppId}`)
+- [readDPPByProductId](/operations/readDPPByProductId.md) (`GET /v1/dppsByProductId/{productId}`)
+- [readDPPVersionByIdAndDate](/operations/readDPPVersionByIdAndDate.md) (`GET /v1/dppsByIdAndDate/{dppId}`)
 - [getPassport](/operations/getPassport.md) (`GET /api/v1/passports/{id}`)
 - [resolvePublicPassport](/operations/resolvePublicPassport.md) (`GET /passport/{id}`)
 - [resolveGs1Gtin](/operations/resolveGs1Gtin.md) (`GET /01/{gtin14}`)

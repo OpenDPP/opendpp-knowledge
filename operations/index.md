@@ -70,6 +70,18 @@
 * [GET /api/v1/events/{id}/lineage](getEventLineage.md) - Retrieve the upstream pedigree of an event as a recursive lineage DAG
 * [POST /api/v1/audit/verify](verifyPassportSeal.md) - Publicly verify a passport's seal, certificate chain and timestamp
 
+# EN 18222 Life Cycle API
+
+* [GET /v1/dpps/{dppId}](readDPPById.md) - ReadDPPById — return the DPP with the specified DPP ID
+* [PATCH /v1/dpps/{dppId}](updateDPPById.md) - UpdateDPPById — partial update of a DPP with a specified DPP ID
+* [DELETE /v1/dpps/{dppId}](deleteDPPById.md) - DeleteDPPById — remove the DPP with the specified DPP ID
+* [GET /v1/dppsByProductId/{productId}](readDPPByProductId.md) - ReadDPPByProductId — return the current active DPP for a product identifier
+* [GET /v1/dppsByIdAndDate/{dppId}](readDPPVersionByIdAndDate.md) - ReadDPPVersionByIdAndDate — return the DPP version current at a given date
+* [POST /v1/dppsByProductIds](readDPPIdsByProductIds.md) - ReadDPPIdsByProductIds — return the DPP identifiers matching a set of product identifiers
+* [POST /v1/dpps](createDPP.md) - CreateDPP — create a new DPP and return its identifier
+* [GET /v1/dpps/{dppId}/elements/{elementIdPath}](readDataElement.md) - ReadDataElement — return one data element by its absolute path
+* [PATCH /v1/dpps/{dppId}/elements/{elementIdPath}](updateDataElement.md) - UpdateDataElement — update, amend or remove one data element
+
 # Public Resolution
 
 * [GET /passport/{id}](resolvePublicPassport.md) - Resolve a passport by UUID (JSON-LD / AAS / HTML)

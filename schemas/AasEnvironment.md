@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-03T00:00:00Z
+  at: 2026-09-15T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -25,6 +25,9 @@ An Asset Administration Shell (AAS) v3.0 environment export of the passport, ser
 
 ## Used by
 
+- [readDPPById](/operations/readDPPById.md) (`GET /v1/dpps/{dppId}`)
+- [updateDPPById](/operations/updateDPPById.md) (`PATCH /v1/dpps/{dppId}`)
+- [readDPPByProductId](/operations/readDPPByProductId.md) (`GET /v1/dppsByProductId/{productId}`)
 - [resolvePublicPassport](/operations/resolvePublicPassport.md) (`GET /passport/{id}`)
 - [resolveGs1Gtin](/operations/resolveGs1Gtin.md) (`GET /01/{gtin14}`)
 - [resolveGs1Grai](/operations/resolveGs1Grai.md) (`GET /8003/{grai}`)

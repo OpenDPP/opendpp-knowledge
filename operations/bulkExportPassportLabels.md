@@ -8,7 +8,7 @@ tags:
   - qr-codes
 generated:
   by: process:emit-okf
-  at: 2026-09-03T00:00:00Z
+  at: 2026-09-15T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -17,7 +17,7 @@ generated:
 **Domain:** [QR Codes](/tags/qr-codes.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Renders a GS1 Digital Link QR code for each of the supplied passports and returns them as a single `application/zip` download (`Content-Disposition: attachment; filename="labels.zip"`) — the export counterpart to the bulk import. One image entry per resolved passport, named `<productId>.<png|svg>` (characters outside `[A-Za-z0-9._-]` replaced by `_`, truncated to 80 chars; duplicate names get a `-2`, `-3`, … suffix), plus a `manifest.json` listing what was `included` and `skipped`.
+Renders a GS1 Digital Link QR code for each of the supplied passports and returns them as a single `application/zip` download (`Content-Disposition: attachment; filename="labels.zip"`) — the export counterpart to the bulk import. One image entry per resolved passport, named `<productId>.<png|svg>` (characters outside `[A-Za-z0-9._-]` replaced by `_`, truncated to 80 chars; duplicate names get a `-2`, `-3`, … suffix), plus a `manifest.json` listing what was `included` and `skipped` and echoing back the print parameters the batch was rendered with — `format`, `size`, `errorCorrection`, `hri`, and `xDimensionMm` when one was requested. An `included` entry also carries `divergesFromDeclaration` when that passport's EN 18220 carrier declaration names a parameter these labels do not match, each as `{ parameter, declared, rendered, reason? }` — `reason` appearing only where the artwork could not have carried the declared value rather than not having been asked to. Those are the factors that decide whether a printed symbol scans, so the manifest states them rather than leaving a print shop to infer them from the images.
 
 **Permission:** `passport:read` (read-only — no subscription/402 gate, and NOT subject to the programmatic API-write entitlement).
 
@@ -44,7 +44,7 @@ A JSON body is required.
 
 ## Responses
 
-- **200** — A ZIP archive of QR images (one per resolved passport) plus a manifest.json reporting included/skipped ids.
+- **200** — A ZIP archive of QR images (one per resolved passport) plus a manifest.json reporting the print parameters used and the included/skipped ids.
 - **400** — Empty/oversize ids (> 200), an invalid format/size/ecl, hri: true without format: "svg", or an xDimensionMm outside 0.396–2 mm / combined with a non-SVG format… → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
