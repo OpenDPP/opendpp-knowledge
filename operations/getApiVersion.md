@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Running API contract version & build identity
-description: Returns the SemVer of the public API contract currently served (apiVersion), plus the source build identity (commit, builtAt).
+description: Returns the SemVer of the public API contract currently served (apiVersion), plus the source build identity (commit, builtAt) and the CEN EN 18222:2026 clause 4.1 service-provider role this node operates as (providerRole).
 resource: https://opendpp-node.eu/api/v1/version
 tags:
   - GET
   - service
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -17,7 +17,7 @@ generated:
 **Domain:** [Service](/tags/service.md)  
 **Authentication:** **Public** — no authentication required.
 
-Returns the SemVer of the public API contract currently served (`apiVersion`), plus the source build identity (`commit`, `builtAt`). The contract's MAJOR equals the `/api/v1` URL major; a breaking change ships as a new `/api/v1`-style major (`/api/v2`), never as an edit to this contract — so a stable `apiVersion` major is a safe thing for an integration or a generated SDK to pin to. `commit`/`builtAt` read `"unknown"` when a build did not inject them. No authentication, no permission; subject only to the global platform rate limit (100 req/min/IP anonymous, higher for authenticated callers; standard `x-ratelimit-*` headers on responses).
+Returns the SemVer of the public API contract currently served (`apiVersion`), plus the source build identity (`commit`, `builtAt`) and the CEN EN 18222:2026 clause 4.1 service-provider role this node operates as (`providerRole`). The contract's MAJOR equals the `/api/v1` URL major; a breaking change ships as a new `/api/v1`-style major (`/api/v2`), never as an edit to this contract — so a stable `apiVersion` major is a safe thing for an integration or a generated SDK to pin to. `commit`/`builtAt` read `"unknown"` when a build did not inject them. No authentication, no permission; subject only to the global platform rate limit (100 req/min/IP anonymous, higher for authenticated callers; standard `x-ratelimit-*` headers on responses).
 
 ## Responses
 

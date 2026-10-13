@@ -8,7 +8,7 @@ tags:
   - verifiable-credentials
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -19,7 +19,7 @@ generated:
 
 Serves the workspace's W3C **Bitstring Status List** as a signed enveloping `vc+jwt` (`application/vc+jwt`) — a `BitstringStatusListCredential` whose GZIP+base64 encoded bitstring sets the bit of every passport whose status is RECALLED or DECOMMISSIONED. An OpenDPP-issued DPP credential's `credentialStatus.statusListCredential` points here; a verifier fetches this list and checks the bit at the credential's `statusListIndex` to determine whether it has been revoked. Signed by the workspace's current key (stable `kid`), verifiable via the DID document at `/tenants/{tenantId}/did.json`.
 
-No authentication, no permission (public endpoint). Subject only to the global platform rate limit (100 req/min/IP). A workspace with no signing key returns 404.
+No authentication, no permission (public endpoint). **Rate limit:** 30 requests/min/IP, because every call signs with the workspace's key; a 429 carries `{"error": "Too Many Requests", "message": "Rate limit exceeded."}`. The global platform limit (100 req/min/IP) applies on top. A workspace with no signing key returns 404.
 
 ## Parameters
 

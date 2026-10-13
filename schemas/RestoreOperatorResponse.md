@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -18,7 +18,7 @@ Outcome of restoring an archived economic operator, including how many of its pa
 | Property | Type | Required | Description |
 |----------|------|----------|-------------|
 | `success` | boolean | yes | — |
-| `restoredPassports` | integer | yes | Number of archived passports returned to the active catalogue (archivedAt and retentionUntil cleared). |
+| `restoredPassports` | integer | yes | Number of archived passports returned to the active catalogue (archivedAt cleared; a written retentionUntil is kept). |
 
 ## JSON Schema
 
@@ -38,7 +38,7 @@ Outcome of restoring an archived economic operator, including how many of its pa
     "restoredPassports": {
       "type": "integer",
       "minimum": 0,
-      "description": "Number of archived passports returned to the active catalogue (`archivedAt` and `retentionUntil` cleared). Passports independently DECOMMISSIONED are not restored and not counted."
+      "description": "Number of archived passports returned to the active catalogue (`archivedAt` cleared; a written `retentionUntil` is kept). Passports independently DECOMMISSIONED are not restored and not counted."
     }
   }
 }

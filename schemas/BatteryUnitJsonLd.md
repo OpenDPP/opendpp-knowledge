@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -34,8 +34,8 @@ JSON-LD document for one serialised battery unit, **privileged tenant view** (`i
 | `contentSpecificationIds` | array<string> | no | The content specification(s) the instance follows: the URL of the ESPR category schema this node validated the metadata against (GET /api/v1/schemas/{category}… |
 | `status` | [BatteryUnitStatus](/schemas/BatteryUnitStatus.md) | yes | — |
 | `manufacturedAt` | string,null | yes | — |
-| `repurposedFrom` | — | yes | Predecessor link. |
-| `successorUnits` | array<[BatteryUnitLineageRef](/schemas/BatteryUnitLineageRef.md)> | yes | Units repurposed/remanufactured from this one. |
+| `repurposedFrom` | — | yes | Predecessor link: the unit this battery was repurposed or remanufactured from, or null for a first life. |
+| `successorUnits` | array<[BatteryUnitLineageRef](/schemas/BatteryUnitLineageRef.md)> | yes | Units repurposed/remanufactured from this one, oldest first — at most 100, and only units in your workspace; [] when there are none. |
 | `ofModel` | [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md) | yes | The SKU/type-level passport this unit is an instance of. |
 | `currentState` | — | yes | — |
 | `dynamicData` | array<[BatteryUnitDynamicDataEvent](/schemas/BatteryUnitDynamicDataEvent.md)> | yes | Full telemetry history, newest first by recordedAt, capped at the 500 most recent events. |
@@ -145,14 +145,14 @@ JSON-LD document for one serialised battery unit, **privileged tenant view** (`i
           "type": "null"
         }
       ],
-      "description": "Predecessor link. **Always `null` on `GET /api/v1/units/{id}`** — the authenticated handler does not load the lineage relation; use the public resolver `GET /unit/{id}` to see resolved lineage."
+      "description": "Predecessor link: the unit this battery was repurposed or remanufactured from, or `null` for a first life. Only a unit in your workspace is named."
     },
     "successorUnits": {
       "type": "array",
       "items": {
         "$ref": "#/components/schemas/BatteryUnitLineageRef"
       },
-      "description": "Units repurposed/remanufactured from this one. **Always `[]` on `GET /api/v1/units/{id}`** (relation not loaded; see `repurposedFrom`)."
+      "description": "Units repurposed/remanufactured from this one, oldest first — at most 100, and only units in your workspace; `[]` when there are none."
     },
     "ofModel": {
       "$ref": "#/components/schemas/PublicPassportJsonLd",

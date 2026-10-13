@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Append an immutable telemetry event to a battery unit
-description: "Appends one append-only per-unit dynamic-data record (Annex XIII / Art. 77: SoH, cycle count, remaining capacity, temperature, negative events)."
+description: "Appends one append-only per-unit dynamic-data record (EU Battery Regulation Annex XIII: SoH, cycle count, remaining capacity, temperature, negative events)."
 resource: https://opendpp-node.eu/api/v1/units/{id}/events
 tags:
   - POST
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -17,13 +17,13 @@ generated:
 **Domain:** [Battery Units](/tags/battery-units.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Appends one **append-only** per-unit dynamic-data record (Annex XIII / Art. 77: SoH, cycle count, remaining capacity, temperature, negative events). History is immutable — there is **no update or delete path** for events.
+Appends one **append-only** per-unit dynamic-data record (EU Battery Regulation Annex XIII: SoH, cycle count, remaining capacity, temperature, negative events). History is immutable — there is **no update or delete path** for events.
 
 **Permission:** `battery:write`. Cookie-session clients must send `X-CSRF-Token`. Operator-scoped credentials may only write to units whose passport belongs to their Economic Operator (403). Write operations pass subscription gating (402) and optional tenant MFA enforcement (403).
 
 **Validation (400 with the standard error triple):** `eventType` is required and must be one of `SOH_MEASUREMENT|CHARGE_CYCLE|STATUS_CHANGE|NEGATIVE_EVENT|OTHER`; `stateOfHealth` 0–100; `cycleCount` and `remainingCapacityAh` 0–9007199254740991; `temperatureC` −273.15–10000 (each may also be `null`/omitted); `status`, if present, must be a valid unit status; `recordedAt` must be Date-parseable (defaults to server time when omitted). `cycleCount` is truncated to an integer before persisting; a `payload` that is not an object or array is silently dropped (stored as `null`) — JSON **arrays** pass the server's `typeof` check and are persisted verbatim.
 
-**Status transition:** when `status` is present and differs from the unit's current status, the unit is updated **in the same transaction** as the event — this works with *any* `eventType`, though `STATUS_CHANGE` is the conventional carrier. Transitioning to **`RECYCLED`** additionally stamps `ceasedAt` (if not already set; never cleared), after which the public unit view becomes a 410 tombstone and the unit can no longer gain successor units. `RECYCLED` is terminal: once the unit's status is `RECYCLED` this endpoint refuses **every** further event with **400** `Terminal Unit Status` — neither `status` nor telemetry can change again. A second life must be linked with `predecessorUnitId` **before** the predecessor is recycled — a terminal unit is itself refused as a `predecessorUnitId`, so there is no path back once it is recycled.
+**Status transition:** when `status` is present and differs from the unit's current status, the unit is updated **in the same transaction** as the event — this works with *any* `eventType`, though `STATUS_CHANGE` is the conventional carrier. The event's stored `payload` then records the transition as `from` (the unit's previous status) and `to` (the new one), set by the server over any keys of those names the request sent; the request's other payload keys are kept, and an array payload is kept under `detail`. Transitioning to **`RECYCLED`** additionally stamps `ceasedAt` (if not already set; never cleared), after which the public unit view becomes a 410 tombstone and the unit can no longer gain successor units. `RECYCLED` is terminal: once the unit's status is `RECYCLED` this endpoint refuses **every** further event with **400** `Terminal Unit Status` — neither `status` nor telemetry can change again. A second life must be linked with `predecessorUnitId` **before** the predecessor is recycled — a terminal unit is itself refused as a `predecessorUnitId`, so there is no path back once it is recycled.
 
 **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
@@ -56,7 +56,7 @@ Schema (required): [RecordBatteryUnitEventRequest](/schemas/RecordBatteryUnitEve
 - **201** — Event appended (and, when status was supplied and differed, the unit's status transitioned in the same transaction). → [RecordBatteryUnitEventResponse](/schemas/RecordBatteryUnitEventResponse.md)
 - **400** — Two shapes: (1) the standard error triple from handler validation — messages: Request body must be a valid JSON object; eventType must be one of: SOH_MEASUREME… → [BatteryUnitEventBadRequest](/schemas/BatteryUnitEventBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.

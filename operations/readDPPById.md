@@ -8,7 +8,7 @@ tags:
   - en-18222-life-cycle-api
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -37,6 +37,7 @@ The response is the passport itself: Table 16 reports the result "except status 
 - **401** — Wrong or missing authorization credentials (ClientNotAuthorized). → [En18222Result](/schemas/En18222Result.md)
 - **403** — Authorization has been refused (ClientForbidden). → [En18222Result](/schemas/En18222Result.md)
 - **404** — Resource not found (ClientErrorResourceNotFound). → [En18222Result](/schemas/En18222Result.md)
+- **406** — A signed representation (AAS, or a verifiable credential) was negotiated where none can be produced truthfully: for an archived version, or — when this node ho… → [En18222Result](/schemas/En18222Result.md)
 - **429** — The workspace or key exceeded its request allowance. → [En18222Result](/schemas/En18222Result.md)
 - **500** — Unexpected error (ServerInternalError). → [En18222Result](/schemas/En18222Result.md)
 

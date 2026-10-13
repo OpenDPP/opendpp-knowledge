@@ -8,7 +8,7 @@ tags:
   - access-grants
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -22,7 +22,7 @@ Soft-revokes a grant: sets `status: REVOKED` and `revokedAt` (the row is retaine
 Behavioral caveats (no status precondition — only the kind is checked):
 - Works on a grant in **any** status: revoking a `PENDING` request withdraws it; revoking a `DENIED` grant flips it to `REVOKED`.
 - Re-revoking an already-`REVOKED` grant returns 200 again and preserves the original `revokedAt`.
-- `AUTHORITY` grants (`kind: AUTHORITY`, platform-issued market-surveillance access) are **not tenant-revocable** — 403. Battery Reg. Art. 77 market-surveillance access must not depend on manufacturer consent; platform admins manage those.
+- `AUTHORITY` grants (`kind: AUTHORITY`, platform-issued market-surveillance access) are **not tenant-revocable** — 403. EU Battery Regulation market-surveillance access must not depend on manufacturer consent; platform admins manage those.
 
 **Permission:** `grant:write` (subscription gating ⇒ 402 possible; cookie sessions need `X-CSRF-Token`; on workspaces enforcing multi-factor authentication, user sessions without a second factor get 403 — API-key clients exempt). **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
@@ -36,7 +36,7 @@ Behavioral caveats (no status precondition — only the kind is checked):
 
 - **200** — Grant revoked (idempotent: re-revoking keeps the original revokedAt). → [GrantDecisionResponse](/schemas/GrantDecisionResponse.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Two distinct bodies share this status: (1) route-level — the grant is an AUTHORITY grant and cannot be revoked by the workspace; body is {error, message} witho… → [GrantRevokeForbidden](/schemas/GrantRevokeForbidden.md)
 - **404** — No grant with this id exists in this workspace. → [GrantRouteError](/schemas/GrantRouteError.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.

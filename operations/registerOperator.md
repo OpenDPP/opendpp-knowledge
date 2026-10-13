@@ -8,7 +8,7 @@ tags:
   - economic-operators
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -21,7 +21,7 @@ Registers an economic operator (manufacturer, importer, supplier, …) and binds
 
 **Permission:** `operator:create`. Cookie-session clients must send the `X-CSRF-Token` header (double-submit); Bearer clients (API key / JWT) are exempt.
 
-**Deduplication (per workspace):** operators are scoped to your workspace — `regId` is unique *within* your workspace, not across the platform. If **your workspace** already has an operator with the submitted `regId`, that existing record is returned and the submitted `name`, `role` and `regIdScheme` are **ignored**. A `regId` already used by *another* workspace is irrelevant — you always get **your own** operator row (so one workspace can never bind to, rename, or archive another's operator). The call is idempotent: re-registering an already-bound operator succeeds with `201` again. The per-workspace match includes **archived** operators: if your workspace's operator for that `regId` is archived, the archived record is returned as-is (`archivedAt` non-null) with `201` — registration does not un-archive it; use `POST /api/v1/operators/{id}/restore` to reactivate it.
+**Duplicates (per workspace):** operators are scoped to your workspace — `regId` is unique *within* your workspace, not across the platform. If **your workspace** already has an operator with the submitted `regId`, the call is refused with `409` and `code: "OPERATOR_DUPLICATE"`, and nothing is created or changed; list your operators (`GET /api/v1/operators`) to find the existing one. A `regId` already used by *another* workspace is irrelevant — you always get **your own** operator row (so one workspace can never bind to, rename, or archive another's operator). The per-workspace match includes **archived** operators: if your workspace's operator for that `regId` is archived, registering it again is refused the same way; use `POST /api/v1/operators/{id}/restore` to reactivate it.
 
 **Operator identifier (EN 18219 clause 6):** `regIdScheme` is required and names the ISO/IEC 6523 scheme `regId` is issued under — `VAT` (an EU VAT identification number: member-state prefix + 5–12 alphanumerics), `DUNS` (nine digits), `LEI` (20 characters, ISO 17442 check digits) or `GLN` (13 digits, GS1 check digit); `regId` is checked against that shape, and fabricated `EORI-MOCK…` ids are rejected on every path. Each scheme has an ICD (0223, 0060, 0199, 0088), which is how the EN 18223 `economicOperatorId` is written on every passport. The EORI is a customs identifier with no ICD: send it as the OPTIONAL `eori` field, syntax-checked (`^[A-Z]{2}[A-Za-z0-9]{1,15}$`). When the node operator enables the OPT-IN EORI existence check, a supplied `eori` is additionally checked for EXISTENCE against the EU Commission EOS validation service and, if not found, a NON-BLOCKING advisory is added to the 201 `warnings[]` — the operator is still registered (best-effort, fail-open). With the check off, or no `eori`, `warnings` is `[]`.
 
@@ -43,11 +43,12 @@ Schema (required): [RegisterOperatorRequest](/schemas/RegisterOperatorRequest.md
 
 ## Responses
 
-- **201** — Operator registered (or an existing operator with the same regId was bound to your workspace). → [RegisterOperatorResponse](/schemas/RegisterOperatorResponse.md)
+- **201** — Operator registered and bound to your workspace. → [RegisterOperatorResponse](/schemas/RegisterOperatorResponse.md)
 - **400** — Two distinct bodies. → [OperatorMinimalErrorResponse](/schemas/OperatorMinimalErrorResponse.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
+- **409** — Your workspace already has an economic operator with this regId (archived ones included). → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Database/handler failure. → [OperatorMinimalErrorResponse](/schemas/OperatorMinimalErrorResponse.md)
 
@@ -63,4 +64,4 @@ curl -s \
 
 ## See also
 
-Schemas: [OperatorMinimalErrorResponse](/schemas/OperatorMinimalErrorResponse.md), [RegisterOperatorRequest](/schemas/RegisterOperatorRequest.md), [RegisterOperatorResponse](/schemas/RegisterOperatorResponse.md).
+Schemas: [Error](/schemas/Error.md), [OperatorMinimalErrorResponse](/schemas/OperatorMinimalErrorResponse.md), [RegisterOperatorRequest](/schemas/RegisterOperatorRequest.md), [RegisterOperatorResponse](/schemas/RegisterOperatorResponse.md).

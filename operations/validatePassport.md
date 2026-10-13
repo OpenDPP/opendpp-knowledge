@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -84,7 +84,7 @@ Schema (required): [PassportValidateOnlyRequest](/schemas/PassportValidateOnlyRe
 - **200** — Metadata is valid for its ESPR category. → [PassportValidateOnlyResult](/schemas/PassportValidateOnlyResult.md)
 - **400** — Validation failed, or the request body was structurally invalid. → [PassportValidateOnlyError](/schemas/PassportValidateOnlyError.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 262,144-byte (256 KiB) route body limit.
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.

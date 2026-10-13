@@ -8,7 +8,7 @@ tags:
   - traceability-audit
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -23,7 +23,7 @@ Returns the full upstream pedigree of a traceability event as a recursive Direct
 
 **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
-**Caveats:** if the lineage graph contains a circular reference the walk aborts with 400. Any other failure (unknown id, other-tenant id, missing parent) is reported as the same deliberately generic 404 body. `eventTime` is serialized as ISO 8601 UTC; `epcs` is parsed from the stored EPC list (a non-array value degrades to `[]`); `location` mirrors the stored `bizLocation`.
+**Caveats:** if the lineage graph contains a circular reference the walk aborts with 400. An unknown id and another tenant's id are reported as the same deliberately generic 404 body; an upstream parent that cannot be read under your scope is omitted from the walk rather than failing it. A server-side fault while building the trace is a 500 (`Internal Server Error`), never a 404. `eventTime` is serialized as ISO 8601 UTC; `epcs` is parsed from the stored EPC list (a non-array value degrades to `[]`); `location` mirrors the stored `bizLocation`.
 
 **Content negotiation (EPCIS projection):** `Accept: application/ld+json` returns the SAME tenant-scoped lineage as a native **GS1 EPCIS 2.0 document** (`EPCISDocument` with the walk's events under `epcisBody.eventList`, ordered by `eventTime`, bounded to 500 events) instead of the recursive JSON tree — another projection of the same canonical rows, mirroring the AAS/VC Accept-header pattern on the passport resolution routes. Emitted documents use the official CBV short names (stored `urn:epcglobal:cbv:*` values are mapped back), expose row ids as `eventID` URNs (`urn:uuid:*`, or `urn:opendpp:event:*` for non-UUID ids), and wrap non-URI stored locations as `urn:opendpp:location:*`.
 
@@ -39,7 +39,7 @@ Returns the full upstream pedigree of a traceability event as a recursive Direct
 - **400** — Circular reference detected while walking the lineage graph. → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
-- **404** — The event does not exist, belongs to another tenant, or an upstream node could not be retrieved. → [Error](/schemas/Error.md)
+- **404** — The event does not exist or belongs to another tenant (the two are indistinguishable). → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 

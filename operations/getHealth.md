@@ -8,7 +8,7 @@ tags:
   - service
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -17,7 +17,7 @@ generated:
 **Domain:** [Service](/tags/service.md)  
 **Authentication:** **Public** — no authentication required.
 
-Liveness probe. Always returns 200 with the service identity, the current server time (ISO 8601 UTC with milliseconds), and the running build identity (`apiVersion`/`commit`/`builtAt` — the same fields as `GET /api/v1/version`). No authentication, no permission. **Exempt from the platform rate limit** so a monitor or uptime check can poll it freely — it carries no `x-ratelimit-*` headers. This is the one path exempt from tenant-subdomain resolution — it answers 200 on any host.
+Liveness probe. Always returns 200 with the service identity, the current server time (ISO 8601 UTC with milliseconds), and the running build identity (`apiVersion`/`commit`/`builtAt`, which `GET /api/v1/version` also returns alongside this node's service-provider role). No authentication, no permission. **Exempt from the platform rate limit** so a monitor or uptime check can poll it freely — it carries no `x-ratelimit-*` headers. This is the one path exempt from tenant-subdomain resolution — it answers 200 on any host.
 
 ## Responses
 

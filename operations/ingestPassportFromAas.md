@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -25,9 +25,9 @@ Ingests (creates **or updates**) a Digital Product Passport from an Industry-4.0
 
 **Parsing.** The environment must contain a `submodels` array including a submodel with `idShort: "ComplianceMetadata"`, whose `submodelElements` are parsed back into the metadata object; missing it fails 400 (`Ingestion Failed`). `productId` is resolved from `metadata.gtin` || `metadata.grai` || `metadata.productId` || the first shell's `assetInformation.specificAssetIds` entry named `productId` — unresolvable → 400 `Bad Request`. The parsed metadata then passes the full ESPR category validation (400 `Validation Failed` with `errors[]`).
 
-**seal verification.** If the environment embeds an `eidasVerificationSeal` submodel (`digitalSealHash` / `cryptographicSignature` / `pemPublicKey` elements), the seal is verified against **your tenant's server-held signing public key** — never the key embedded in the request (self-signing is rejected by design). An embedded seal that fails verification → **400 `Signature Verification Failed`**; this includes the case where your workspace holds no matching key. `isSealed`/`signatureVerified` in the 201 echo the outcome (both `false` for unsealed documents).
+**seal verification.** If the environment embeds an `eidasVerificationSeal` submodel (`digitalSealHash` / `cryptographicSignature` / `pemPublicKey` elements), the seal is verified against **your tenant's server-held signing public key** — never the key embedded in the request (self-signing is rejected by design). An embedded seal that fails verification → **400 `Signature Verification Failed`**; this includes the case where your workspace holds no matching key. `isSealed`/`signatureVerified` in the 201 echo the outcome (both `false` for unsealed documents). The embedded seal is verified, never stored: it signs the environment, not the passport's Merkle root, so a passport created or updated here is sealed only by `POST /api/v1/passports/{id}/seal`.
 
-**Upsert semantics.** If a passport already exists for the resolved `(productId, operator)` pair: a **sealed** existing passport refuses re-ingestion (**403** — re-seal explicitly after changes); an unsealed one has its metadata, Merkle tree and seal fields **replaced**, still answering **201**. Operator resolution: operator-scoped API keys use their own operator and **403** when that operator is not bound to your workspace; otherwise the workspace's first bound operator is used; none bound → 400.
+**Upsert semantics.** If a passport already exists for the resolved `(productId, operator)` pair: its metadata and Merkle tree are **replaced**, still answering **201**. A **sealed** existing passport is not refused: when the environment's metadata differs from the sealed metadata, the sealed version is archived in the version history with its seal intact, the new version carries no seal, and the 201 says `resealRequired: true` (seal it with `POST /api/v1/passports/{id}/seal`); an environment carrying the same metadata keeps the passport's seal. Operator resolution: operator-scoped API keys use their own operator and **403** when that operator is not bound to your workspace; otherwise the workspace's first bound operator is used; none bound → 400.
 
 **Caveats:**
 - **NO webhook is emitted** — unlike `POST /api/v1/passports` and `/bulk`, AAS ingestion never enqueues `passport.ingested` (or any other event).
@@ -46,10 +46,10 @@ Schema (required): [AasEnvironmentInput](/schemas/AasEnvironmentInput.md).
 
 ## Responses
 
-- **201** — Passport created or (if it existed unsealed) updated from the AAS environment. → [AasIngestCreated](/schemas/AasIngestCreated.md)
+- **201** — Passport created, or updated, from the AAS environment. → [AasIngestCreated](/schemas/AasIngestCreated.md)
 - **400** — Four variants share this status: Bad Request (non-object body, unresolvable or non-ISO/IEC 646 productId, no bound operator), Signature Verification Failed (em… → [AasIngestBadRequest](/schemas/AasIngestBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **409** — The identifier this ingest would publish was already issued by this economic operator to a passport that has since been purged. → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 262,144-byte (256 KiB) route body limit.

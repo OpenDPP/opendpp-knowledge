@@ -8,7 +8,7 @@ tags:
   - en-18222-life-cycle-api
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -19,7 +19,7 @@ generated:
 
 **EN 18222:2026 clause 4.5, Table 4; bound by clause 8.2, Table 16.** Clause 4.1 lists this among the methods that **shall** be made available, and it is the method EN 18222's own Annex ZA leans on hardest — five of Table ZA.1's six rows cite clause 4.5.
 
-The result is the set of `digitalProductPassportId` values, not the passports; fetch each with `ReadDPPById`.
+The result is the set of `digitalProductPassportId` values, not the passports; fetch each with `ReadDPPById`. Each product identifier may be given as the key the passport was created under or as the EN 18223 `uniqueProductIdentifier` its document carries.
 
 **Pagination.** Clause 4.5 lets the client set `limit` and `cursor`, and requires that "the value of the cursor shall not be empty" — a `cursor` present but empty is refused rather than treated as a restart, which would repeat rows the client already holds. Table 16 reports the result "except status code **and pagination**", so the continuation is carried out of band as an RFC 8288 `Link` header with `rel="next"`; its absence means the last page.
 

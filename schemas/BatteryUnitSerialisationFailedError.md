@@ -7,11 +7,11 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
-400 body when **every** item in the serialisation batch failed. Note: `errors` is an array of plain strings and there is **no `message` field** (unlike the standard error triple).
+400 body when **every** item in the serialisation batch failed. `errors` is an array of plain strings, one per refused item; `message` summarises the batch.
 
 ## Schema
 
@@ -19,14 +19,16 @@ generated:
 |----------|------|----------|-------------|
 | `success` | boolean | yes | — |
 | `error` | string | yes | — |
+| `message` | string | no | — |
 | `errors` | array<string> | yes | — |
+| `reasons` | array<[BatteryUnitRefusalReason](/schemas/BatteryUnitRefusalReason.md)> | no | One per errors entry, in the same order: each refusal as a stable code. |
 
 ## JSON Schema
 
 ```json
 {
   "type": "object",
-  "description": "400 body when **every** item in the serialisation batch failed. Note: `errors` is an array of plain strings and there is **no `message` field** (unlike the standard error triple).",
+  "description": "400 body when **every** item in the serialisation batch failed. `errors` is an array of plain strings, one per refused item; `message` summarises the batch.",
   "properties": {
     "success": {
       "type": "boolean",
@@ -36,12 +38,22 @@ generated:
       "type": "string",
       "const": "Serialisation Failed"
     },
+    "message": {
+      "type": "string"
+    },
     "errors": {
       "type": "array",
       "items": {
         "type": "string"
       },
       "minItems": 1
+    },
+    "reasons": {
+      "type": "array",
+      "description": "One per `errors` entry, in the same order: each refusal as a stable code.",
+      "items": {
+        "$ref": "#/components/schemas/BatteryUnitRefusalReason"
+      }
     }
   },
   "required": [

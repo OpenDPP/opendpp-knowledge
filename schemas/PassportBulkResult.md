@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -78,6 +78,11 @@ generated:
             ],
             "description": "Null when `vcReady` is true; otherwise a short, actionable reason (link a facility with a country of production)."
           },
+          "resealRequired": {
+            "type": "boolean",
+            "const": true,
+            "description": "Present, and `true`, only when the row changed a SEALED passport's metadata (on a `dryRun` preview: when it would). The sealed version is archived with its seal intact; the new version carries no seal until it is sealed again."
+          },
           "warnings": {
             "type": "array",
             "description": "Per-row non-blocking advisories — the non-GS1 \"Identification Link, not a GS1 Digital Link\" note and the PII-shape privacy advisory. Empty `[]` when the row is clean; never blocks the row.",
@@ -93,7 +98,7 @@ generated:
       "items": {
         "type": "string"
       },
-      "description": "Human-readable per-row failure strings, prefixed `[SKU: <productId>]` (or \"Missing or invalid productId in spreadsheet row\"). Present ONLY when at least one row failed — omitted otherwise. A row whose identifier this economic operator already issued to a since-purged passport is reported here too: an issued identifier is never reassigned to a different product (EN 18219 §4.1.2)."
+      "description": "Human-readable per-row failure strings, prefixed `[SKU: <productId>]` (or \"Missing or invalid productId in spreadsheet row\"). Present ONLY when at least one row failed — omitted otherwise. A row whose identifier this economic operator already issued to a since-purged passport is reported here too: an issued identifier is never reassigned to a different product (EN 18219 §4.1.2). So is every net-new row sent to a workspace operating as a back-up provider, which hosts no passports of its own; a dry run reports the same rows."
     }
   }
 }

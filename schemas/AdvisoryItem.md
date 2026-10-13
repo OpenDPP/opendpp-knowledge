@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -36,7 +36,7 @@ One non-blocking advisory on a response's `warnings[]` (a heads-up — the reque
   "properties": {
     "code": {
       "type": "string",
-      "description": "Stable advisory code. WARNINGS: `NON_GS1_PRODUCT_ID` (the productId is not a GS1 GTIN/GRAI → issued as an Identification Link, not a GS1 Digital Link), `PII_SHAPE_DETECTED` (metadata looks like personal data), `UNIT_NO_SCANNABLE_LINK` (units under a non-GTIN passport carry an Identification Link, not a GS1 unit Digital Link), `EORI_NOT_FOUND` (a declared EORI was not in the EU EOS register), `CARRIER_SYMBOLOGY_NOT_RENDERED` (the declared EN 18220 Clause 6 carrier is a symbology this node does not encode, so the symbol served is a QR Code), `CATEGORY_GRANULARITY_UNEXPECTED` (the passport's identification granularity differs from the level the product group's own instrument requires; EN 18220 §4.2 leaves that level to sector legislation). NOTICES: `OPERATOR_AUTO_ATTRIBUTED` (operatorId omitted → the workspace's first bound operator was used), `GTIN_AUTO_COPIED` (a valid GTIN-14/GRAI productId was copied into metadata.gtin/metadata.grai).",
+      "description": "Stable advisory code. WARNINGS: `NON_GS1_PRODUCT_ID` (the productId is not a GS1 GTIN/GRAI → issued as an Identification Link, not a GS1 Digital Link), `PII_SHAPE_DETECTED` (metadata looks like personal data), `UNIT_NO_SCANNABLE_LINK` (units under a non-GTIN passport carry an Identification Link, not a GS1 unit Digital Link), `EORI_NOT_FOUND` (a declared EORI was not in the EU EOS register), `CARRIER_SYMBOLOGY_NOT_RENDERED` (the declared EN 18220 Clause 6 carrier is a symbology this node does not encode, so the symbol served is a QR Code), `CATEGORY_GRANULARITY_UNEXPECTED` (the passport's identification granularity differs from the level the product group's own instrument requires; EN 18220 §4.2 leaves that level to sector legislation), `CARRIER_PRESENCE_UNMARKED` (a radio-frequency carrier a consumer cannot see is declared with no presence mark; EN 18220 §5.7.1 recommends one), `CARRIER_QUALITY_UNGRADED` (a printed 2D symbol on a physical placement is declared with no print-quality grade; EN 18220 §5.6.1), `CARRIER_GRADE_BELOW_TYPICAL` (an ISO/IEC 15415 grade below the typical 1.5 EN 18220 §5.6.2 names), `CARRIER_GRADE_UNSTRUCTURED` (the grade is in the deprecated free-text `printQualityGrade` rather than `printQuality`), `CARRIER_LABEL_UNASSESSED` (a label is declared with no durability assessment; EN 18220 §5.4.4 recommends one). NOTICES: `OPERATOR_AUTO_ATTRIBUTED` (operatorId omitted → the workspace's first bound operator was used), `GTIN_AUTO_COPIED` (a valid GTIN-14/GRAI productId was copied into metadata.gtin/metadata.grai).",
       "enum": [
         "NON_GS1_PRODUCT_ID",
         "PII_SHAPE_DETECTED",
@@ -44,6 +44,11 @@ One non-blocking advisory on a response's `warnings[]` (a heads-up — the reque
         "EORI_NOT_FOUND",
         "CARRIER_SYMBOLOGY_NOT_RENDERED",
         "CATEGORY_GRANULARITY_UNEXPECTED",
+        "CARRIER_PRESENCE_UNMARKED",
+        "CARRIER_QUALITY_UNGRADED",
+        "CARRIER_GRADE_BELOW_TYPICAL",
+        "CARRIER_GRADE_UNSTRUCTURED",
+        "CARRIER_LABEL_UNASSESSED",
         "OPERATOR_AUTO_ATTRIBUTED",
         "GTIN_AUTO_COPIED"
       ]

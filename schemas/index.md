@@ -15,10 +15,11 @@
 * [BatteryUnitEventListResponse](BatteryUnitEventListResponse.md) - One page of a battery unit's append-only dynamic-data history, newest first.
 * [BatteryUnitEventNode](BatteryUnitEventNode.md) - One append-only telemetry event (owner/grant tiers only).
 * [BatteryUnitEventRow](BatteryUnitEventRow.md) - One immutable per-unit telemetry record — the reads return exactly the fields documented here.
-* [BatteryUnitEventType](BatteryUnitEventType.md) - Per-unit dynamic-data event category (Annex XIII / Art. 77 telemetry).
+* [BatteryUnitEventType](BatteryUnitEventType.md) - Per-unit dynamic-data event category (EU Battery Regulation Annex XIII telemetry).
 * [BatteryUnitJsonLd](BatteryUnitJsonLd.md) - JSON-LD document for one serialised battery unit, privileged tenant view (isPrivileged=true): includes currentState + dynamicData telemetry…
 * [BatteryUnitLineageRef](BatteryUnitLineageRef.md) - Public lineage pointer between battery units.
 * [BatteryUnitListResponse](BatteryUnitListResponse.md) - A page of the serialised battery units recorded under one passport, with the paging envelope.
+* [BatteryUnitRefusalReason](BatteryUnitRefusalReason.md) - Why one unit was refused, as a stable code and the values it concerns.
 * [BatteryUnitRestrictedDataNotice](BatteryUnitRestrictedDataNotice.md) - Marker replacing per-unit telemetry in anonymous (public-tier) responses, with a pointer for requesting legitimate-interest access (Annex X…
 * [BatteryUnitRow](BatteryUnitRow.md) - One physical serialised battery — the reads return exactly the fields documented here.
 * [BatteryUnitSerialisationFailedError](BatteryUnitSerialisationFailedError.md) - 400 body when every item in the serialisation batch failed.
@@ -28,6 +29,8 @@
 * [BulkBatteryUnitEventsRequest](BulkBatteryUnitEventsRequest.md) - A batch of telemetry records for one unit.
 * [BulkBatteryUnitEventsResponse](BulkBatteryUnitEventsResponse.md) - The partial-success report of a bulk telemetry ingest.
 * [CarrierDeclaration](CarrierDeclaration.md) - EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: t…
+* [CarrierPrintQuality15415](CarrierPrintQuality15415.md) - An ISO/IEC 15415:2024 print-quality grade (EN 18220 §5.6.2): the grade "includes a grade level, measuring aperture and the wavelength of li…
+* [CarrierPrintQuality29158](CarrierPrintQuality29158.md) - An ISO/IEC 29158 Direct Part Mark quality grade (EN 18220 §5.6.2), for a symbol marked on the item's own surface (placement PRODUCT).
 * [CreateGrantRequest](CreateGrantRequest.md) - Direct-issuance body.
 * [DefaultRequestRejectionError](DefaultRequestRejectionError.md) - The default 400 body of a request rejected before the handler runs — a syntactically malformed JSON body, or an envelope (schema) violation…
 * [DeleteOperatorResponse](DeleteOperatorResponse.md) - Outcome of removing an economic operator: whether it was archived rather than deleted, and how many of its passports were archived with it.

@@ -1,8 +1,8 @@
 {
   "okfVersion": "0.2",
-  "apiVersion": "1.17.0",
-  "generated": "2026-09-15T00:00:00Z",
-  "conceptCount": 255,
+  "apiVersion": "1.18.0",
+  "generated": "2026-09-21T00:00:00Z",
+  "conceptCount": 258,
   "concepts": [
     {
       "path": "overview.md",
@@ -218,7 +218,7 @@
       "path": "operations/recordBatteryUnitEvent.md",
       "type": "API Endpoint",
       "title": "Append an immutable telemetry event to a battery unit",
-      "description": "Appends one append-only per-unit dynamic-data record (Annex XIII / Art. 77: SoH, cycle count, remaining capacity, temperature, negative events).",
+      "description": "Appends one append-only per-unit dynamic-data record (EU Battery Regulation Annex XIII: SoH, cycle count, remaining capacity, temperature, negative events).",
       "resource": "https://opendpp-node.eu/api/v1/units/{id}/events"
     },
     {
@@ -400,7 +400,7 @@
       "path": "operations/restoreOperator.md",
       "type": "API Endpoint",
       "title": "Restore an archived operator and its archived passports",
-      "description": "Un-archives an operator that was soft-deleted by DELETE /api/v1/operators/{id} and brings its archived passports back into the active catalogue: clears the operator's archivedAt, then clears archivedAt and retentionUntil on every archived…",
+      "description": "Un-archives an operator that was soft-deleted by DELETE /api/v1/operators/{id} and brings its archived passports back into the active catalogue: clears the operator's archivedAt, then clears archivedAt on every archived passport of the ope…",
       "resource": "https://opendpp-node.eu/api/v1/operators/{id}/restore"
     },
     {
@@ -497,8 +497,8 @@
     {
       "path": "operations/deleteDraftPassport.md",
       "type": "API Endpoint",
-      "title": "Permanently delete a DRAFT passport",
-      "description": "Hard-deletes a passport only while it is a DRAFT (never published, not publicly resolvable, no retention duty).",
+      "title": "Permanently delete a passport the law allows to go (a draft, or one whose lifetime has ended)",
+      "description": "Hard-deletes a passport only where the law allows it to go: a draft, never published, whose lifetime never began; or a passport whose lifetime has ended, its retentionUntil due (for a battery model: decommissioned with every battery under…",
       "resource": "https://opendpp-node.eu/api/v1/passports/{id}"
     },
     {
@@ -596,7 +596,7 @@
       "path": "operations/getApiVersion.md",
       "type": "API Endpoint",
       "title": "Running API contract version & build identity",
-      "description": "Returns the SemVer of the public API contract currently served (apiVersion), plus the source build identity (commit, builtAt).",
+      "description": "Returns the SemVer of the public API contract currently served (apiVersion), plus the source build identity (commit, builtAt) and the CEN EN 18222:2026 clause 4.1 service-provider role this node operates as (providerRole).",
       "resource": "https://opendpp-node.eu/api/v1/version"
     },
     {
@@ -841,7 +841,7 @@
       "path": "schemas/BatteryUnitEventType.md",
       "type": "Schema",
       "title": "BatteryUnitEventType",
-      "description": "Per-unit dynamic-data event category (Annex XIII / Art. 77 telemetry).",
+      "description": "Per-unit dynamic-data event category (EU Battery Regulation Annex XIII telemetry).",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventType"
     },
     {
@@ -864,6 +864,13 @@
       "title": "BatteryUnitListResponse",
       "description": "A page of the serialised battery units recorded under one passport, with the paging envelope.",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitListResponse"
+    },
+    {
+      "path": "schemas/BatteryUnitRefusalReason.md",
+      "type": "Schema",
+      "title": "BatteryUnitRefusalReason",
+      "description": "Why one unit was refused, as a stable code and the values it concerns.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitRefusalReason"
     },
     {
       "path": "schemas/BatteryUnitRestrictedDataNotice.md",
@@ -925,8 +932,22 @@
       "path": "schemas/CarrierDeclaration.md",
       "type": "Schema",
       "title": "CarrierDeclaration",
-      "description": "EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: the symbology (Clause 6), where it is placed (§5.4.2–5.4.6), the X dimension it is printed at (§5.5.2…",
+      "description": "EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: the symbology (Clause 6), where it is placed (§5.4.2–5.4.6), the X dimension it is printed at and the…",
       "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/CarrierDeclaration"
+    },
+    {
+      "path": "schemas/CarrierPrintQuality15415.md",
+      "type": "Schema",
+      "title": "CarrierPrintQuality15415",
+      "description": "An ISO/IEC 15415:2024 print-quality grade (EN 18220 §5.6.2): the grade \"includes a grade level, measuring aperture and the wavelength of light used for the measurement\", so all three are required.",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/CarrierPrintQuality15415"
+    },
+    {
+      "path": "schemas/CarrierPrintQuality29158.md",
+      "type": "Schema",
+      "title": "CarrierPrintQuality29158",
+      "description": "An ISO/IEC 29158 Direct Part Mark quality grade (EN 18220 §5.6.2), for a symbol marked on the item's own surface (placement PRODUCT).",
+      "resource": "https://opendpp-node.eu/openapi.json#/components/schemas/CarrierPrintQuality29158"
     },
     {
       "path": "schemas/CreateGrantRequest.md",

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -50,6 +50,7 @@ Error body used by the grants endpoints' route-level errors (400/403/404/409). U
 
 ## Used by
 
+- [listGrants](/operations/listGrants.md) (`GET /api/v1/grants`)
 - [createGrant](/operations/createGrant.md) (`POST /api/v1/grants`)
 - [approveGrantRequest](/operations/approveGrantRequest.md) (`POST /api/v1/grants/{id}/approve`)
 - [denyGrantRequest](/operations/denyGrantRequest.md) (`POST /api/v1/grants/{id}/deny`)

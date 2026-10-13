@@ -1,17 +1,17 @@
 ---
 type: Schema
 title: CarrierDeclaration
-description: "EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: the symbology (Clause 6), where it is placed (§5.4.2–5.4.6), the X dimension it is printed at (§5.5.2…"
+description: "EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: the symbology (Clause 6), where it is placed (§5.4.2–5.4.6), the X dimension it is printed at and the…"
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/CarrierDeclaration
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
-EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: the symbology (Clause 6), where it is placed (§5.4.2–5.4.6), the X dimension it is printed at (§5.5.2), the print-quality grade and method (§5.6.2) and, for a label or a reused product, the durability assessment (§5.4.4, §4.3.1). Optional: absent means undeclared. Stored on the passport and versioned with it; NOT regulated metadata and outside the Merkle seal. Two cross-field rules: a radio-frequency carrier carries no X dimension, error-correction level or quality grade; `errorCorrection` applies to `QR_CODE` only, because ECC 200 is fixed by the other 2D symbology.
+EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: the symbology (Clause 6), where it is placed (§5.4.2–5.4.6), the X dimension it is printed at and the print method and media (§5.5.2), the print-quality grade and method (§5.6.2), for a label or a reused product the durability assessment (§5.4.4, §4.3.1) and, for a radio-frequency carrier, the mark that signals it is there (§5.7.1). Optional: absent means undeclared. Stored on the passport and versioned with it; NOT regulated metadata and outside the Merkle seal. Cross-field rules: a radio-frequency carrier carries no X dimension, error-correction level or quality grade; `presenceMark` applies to a radio-frequency carrier only, because a printed symbol is visible; `errorCorrection` applies to `QR_CODE` only, because ECC 200 is fixed by the other 2D symbology; `printQuality` and `printQualityGrade` are not both given; and a `printQuality` method follows the placement — `ISO_IEC_29158` for `PRODUCT`, a mark on the item's own surface, `ISO_IEC_15415` for every other placement (§5.6.2). The recommendations of the same clauses are advised, never refused: a printed symbol on a physical placement with no grade (`CARRIER_QUALITY_UNGRADED`), an ISO/IEC 15415 grade below the typical 1.5 (`CARRIER_GRADE_BELOW_TYPICAL`), a grade in the free-text field (`CARRIER_GRADE_UNSTRUCTURED`), and a label with no durability assessment (`CARRIER_LABEL_UNASSESSED`).
 
 ## Schema
 
@@ -22,15 +22,18 @@ EN 18220 data-carrier declaration — what the economic operator states about th
 | `xDimensionMm` | number | no | Module width in millimetres the symbol is printed at (§5.5.2; printed 2D symbols only). |
 | `errorCorrection` | string | no | ISO/IEC 18004 error-correction level; QR Code only. |
 | `targetEnvironment` | string | no | The scanning environment the carrier was sized and graded for (§5.5.2, §5.6.1). |
-| `printQualityGrade` | string | no | Print-quality grade and the method it was assessed by (§5.6.2). |
+| `printQualityGrade` | string | no | Print-quality grade and the method it was assessed by (§5.6.2), as free text. |
+| `printQuality` | — | no | Print-quality grade structured by its assessment method (§5.6.2): ISO/IEC 15415:2024 for a printed 2D symbol, ISO/IEC 29158 for a direct part mark (placement P… |
+| `printMethod` | string | no | The print method and media the symbol is produced with, e.g. Thermal transfer on polyester label stock (§5.5.2). |
 | `durabilityAssessment` | string | no | The operator's durability assessment for a label or a reused product (§5.4.4, §4.3.1). |
+| `presenceMark` | string | no | How a person can tell a radio-frequency carrier is there, e.g. NFC N-Mark on the care label (§5.7.1, a recommendation). |
 
 ## JSON Schema
 
 ```json
 {
   "type": "object",
-  "description": "EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: the symbology (Clause 6), where it is placed (§5.4.2–5.4.6), the X dimension it is printed at (§5.5.2), the print-quality grade and method (§5.6.2) and, for a label or a reused product, the durability assessment (§5.4.4, §4.3.1). Optional: absent means undeclared. Stored on the passport and versioned with it; NOT regulated metadata and outside the Merkle seal. Two cross-field rules: a radio-frequency carrier carries no X dimension, error-correction level or quality grade; `errorCorrection` applies to `QR_CODE` only, because ECC 200 is fixed by the other 2D symbology.",
+  "description": "EN 18220 data-carrier declaration — what the economic operator states about the PHYSICAL carrier that links the product to this passport: the symbology (Clause 6), where it is placed (§5.4.2–5.4.6), the X dimension it is printed at and the print method and media (§5.5.2), the print-quality grade and method (§5.6.2), for a label or a reused product the durability assessment (§5.4.4, §4.3.1) and, for a radio-frequency carrier, the mark that signals it is there (§5.7.1). Optional: absent means undeclared. Stored on the passport and versioned with it; NOT regulated metadata and outside the Merkle seal. Cross-field rules: a radio-frequency carrier carries no X dimension, error-correction level or quality grade; `presenceMark` applies to a radio-frequency carrier only, because a printed symbol is visible; `errorCorrection` applies to `QR_CODE` only, because ECC 200 is fixed by the other 2D symbology; `printQuality` and `printQualityGrade` are not both given; and a `printQuality` method follows the placement — `ISO_IEC_29158` for `PRODUCT`, a mark on the item's own surface, `ISO_IEC_15415` for every other placement (§5.6.2). The recommendations of the same clauses are advised, never refused: a printed symbol on a physical placement with no grade (`CARRIER_QUALITY_UNGRADED`), an ISO/IEC 15415 grade below the typical 1.5 (`CARRIER_GRADE_BELOW_TYPICAL`), a grade in the free-text field (`CARRIER_GRADE_UNSTRUCTURED`), and a label with no durability assessment (`CARRIER_LABEL_UNASSESSED`).",
   "required": [
     "symbology",
     "placement"
@@ -83,12 +86,41 @@ EN 18220 data-carrier declaration — what the economic operator states about th
     "printQualityGrade": {
       "type": "string",
       "maxLength": 60,
-      "description": "Print-quality grade and the method it was assessed by (§5.6.2). Free text, because the clause admits two methods whose grades take incompatible forms: a printed 2D symbol is graded under ISO/IEC 15415:2024 as overall grade / measuring aperture as a percentage of the X dimension / peak illumination wavelength in nm (e.g. `1.5/08/660`), while a direct part mark is graded under ISO/IEC 29158 as a letter (e.g. `DPM grade B`). State the method alongside the grade."
+      "deprecated": true,
+      "description": "Print-quality grade and the method it was assessed by (§5.6.2), as free text. **Deprecated in favour of `printQuality`**, which states the same grade structured by its method and is validated; still accepted, with a `CARRIER_GRADE_UNSTRUCTURED` warning. Not given together with `printQuality`."
+    },
+    "printQuality": {
+      "description": "Print-quality grade structured by its assessment method (§5.6.2): ISO/IEC 15415:2024 for a printed 2D symbol, ISO/IEC 29158 for a direct part mark (placement `PRODUCT`). Printed 2D symbols only.",
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/CarrierPrintQuality15415"
+        },
+        {
+          "$ref": "#/components/schemas/CarrierPrintQuality29158"
+        }
+      ],
+      "discriminator": {
+        "propertyName": "method",
+        "mapping": {
+          "ISO_IEC_15415": "#/components/schemas/CarrierPrintQuality15415",
+          "ISO_IEC_29158": "#/components/schemas/CarrierPrintQuality29158"
+        }
+      }
+    },
+    "printMethod": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "The print method and media the symbol is produced with, e.g. `Thermal transfer on polyester label stock` (§5.5.2)."
     },
     "durabilityAssessment": {
       "type": "string",
       "maxLength": 500,
       "description": "The operator's durability assessment for a label or a reused product (§5.4.4, §4.3.1)."
+    },
+    "presenceMark": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "How a person can tell a radio-frequency carrier is there, e.g. `NFC N-Mark on the care label` (§5.7.1, a recommendation). NFC and RFID carriers only. The mark is the operator's to apply; declaring a radio carrier without one is accepted with a `CARRIER_PRESENCE_UNMARKED` warning."
     }
   },
   "example": {
@@ -97,7 +129,14 @@ EN 18220 data-carrier declaration — what the economic operator states about th
     "xDimensionMm": 0.495,
     "errorCorrection": "H",
     "targetEnvironment": "Handheld imagers at 10–30 cm",
-    "printQualityGrade": "1.5/08/660 (ISO/IEC 15415)"
+    "printQuality": {
+      "method": "ISO_IEC_15415",
+      "grade": 1.5,
+      "aperturePercent": 80,
+      "wavelengthNm": 660
+    },
+    "printMethod": "Thermal transfer on polyester label stock",
+    "durabilityAssessment": "Laminated against abrasion; assessed for the product lifetime"
   }
 }
 ```

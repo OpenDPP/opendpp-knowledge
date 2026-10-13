@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -51,7 +51,7 @@ The ESPR product metadata payload. For non-draft ingestion and for the validate-
     "commodityCode": {
       "type": "string",
       "pattern": "^[0-9]{4,10}$",
-      "description": "Optional HS / TARIC commodity code (4–10 digits). Validated for every category when present (a malformed code is a 400). Not category-mandated, but required to project the passport into the EU DPP registry pointer (ESPR Art. 13)."
+      "description": "Optional HS / TARIC commodity code (4–10 digits). Validated for every category when present (a malformed code is a 400). Not category-mandated, but required to project the passport into the EU DPP registry pointer (ESPR)."
     }
   },
   "additionalProperties": true

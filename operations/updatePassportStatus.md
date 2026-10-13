@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -24,8 +24,9 @@ Transitions a **published** passport between live lifecycle states. The request 
 **Lookup:** passport **UUID or `productId`** (UUID tried first), scoped to operators bound to your workspace.
 
 **Effects:**
-- `DECOMMISSIONED` — sets `retentionUntil = now + the configured retention period` (default 10 years), starting the minimum-availability retention clock. The passport stays publicly resolvable.
-- `ACTIVE` (reactivation) — clears `retentionUntil` **and** `archivedAt`.
+- `DECOMMISSIONED` — the passport stays publicly resolvable, and no retention deadline is set: a passport is kept for the lifetime its product group's regulation sets. For a **battery model**, decommissioning once every battery under it has been recycled ends that lifetime, as the EU Battery Regulation provides. `retentionUntil` is then set 30 days ahead: inside that grace window, reactivating the model or serialising a live battery under it takes the end back; after it, the retention purge may remove the model and its units.
+- `ACTIVE` (reactivation) — clears `archivedAt`. A written `retentionUntil` is never cleared.
+- A passport whose `retentionUntil` has passed takes no further status: **409** `PASSPORT_LIFETIME_ENDED`.
 - `RECALLED` — marks the product recalled.
 - The status change, the version-history entry (who/when/what) and the webhook enqueue are **transactional**; an in-app notification is created **best-effort after the transaction commits** (a notification failure never affects the response).
 
@@ -56,10 +57,10 @@ Schema (required): [PassportStatusUpdateRequest](/schemas/PassportStatusUpdateRe
 - **200** — Status updated. → [PassportStatusUpdateResponse](/schemas/PassportStatusUpdateResponse.md)
 - **400** — status missing or not one of the allowed values. → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
-- **409** — The passport is a DRAFT — drafts cannot transition to a live status here. → [Error](/schemas/Error.md)
+- **409** — The passport is a DRAFT — drafts cannot transition to a live status here (the example) — or its lifetime has ended (PASSPORT_LIFETIME_ENDED): its retentionUnti… → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error.
 

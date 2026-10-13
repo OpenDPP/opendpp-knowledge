@@ -8,7 +8,7 @@ tags:
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -21,7 +21,7 @@ Returns the unit in the **privileged tenant view**, as a **JSON-LD document** (`
 
 **Content negotiation:** the representation is chosen by RFC 7231 §5.3.2 `Accept` q-value negotiation — `text/html` → the server-rendered unit page, localized from `Accept-Language`; anything else, including an absent `Accept`, `*/*` or `application/json`, → JSON-LD. Both forms carry the same privileged tier. `Vary: Accept, Accept-Language` is always set on the 200. The public twin `GET /unit/{id}` additionally negotiates the UNTP credential representations; those are public-tier artifacts and are not offered here.
 
-**Caveat:** this authenticated endpoint does **not** load lineage relations, so `repurposedFrom` is always `null` and `successorUnits` is always `[]` here even when lineage exists; the public resolver view (`GET /unit/{id}`) does resolve them.
+**Lineage:** `repurposedFrom` names the unit this battery was repurposed or remanufactured from, and `successorUnits` the units repurposed from it (at most 100, oldest first) — both drawn from your workspace only.
 
 **Permission:** `battery:read`. Operator-scoped credentials may only read units whose passport belongs to their Economic Operator (403).
 

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -20,6 +20,7 @@ generated:
 | `success` | boolean | yes | Always true on 200. |
 | `message` | string | yes | "Draft published" when a validated save promoted a DRAFT to ACTIVE; the longer message otherwise. |
 | `passport` | [PublicPassportJsonLd](/schemas/PublicPassportJsonLd.md) | yes | — |
+| `resealRequired` | boolean | no | Present, and true, only when the passport was sealed before this update and the update changed its metadata. |
 | `warnings` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Non-blocking advisories on a validated save: the data-carrier declaration checks (a symbology that does not fit the declared print attributes, a category whose… |
 
 ## JSON Schema
@@ -49,6 +50,11 @@ generated:
     },
     "passport": {
       "$ref": "#/components/schemas/PublicPassportJsonLd"
+    },
+    "resealRequired": {
+      "type": "boolean",
+      "const": true,
+      "description": "Present, and `true`, only when the passport was sealed before this update and the update changed its metadata. The sealed version is archived in the version history with its seal intact; this new version carries no seal until it is sealed again with `POST /api/v1/passports/{id}/seal`."
     },
     "warnings": {
       "type": "array",

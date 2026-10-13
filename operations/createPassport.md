@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -103,7 +103,7 @@ Schema (required): [PassportCreateRequest](/schemas/PassportCreateRequest.md).
 - **201** — Passport created (or draft saved). → [PassportIngestCreated](/schemas/PassportIngestCreated.md)
 - **400** — Three variants share this status: (1) Validation Failed — the metadata failed ESPR category / cross-field validation; carries per-field errors[] (and warnings[… → [PassportCreateBadRequest](/schemas/PassportCreateBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **409** — A passport already exists for this (productId, operatorId) pair — or the identifier this create would publish was already issued by this economic operator to a… → [Error](/schemas/Error.md)
 - **413** — Body exceeds the 1 MiB (1,048,576-byte) body limit.

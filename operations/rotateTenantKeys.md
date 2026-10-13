@@ -8,7 +8,7 @@ tags:
   - eidas-keys
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -26,6 +26,8 @@ What happens:
 
 **Operational impact:** rotation does not invalidate existing seals. Each sealed passport embeds the signing public key and certificate chain at sealing time, so previously sealed passports keep verifying with their embedded key material. Passports sealed after rotation use the new key.
 
+Side effects: a `tenant.keys_rotated` audit event is recorded.
+
 **Permission:** `key:write`. Cookie-session clients must send `X-CSRF-Token`; Bearer clients are exempt.
 
 **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
@@ -34,7 +36,7 @@ What happens:
 
 - **200** — Key pair rotated. → [RotateTenantKeysResponse](/schemas/RotateTenantKeysResponse.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Key generation, vault encryption, or database failure. → [OperatorMinimalErrorResponse](/schemas/OperatorMinimalErrorResponse.md)

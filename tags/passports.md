@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -28,6 +28,6 @@ Create, validate, read, update, seal and manage the lifecycle of Digital Product
 - [passportVcReadinessReport](/operations/passportVcReadinessReport.md) — `GET /api/v1/passports/vc-readiness` — Catalog-wide UNTP Verifiable-Credential readiness report
 - [getPassport](/operations/getPassport.md) — `GET /api/v1/passports/{id}` — Fetch a single passport (content-negotiated JSON-LD / AAS / HTML)
 - [updatePassport](/operations/updatePassport.md) — `PUT /api/v1/passports/{id}` — Update passport metadata (versioned to history)
-- [deleteDraftPassport](/operations/deleteDraftPassport.md) — `DELETE /api/v1/passports/{id}` — Permanently delete a DRAFT passport
+- [deleteDraftPassport](/operations/deleteDraftPassport.md) — `DELETE /api/v1/passports/{id}` — Permanently delete a passport the law allows to go (a draft, or one whose lifetime has ended)
 - [sealPassport](/operations/sealPassport.md) — `POST /api/v1/passports/{id}/seal` — Apply the tenant's advanced electronic seal
 - [updatePassportStatus](/operations/updatePassportStatus.md) — `PUT /api/v1/passports/{id}/status` — Transition passport lifecycle status (recall / decommission / reactivate)

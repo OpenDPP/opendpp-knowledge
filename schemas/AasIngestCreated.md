@@ -7,11 +7,11 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
-201 envelope of `POST /api/v1/passports/aas/ingest`. Returned for both newly created passports and in-place updates of existing UNSEALED passports. No webhook event is emitted by this endpoint. `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness and `warnings` carries the non-GS1 advisory, for parity with `POST /api/v1/passports`.
+201 envelope of `POST /api/v1/passports/aas/ingest`. Returned for both newly created passports and in-place updates of existing ones (a sealed one included — see `resealRequired`). No webhook event is emitted by this endpoint. `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness and `warnings` carries the non-GS1 advisory, for parity with `POST /api/v1/passports`.
 
 ## Schema
 
@@ -21,8 +21,9 @@ generated:
 | `message` | string | yes | — |
 | `passportId` | string | yes | — |
 | `productId` | string | yes | — |
-| `isSealed` | boolean | yes | True when the environment embedded an eidasVerificationSeal submodel (the seal is then stored on the passport). |
+| `isSealed` | boolean | yes | True when the environment embedded an eidasVerificationSeal submodel (the seal is verified, never stored on the passport). |
 | `signatureVerified` | boolean | yes | True when the embedded seal verified against the tenant's server-held signing public key. |
+| `resealRequired` | boolean | no | Present, and true, only when this re-ingest replaced a SEALED passport with a version that carries no seal. |
 | `vcReady` | boolean | yes | Whether the ingested passport can emit a UNTP Verifiable Credential — true only when a manufacturing facility with a country of production is linked. |
 | `vcReadyReason` | string,null | no | Null when vcReady is true; otherwise a short, actionable reason (link a facility with a country of production). |
 | `warnings` | array<[ValidationErrorItem](/schemas/ValidationErrorItem.md)> | yes | Non-blocking advisories. |
@@ -42,7 +43,7 @@ generated:
     "vcReady",
     "warnings"
   ],
-  "description": "201 envelope of `POST /api/v1/passports/aas/ingest`. Returned for both newly created passports and in-place updates of existing UNSEALED passports. No webhook event is emitted by this endpoint. `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness and `warnings` carries the non-GS1 advisory, for parity with `POST /api/v1/passports`.",
+  "description": "201 envelope of `POST /api/v1/passports/aas/ingest`. Returned for both newly created passports and in-place updates of existing ones (a sealed one included — see `resealRequired`). No webhook event is emitted by this endpoint. `vcReady`/`vcReadyReason` report UNTP Verifiable-Credential readiness and `warnings` carries the non-GS1 advisory, for parity with `POST /api/v1/passports`.",
   "properties": {
     "success": {
       "type": "boolean",
@@ -60,11 +61,16 @@ generated:
     },
     "isSealed": {
       "type": "boolean",
-      "description": "True when the environment embedded an `eidasVerificationSeal` submodel (the seal is then stored on the passport)."
+      "description": "True when the environment embedded an `eidasVerificationSeal` submodel (the seal is verified, never stored on the passport)."
     },
     "signatureVerified": {
       "type": "boolean",
       "description": "True when the embedded seal verified against the tenant's server-held signing public key. Always false for unsealed documents. (A sealed-but-unverified document never reaches 201 — it fails 400.)"
+    },
+    "resealRequired": {
+      "type": "boolean",
+      "const": true,
+      "description": "Present, and `true`, only when this re-ingest replaced a SEALED passport with a version that carries no seal. The sealed version is archived with its seal intact; seal the new one with `POST /api/v1/passports/{id}/seal`."
     },
     "vcReady": {
       "type": "boolean",

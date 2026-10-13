@@ -8,7 +8,7 @@ tags:
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -19,7 +19,7 @@ generated:
 
 NON-MUTATING pre-flight for bulk unit import. Runs the SAME engine-backed AI-21 / GS1 Digital Link conformance + field checks as `POST /api/v1/passports/{passportId}/units` and returns a per-item verdict — **persisting nothing**. Send a single unit or `{"units": [...]}` (≤200). Lets a bulk importer ask "would these serials be GS1-conformant?" before committing a batch.
 
-**Permission:** `battery:write` (gated as the write permission, like other validate-only checks; subscription gating → 402). **Validation:** `serialNumber` charset/length (`^[A-Za-z0-9._-]{1,20}$`, a URL-safe subset of GS1 AI-21 CSET 82) PLUS authoritative GS1-engine conformance for EVERY unit — a GTIN-keyed passport's unit Digital Link must parse cleanly through the engine, and a non-GTIN passport's AI-21 serial VALUE is validated through the same engine (CSET-82 charset + length); `status` must be a valid unit status; `manufacturedAt` must be Date-parseable. Predecessor linkage is NOT checked here (a persistence-time concern). The verdict order matches the input order.
+**Permission:** `battery:write` (gated as the write permission, like other validate-only checks; subscription gating → 402). **Validation:** `serialNumber` charset/length (`^[A-Za-z0-9._-]{1,20}$`, a URL-safe subset of GS1 AI-21 CSET 82) PLUS authoritative GS1-engine conformance for EVERY unit — a GTIN-keyed passport's unit Digital Link must parse cleanly through the engine, and a non-GTIN passport's AI-21 serial VALUE is validated through the same engine (CSET-82 charset + length); `status` must be a valid unit status; `manufacturedAt` must name a real calendar date (an impossible day such as `2026-02-30` is refused, never rolled into the next month) in a year from 1900 to next year, and must not be written with the day and month as two small numbers (`03/04/2026`, `03-04-2026`, `3.4.26` — refused, since they read as different days in different places; write `YYYY-MM-DD`). Predecessor linkage is NOT checked here (a persistence-time concern). The verdict order matches the input order.
 
 **Rate limit:** your plan's per-key budget applies — **Growth** 120/min, **Scale** 600/min, **Enterprise** unlimited — with a ceiling of 3x that rate across all of the workspace's keys. The per-IP ceiling is not the binding limit for authenticated calls. Standard `x-ratelimit-*` headers; **429** carries `Retry-After`.
 
@@ -42,11 +42,12 @@ Schema (required): [SerializeBatteryUnitsRequest](/schemas/SerializeBatteryUnits
 
 ## Responses
 
-- **200** — Per-item conformance verdicts in input order (nothing persisted).
+- **200** — Per-item conformance verdicts in input order (nothing persisted). → [BatteryUnitRefusalReason](/schemas/BatteryUnitRefusalReason.md)
 - **400** — Invalid body envelope (not a JSON object, empty units, or more than 200 items). → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — Passport not found under your tenant workspace. → [Error](/schemas/Error.md)
+- **409** — The productId in the path names more than one passport you can reach (see the passportId parameter); address the passport by its UUID. → [Error](/schemas/Error.md)
 
 ## Example
 
@@ -60,4 +61,4 @@ curl -s \
 
 ## See also
 
-Schemas: [Error](/schemas/Error.md), [SerializeBatteryUnitsRequest](/schemas/SerializeBatteryUnitsRequest.md).
+Schemas: [BatteryUnitRefusalReason](/schemas/BatteryUnitRefusalReason.md), [Error](/schemas/Error.md), [SerializeBatteryUnitsRequest](/schemas/SerializeBatteryUnitsRequest.md).

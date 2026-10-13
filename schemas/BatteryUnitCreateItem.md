@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -40,7 +40,7 @@ One unit to serialise. Validation is per-item: an invalid item is skipped (its e
         "string",
         "number"
       ],
-      "description": "Optional. Any value accepted by JavaScript `Date` parsing (ISO 8601 recommended; epoch milliseconds also work). Invalid dates skip the item."
+      "description": "Optional. An ISO 8601 date or date-time (recommended; a bare date is midnight UTC), or epoch milliseconds. The calendar date must exist — `2026-02-30` is refused, not read as the 2nd of March — and its year must fall between 1900 and next year. A day-and-month form that reads either way round (`03/04/2026`, `03-04-2026`, `3.4.26`) is refused rather than guessed at. An invalid value skips the item."
     },
     "status": {
       "$ref": "#/components/schemas/BatteryUnitStatus",
@@ -49,7 +49,7 @@ One unit to serialise. Validation is per-item: an invalid item is skipped (its e
     },
     "predecessorUnitId": {
       "type": "string",
-      "description": "Optional lineage linkage: id of an existing unit **in your tenant** (any passport) that this battery was repurposed/remanufactured from. A recycled predecessor is refused — the check keys on terminality (`ceasedAt` set or a terminal `status`), however the unit reached it. Atomically with creation, a `STATUS_CHANGE` event (`{status, successorUnitId, successorSerial}`) is appended to the predecessor and its status set to `predecessorStatus`."
+      "description": "Optional lineage linkage: id of an existing unit **in your tenant** (any passport) that this battery was repurposed/remanufactured from. A recycled predecessor is refused — the check keys on terminality (`ceasedAt` set or a terminal `status`), however the unit reached it. Atomically with creation, a `STATUS_CHANGE` event (`{status, from, to, successorUnitId, successorSerial}`) is appended to the predecessor and its status set to `predecessorStatus`."
     },
     "predecessorStatus": {
       "type": "string",

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -37,7 +37,7 @@ The public, redacted JSON-LD Digital Product Passport document (`application/ld+
 | `signingPublicKey` | string,null | yes | PEM public key that verifies digitalSeal. |
 | `status` | string | yes | Passport lifecycle status (serialized as ACTIVE when unset). |
 | `archivedAt` | string,null | yes | Soft-delete marker (owner off-boarded / decommissioned). |
-| `retentionUntil` | string,null | yes | Minimum-availability deadline; the passport is never purged before this instant. |
+| `retentionUntil` | string,null | yes | The instant from which the retention purge may remove the passport; null while its lifetime lasts. |
 | `proof` | — | yes | Present (non-null) only when the passport is sealed (digitalSeal set). |
 | `createdAt` | string | yes | — |
 | `updatedAt` | string | yes | — |
@@ -216,7 +216,7 @@ The public, redacted JSON-LD Digital Product Passport document (`application/ld+
         "null"
       ],
       "format": "date-time",
-      "description": "Minimum-availability deadline; the passport is never purged before this instant."
+      "description": "The instant from which the retention purge may remove the passport; null while its lifetime lasts. Set only by the product group's own rule — today, 30 days after a battery model is decommissioned with every battery under it recycled (the EU Battery Regulation); until then the end can still be taken back. A value written under an earlier fixed window is kept, except that restoring an archived passport clears it."
     },
     "proof": {
       "anyOf": [

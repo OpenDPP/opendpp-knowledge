@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -22,6 +22,7 @@ Returned (201) when at least one unit was created. Partial success is possible: 
 | `count` | integer | yes | Number of units actually created (equals units.length). |
 | `units` | array<[BatteryUnitRow](/schemas/BatteryUnitRow.md)> | yes | — |
 | `errors` | array<string> | no | Present only when some items were skipped — one plain-English string per skipped item, generally prefixed [<serialNumber>]. |
+| `reasons` | array<[BatteryUnitRefusalReason](/schemas/BatteryUnitRefusalReason.md)> | no | Present only when some items were skipped: one per errors entry, in the same order, each refusal as a stable code. |
 | `warnings` | array<[AdvisoryItem](/schemas/AdvisoryItem.md)> | yes | Non-blocking advisories. |
 
 ## JSON Schema
@@ -56,6 +57,13 @@ Returned (201) when at least one unit was created. Partial success is possible: 
         "type": "string"
       },
       "description": "Present only when some items were skipped — one plain-English string per skipped item, generally prefixed `[<serialNumber>]`."
+    },
+    "reasons": {
+      "type": "array",
+      "description": "Present only when some items were skipped: one per `errors` entry, in the same order, each refusal as a stable code.",
+      "items": {
+        "$ref": "#/components/schemas/BatteryUnitRefusalReason"
+      }
     },
     "warnings": {
       "type": "array",

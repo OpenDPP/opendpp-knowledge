@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -29,7 +29,7 @@ Replaces the passport's `metadata` (the Merkle root and leaf hashes are recomput
 
 **Validation divergence:** the 400 validation body here contains `errors` but — unlike `POST /api/v1/passports` — **never a `warnings` array**. `friendlyMessage` is localized via the `lang` query parameter or `Accept-Language` (28 languages, default `en`; unsupported values silently fall back).
 
-**Sealed passports are immutable in place:** if `digitalSeal` is set the update is refused with **403** (message: "This passport is sealed and cannot be edited in place — editing would invalidate the eIDAS advanced electronic seal. Re-seal explicitly after any change.").
+**Editing a sealed passport's metadata creates a new, unsealed version:** the update is accepted, the sealed version is archived in the version history with its seal intact (so it stays verifiable), and the current passport carries no seal until it is sealed again (`POST /api/v1/passports/{id}/seal`). The 200 body then carries `resealRequired: true`. The seal covers the metadata only, so an update that leaves the metadata as it was (a change of facility, enrichment or carrier declaration alone) keeps the seal, and an update that changes nothing at all records no new version.
 
 **Facility:** omit `facilityId` to leave it unchanged; pass `null` or `""` to detach; pass a facility UUID owned by your tenant to attach (400 if not found in your workspace).
 
@@ -139,7 +139,7 @@ Schema (required): [PassportUpdateRequest](/schemas/PassportUpdateRequest.md).
 - **200** — Updated (or published) passport. → [PassportUpdateResponse](/schemas/PassportUpdateResponse.md)
 - **400** — Either a plain Bad Request — body is not a JSON object; metadata missing/not an object; facilityId not found in your workspace (Facility <facilityId> not found… → [PassportUpdateBadRequest](/schemas/PassportUpdateBadRequest.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
 - **409** — Publishing is one-way: draft: true on a passport that is already published (ACTIVE/RECALLED/DECOMMISSIONED). → [Error](/schemas/Error.md)

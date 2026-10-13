@@ -8,11 +8,11 @@ tags:
   - event
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
-Sent when `PUT /api/v1/passports/{id}/status` performs a non-recall transition: decommissioning (`DECOMMISSIONED`, which also sets `retentionUntil` and starts the retention clock) or reactivation back to `ACTIVE`. Subscribe to it directly with the `passport.status_updated` filter (or `*`).
+Sent when `PUT /api/v1/passports/{id}/status` performs a non-recall transition: decommissioning (`DECOMMISSIONED`, which starts no clock — `retentionUntil` is set only when a battery model is retired with every battery under it recycled) or reactivation back to `ACTIVE`. Subscribe to it directly with the `passport.status_updated` filter (or `*`).
 
 **Delivery contract** (sender `User-Agent: OpenDPP-Webhook-Outbox/1.0`):
 - The body is a JSON **envelope** `{ id, type, created, data }`: `data` is the **public (redacted) JSON-LD passport document**, `type` is the event name (also in the `X-OpenDPP-Event` header), and `id` is the stable delivery id (also in the `X-OpenDPP-Delivery` header, constant across retries). The owner-only `facilityDetails` metadata key **always appears with the masked value `[REDACTED - Privileged Access Required]`** (at the document root and in the `@context` term map) even when the passport never set that key; restricted metadata keys likewise appear masked.

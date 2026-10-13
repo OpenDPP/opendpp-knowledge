@@ -13,7 +13,7 @@
 * [GET /api/v1/passports/vc-readiness](passportVcReadinessReport.md) - Catalog-wide UNTP Verifiable-Credential readiness report
 * [GET /api/v1/passports/{id}](getPassport.md) - Fetch a single passport (content-negotiated JSON-LD / AAS / HTML)
 * [PUT /api/v1/passports/{id}](updatePassport.md) - Update passport metadata (versioned to history)
-* [DELETE /api/v1/passports/{id}](deleteDraftPassport.md) - Permanently delete a DRAFT passport
+* [DELETE /api/v1/passports/{id}](deleteDraftPassport.md) - Permanently delete a passport the law allows to go (a draft, or one whose lifetime has ended)
 * [POST /api/v1/passports/{id}/seal](sealPassport.md) - Apply the tenant's advanced electronic seal
 * [PUT /api/v1/passports/{id}/status](updatePassportStatus.md) - Transition passport lifecycle status (recall / decommission / reactivate)
 

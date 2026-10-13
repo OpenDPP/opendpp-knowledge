@@ -8,11 +8,11 @@ tags:
   - event
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
-Sent when an already-published (non-draft) passport's content is edited in place via `PUT /api/v1/passports/{id}`, transactionally with the update write. This is **distinct from first publish** (that emits `passport.ingested`, not this event) and is **never** emitted for sealed passports — in-place edits of a sealed passport are rejected with `403`. The payload is the updated public JSON-LD passport with `status: "ACTIVE"`. Delivered to every active subscription whose filter contains `passport.updated` or `*`.
+Sent when an already-published (non-draft) passport's content is edited in place via `PUT /api/v1/passports/{id}`, transactionally with the update write. This is **distinct from first publish** (that emits `passport.ingested`, not this event) and it is emitted for a sealed passport's edit too — that edit creates a new, unsealed version (the sealed one is archived with its seal), so the payload carries no seal until the passport is sealed again. The payload is the updated public JSON-LD passport with `status: "ACTIVE"`. Delivered to every active subscription whose filter contains `passport.updated` or `*`.
 
 **Delivery contract** (sender `User-Agent: OpenDPP-Webhook-Outbox/1.0`):
 - The body is a JSON **envelope** `{ id, type, created, data }`: `data` is the **public (redacted) JSON-LD passport document**, `type` is the event name (also in the `X-OpenDPP-Event` header), and `id` is the stable delivery id (also in the `X-OpenDPP-Delivery` header, constant across retries). The owner-only `facilityDetails` metadata key **always appears with the masked value `[REDACTED - Privileged Access Required]`** (at the document root and in the `@context` term map) even when the passport never set that key; restricted metadata keys likewise appear masked.

@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -19,7 +19,7 @@ A batch of passports to ingest, with optional dry-run preview and upsert-on-conf
 |----------|------|----------|-------------|
 | `passports` | array<[PassportBulkRow](/schemas/PassportBulkRow.md)> | yes | 1–200 rows. |
 | `dryRun` | boolean | no | When true, every row is validated and the duplicate/operator/facility checks run, but nothing is written — the response is 200 and reports which rows are OK (r… |
-| `upsert` | boolean | no | When true, a row whose (productId, operator) already exists updates the existing passport instead of being reported as a duplicate (a sealed passport is never… |
+| `upsert` | boolean | no | When true, a row whose (productId, operator) already exists updates the existing passport instead of being reported as a duplicate. |
 
 ## JSON Schema
 
@@ -46,7 +46,7 @@ A batch of passports to ingest, with optional dry-run preview and upsert-on-conf
     },
     "upsert": {
       "type": "boolean",
-      "description": "When `true`, a row whose `(productId, operator)` already exists **updates** the existing passport instead of being reported as a duplicate (a sealed passport is never overwritten). Enables idempotent re-import of a corrected catalog."
+      "description": "When `true`, a row whose `(productId, operator)` already exists **updates** the existing passport instead of being reported as a duplicate. A sealed passport is updated too: when the row changes its metadata, the sealed version is archived with its seal intact, the new version carries no seal, and the row's result says `resealRequired: true`; a row carrying the same metadata keeps the seal. Enables idempotent re-import of a corrected catalog."
     }
   }
 }

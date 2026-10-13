@@ -8,7 +8,7 @@ tags:
   - battery-units
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -36,6 +36,7 @@ Lists **all** serialised units of the passport, newest first (`createdAt` DESC).
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
+- **409** — The productId in the path names more than one passport you can reach (see the passportId parameter); address the passport by its UUID. → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
 - **500** — Unexpected server error. → [Error](/schemas/Error.md)
 
@@ -49,4 +50,4 @@ curl -s \
 
 ## See also
 
-Schemas: [BatteryUnitListResponse](/schemas/BatteryUnitListResponse.md).
+Schemas: [BatteryUnitListResponse](/schemas/BatteryUnitListResponse.md), [Error](/schemas/Error.md).

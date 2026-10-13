@@ -8,7 +8,7 @@ tags:
   - passports
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -28,7 +28,7 @@ A `passport.sealed` webhook is enqueued transactionally with the update (payload
 **Behavioral caveats:**
 - The route does **not** modify the passport's `status` — despite the success message's "and published" wording, a DRAFT stays a DRAFT after sealing. Publish via `PUT /api/v1/passports/{id}` (validated save) instead.
 - Re-sealing an already-sealed passport is allowed and **overwrites** the previous seal/timestamp.
-- Once sealed, in-place metadata edits are refused (403 on `PUT /api/v1/passports/{id}`).
+- A later edit (`PUT /api/v1/passports/{id}`, a bulk re-import, an AAS re-ingest) creates a new, unsealed version and archives the sealed one with its seal; seal the new version to seal it.
 - Requires the tenant's signing key pair to exist — otherwise 400.
 - The returned `passport` document is serialized at the **public** redaction tier (masked keys keep their true leaf hashes in `proof.redactedLeaves`, so the seal stays offline-verifiable after redaction).
 
@@ -45,7 +45,7 @@ A `passport.sealed` webhook is enqueued transactionally with the update (payload
 - **200** — Passport sealed. → [PassportSealResponse](/schemas/PassportSealResponse.md)
 - **400** — Missing identifier, or the tenant has no signing key pair configured. → [Error](/schemas/Error.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The resource does not exist or is not visible to the calling workspace. → [Error](/schemas/Error.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.

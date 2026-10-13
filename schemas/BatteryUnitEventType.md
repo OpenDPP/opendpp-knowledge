@@ -1,17 +1,17 @@
 ---
 type: Schema
 title: BatteryUnitEventType
-description: Per-unit dynamic-data event category (Annex XIII / Art. 77 telemetry).
+description: Per-unit dynamic-data event category (EU Battery Regulation Annex XIII telemetry).
 resource: https://opendpp-node.eu/openapi.json#/components/schemas/BatteryUnitEventType
 tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
-Per-unit dynamic-data event category (Annex XIII / Art. 77 telemetry).
+Per-unit dynamic-data event category (EU Battery Regulation Annex XIII telemetry).
 
 ## JSON Schema
 
@@ -25,7 +25,7 @@ Per-unit dynamic-data event category (Annex XIII / Art. 77 telemetry).
     "NEGATIVE_EVENT",
     "OTHER"
   ],
-  "description": "Per-unit dynamic-data event category (Annex XIII / Art. 77 telemetry)."
+  "description": "Per-unit dynamic-data event category (EU Battery Regulation Annex XIII telemetry)."
 }
 ```
 

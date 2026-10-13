@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -37,7 +37,7 @@ An economic operator to register: its legal name, its identifier under an EN 182
   "properties": {
     "name": {
       "type": "string",
-      "description": "Legal/display name. Ignored if your workspace already has an operator with this `regId` (the existing record is returned instead)."
+      "description": "Legal/display name."
     },
     "regId": {
       "type": "string",
@@ -51,7 +51,7 @@ An economic operator to register: its legal name, its identifier under an EN 182
         "LEI",
         "GLN"
       ],
-      "description": "Required: the EN 18219 clause 6 scheme `regId` is issued under, matched case-insensitively (uppercased server-side). Any other value — an EORI included — is rejected with `400`. Ignored when binding to an existing operator."
+      "description": "Required: the EN 18219 clause 6 scheme `regId` is issued under, matched case-insensitively (uppercased server-side). Any other value — an EORI included — is rejected with `400`."
     },
     "eori": {
       "type": [

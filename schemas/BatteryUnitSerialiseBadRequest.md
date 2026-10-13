@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -18,7 +18,7 @@ The three 400 bodies of unit serialisation: the standard error triple, the all-i
 ```json
 {
   "description": "The three 400 bodies of unit serialisation: the standard error triple, the all-items-failed `Serialisation Failed` report, and the framework's default request-rejection body.",
-  "oneOf": [
+  "anyOf": [
     {
       "$ref": "#/components/schemas/Error"
     },

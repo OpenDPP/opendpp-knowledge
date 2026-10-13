@@ -7,7 +7,7 @@ tags:
   - schema
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -62,6 +62,7 @@ Standard error body. Authenticated-API errors include `success: false`; some end
         "OPERATOR_NOT_BOUND",
         "OPERATOR_AMBIGUOUS",
         "OPERATOR_SCOPE_FORBIDDEN",
+        "OPERATOR_DUPLICATE",
         "GTIN_CHECK_DIGIT_INVALID",
         "GLN_CHECK_DIGIT_INVALID",
         "UNSUPPORTED_KEY_QUALIFIER",
@@ -71,6 +72,8 @@ Standard error body. Authenticated-API errors include `success: false`; some end
         "PASSPORT_SEALED_IMMUTABLE",
         "CATEGORY_IMMUTABLE",
         "DRAFT_DEMOTION_REFUSED",
+        "PASSPORT_LIFETIME_ENDED",
+        "PASSPORT_RETENTION_REQUIRED",
         "FACILITY_NOT_FOUND",
         "FACILITY_DUPLICATE",
         "WEBHOOK_NOT_FOUND",
@@ -86,6 +89,8 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 
 - [whoami](/operations/whoami.md) (`GET /api/v1/whoami`)
 - [validateBatteryUnits](/operations/validateBatteryUnits.md) (`POST /api/v1/passports/{passportId}/units/validate`)
+- [listBatteryUnits](/operations/listBatteryUnits.md) (`GET /api/v1/passports/{passportId}/units`)
+- [serializeBatteryUnits](/operations/serializeBatteryUnits.md) (`POST /api/v1/passports/{passportId}/units`)
 - [deleteBatteryUnit](/operations/deleteBatteryUnit.md) (`DELETE /api/v1/units/{id}`)
 - [listBatteryUnitEvents](/operations/listBatteryUnitEvents.md) (`GET /api/v1/units/{id}/events`)
 - [recordBatteryUnitEvent](/operations/recordBatteryUnitEvent.md) (`POST /api/v1/units/{id}/events`)
@@ -94,6 +99,7 @@ Standard error body. Authenticated-API errors include `success: false`; some end
 - [getFacility](/operations/getFacility.md) (`GET /api/v1/facilities/{id}`)
 - [updateFacility](/operations/updateFacility.md) (`PUT /api/v1/facilities/{id}`)
 - [deleteFacility](/operations/deleteFacility.md) (`DELETE /api/v1/facilities/{id}`)
+- [registerOperator](/operations/registerOperator.md) (`POST /api/v1/operators`)
 - [updateOperator](/operations/updateOperator.md) (`PATCH /api/v1/operators/{id}`)
 - [deleteOperator](/operations/deleteOperator.md) (`DELETE /api/v1/operators/{id}`)
 - [restoreOperator](/operations/restoreOperator.md) (`POST /api/v1/operators/{id}/restore`)

@@ -1,14 +1,14 @@
 ---
 type: API Endpoint
 title: Restore an archived operator and its archived passports
-description: "Un-archives an operator that was soft-deleted by DELETE /api/v1/operators/{id} and brings its archived passports back into the active catalogue: clears the operator's archivedAt, then clears archivedAt and retentionUntil on every archived…"
+description: "Un-archives an operator that was soft-deleted by DELETE /api/v1/operators/{id} and brings its archived passports back into the active catalogue: clears the operator's archivedAt, then clears archivedAt on every archived passport of the ope…"
 resource: https://opendpp-node.eu/api/v1/operators/{id}/restore
 tags:
   - POST
   - economic-operators
 generated:
   by: process:emit-okf
-  at: 2026-09-15T00:00:00Z
+  at: 2026-09-21T00:00:00Z
 ---
 <!-- Copyright (c) Opendpp UAB. SPDX-License-Identifier: LicenseRef-OpenDPP-Proprietary -->
 
@@ -17,7 +17,7 @@ generated:
 **Domain:** [Economic Operators](/tags/economic-operators.md)  
 **Authentication:** **API key required** — `Authorization: Bearer op_dpp_token_…`.
 
-Un-archives an operator that was soft-deleted by `DELETE /api/v1/operators/{id}` and brings its archived passports back into the active catalogue: clears the operator's `archivedAt`, then clears `archivedAt` and `retentionUntil` on every archived passport of the operator **except** passports that were independently `DECOMMISSIONED` (those keep their own retention clock and stay archived).
+Un-archives an operator that was soft-deleted by `DELETE /api/v1/operators/{id}` and brings its archived passports back into the active catalogue: clears the operator's `archivedAt`, then clears `archivedAt` on every archived passport of the operator **except** passports that were independently `DECOMMISSIONED` (those stay archived). A `retentionUntil` the old fixed window wrote at archival is cleared with the archive; a lifetime end already stamped (`lifetimeEndedAt` set) is left in place.
 
 Safe to call on a non-archived operator — it simply restores any archived passports the operator may have (`restoredPassports` may be `0`). No request body.
 
@@ -37,7 +37,7 @@ Side effects: an `operator.restored` audit event and an in-app notification. Unh
 
 - **200** — Operator un-archived. → [RestoreOperatorResponse](/schemas/RestoreOperatorResponse.md)
 - **401** — Missing, invalid, revoked or expired credentials. → [Error](/schemas/Error.md)
-- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (reads are unaffected), OR (on passport-creating writes) the… → [PassportQuotaError](/schemas/PassportQuotaError.md)
+- **402** — The write is blocked by billing — the workspace subscription is lapsed / its grace period expired (code: "subscription_inactive"; reads are unaffected — a GET… → [PassportQuotaError](/schemas/PassportQuotaError.md)
 - **403** — Authenticated but not allowed: the key lacks the required permission, the request crosses workspaces, or an MFA-gated write was attempted without an MFA sessio… → [Error](/schemas/Error.md)
 - **404** — The operator does not exist or is not bound to your workspace. → [OperatorMinimalError](/schemas/OperatorMinimalError.md)
 - **429** — Rate limit exceeded — either your key's per-minute plan budget (or the 3x workspace ceiling above it) or the per-IP ceiling, whichever bit first.
